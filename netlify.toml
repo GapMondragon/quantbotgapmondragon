@@ -1,0 +1,80 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/about-us"
+  to = "/about-us.html"
+  status = 200
+
+[[redirects]]
+  from = "/proof-of-concept"
+  to = "/proof-of-concept.html"
+  status = 200
+
+[[redirects]]
+  from = "/qmm-setup"
+  to = "/qmm-setup.html"
+  status = 200
+
+[[redirects]]
+  from = "/meet-the-founders"
+  to = "/meet-the-founders.html"
+  status = 200
+
+[[redirects]]
+  from = "/careers"
+  to = "/careers.html"
+  status = 200
+
+[[redirects]]
+  from = "/news"
+  to = "/news.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact-us.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy-notice"
+  to = "/privacy-notice.html"
+  status = 200
+
+[[redirects]]
+  from = "/california-privacy-notice"
+  to = "/california-privacy-notice.html"
+  status = 200
+
+[[redirects]]
+  from = "/disclosures-and-disclaimers"
+  to = "/disclosures-and-disclaimers.html"
+  status = 200
+
+[[redirects]]
+  from = "/gdpr-privacy-notice"
+  to = "/gdpr-privacy-notice.html"
+  status = 200
+
+[[redirects]]
+  from = "/job-applicant-privacy-policy"
+  to = "/job-applicant-privacy-policy.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

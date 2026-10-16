@@ -458,6 +458,7 @@ function initMasterSynthesis() {
   initCommandPalette(RollEngine, Sound);
   initQuantLabSimulator(Sound);
   initGlobalHubMatrix(Sound);
+  initPresentationDeckEngine(Sound);
 }
 
 // 1. Acoustic Interface Sound Design (bulbs.simondupety.com inspired)
@@ -1330,4 +1331,542 @@ function initGlobalHubMatrix(Sound) {
       if (latEl) latEl.textContent = data.latency;
     });
   });
+}
+
+// 13. Presentation Deck Stage Theater & Scroll-Driven Sub-Step Choreography Engine (Homepage)
+function initPresentationDeckEngine(Sound) {
+  const deckEl = document.getElementById('qb-presentation-deck');
+  if (!deckEl) return;
+
+  const stages = Array.from(deckEl.querySelectorAll('.deck-stage'));
+  if (stages.length < 2) return;
+
+  // Define each stage's interactive sub-steps and what scrolling presents next
+  const STAGE_DEFS = [
+    {
+      index: 0,
+      code: 'STAGE 01 / 07',
+      title: 'Opening Keynote',
+      subSteps: ['Keynote Overview: Global Quantitative Alpha'],
+      applySubStep: () => {},
+    },
+    {
+      index: 1,
+      code: 'STAGE 02 / 07',
+      title: 'What Makes Us Different',
+      subSteps: [
+        'Pillar 01: Global Footprint',
+        'Pillar 02: Quantitative Methodologies',
+        'Pillar 03: Streamlined Business Process',
+        'Pillar 04: Research & Infrastructure',
+      ],
+      applySubStep: (subIdx) => {
+        const cards = document.querySelectorAll('.deck-pillar-card');
+        cards.forEach((c, idx) => c.classList.toggle('is-pillar-active', idx === subIdx));
+        const activeCard = cards[subIdx];
+        if (activeCard) {
+          const tagEl = document.getElementById('qb-pillar-hud-tag');
+          const titleEl = document.getElementById('qb-pillar-hud-title');
+          const specEl = document.getElementById('qb-pillar-hud-spec');
+          const topLbl = document.getElementById('stage2-substep-label');
+          if (tagEl) tagEl.textContent = activeCard.getAttribute('data-pillar-tag') || '';
+          if (titleEl) titleEl.textContent = activeCard.getAttribute('data-pillar-metric') || '';
+          if (specEl) specEl.textContent = activeCard.getAttribute('data-pillar-spec') || '';
+          if (topLbl) {
+            topLbl.textContent = `PILLAR SPOTLIGHT 0${subIdx + 1} / 04 — ${activeCard.querySelector('.card-title')?.textContent?.toUpperCase() || ''}`;
+          }
+          const monitorImg = document.querySelector('.deck-pillar-monitor-img');
+          if (monitorImg) {
+            monitorImg.style.transform = `scale(${1 + subIdx * 0.025}) translate3d(${(subIdx % 2 === 0 ? -1 : 1) * 6}px, 0, 0)`;
+          }
+        }
+      },
+    },
+    {
+      index: 2,
+      code: 'STAGE 03 / 07',
+      title: '6-Phase Alpha Pipeline',
+      subSteps: [
+        'Phase 01: Idea Generation',
+        'Phase 02: Data Analysis',
+        'Phase 03: Code Development',
+        'Phase 04: Trading Logic & Risk',
+        'Phase 05: Paper Trading & Testing',
+        'Phase 06: Live Production Trading',
+      ],
+      applySubStep: (subIdx) => {
+        const steps = document.querySelectorAll('#strategyProcessStage .timeline-step');
+        steps.forEach((st, idx) => {
+          st.classList.toggle('is-phase-active', idx === subIdx);
+          st.classList.toggle('is-phase-complete', idx < subIdx);
+        });
+        const activeStep = steps[subIdx];
+        const fillEl = document.getElementById('qb-pipeline-fill');
+        const codeEl = document.getElementById('qb-pipeline-code');
+        const gateEl = document.getElementById('qb-pipeline-gate');
+        const topLbl = document.getElementById('stage3-substep-label');
+        if (fillEl) fillEl.style.width = `${(((subIdx + 1) / steps.length) * 100).toFixed(2)}%`;
+        if (activeStep) {
+          if (codeEl) codeEl.textContent = activeStep.getAttribute('data-phase-code') || '';
+          if (gateEl) gateEl.textContent = activeStep.getAttribute('data-phase-gate') || '';
+          if (topLbl) {
+            const title = activeStep.querySelector('.step-title')?.textContent?.toUpperCase() || '';
+            topLbl.textContent = `ACTIVE PHASE 0${subIdx + 1} / 06 — ${title}`;
+          }
+        }
+      },
+    },
+    {
+      index: 3,
+      code: 'STAGE 04 / 07',
+      title: 'Our Founding Story',
+      subSteps: [
+        'Spotlight: Paul White (Co-Founder & CEO)',
+        'Spotlight: Ashar Mahboob (Chief Investment Officer)',
+        'Spotlight: New York Americas Headquarters',
+        'Spotlight: London European Operations',
+      ],
+      applySubStep: (subIdx) => {
+        const frames = document.querySelectorAll('.deck-story-frame');
+        frames.forEach((f, idx) => f.classList.toggle('is-story-active', idx === subIdx));
+        const topLbl = document.getElementById('stage4-substep-label');
+        if (topLbl && STAGE_DEFS[3].subSteps[subIdx]) {
+          topLbl.textContent = STAGE_DEFS[3].subSteps[subIdx].toUpperCase();
+        }
+      },
+    },
+    {
+      index: 4,
+      code: 'STAGE 05 / 07',
+      title: 'QuantLab Simulator',
+      subSteps: [
+        'Simulate: Statistical Arbitrage (OOS)',
+        'Simulate: Global Cash Equities (OOS)',
+        'Simulate: Electronic Futures (OOS)',
+        'Simulate: Tensor Machine Learning Alpha',
+      ],
+      applySubStep: (subIdx) => {
+        const keys = ['statarb', 'equities', 'futures', 'mlalpha'];
+        const key = keys[subIdx] || 'statarb';
+        const btn = document.querySelector(`[data-ql-asset="${key}"]`);
+        if (btn && !btn.classList.contains('active')) {
+          btn.click();
+        }
+        const topLbl = document.getElementById('stage5-substep-label');
+        if (topLbl) {
+          topLbl.textContent = `UNIVERSE 0${subIdx + 1} / 04 — ${STAGE_DEFS[4].subSteps[subIdx].replace('Simulate: ', '').toUpperCase()}`;
+        }
+      },
+    },
+    {
+      index: 5,
+      code: 'STAGE 06 / 07',
+      title: 'Global Execution Matrix',
+      subSteps: [
+        'Hub 01: New York Headquarters (NY4)',
+        'Hub 02: London European Hub (LD4)',
+        'Hub 03: Hong Kong APAC Hub (HK1)',
+        'Hub 04: Miami Quantitative Center',
+      ],
+      applySubStep: (subIdx) => {
+        const keys = ['ny', 'london', 'hk', 'miami'];
+        const key = keys[subIdx] || 'ny';
+        const btn = document.querySelector(`[data-hub-select="${key}"]`);
+        if (btn && !btn.classList.contains('active')) {
+          btn.click();
+        }
+        const topLbl = document.getElementById('stage6-substep-label');
+        if (topLbl) {
+          topLbl.textContent = STAGE_DEFS[5].subSteps[subIdx].toUpperCase();
+        }
+      },
+    },
+    {
+      index: 6,
+      code: 'STAGE 07 / 07',
+      title: 'Careers & Global Directory',
+      subSteps: ['Closing Keynote: POC, QMM & Global Directory'],
+      applySubStep: () => {},
+    },
+  ];
+
+  let deckModeEnabled = true;
+  let currentStage = 0;
+  let currentSubStep = 0;
+  let isTransitioning = false;
+  let wheelCharge = 0;
+  let autoPlayTimer = null;
+
+  // Enable Deck Mode on body
+  document.body.classList.add('qb-deck-active');
+
+  // Inject "🎬 Deck [D]" toggle button into Top Telemetry Bar
+  const controlsGroup = document.querySelector('.qb-controls-group');
+  if (controlsGroup && !document.getElementById('qb-btn-deckmode')) {
+    const deckBtn = document.createElement('button');
+    deckBtn.type = 'button';
+    deckBtn.id = 'qb-btn-deckmode';
+    deckBtn.className = 'qb-ctrl-btn active';
+    deckBtn.title = 'Toggle Presentation Deck Stage Mode vs Free Scroll (Shortcut: D)';
+    deckBtn.innerHTML = '<i class="fa fa-film"></i> Deck [D]';
+    controlsGroup.prepend(deckBtn);
+    deckBtn.addEventListener('click', () => toggleDeckMode());
+  }
+
+  // Create Top Stage Transition Curtain Toast
+  const curtainToast = document.createElement('div');
+  curtainToast.className = 'qb-stage-curtain-toast';
+  document.body.appendChild(curtainToast);
+  let curtainTimer = null;
+
+  function showStageCurtain(text) {
+    curtainToast.textContent = text;
+    curtainToast.classList.add('is-visible');
+    clearTimeout(curtainTimer);
+    curtainTimer = setTimeout(() => curtainToast.classList.remove('is-visible'), 1550);
+  }
+
+  // Create Right-Edge Presentation Slide Rail
+  const rail = document.createElement('aside');
+  rail.className = 'qb-deck-rail';
+  rail.setAttribute('aria-label', 'Presentation Stage Slide Rail');
+  rail.innerHTML = STAGE_DEFS.map(
+    (st, idx) => `
+      <button type="button" class="qb-deck-rail-dot ${idx === 0 ? 'is-active' : ''}"
+              data-rail-stage="${idx}"
+              data-stage-tooltip="${st.code} // ${st.title}">
+        0${idx + 1}
+      </button>
+    `
+  ).join('');
+  document.body.appendChild(rail);
+
+  rail.querySelectorAll('[data-rail-stage]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetStage = parseInt(btn.getAttribute('data-rail-stage'), 10);
+      goToStage(targetStage, 0, true);
+    });
+  });
+
+  // Create Bottom-Center "What to Present Next" Stage Director Dock
+  const dock = document.createElement('div');
+  dock.className = 'qb-deck-director-dock';
+  dock.innerHTML = `
+    <div class="qb-deck-dock-status">
+      <span class="qb-deck-stage-counter" id="qb-dock-stage-code">STAGE 01 / 07</span>
+      <span class="qb-deck-substeps-dots" id="qb-dock-substeps"></span>
+    </div>
+    <button type="button" class="qb-deck-next-btn" id="qb-dock-next-btn" title="Click or Scroll Down to Present Next">
+      <span class="qb-deck-charge-fill" id="qb-dock-charge-fill"></span>
+      <span style="position:relative; z-index:2;" id="qb-dock-next-label">NEXT ON SCROLL: STAGE 02 — WHAT MAKES US DIFFERENT ↓</span>
+    </button>
+    <div class="qb-deck-dock-actions">
+      <button type="button" class="qb-deck-icon-btn" id="qb-dock-prev" title="Previous Step / Stage (↑)">
+        <i class="fa fa-chevron-up"></i>
+      </button>
+      <button type="button" class="qb-deck-icon-btn" id="qb-dock-skip-stage" title="Skip Directly to Next Stage (PageDown)">
+        <i class="fa fa-forward-step"></i>
+      </button>
+      <button type="button" class="qb-deck-icon-btn" id="qb-dock-autoplay" title="Auto-Present Keynote Deck (Shortcut: P)">
+        <i class="fa fa-play"></i>
+      </button>
+    </div>
+  `;
+  document.body.appendChild(dock);
+
+  const chargeFillEl = document.getElementById('qb-dock-charge-fill');
+  const stageCodeEl = document.getElementById('qb-dock-stage-code');
+  const substepsEl = document.getElementById('qb-dock-substeps');
+  const nextLabelEl = document.getElementById('qb-dock-next-label');
+
+  // Compute what the very next scroll action will present
+  function getNextPresentationLabel() {
+    const def = STAGE_DEFS[currentStage];
+    if (currentSubStep + 1 < def.subSteps.length) {
+      return `NEXT ON SCROLL: ${def.subSteps[currentSubStep + 1].toUpperCase()} ↓`;
+    }
+    if (currentStage + 1 < STAGE_DEFS.length) {
+      const nextSt = STAGE_DEFS[currentStage + 1];
+      return `NEXT STAGE 0${currentStage + 2}: ${nextSt.title.toUpperCase()} ⇊`;
+    }
+    return `REPLAY KEYNOTE: RETURN TO STAGE 01 ↺`;
+  }
+
+  function syncDeckUI() {
+    const def = STAGE_DEFS[currentStage];
+
+    // Update 3D Stage classes (is-past-stage, is-active-stage, is-future-stage)
+    stages.forEach((sec, idx) => {
+      sec.classList.toggle('is-past-stage', idx < currentStage);
+      sec.classList.toggle('is-active-stage', idx === currentStage);
+      sec.classList.toggle('is-future-stage', idx > currentStage);
+    });
+
+    // Apply current stage's active sub-step spotlight
+    def.applySubStep(currentSubStep);
+
+    // Update Right Slide Rail
+    rail.querySelectorAll('[data-rail-stage]').forEach((dot, idx) => {
+      dot.classList.toggle('is-active', idx === currentStage);
+    });
+
+    // Update Left Minimap Index & Top Progress Bar
+    const totalStepsAll = STAGE_DEFS.reduce((acc, s) => acc + s.subSteps.length, 0);
+    const completedStepsBefore = STAGE_DEFS.slice(0, currentStage).reduce((acc, s) => acc + s.subSteps.length, 0) + currentSubStep + 1;
+    const ratio = completedStepsBefore / totalStepsAll;
+    const prog = document.querySelector('.qb-scroll-progress');
+    const pctEl = document.getElementById('qb-scroll-pct');
+    if (prog) prog.style.transform = `scaleX(${ratio.toFixed(4)})`;
+    if (pctEl) pctEl.textContent = `${Math.round(ratio * 100)}%`;
+
+    document.querySelectorAll('.qb-minimap-item').forEach((item, idx) => {
+      item.classList.toggle('is-active', idx === currentStage);
+    });
+
+    // Update Bottom Stage Director Dock
+    if (stageCodeEl) stageCodeEl.textContent = `${def.code} // ${def.title.toUpperCase()}`;
+    if (substepsEl) {
+      substepsEl.innerHTML = def.subSteps
+        .map((_, sIdx) => `<span class="qb-deck-substep-dot ${sIdx === currentSubStep ? 'is-active' : ''}"></span>`)
+        .join('');
+    }
+    if (nextLabelEl) nextLabelEl.textContent = getNextPresentationLabel();
+  }
+
+  function goToStage(targetStageIdx, targetSubStep = 0, announce = true) {
+    const clampedStage = Math.max(0, Math.min(STAGE_DEFS.length - 1, targetStageIdx));
+    const def = STAGE_DEFS[clampedStage];
+    const clampedSub = Math.max(0, Math.min(def.subSteps.length - 1, targetSubStep));
+
+    const stageChanged = clampedStage !== currentStage;
+    const direction = clampedStage >= currentStage ? 1 : -1;
+
+    currentStage = clampedStage;
+    currentSubStep = clampedSub;
+
+    if (stageChanged) {
+      const targetSec = stages[currentStage];
+      if (targetSec) targetSec.scrollTop = 0;
+      Sound.playChime();
+      window.QuantCanvas?.pulseWarp(direction);
+      if (announce) {
+        showStageCurtain(`${def.code} — ${def.title}`);
+      }
+      if (!deckModeEnabled && targetSec) {
+        targetSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      Sound.playTick(1280 + currentSubStep * 90, 0.025, 0.028);
+      window.QuantCanvas?.pulseWarp(direction * 0.45);
+    }
+
+    syncDeckUI();
+  }
+
+  function stepForward() {
+    const def = STAGE_DEFS[currentStage];
+    if (currentSubStep + 1 < def.subSteps.length) {
+      goToStage(currentStage, currentSubStep + 1, false);
+    } else if (currentStage + 1 < STAGE_DEFS.length) {
+      goToStage(currentStage + 1, 0, true);
+    } else {
+      goToStage(0, 0, true);
+    }
+  }
+
+  function stepBackward() {
+    if (currentSubStep > 0) {
+      goToStage(currentStage, currentSubStep - 1, false);
+    } else if (currentStage > 0) {
+      const prevStage = currentStage - 1;
+      const lastSub = STAGE_DEFS[prevStage].subSteps.length - 1;
+      goToStage(prevStage, lastSub, true);
+    }
+  }
+
+  function skipToNextStage() {
+    const nextIdx = (currentStage + 1) % STAGE_DEFS.length;
+    goToStage(nextIdx, 0, true);
+  }
+
+  // Interactive click bindings for sub-step items inside stages
+  document.querySelectorAll('.deck-pillar-card').forEach((card, idx) => {
+    card.addEventListener('click', () => goToStage(1, idx, false));
+  });
+
+  document.querySelectorAll('#strategyProcessStage .timeline-step').forEach((step, idx) => {
+    step.addEventListener('click', () => goToStage(2, idx, false));
+  });
+
+  document.querySelectorAll('.deck-story-frame').forEach((frame, idx) => {
+    frame.addEventListener('click', () => goToStage(3, idx, false));
+  });
+
+  document.querySelectorAll('[data-deck-goto]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = parseInt(link.getAttribute('data-deck-goto'), 10);
+      goToStage(target, 0, true);
+    });
+  });
+
+  // Override Left Minimap links so they smoothly trigger goToStage in Deck Mode
+  document.querySelectorAll('.qb-minimap-item').forEach((item, idx) => {
+    item.addEventListener('click', (e) => {
+      if (deckModeEnabled) {
+        e.preventDefault();
+        goToStage(idx, 0, true);
+      }
+    });
+  });
+
+  // Bind Bottom Director Dock Controls
+  document.getElementById('qb-dock-next-btn')?.addEventListener('click', () => stepForward());
+  document.getElementById('qb-dock-prev')?.addEventListener('click', () => stepBackward());
+  document.getElementById('qb-dock-skip-stage')?.addEventListener('click', () => skipToNextStage());
+
+  const autoPlayBtn = document.getElementById('qb-dock-autoplay');
+  function toggleAutoPlay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+      autoPlayBtn?.classList.remove('active');
+      if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-play"></i>';
+    } else {
+      Sound.playChime();
+      autoPlayBtn?.classList.add('active');
+      if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-pause"></i>';
+      autoPlayTimer = setInterval(() => {
+        stepForward();
+      }, 3200);
+    }
+  }
+  autoPlayBtn?.addEventListener('click', toggleAutoPlay);
+
+  function toggleDeckMode(forceState) {
+    deckModeEnabled = typeof forceState === 'boolean' ? forceState : !deckModeEnabled;
+    document.body.classList.toggle('qb-deck-active', deckModeEnabled);
+    document.getElementById('qb-btn-deckmode')?.classList.toggle('active', deckModeEnabled);
+    showStageCurtain(deckModeEnabled ? '🎬 PRESENTATION DECK MODE ENABLED' : '📜 FREE-SCROLL MODE ENABLED');
+  }
+
+  // Wheel / Trackpad Choreographed Stage & Sub-Step Listener
+  window.addEventListener(
+    'wheel',
+    (e) => {
+      if (!deckModeEnabled) return;
+      if (document.getElementById('qb-cmd-palette')?.classList.contains('is-open')) return;
+
+      const activeSec = stages[currentStage];
+      if (activeSec) {
+        // Allow natural internal scroll if stage content exceeds viewport height
+        const canScrollDown = activeSec.scrollHeight - activeSec.scrollTop - activeSec.clientHeight > 6;
+        const canScrollUp = activeSec.scrollTop > 6;
+        if ((e.deltaY > 0 && canScrollDown) || (e.deltaY < 0 && canScrollUp)) {
+          return;
+        }
+      }
+
+      e.preventDefault();
+      if (isTransitioning) return;
+
+      wheelCharge += e.deltaY;
+      const threshold = 68;
+      const chargePct = Math.min(100, Math.round((Math.abs(wheelCharge) / threshold) * 100));
+      if (chargeFillEl) chargeFillEl.style.width = `${chargePct}%`;
+
+      if (Math.abs(wheelCharge) >= threshold) {
+        const dir = wheelCharge > 0 ? 1 : -1;
+        wheelCharge = 0;
+        if (chargeFillEl) chargeFillEl.style.width = '0%';
+
+        isTransitioning = true;
+        const def = STAGE_DEFS[currentStage];
+        const isStageBoundary =
+          (dir > 0 && currentSubStep + 1 >= def.subSteps.length) || (dir < 0 && currentSubStep === 0);
+
+        if (dir > 0) stepForward();
+        else stepBackward();
+
+        setTimeout(() => {
+          isTransitioning = false;
+        }, isStageBoundary ? 680 : 380);
+      }
+    },
+    { passive: false }
+  );
+
+  // Touch Swipe Support for Mobile / Tablet Deck Navigation
+  let touchStartY = 0;
+  window.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.touches.length === 1) touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchend',
+    (e) => {
+      if (!deckModeEnabled || isTransitioning) return;
+      const touchEndY = e.changedTouches[0]?.clientY || touchStartY;
+      const dy = touchStartY - touchEndY;
+      if (Math.abs(dy) > 55) {
+        isTransitioning = true;
+        if (dy > 0) stepForward();
+        else stepBackward();
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 520);
+      }
+    },
+    { passive: true }
+  );
+
+  // Keyboard Navigation (↓, ↑, Space, PageDown, PageUp, D, P)
+  window.addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+    if (document.getElementById('qb-cmd-palette')?.classList.contains('is-open')) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key.toLowerCase() === 'd') {
+      e.preventDefault();
+      toggleDeckMode();
+      return;
+    }
+    if (e.key.toLowerCase() === 'p') {
+      e.preventDefault();
+      toggleAutoPlay();
+      return;
+    }
+
+    if (!deckModeEnabled) return;
+
+    if (e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      stepForward();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      stepBackward();
+    } else if (e.key === 'PageDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      skipToNextStage();
+    } else if (e.key === 'PageUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prevIdx = Math.max(0, currentStage - 1);
+      goToStage(prevIdx, 0, true);
+    }
+  });
+
+  syncDeckUI();
+  window.QuantDeck = {
+    goToStage,
+    stepForward,
+    stepBackward,
+    skipToNextStage,
+    toggleAutoPlay,
+    toggleDeckMode,
+  };
 }

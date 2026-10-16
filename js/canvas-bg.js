@@ -90,6 +90,7 @@
   // Particles & Data Packets for Constellation Mode
   let particles = [];
   let packets = [];
+  let warpVelocity = 0;
   const particleCount = Math.min(58, Math.max(28, Math.floor(window.innerWidth / 26)));
   const maxDistance = 155;
 
@@ -110,7 +111,7 @@
     }
     update() {
       this.x += this.vx;
-      this.y += this.vy;
+      this.y += this.vy - warpVelocity * (0.65 + this.tier * 0.35);
 
       if (this.x < 0) this.x = width;
       if (this.x > width) this.x = 0;
@@ -331,9 +332,12 @@
   function animate(time = 0) {
     ctx.clearRect(0, 0, width, height);
 
-    // Smooth lerp pointer coordinates
+    // Smooth lerp pointer coordinates & decay stage-transition warp velocity
     mouse.x += (mouse.targetX - mouse.x) * 0.08;
     mouse.y += (mouse.targetY - mouse.y) * 0.08;
+    warpVelocity *= 0.91;
+    if (Math.abs(warpVelocity) < 0.02) warpVelocity = 0;
+    scrollOffset += warpVelocity * 6;
 
     const pal = getActivePalette();
 
@@ -377,6 +381,9 @@
       const nextIdx = (MODES.indexOf(currentMode) + 1) % MODES.length;
       window.QuantCanvas.setMode(MODES[nextIdx]);
       return MODES[nextIdx];
+    },
+    pulseWarp: (direction = 1) => {
+      warpVelocity = direction * 9.5;
     },
   };
 })();

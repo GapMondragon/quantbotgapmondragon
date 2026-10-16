@@ -2401,6 +2401,662 @@ html[data-theme="swiss-editorial"] .quantlab-metric-box {
   opacity: 1;
 }
 
+/* ============================================================================
+   14. PRESENTATION DECK STAGE ENGINE & SUB-STEP CHOREOGRAPHY (HOMEPAGE)
+   ============================================================================ */
+
+/* Keep header & telemetry bar pinned cleanly at the top in Deck Mode */
+body.qb-deck-active {
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
+  user-select: none;
+}
+
+body.qb-deck-active .qb-telemetry-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+}
+
+body.qb-deck-active .site-header {
+  position: fixed;
+  top: 31px;
+  left: 0;
+  right: 0;
+  z-index: 1150;
+  background: rgba(3, 20, 46, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+html[data-theme="swiss-editorial"] body.qb-deck-active .site-header {
+  background: rgba(246, 243, 236, 0.9);
+}
+
+/* 3D Stage Theater Viewport */
+body.qb-deck-active .qb-deck-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  perspective: 1800px;
+  transform-style: preserve-3d;
+}
+
+/* Individual Presentation Stage */
+body.qb-deck-active .deck-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  padding: 114px 0 84px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 0.92s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+body.qb-deck-active .deck-stage::-webkit-scrollbar {
+  display: none;
+}
+
+/* Past Stage (Recedes Upward in 3D Space) */
+body.qb-deck-active .deck-stage.is-past-stage {
+  transform: translate3d(0, -16vh, -220px) rotateX(8deg) scale(0.9);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Active Stage (Locked Center Stage) */
+body.qb-deck-active .deck-stage.is-active-stage {
+  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  opacity: 1;
+  filter: blur(0px);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* Future Stage (Poised Below Stage) */
+body.qb-deck-active .deck-stage.is-future-stage {
+  transform: translate3d(0, 16vh, -180px) rotateX(-8deg) scale(0.92);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Stage Inner Container */
+.deck-stage-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  z-index: 4;
+}
+
+/* Top Stage Metadata Ribbon */
+.deck-stage-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(148, 201, 126, 0.2);
+}
+
+.deck-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+  background: rgba(148, 201, 126, 0.1);
+  border: 1px solid rgba(148, 201, 126, 0.32);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.deck-stage-hint,
+.deck-stage-substep-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.deck-stage-hint kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent-mint);
+  font-size: 0.64rem;
+}
+
+/* Staggered Element Entrance Choreography on Active Stage */
+body.qb-deck-active .deck-stage [data-stage-anim] {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(0.97);
+  filter: blur(6px);
+  transition:
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.68s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.68s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0px);
+}
+
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="1"] { transition-delay: 80ms; }
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="2"] { transition-delay: 160ms; }
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="3"] { transition-delay: 240ms; }
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="4"] { transition-delay: 320ms; }
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="5"] { transition-delay: 400ms; }
+body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="6"] { transition-delay: 480ms; }
+
+/* Stage 01: Hero KPI Strip & Docked Marquee */
+.deck-hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(110px, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+  max-width: 640px;
+}
+
+.deck-kpi-chip {
+  background: rgba(6, 24, 54, 0.66);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px 14px;
+  backdrop-filter: blur(12px);
+}
+
+html[data-theme="swiss-editorial"] .deck-kpi-chip {
+  background: rgba(234, 229, 217, 0.85);
+}
+
+.deck-kpi-val {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-mint);
+}
+
+.deck-kpi-lbl {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+body.qb-deck-active .deck-hero-marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 72px;
+  padding: 9px 0;
+}
+
+/* Stage 02: Interactive 4-Pillar Spotlight Cards & Live Monitor */
+.deck-pillar-card {
+  cursor: pointer;
+  padding: 20px;
+}
+
+.deck-pillar-card .card-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+}
+
+.deck-pillar-card .card-title {
+  font-size: 1.08rem;
+  margin-bottom: 6px;
+}
+
+.deck-pillar-card .card-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.deck-pillar-card.is-pillar-active {
+  border-color: var(--accent-mint) !important;
+  background: var(--bg-card-hover) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(148, 201, 126, 0.25);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.deck-pillar-monitor {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-focus);
+  box-shadow: var(--shadow-glow);
+  background: var(--bg-card);
+}
+
+.deck-pillar-monitor-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.deck-pillar-monitor-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--expo-ease-out), filter 0.5s ease;
+}
+
+.deck-pillar-overlay-hud {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(3, 18, 42, 0.88);
+  border: 1px solid var(--accent-mint);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  transition: transform 0.35s var(--expo-ease-out);
+}
+
+/* Stage 03: 6-Phase Alpha Pipeline Stepper & Track Bar */
+.deck-pipeline-inspector {
+  max-width: 960px;
+  margin: 0 auto 18px;
+  width: 100%;
+  background: rgba(4, 20, 46, 0.65);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 12px 18px;
+  backdrop-filter: blur(12px);
+}
+
+html[data-theme="swiss-editorial"] .deck-pipeline-inspector {
+  background: rgba(234, 229, 217, 0.85);
+}
+
+.deck-pipeline-track-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.deck-pipeline-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-mint), var(--accent-gold));
+  border-radius: 999px;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px var(--accent-mint);
+}
+
+.deck-pipeline-readout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+body.qb-deck-active #strategyProcessStage .timeline-container {
+  margin-top: 8px;
+  gap: 16px;
+}
+
+body.qb-deck-active #strategyProcessStage .timeline-step {
+  padding: 18px 20px;
+  cursor: pointer;
+}
+
+.timeline-step.is-phase-active {
+  border-color: var(--accent-mint) !important;
+  background: var(--bg-card-hover) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5), 0 0 24px rgba(148, 201, 126, 0.28);
+  transform: translateY(-5px) scale(1.025);
+}
+
+.timeline-step.is-phase-complete {
+  border-color: rgba(148, 201, 126, 0.35);
+}
+
+/* Stage 04: Story Gallery Frames */
+.deck-story-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  cursor: pointer;
+  transition: all 0.4s var(--expo-ease-out);
+}
+
+.deck-story-frame img {
+  transition: transform 0.6s var(--expo-ease-out);
+}
+
+.deck-story-frame.is-story-active {
+  border-color: var(--accent-gold);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 22px rgba(230, 213, 184, 0.28);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.deck-story-frame.is-story-active img {
+  transform: scale(1.06);
+}
+
+.deck-story-caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(3, 18, 42, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.deck-story-caption span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-gold);
+}
+
+.deck-story-caption strong {
+  font-size: 0.88rem;
+  color: #FFFFFF;
+}
+
+/* Stage 07: Finale Stage CTA + Embedded Footer */
+.deck-finale-cta-card {
+  text-align: center;
+  padding: 28px 32px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(7, 67, 157, 0.35) 0%, rgba(3, 29, 68, 0.82) 100%);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+}
+
+.deck-embedded-footer {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  padding: 0 24px 14px;
+  background: rgba(2, 14, 34, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+/* ============================================================================
+   15. PRESENTATION DECK DIRECTOR HUD (BOTTOM DOCK + RIGHT SLIDE RAIL + CURTAIN)
+   ============================================================================ */
+
+/* Right-Side Vertical Keynote Slide Rail */
+.qb-deck-rail {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 8px;
+  border-radius: 999px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-subtle);
+}
+
+body:not(.qb-deck-active) .qb-deck-rail {
+  opacity: 0.45;
+}
+
+.qb-deck-rail-dot {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--expo-ease-out);
+}
+
+.qb-deck-rail-dot:hover,
+.qb-deck-rail-dot.is-active {
+  background: var(--accent-mint);
+  color: #031D44;
+  border-color: var(--accent-mint);
+  box-shadow: 0 0 14px rgba(148, 201, 126, 0.55);
+  transform: scale(1.12);
+}
+
+.qb-deck-rail-dot::after {
+  content: attr(data-stage-tooltip);
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: rgba(3, 20, 46, 0.95);
+  color: var(--accent-mint);
+  border: 1px solid var(--border-focus);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.qb-deck-rail-dot:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Bottom-Center "What to Present Next" Stage Director Dock */
+.qb-deck-director-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 1120;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(3, 18, 42, 0.9);
+  border: 1px solid var(--border-focus);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(148, 201, 126, 0.18);
+  max-width: 95vw;
+}
+
+html[data-theme="swiss-editorial"] .qb-deck-director-dock {
+  background: rgba(20, 22, 21, 0.94);
+  color: #F6F3EC;
+}
+
+.qb-deck-dock-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.qb-deck-stage-counter {
+  color: var(--accent-gold);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.qb-deck-substeps-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.qb-deck-substep-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition: all 0.25s ease;
+}
+
+.qb-deck-substep-dot.is-active {
+  width: 16px;
+  border-radius: 999px;
+  background: var(--accent-mint);
+  box-shadow: 0 0 8px var(--accent-mint);
+}
+
+.qb-deck-next-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(148, 201, 126, 0.14);
+  border: 1px solid rgba(148, 201, 126, 0.45);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.qb-deck-next-btn:hover {
+  background: var(--accent-mint);
+  color: #031D44;
+}
+
+.qb-deck-charge-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: rgba(148, 201, 126, 0.32);
+  pointer-events: none;
+  transition: width 0.12s linear;
+}
+
+.qb-deck-dock-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qb-deck-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qb-deck-icon-btn:hover,
+.qb-deck-icon-btn.active {
+  background: var(--accent-mint);
+  color: #031D44;
+  border-color: var(--accent-mint);
+}
+
+/* Stage Transition Top Curtain Toast */
+.qb-stage-curtain-toast {
+  position: fixed;
+  top: 108px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-24px) scale(0.94);
+  z-index: 1180;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: rgba(3, 18, 42, 0.92);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+.qb-stage-curtain-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
 @media (max-width: 1024px) {
   .quantlab-grid {
     grid-template-columns: 1fr;
@@ -2408,8 +3064,12 @@ html[data-theme="swiss-editorial"] .quantlab-metric-box {
   .bento-matrix {
     grid-template-columns: 1fr 1fr;
   }
-  .qb-minimap-index {
+  .qb-minimap-index,
+  .qb-deck-rail {
     display: none;
+  }
+  .deck-hero-kpis {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -2422,6 +3082,9 @@ html[data-theme="swiss-editorial"] .quantlab-metric-box {
     grid-column: span 1;
   }
   .qb-clocks-group .qb-hub-clock:nth-child(n+4) {
+    display: none;
+  }
+  .qb-deck-stage-counter {
     display: none;
   }
 }

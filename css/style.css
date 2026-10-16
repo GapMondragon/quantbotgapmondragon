@@ -70,7 +70,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.6;
 }
 
@@ -2402,104 +2402,70 @@ html[data-theme="swiss-editorial"] .quantlab-metric-box {
 }
 
 /* ============================================================================
-   14. PRESENTATION DECK STAGE ENGINE & SUB-STEP CHOREOGRAPHY (HOMEPAGE)
+   14. PINNED STAGE RUNWAY & SCROLL-SCRUBBED PRESENTATION DECK (HOMEPAGE)
    ============================================================================ */
 
-/* Keep header & telemetry bar pinned cleanly at the top in Deck Mode */
-body.qb-deck-active {
-  overflow: hidden;
-  height: 100dvh;
-  width: 100vw;
-  user-select: none;
-}
-
-body.qb-deck-active .qb-telemetry-bar {
-  position: fixed;
+/* Keep Telemetry Bar & Header Pinned at Top */
+.qb-telemetry-bar {
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1200;
+  z-index: 1200 !important;
 }
 
-body.qb-deck-active .site-header {
-  position: fixed;
+.site-header {
+  position: fixed !important;
   top: 31px;
   left: 0;
   right: 0;
-  z-index: 1150;
-  background: rgba(3, 20, 46, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  z-index: 1150 !important;
 }
 
-html[data-theme="swiss-editorial"] body.qb-deck-active .site-header {
-  background: rgba(246, 243, 236, 0.9);
+body:not(.has-scrolly-deck) {
+  padding-top: calc(31px + var(--header-height));
 }
 
-/* 3D Stage Theater Viewport */
-body.qb-deck-active .qb-deck-viewport {
+/* Main Scrollytelling Presentation Deck Container */
+.qb-scrolly-deck {
   position: relative;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  perspective: 1800px;
-  transform-style: preserve-3d;
+  width: 100%;
 }
 
-/* Individual Presentation Stage */
-body.qb-deck-active .deck-stage {
-  position: absolute;
-  inset: 0;
+/* Tall Scroll Runway for Each Presentation Stage */
+.stage-runway {
+  position: relative;
+  width: 100%;
+  height: var(--runway-height, 320vh);
+}
+
+/* Pinned 100dvh Sticky Stage Theater Inside Each Runway */
+.stage-sticky-theater {
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 100dvh;
   min-height: 100dvh;
-  padding: 114px 0 84px;
-  margin: 0;
+  padding: 112px 0 78px !important;
+  margin: 0 !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  opacity: 0;
-  pointer-events: none;
+  overflow: hidden;
   will-change: transform, opacity, filter;
-  transition:
-    transform 0.92s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.72s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
+  transform-origin: center center;
 }
 
-body.qb-deck-active .deck-stage::-webkit-scrollbar {
-  display: none;
+/* Free-Scroll Compact Mode (when toggled via [D]) */
+body.qb-free-scroll-mode .stage-runway {
+  height: auto !important;
 }
 
-/* Past Stage (Recedes Upward in 3D Space) */
-body.qb-deck-active .deck-stage.is-past-stage {
-  transform: translate3d(0, -16vh, -220px) rotateX(8deg) scale(0.9);
-  opacity: 0;
-  filter: blur(10px);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Active Stage (Locked Center Stage) */
-body.qb-deck-active .deck-stage.is-active-stage {
-  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
-  opacity: 1;
-  filter: blur(0px);
-  pointer-events: auto;
-  z-index: 10;
-}
-
-/* Future Stage (Poised Below Stage) */
-body.qb-deck-active .deck-stage.is-future-stage {
-  transform: translate3d(0, 16vh, -180px) rotateX(-8deg) scale(0.92);
-  opacity: 0;
-  filter: blur(10px);
-  pointer-events: none;
-  z-index: 2;
+body.qb-free-scroll-mode .stage-sticky-theater {
+  position: relative !important;
+  height: auto !important;
+  min-height: 85vh !important;
+  padding: 96px 0 !important;
 }
 
 /* Stage Inner Container */
@@ -2522,7 +2488,7 @@ body.qb-deck-active .deck-stage.is-future-stage {
   gap: 12px;
   padding-bottom: 10px;
   margin-bottom: 6px;
-  border-bottom: 1px solid rgba(148, 201, 126, 0.2);
+  border-bottom: 1px solid rgba(148, 201, 126, 0.24);
 }
 
 .deck-stage-pill {
@@ -2535,8 +2501,8 @@ body.qb-deck-active .deck-stage.is-future-stage {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-mint);
-  background: rgba(148, 201, 126, 0.1);
-  border: 1px solid rgba(148, 201, 126, 0.32);
+  background: rgba(148, 201, 126, 0.12);
+  border: 1px solid rgba(148, 201, 126, 0.36);
   padding: 4px 12px;
   border-radius: 999px;
 }
@@ -2544,65 +2510,39 @@ body.qb-deck-active .deck-stage.is-future-stage {
 .deck-stage-hint,
 .deck-stage-substep-indicator {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-gold);
 }
-
-.deck-stage-hint kbd {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--accent-mint);
-  font-size: 0.64rem;
-}
-
-/* Staggered Element Entrance Choreography on Active Stage */
-body.qb-deck-active .deck-stage [data-stage-anim] {
-  opacity: 0;
-  transform: translate3d(0, 34px, 0) scale(0.97);
-  filter: blur(6px);
-  transition:
-    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.68s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.68s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-  filter: blur(0px);
-}
-
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="1"] { transition-delay: 80ms; }
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="2"] { transition-delay: 160ms; }
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="3"] { transition-delay: 240ms; }
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="4"] { transition-delay: 320ms; }
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="5"] { transition-delay: 400ms; }
-body.qb-deck-active .deck-stage.is-active-stage [data-stage-anim="6"] { transition-delay: 480ms; }
 
 /* Stage 01: Hero KPI Strip & Docked Marquee */
 .deck-hero-kpis {
   display: grid;
   grid-template-columns: repeat(4, minmax(110px, 1fr));
   gap: 12px;
-  margin-top: 26px;
-  max-width: 640px;
+  margin-top: 22px;
+  max-width: 650px;
 }
 
 .deck-kpi-chip {
-  background: rgba(6, 24, 54, 0.66);
+  background: rgba(6, 24, 54, 0.68);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 10px 14px;
   backdrop-filter: blur(12px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+}
+
+.deck-kpi-chip.is-kpi-lit {
+  border-color: var(--accent-mint);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 18px rgba(148, 201, 126, 0.28);
+  transform: translateY(-4px) scale(1.03);
 }
 
 html[data-theme="swiss-editorial"] .deck-kpi-chip {
-  background: rgba(234, 229, 217, 0.85);
+  background: rgba(234, 229, 217, 0.88);
 }
 
 .deck-kpi-val {
@@ -2622,86 +2562,172 @@ html[data-theme="swiss-editorial"] .deck-kpi-chip {
   margin-top: 2px;
 }
 
-body.qb-deck-active .deck-hero-marquee {
-  position: absolute;
+.deck-hero-marquee {
+  position: absolute !important;
   left: 0;
   right: 0;
-  bottom: 72px;
+  bottom: 66px;
   padding: 9px 0;
 }
 
-/* Stage 02: Interactive 4-Pillar Spotlight Cards & Live Monitor */
+/* Stage 02: Interactive 4-Pillar Spotlight Cards & 3D Stacked Slide Deck */
 .deck-pillar-card {
   cursor: pointer;
-  padding: 20px;
+  padding: 18px 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.52;
 }
 
 .deck-pillar-card .card-icon {
-  width: 44px;
-  height: 44px;
-  margin-bottom: 12px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
 }
 
 .deck-pillar-card .card-title {
-  font-size: 1.08rem;
-  margin-bottom: 6px;
+  font-size: 1.04rem;
+  margin-bottom: 4px;
 }
 
 .deck-pillar-card .card-text {
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.48;
 }
 
 .deck-pillar-card.is-pillar-active {
+  opacity: 1;
   border-color: var(--accent-mint) !important;
   background: var(--bg-card-hover) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(148, 201, 126, 0.25);
-  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 26px rgba(148, 201, 126, 0.3);
+  transform: translateY(-5px) scale(1.03);
 }
 
-.deck-pillar-monitor {
+/* 3D Stacked Presentation Slides on Right Side of Stage 02 */
+.deck-slide-stack-viewport {
   position: relative;
+  height: 430px;
+  width: 100%;
+  perspective: 1400px;
+}
+
+.deck-visual-slide {
+  position: absolute;
+  inset: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-focus);
-  box-shadow: var(--shadow-glow);
   background: var(--bg-card);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  transition:
+    transform 0.68s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s ease;
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: translate3d(0, 90px, -120px) rotateX(-12deg) scale(0.9);
+  pointer-events: none;
 }
 
-.deck-pillar-monitor-img-wrap {
-  position: relative;
-  overflow: hidden;
+.deck-visual-slide.is-slide-past {
+  opacity: 0.35;
+  transform: translate3d(0, -26px, -90px) rotateX(6deg) scale(0.92);
+  filter: blur(2px) brightness(0.65);
+  z-index: 2;
 }
 
-.deck-pillar-monitor-img {
+.deck-visual-slide.is-slide-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  filter: blur(0px) brightness(1);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.deck-slide-bg-img {
   width: 100%;
-  max-height: 420px;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s var(--expo-ease-out), filter 0.5s ease;
+  filter: brightness(0.75) contrast(1.08);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.deck-pillar-overlay-hud {
+.deck-visual-slide.is-slide-active .deck-slide-bg-img {
+  transform: scale(1.05);
+}
+
+.deck-slide-glass-plate {
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  padding: 16px 20px;
-  border-radius: 16px;
-  background: rgba(3, 18, 42, 0.88);
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: rgba(3, 18, 42, 0.9);
   border: 1px solid var(--accent-mint);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
-  transition: transform 0.35s var(--expo-ease-out);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Stage 03: 6-Phase Alpha Pipeline Stepper & Track Bar */
+.deck-slide-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.deck-slide-badge {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(148, 201, 126, 0.18);
+  color: var(--accent-mint);
+  border: 1px solid var(--accent-mint);
+}
+
+.deck-slide-glass-plate h3 {
+  font-size: 1.28rem;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+
+.deck-slide-glass-plate p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.deck-slide-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: var(--font-mono);
+}
+
+.deck-slide-metrics span {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.1em;
+}
+
+.deck-slide-metrics strong {
+  font-size: 0.78rem;
+  color: var(--accent-mint);
+}
+
+/* Stage 03: Horizontal Scroll-Scrubbed 6-Phase Pipeline Conveyor */
 .deck-pipeline-inspector {
-  max-width: 960px;
-  margin: 0 auto 18px;
+  max-width: 980px;
+  margin: 0 auto 16px;
   width: 100%;
-  background: rgba(4, 20, 46, 0.65);
+  background: rgba(4, 20, 46, 0.68);
   border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 12px 18px;
@@ -2725,7 +2751,7 @@ html[data-theme="swiss-editorial"] .deck-pipeline-inspector {
   height: 100%;
   background: linear-gradient(90deg, var(--accent-mint), var(--accent-gold));
   border-radius: 999px;
-  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.25s ease-out;
   box-shadow: 0 0 12px var(--accent-mint);
 }
 
@@ -2737,49 +2763,100 @@ html[data-theme="swiss-editorial"] .deck-pipeline-inspector {
   gap: 8px;
 }
 
-body.qb-deck-active #strategyProcessStage .timeline-container {
-  margin-top: 8px;
-  gap: 16px;
+.deck-horizontal-pipeline-viewport {
+  width: 100%;
+  overflow: visible;
+  padding: 14px 0;
 }
 
-body.qb-deck-active #strategyProcessStage .timeline-step {
-  padding: 18px 20px;
+#strategyProcessStage .deck-horizontal-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 24px !important;
+  width: max-content;
+  margin-top: 4px;
+  will-change: transform;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#strategyProcessStage .deck-horizontal-track .timeline-step {
+  width: 340px;
+  flex: 0 0 340px;
+  padding: 24px;
   cursor: pointer;
+  opacity: 0.48;
+  transform: scale(0.94);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.timeline-step.is-phase-active {
+#strategyProcessStage .deck-horizontal-track .timeline-step.is-phase-complete {
+  opacity: 0.78;
+  transform: scale(0.97);
+  border-color: rgba(148, 201, 126, 0.4);
+}
+
+#strategyProcessStage .deck-horizontal-track .timeline-step.is-phase-active {
+  opacity: 1;
   border-color: var(--accent-mint) !important;
   background: var(--bg-card-hover) !important;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5), 0 0 24px rgba(148, 201, 126, 0.28);
-  transform: translateY(-5px) scale(1.025);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6), 0 0 28px rgba(148, 201, 126, 0.32);
+  transform: translateY(-8px) scale(1.04);
 }
 
-.timeline-step.is-phase-complete {
-  border-color: rgba(148, 201, 126, 0.35);
+.step-stage-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--accent-gold);
 }
 
-/* Stage 04: Story Gallery Frames */
+/* Stage 04: Kinetic Word-by-Word Quote & Story Gallery Frames */
+.qb-quote-word {
+  display: inline-block;
+  margin-right: 0.26em;
+  opacity: 0.24;
+  transform: translateY(4px);
+  transition: opacity 0.28s ease, transform 0.28s ease, color 0.28s ease;
+}
+
+.qb-quote-word.is-word-lit {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--accent-mint);
+}
+
 .deck-story-frame {
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-card);
   cursor: pointer;
-  transition: all 0.4s var(--expo-ease-out);
+  opacity: 0.55;
+  transform: scale(0.95);
+  transition: all 0.45s var(--expo-ease-out);
 }
 
 .deck-story-frame img {
-  transition: transform 0.6s var(--expo-ease-out);
+  transition: transform 0.65s var(--expo-ease-out);
 }
 
 .deck-story-frame.is-story-active {
+  opacity: 1;
   border-color: var(--accent-gold);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 22px rgba(230, 213, 184, 0.28);
-  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55), 0 0 24px rgba(230, 213, 184, 0.32);
+  transform: translateY(-5px) scale(1.03);
 }
 
 .deck-story-frame.is-story-active img {
-  transform: scale(1.06);
+  transform: scale(1.07);
 }
 
 .deck-story-caption {
@@ -2789,7 +2866,7 @@ body.qb-deck-active #strategyProcessStage .timeline-step {
   bottom: 10px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: rgba(3, 18, 42, 0.86);
+  background: rgba(3, 18, 42, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(10px);
   display: flex;
@@ -2811,7 +2888,7 @@ body.qb-deck-active #strategyProcessStage .timeline-step {
 /* Stage 07: Finale Stage CTA + Embedded Footer */
 .deck-finale-cta-card {
   text-align: center;
-  padding: 28px 32px;
+  padding: 26px 32px;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, rgba(7, 67, 157, 0.35) 0%, rgba(3, 29, 68, 0.82) 100%);
   border: 1px solid var(--border-card);
@@ -2821,7 +2898,7 @@ body.qb-deck-active #strategyProcessStage .timeline-step {
 .deck-embedded-footer {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
-  padding: 0 24px 14px;
+  padding: 0 24px 12px;
   background: rgba(2, 14, 34, 0.78);
   backdrop-filter: blur(16px);
 }

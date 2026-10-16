@@ -1333,22 +1333,52 @@ function initGlobalHubMatrix(Sound) {
   });
 }
 
-// 13. Presentation Deck Stage Theater & Scroll-Driven Sub-Step Choreography Engine (Homepage)
+// 13. Pinned Runway & Scroll-Scrubbed Presentation Deck Engine (Homepage)
 function initPresentationDeckEngine(Sound) {
   const deckEl = document.getElementById('qb-presentation-deck');
   if (!deckEl) return;
 
-  const stages = Array.from(deckEl.querySelectorAll('.deck-stage'));
-  if (stages.length < 2) return;
+  const runways = Array.from(deckEl.querySelectorAll('.stage-runway'));
+  if (runways.length < 2) return;
 
-  // Define each stage's interactive sub-steps and what scrolling presents next
+  document.body.classList.add('has-scrolly-deck');
+
+  // Split Stage 04 Founding Quote into individual illuminatable words
+  const quoteEl = document.getElementById('stage4-kinetic-quote');
+  let quoteWordEls = [];
+  if (quoteEl && !quoteEl.dataset.wordsSplit) {
+    quoteEl.dataset.wordsSplit = 'true';
+    const rawWords = quoteEl.textContent.trim().split(/\s+/);
+    quoteEl.innerHTML = rawWords
+      .map((w, i) => `<span class="qb-quote-word" data-word-idx="${i}">${w}</span>`)
+      .join(' ');
+    quoteWordEls = Array.from(quoteEl.querySelectorAll('.qb-quote-word'));
+  }
+
+  // Stage metadata & sub-step choreographers
   const STAGE_DEFS = [
     {
       index: 0,
       code: 'STAGE 01 / 07',
       title: 'Opening Keynote',
-      subSteps: ['Keynote Overview: Global Quantitative Alpha'],
-      applySubStep: () => {},
+      subSteps: [
+        'Slide 01.1: Founded 2008 in NYC',
+        'Slide 01.2: 24/5 Systematic Execution',
+        'Slide 01.3: 6 Global Trading Hubs',
+        'Slide 01.4: POC & QMM Alpha Tracks',
+      ],
+      onScrub: (p, subIdx) => {
+        const kpis = document.querySelectorAll('#stage1-kpi-deck .deck-kpi-chip');
+        kpis.forEach((chip, idx) => chip.classList.toggle('is-kpi-lit', idx <= subIdx));
+        const topLbl = document.getElementById('stage1-substep-label');
+        if (topLbl && STAGE_DEFS[0].subSteps[subIdx]) {
+          topLbl.textContent = STAGE_DEFS[0].subSteps[subIdx].toUpperCase();
+        }
+        const sealWrap = document.getElementById('stage1-seal-wrap');
+        if (sealWrap) {
+          sealWrap.style.transform = `rotate(${(p * 140).toFixed(1)}deg) scale(${(1 + p * 0.08).toFixed(3)})`;
+        }
+      },
     },
     {
       index: 1,
@@ -1360,32 +1390,26 @@ function initPresentationDeckEngine(Sound) {
         'Pillar 03: Streamlined Business Process',
         'Pillar 04: Research & Infrastructure',
       ],
-      applySubStep: (subIdx) => {
+      onScrub: (p, subIdx) => {
         const cards = document.querySelectorAll('.deck-pillar-card');
         cards.forEach((c, idx) => c.classList.toggle('is-pillar-active', idx === subIdx));
-        const activeCard = cards[subIdx];
-        if (activeCard) {
-          const tagEl = document.getElementById('qb-pillar-hud-tag');
-          const titleEl = document.getElementById('qb-pillar-hud-title');
-          const specEl = document.getElementById('qb-pillar-hud-spec');
-          const topLbl = document.getElementById('stage2-substep-label');
-          if (tagEl) tagEl.textContent = activeCard.getAttribute('data-pillar-tag') || '';
-          if (titleEl) titleEl.textContent = activeCard.getAttribute('data-pillar-metric') || '';
-          if (specEl) specEl.textContent = activeCard.getAttribute('data-pillar-spec') || '';
-          if (topLbl) {
-            topLbl.textContent = `PILLAR SPOTLIGHT 0${subIdx + 1} / 04 — ${activeCard.querySelector('.card-title')?.textContent?.toUpperCase() || ''}`;
-          }
-          const monitorImg = document.querySelector('.deck-pillar-monitor-img');
-          if (monitorImg) {
-            monitorImg.style.transform = `scale(${1 + subIdx * 0.025}) translate3d(${(subIdx % 2 === 0 ? -1 : 1) * 6}px, 0, 0)`;
-          }
+
+        const slides = document.querySelectorAll('.deck-visual-slide');
+        slides.forEach((sl, idx) => {
+          sl.classList.toggle('is-slide-past', idx < subIdx);
+          sl.classList.toggle('is-slide-active', idx === subIdx);
+        });
+
+        const topLbl = document.getElementById('stage2-substep-label');
+        if (topLbl && STAGE_DEFS[1].subSteps[subIdx]) {
+          topLbl.textContent = `SLIDE 0${subIdx + 1} / 04 — ${STAGE_DEFS[1].subSteps[subIdx].toUpperCase()}`;
         }
       },
     },
     {
       index: 2,
       code: 'STAGE 03 / 07',
-      title: '6-Phase Alpha Pipeline',
+      title: 'Strategy Development Process',
       subSteps: [
         'Phase 01: Idea Generation',
         'Phase 02: Data Analysis',
@@ -1394,24 +1418,32 @@ function initPresentationDeckEngine(Sound) {
         'Phase 05: Paper Trading & Testing',
         'Phase 06: Live Production Trading',
       ],
-      applySubStep: (subIdx) => {
+      onScrub: (p, subIdx) => {
+        const track = document.getElementById('stage3-horizontal-track');
         const steps = document.querySelectorAll('#strategyProcessStage .timeline-step');
         steps.forEach((st, idx) => {
           st.classList.toggle('is-phase-active', idx === subIdx);
           st.classList.toggle('is-phase-complete', idx < subIdx);
         });
-        const activeStep = steps[subIdx];
+
+        if (track && track.parentElement) {
+          const maxShift = Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
+          const shiftX = p * maxShift;
+          track.style.transform = `translate3d(${-shiftX.toFixed(1)}px, 0, 0)`;
+        }
+
         const fillEl = document.getElementById('qb-pipeline-fill');
         const codeEl = document.getElementById('qb-pipeline-code');
         const gateEl = document.getElementById('qb-pipeline-gate');
         const topLbl = document.getElementById('stage3-substep-label');
-        if (fillEl) fillEl.style.width = `${(((subIdx + 1) / steps.length) * 100).toFixed(2)}%`;
+
+        if (fillEl) fillEl.style.width = `${Math.max(16.66, p * 100).toFixed(1)}%`;
+        const activeStep = steps[subIdx];
         if (activeStep) {
           if (codeEl) codeEl.textContent = activeStep.getAttribute('data-phase-code') || '';
           if (gateEl) gateEl.textContent = activeStep.getAttribute('data-phase-gate') || '';
           if (topLbl) {
-            const title = activeStep.querySelector('.step-title')?.textContent?.toUpperCase() || '';
-            topLbl.textContent = `ACTIVE PHASE 0${subIdx + 1} / 06 — ${title}`;
+            topLbl.textContent = `ACTIVE ${STAGE_DEFS[2].subSteps[subIdx].toUpperCase()}`;
           }
         }
       },
@@ -1426,12 +1458,19 @@ function initPresentationDeckEngine(Sound) {
         'Spotlight: New York Americas Headquarters',
         'Spotlight: London European Operations',
       ],
-      applySubStep: (subIdx) => {
+      onScrub: (p, subIdx) => {
+        // Word-by-word quote illumination
+        if (quoteWordEls.length) {
+          const litCount = Math.ceil(Math.min(1, p / 0.82) * quoteWordEls.length);
+          quoteWordEls.forEach((wEl, i) => wEl.classList.toggle('is-word-lit', i <= litCount));
+        }
+
         const frames = document.querySelectorAll('.deck-story-frame');
         frames.forEach((f, idx) => f.classList.toggle('is-story-active', idx === subIdx));
+
         const topLbl = document.getElementById('stage4-substep-label');
         if (topLbl && STAGE_DEFS[3].subSteps[subIdx]) {
-          topLbl.textContent = STAGE_DEFS[3].subSteps[subIdx].toUpperCase();
+          topLbl.textContent = `DOSSIER 0${subIdx + 1} / 04 — ${STAGE_DEFS[3].subSteps[subIdx].toUpperCase()}`;
         }
       },
     },
@@ -1440,12 +1479,12 @@ function initPresentationDeckEngine(Sound) {
       code: 'STAGE 05 / 07',
       title: 'QuantLab Simulator',
       subSteps: [
-        'Simulate: Statistical Arbitrage (OOS)',
-        'Simulate: Global Cash Equities (OOS)',
-        'Simulate: Electronic Futures (OOS)',
-        'Simulate: Tensor Machine Learning Alpha',
+        'Universe 01: Statistical Arbitrage (OOS)',
+        'Universe 02: Global Cash Equities (OOS)',
+        'Universe 03: Electronic Futures (OOS)',
+        'Universe 04: Tensor Machine Learning Alpha',
       ],
-      applySubStep: (subIdx) => {
+      onScrub: (p, subIdx) => {
         const keys = ['statarb', 'equities', 'futures', 'mlalpha'];
         const key = keys[subIdx] || 'statarb';
         const btn = document.querySelector(`[data-ql-asset="${key}"]`);
@@ -1453,8 +1492,8 @@ function initPresentationDeckEngine(Sound) {
           btn.click();
         }
         const topLbl = document.getElementById('stage5-substep-label');
-        if (topLbl) {
-          topLbl.textContent = `UNIVERSE 0${subIdx + 1} / 04 — ${STAGE_DEFS[4].subSteps[subIdx].replace('Simulate: ', '').toUpperCase()}`;
+        if (topLbl && STAGE_DEFS[4].subSteps[subIdx]) {
+          topLbl.textContent = STAGE_DEFS[4].subSteps[subIdx].toUpperCase();
         }
       },
     },
@@ -1468,7 +1507,7 @@ function initPresentationDeckEngine(Sound) {
         'Hub 03: Hong Kong APAC Hub (HK1)',
         'Hub 04: Miami Quantitative Center',
       ],
-      applySubStep: (subIdx) => {
+      onScrub: (p, subIdx) => {
         const keys = ['ny', 'london', 'hk', 'miami'];
         const key = keys[subIdx] || 'ny';
         const btn = document.querySelector(`[data-hub-select="${key}"]`);
@@ -1476,7 +1515,7 @@ function initPresentationDeckEngine(Sound) {
           btn.click();
         }
         const topLbl = document.getElementById('stage6-substep-label');
-        if (topLbl) {
+        if (topLbl && STAGE_DEFS[5].subSteps[subIdx]) {
           topLbl.textContent = STAGE_DEFS[5].subSteps[subIdx].toUpperCase();
         }
       },
@@ -1486,19 +1525,14 @@ function initPresentationDeckEngine(Sound) {
       code: 'STAGE 07 / 07',
       title: 'Careers & Global Directory',
       subSteps: ['Closing Keynote: POC, QMM & Global Directory'],
-      applySubStep: () => {},
+      onScrub: () => {},
     },
   ];
 
-  let deckModeEnabled = true;
   let currentStage = 0;
   let currentSubStep = 0;
-  let isTransitioning = false;
-  let wheelCharge = 0;
   let autoPlayTimer = null;
-
-  // Enable Deck Mode on body
-  document.body.classList.add('qb-deck-active');
+  let compactMode = false;
 
   // Inject "🎬 Deck [D]" toggle button into Top Telemetry Bar
   const controlsGroup = document.querySelector('.qb-controls-group');
@@ -1507,7 +1541,7 @@ function initPresentationDeckEngine(Sound) {
     deckBtn.type = 'button';
     deckBtn.id = 'qb-btn-deckmode';
     deckBtn.className = 'qb-ctrl-btn active';
-    deckBtn.title = 'Toggle Presentation Deck Stage Mode vs Free Scroll (Shortcut: D)';
+    deckBtn.title = 'Toggle Pinned Presentation Runway vs Compact Scroll (Shortcut: D)';
     deckBtn.innerHTML = '<i class="fa fa-film"></i> Deck [D]';
     controlsGroup.prepend(deckBtn);
     deckBtn.addEventListener('click', () => toggleDeckMode());
@@ -1523,7 +1557,7 @@ function initPresentationDeckEngine(Sound) {
     curtainToast.textContent = text;
     curtainToast.classList.add('is-visible');
     clearTimeout(curtainTimer);
-    curtainTimer = setTimeout(() => curtainToast.classList.remove('is-visible'), 1550);
+    curtainTimer = setTimeout(() => curtainToast.classList.remove('is-visible'), 1600);
   }
 
   // Create Right-Edge Presentation Slide Rail
@@ -1544,7 +1578,7 @@ function initPresentationDeckEngine(Sound) {
   rail.querySelectorAll('[data-rail-stage]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetStage = parseInt(btn.getAttribute('data-rail-stage'), 10);
-      goToStage(targetStage, 0, true);
+      scrollToStageStep(targetStage, 0);
     });
   });
 
@@ -1556,15 +1590,15 @@ function initPresentationDeckEngine(Sound) {
       <span class="qb-deck-stage-counter" id="qb-dock-stage-code">STAGE 01 / 07</span>
       <span class="qb-deck-substeps-dots" id="qb-dock-substeps"></span>
     </div>
-    <button type="button" class="qb-deck-next-btn" id="qb-dock-next-btn" title="Click or Scroll Down to Present Next">
+    <button type="button" class="qb-deck-next-btn" id="qb-dock-next-btn" title="Scroll or Click to Present Next">
       <span class="qb-deck-charge-fill" id="qb-dock-charge-fill"></span>
-      <span style="position:relative; z-index:2;" id="qb-dock-next-label">NEXT ON SCROLL: STAGE 02 — WHAT MAKES US DIFFERENT ↓</span>
+      <span style="position:relative; z-index:2;" id="qb-dock-next-label">SCROLL NEXT: SLIDE 01.2 — 24/5 SYSTEMATIC EXECUTION ↓</span>
     </button>
     <div class="qb-deck-dock-actions">
       <button type="button" class="qb-deck-icon-btn" id="qb-dock-prev" title="Previous Step / Stage (↑)">
         <i class="fa fa-chevron-up"></i>
       </button>
-      <button type="button" class="qb-deck-icon-btn" id="qb-dock-skip-stage" title="Skip Directly to Next Stage (PageDown)">
+      <button type="button" class="qb-deck-icon-btn" id="qb-dock-skip-stage" title="Jump to Next Stage (PageDown)">
         <i class="fa fa-forward-step"></i>
       </button>
       <button type="button" class="qb-deck-icon-btn" id="qb-dock-autoplay" title="Auto-Present Keynote Deck (Shortcut: P)">
@@ -1579,144 +1613,174 @@ function initPresentationDeckEngine(Sound) {
   const substepsEl = document.getElementById('qb-dock-substeps');
   const nextLabelEl = document.getElementById('qb-dock-next-label');
 
-  // Compute what the very next scroll action will present
   function getNextPresentationLabel() {
     const def = STAGE_DEFS[currentStage];
     if (currentSubStep + 1 < def.subSteps.length) {
-      return `NEXT ON SCROLL: ${def.subSteps[currentSubStep + 1].toUpperCase()} ↓`;
+      return `SCROLL NEXT: ${def.subSteps[currentSubStep + 1].toUpperCase()} ↓`;
     }
     if (currentStage + 1 < STAGE_DEFS.length) {
       const nextSt = STAGE_DEFS[currentStage + 1];
       return `NEXT STAGE 0${currentStage + 2}: ${nextSt.title.toUpperCase()} ⇊`;
     }
-    return `REPLAY KEYNOTE: RETURN TO STAGE 01 ↺`;
+    return `RETURN TO STAGE 01: OPENING KEYNOTE ↺`;
   }
 
-  function syncDeckUI() {
-    const def = STAGE_DEFS[currentStage];
+  // Smoothly scroll window to exact scrollY for a given stageIdx and subStepIdx
+  function scrollToStageStep(stageIdx, subStepIdx = 0) {
+    const clampedStage = Math.max(0, Math.min(STAGE_DEFS.length - 1, stageIdx));
+    const runway = runways[clampedStage];
+    if (!runway) return;
 
-    // Update 3D Stage classes (is-past-stage, is-active-stage, is-future-stage)
-    stages.forEach((sec, idx) => {
-      sec.classList.toggle('is-past-stage', idx < currentStage);
-      sec.classList.toggle('is-active-stage', idx === currentStage);
-      sec.classList.toggle('is-future-stage', idx > currentStage);
-    });
-
-    // Apply current stage's active sub-step spotlight
-    def.applySubStep(currentSubStep);
-
-    // Update Right Slide Rail
-    rail.querySelectorAll('[data-rail-stage]').forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === currentStage);
-    });
-
-    // Update Left Minimap Index & Top Progress Bar
-    const totalStepsAll = STAGE_DEFS.reduce((acc, s) => acc + s.subSteps.length, 0);
-    const completedStepsBefore = STAGE_DEFS.slice(0, currentStage).reduce((acc, s) => acc + s.subSteps.length, 0) + currentSubStep + 1;
-    const ratio = completedStepsBefore / totalStepsAll;
-    const prog = document.querySelector('.qb-scroll-progress');
-    const pctEl = document.getElementById('qb-scroll-pct');
-    if (prog) prog.style.transform = `scaleX(${ratio.toFixed(4)})`;
-    if (pctEl) pctEl.textContent = `${Math.round(ratio * 100)}%`;
-
-    document.querySelectorAll('.qb-minimap-item').forEach((item, idx) => {
-      item.classList.toggle('is-active', idx === currentStage);
-    });
-
-    // Update Bottom Stage Director Dock
-    if (stageCodeEl) stageCodeEl.textContent = `${def.code} // ${def.title.toUpperCase()}`;
-    if (substepsEl) {
-      substepsEl.innerHTML = def.subSteps
-        .map((_, sIdx) => `<span class="qb-deck-substep-dot ${sIdx === currentSubStep ? 'is-active' : ''}"></span>`)
-        .join('');
-    }
-    if (nextLabelEl) nextLabelEl.textContent = getNextPresentationLabel();
-  }
-
-  function goToStage(targetStageIdx, targetSubStep = 0, announce = true) {
-    const clampedStage = Math.max(0, Math.min(STAGE_DEFS.length - 1, targetStageIdx));
     const def = STAGE_DEFS[clampedStage];
-    const clampedSub = Math.max(0, Math.min(def.subSteps.length - 1, targetSubStep));
+    const clampedSub = Math.max(0, Math.min(def.subSteps.length - 1, subStepIdx));
+    const runwayTop = runway.offsetTop;
+    const scrollable = Math.max(0, runway.offsetHeight - window.innerHeight);
 
-    const stageChanged = clampedStage !== currentStage;
-    const direction = clampedStage >= currentStage ? 1 : -1;
-
-    currentStage = clampedStage;
-    currentSubStep = clampedSub;
-
-    if (stageChanged) {
-      const targetSec = stages[currentStage];
-      if (targetSec) targetSec.scrollTop = 0;
-      Sound.playChime();
-      window.QuantCanvas?.pulseWarp(direction);
-      if (announce) {
-        showStageCurtain(`${def.code} — ${def.title}`);
-      }
-      if (!deckModeEnabled && targetSec) {
-        targetSec.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      Sound.playTick(1280 + currentSubStep * 90, 0.025, 0.028);
-      window.QuantCanvas?.pulseWarp(direction * 0.45);
+    let ratio = 0;
+    if (def.subSteps.length > 1) {
+      ratio = (clampedSub + 0.15) / def.subSteps.length;
     }
-
-    syncDeckUI();
+    const targetY = runwayTop + scrollable * Math.min(0.96, ratio);
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
   }
 
   function stepForward() {
     const def = STAGE_DEFS[currentStage];
     if (currentSubStep + 1 < def.subSteps.length) {
-      goToStage(currentStage, currentSubStep + 1, false);
+      scrollToStageStep(currentStage, currentSubStep + 1);
     } else if (currentStage + 1 < STAGE_DEFS.length) {
-      goToStage(currentStage + 1, 0, true);
+      scrollToStageStep(currentStage + 1, 0);
     } else {
-      goToStage(0, 0, true);
+      scrollToStageStep(0, 0);
     }
   }
 
   function stepBackward() {
     if (currentSubStep > 0) {
-      goToStage(currentStage, currentSubStep - 1, false);
+      scrollToStageStep(currentStage, currentSubStep - 1);
     } else if (currentStage > 0) {
       const prevStage = currentStage - 1;
-      const lastSub = STAGE_DEFS[prevStage].subSteps.length - 1;
-      goToStage(prevStage, lastSub, true);
+      scrollToStageStep(prevStage, STAGE_DEFS[prevStage].subSteps.length - 1);
+    } else {
+      scrollToStageStep(0, 0);
     }
   }
 
   function skipToNextStage() {
     const nextIdx = (currentStage + 1) % STAGE_DEFS.length;
-    goToStage(nextIdx, 0, true);
+    scrollToStageStep(nextIdx, 0);
   }
 
-  // Interactive click bindings for sub-step items inside stages
+  // Main 60fps Scroll-Scrubbing Director Loop
+  function evaluateScrollScrub() {
+    const vh = window.innerHeight;
+    let detectedStage = 0;
+    let detectedSubStep = 0;
+    let activeStageProgress = 0;
+
+    runways.forEach((runway, idx) => {
+      const rect = runway.getBoundingClientRect();
+      const theater = runway.querySelector('.stage-sticky-theater');
+      const scrollable = Math.max(1, rect.height - vh);
+      const rawP = -rect.top / scrollable;
+      const p = Math.min(1, Math.max(0, rawP));
+
+      // Determine which stage is currently dominant in viewport
+      if (rect.top <= vh * 0.45 && rect.bottom >= vh * 0.45) {
+        detectedStage = idx;
+        activeStageProgress = p;
+      }
+
+      const def = STAGE_DEFS[idx];
+      const subCount = def ? def.subSteps.length : 1;
+      const subIdx = Math.min(subCount - 1, Math.floor(p * subCount));
+
+      if (idx === detectedStage) {
+        detectedSubStep = subIdx;
+      }
+
+      // Run stage's internal scroll-scrub choreography
+      def?.onScrub(p, subIdx);
+
+      // Apply 3D Stage Curtain Enter / Exit camera transforms on .stage-sticky-theater
+      if (theater && !compactMode) {
+        if (rect.top > 0 && rect.top < vh) {
+          // Incoming stage rising from bottom
+          const enterRatio = rect.top / vh; // 1 -> 0
+          const scale = (1 - enterRatio * 0.06).toFixed(3);
+          const ty = (enterRatio * 34).toFixed(1);
+          theater.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
+          theater.style.opacity = String((1 - enterRatio * 0.35).toFixed(3));
+        } else if (rect.bottom < vh && rect.bottom > 0) {
+          // Outgoing stage receding at top as next stage takes over
+          const exitRatio = 1 - rect.bottom / vh; // 0 -> 1
+          const scale = (1 - exitRatio * 0.08).toFixed(3);
+          const ty = (-exitRatio * 42).toFixed(1);
+          theater.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
+          theater.style.opacity = String((1 - exitRatio * 0.6).toFixed(3));
+        } else {
+          // Locked full-screen pinned stage
+          theater.style.transform = 'translate3d(0, 0, 0) scale(1)';
+          theater.style.opacity = '1';
+        }
+      } else if (theater) {
+        theater.style.transform = '';
+        theater.style.opacity = '';
+      }
+    });
+
+    // Trigger acoustic & warp feedback when stage or sub-step changes
+    if (detectedStage !== currentStage) {
+      const dir = detectedStage > currentStage ? 1 : -1;
+      currentStage = detectedStage;
+      currentSubStep = detectedSubStep;
+      Sound.playChime();
+      window.QuantCanvas?.pulseWarp(dir);
+      const def = STAGE_DEFS[currentStage];
+      if (def) showStageCurtain(`${def.code} — ${def.title}`);
+    } else if (detectedSubStep !== currentSubStep) {
+      currentSubStep = detectedSubStep;
+      Sound.playTick(1260 + currentSubStep * 80, 0.02, 0.022);
+      window.QuantCanvas?.pulseWarp(0.35);
+    }
+
+    // Update HUD Elements
+    const def = STAGE_DEFS[currentStage];
+    if (stageCodeEl && def) stageCodeEl.textContent = `${def.code} // ${def.title.toUpperCase()}`;
+    if (substepsEl && def) {
+      substepsEl.innerHTML = def.subSteps
+        .map((_, sIdx) => `<span class="qb-deck-substep-dot ${sIdx === currentSubStep ? 'is-active' : ''}"></span>`)
+        .join('');
+    }
+    if (nextLabelEl) nextLabelEl.textContent = getNextPresentationLabel();
+    if (chargeFillEl) chargeFillEl.style.width = `${Math.round(activeStageProgress * 100)}%`;
+
+    rail.querySelectorAll('[data-rail-stage]').forEach((dot, idx) => {
+      dot.classList.toggle('is-active', idx === currentStage);
+    });
+  }
+
+  window.addEventListener('scroll', evaluateScrollScrub, { passive: true });
+  window.addEventListener('resize', evaluateScrollScrub);
+
+  // Interactive click bindings for cards inside stages
   document.querySelectorAll('.deck-pillar-card').forEach((card, idx) => {
-    card.addEventListener('click', () => goToStage(1, idx, false));
+    card.addEventListener('click', () => scrollToStageStep(1, idx));
   });
 
   document.querySelectorAll('#strategyProcessStage .timeline-step').forEach((step, idx) => {
-    step.addEventListener('click', () => goToStage(2, idx, false));
+    step.addEventListener('click', () => scrollToStageStep(2, idx));
   });
 
   document.querySelectorAll('.deck-story-frame').forEach((frame, idx) => {
-    frame.addEventListener('click', () => goToStage(3, idx, false));
+    frame.addEventListener('click', () => scrollToStageStep(3, idx));
   });
 
   document.querySelectorAll('[data-deck-goto]').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const target = parseInt(link.getAttribute('data-deck-goto'), 10);
-      goToStage(target, 0, true);
-    });
-  });
-
-  // Override Left Minimap links so they smoothly trigger goToStage in Deck Mode
-  document.querySelectorAll('.qb-minimap-item').forEach((item, idx) => {
-    item.addEventListener('click', (e) => {
-      if (deckModeEnabled) {
-        e.preventDefault();
-        goToStage(idx, 0, true);
-      }
+      scrollToStageStep(target, 0);
     });
   });
 
@@ -1738,91 +1802,18 @@ function initPresentationDeckEngine(Sound) {
       if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-pause"></i>';
       autoPlayTimer = setInterval(() => {
         stepForward();
-      }, 3200);
+      }, 3000);
     }
   }
   autoPlayBtn?.addEventListener('click', toggleAutoPlay);
 
-  function toggleDeckMode(forceState) {
-    deckModeEnabled = typeof forceState === 'boolean' ? forceState : !deckModeEnabled;
-    document.body.classList.toggle('qb-deck-active', deckModeEnabled);
-    document.getElementById('qb-btn-deckmode')?.classList.toggle('active', deckModeEnabled);
-    showStageCurtain(deckModeEnabled ? '🎬 PRESENTATION DECK MODE ENABLED' : '📜 FREE-SCROLL MODE ENABLED');
+  function toggleDeckMode(forceCompact) {
+    compactMode = typeof forceCompact === 'boolean' ? forceCompact : !compactMode;
+    document.body.classList.toggle('qb-free-scroll-mode', compactMode);
+    document.getElementById('qb-btn-deckmode')?.classList.toggle('active', !compactMode);
+    showStageCurtain(!compactMode ? '🎬 PINNED PRESENTATION STAGES ENABLED' : '📜 COMPACT SCROLL MODE ENABLED');
+    evaluateScrollScrub();
   }
-
-  // Wheel / Trackpad Choreographed Stage & Sub-Step Listener
-  window.addEventListener(
-    'wheel',
-    (e) => {
-      if (!deckModeEnabled) return;
-      if (document.getElementById('qb-cmd-palette')?.classList.contains('is-open')) return;
-
-      const activeSec = stages[currentStage];
-      if (activeSec) {
-        // Allow natural internal scroll if stage content exceeds viewport height
-        const canScrollDown = activeSec.scrollHeight - activeSec.scrollTop - activeSec.clientHeight > 6;
-        const canScrollUp = activeSec.scrollTop > 6;
-        if ((e.deltaY > 0 && canScrollDown) || (e.deltaY < 0 && canScrollUp)) {
-          return;
-        }
-      }
-
-      e.preventDefault();
-      if (isTransitioning) return;
-
-      wheelCharge += e.deltaY;
-      const threshold = 68;
-      const chargePct = Math.min(100, Math.round((Math.abs(wheelCharge) / threshold) * 100));
-      if (chargeFillEl) chargeFillEl.style.width = `${chargePct}%`;
-
-      if (Math.abs(wheelCharge) >= threshold) {
-        const dir = wheelCharge > 0 ? 1 : -1;
-        wheelCharge = 0;
-        if (chargeFillEl) chargeFillEl.style.width = '0%';
-
-        isTransitioning = true;
-        const def = STAGE_DEFS[currentStage];
-        const isStageBoundary =
-          (dir > 0 && currentSubStep + 1 >= def.subSteps.length) || (dir < 0 && currentSubStep === 0);
-
-        if (dir > 0) stepForward();
-        else stepBackward();
-
-        setTimeout(() => {
-          isTransitioning = false;
-        }, isStageBoundary ? 680 : 380);
-      }
-    },
-    { passive: false }
-  );
-
-  // Touch Swipe Support for Mobile / Tablet Deck Navigation
-  let touchStartY = 0;
-  window.addEventListener(
-    'touchstart',
-    (e) => {
-      if (e.touches.length === 1) touchStartY = e.touches[0].clientY;
-    },
-    { passive: true }
-  );
-
-  window.addEventListener(
-    'touchend',
-    (e) => {
-      if (!deckModeEnabled || isTransitioning) return;
-      const touchEndY = e.changedTouches[0]?.clientY || touchStartY;
-      const dy = touchStartY - touchEndY;
-      if (Math.abs(dy) > 55) {
-        isTransitioning = true;
-        if (dy > 0) stepForward();
-        else stepBackward();
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 520);
-      }
-    },
-    { passive: true }
-  );
 
   // Keyboard Navigation (↓, ↑, Space, PageDown, PageUp, D, P)
   window.addEventListener('keydown', (e) => {
@@ -1834,35 +1825,21 @@ function initPresentationDeckEngine(Sound) {
     if (e.key.toLowerCase() === 'd') {
       e.preventDefault();
       toggleDeckMode();
-      return;
-    }
-    if (e.key.toLowerCase() === 'p') {
+    } else if (e.key.toLowerCase() === 'p') {
       e.preventDefault();
       toggleAutoPlay();
-      return;
-    }
-
-    if (!deckModeEnabled) return;
-
-    if (e.key === 'ArrowDown' || e.key === ' ') {
-      e.preventDefault();
-      stepForward();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      stepBackward();
     } else if (e.key === 'PageDown' || e.key === 'ArrowRight') {
       e.preventDefault();
       skipToNextStage();
     } else if (e.key === 'PageUp' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      const prevIdx = Math.max(0, currentStage - 1);
-      goToStage(prevIdx, 0, true);
+      scrollToStageStep(Math.max(0, currentStage - 1), 0);
     }
   });
 
-  syncDeckUI();
+  evaluateScrollScrub();
   window.QuantDeck = {
-    goToStage,
+    scrollToStageStep,
     stepForward,
     stepBackward,
     skipToNextStage,

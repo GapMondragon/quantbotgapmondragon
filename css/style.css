@@ -10,36 +10,44 @@
  * - Soft Sky Blue: #B1CFFC
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --bg-primary: #031D44;
   --bg-secondary: #092A5B;
-  --bg-card: rgba(12, 39, 71, 0.82);
-  --bg-card-hover: rgba(16, 50, 92, 0.95);
-  --bg-glass: rgba(3, 29, 68, 0.88);
+  --bg-card: rgba(12, 39, 71, 0.78);
+  --bg-card-hover: rgba(16, 50, 92, 0.92);
+  --bg-glass: rgba(3, 29, 68, 0.84);
   --accent-green: #60A244;
   --accent-mint: #94C97E;
   --accent-pale: #D0E7C5;
   --accent-blue: #07439D;
   --accent-sky: #B1CFFC;
+  --accent-gold: #E6D5B8;
+  --accent-gold-dim: rgba(230, 213, 184, 0.28);
   --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.82);
+  --text-secondary: rgba(255, 255, 255, 0.84);
   --text-muted: rgba(255, 255, 255, 0.58);
   --border-color: rgba(96, 162, 68, 0.3);
   --border-focus: #94C97E;
-  --border-card: rgba(96, 162, 68, 0.4);
+  --border-card: rgba(148, 201, 126, 0.32);
+  --specular-top: inset 0 1px 1px rgba(255, 255, 255, 0.35);
   --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 8px 32px rgba(96, 162, 68, 0.25);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(96, 162, 68, 0.15);
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-glow: 0 14px 40px rgba(96, 162, 68, 0.22);
+  --shadow-card: 0 20px 50px -12px rgba(0, 0, 0, 0.55), 0 0 20px rgba(96, 162, 68, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  --expo-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --slow-ease-out: cubic-bezier(0.04, 1.15, 0.4, 0.99);
+  --power-4-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
   --font-body: 'Source Sans 3', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Space Grotesk', 'Source Sans 3', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
   --header-height: 84px;
 }
 
@@ -1510,5 +1518,910 @@ textarea.form-control {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   MASTER SYNTHESIS UPGRADE: CLASSIC • MODERN • SOPHISTICATED • ELEGANT
+   Inspired by Moonlab /inspo: Luxury Typography, Swiss Grid, Spatial visionOS,
+   Danilo De Marco, Niccolò Miranda, 2xA Studio, Bleibtgleich, Bulbs & Thibaut
+   ============================================================================ */
+
+/* 1. Multi-Theme Institutional Palettes (bleibtgleich.dev inspired) */
+html[data-theme="atelier-gold"] {
+  --bg-primary: #090A0D;
+  --bg-secondary: #12141A;
+  --bg-card: rgba(20, 22, 28, 0.84);
+  --bg-card-hover: rgba(28, 31, 40, 0.95);
+  --bg-glass: rgba(9, 10, 13, 0.88);
+  --accent-green: #C5A059;
+  --accent-mint: #E6D5B8;
+  --accent-pale: #F5EBD6;
+  --accent-blue: #2A2419;
+  --accent-sky: #D4C3A3;
+  --accent-gold: #E6D5B8;
+  --border-color: rgba(230, 213, 184, 0.24);
+  --border-focus: #E6D5B8;
+  --border-card: rgba(230, 213, 184, 0.32);
+  --shadow-glow: 0 16px 44px rgba(197, 160, 89, 0.2);
+}
+
+html[data-theme="swiss-editorial"] {
+  --bg-primary: #F6F3EC;
+  --bg-secondary: #EAE5D9;
+  --bg-card: rgba(255, 253, 248, 0.92);
+  --bg-card-hover: rgba(255, 255, 255, 0.99);
+  --bg-glass: rgba(246, 243, 236, 0.92);
+  --accent-green: #1B4332;
+  --accent-mint: #2D6A4F;
+  --accent-pale: #40916C;
+  --accent-blue: #181816;
+  --accent-sky: #3A5A40;
+  --accent-gold: #8C6D46;
+  --text-primary: #141615;
+  --text-secondary: rgba(20, 22, 21, 0.82);
+  --text-muted: rgba(20, 22, 21, 0.56);
+  --border-color: rgba(24, 24, 22, 0.18);
+  --border-focus: #1B4332;
+  --border-card: rgba(24, 24, 22, 0.22);
+  --shadow-subtle: 0 4px 16px rgba(24, 24, 22, 0.06);
+  --shadow-glow: 0 14px 34px rgba(27, 67, 50, 0.12);
+  --shadow-card: 0 12px 30px -8px rgba(24, 24, 22, 0.1);
+}
+
+html[data-theme="swiss-editorial"] .brand-logo img,
+html[data-theme="swiss-editorial"] .footer-brand .brand-logo img,
+html[data-theme="swiss-editorial"] .footer-logo img {
+  filter: invert(0.88) hue-rotate(175deg) saturate(1.4);
+}
+
+html[data-theme="swiss-editorial"] .hero-overlay {
+  background: linear-gradient(135deg, rgba(246, 243, 236, 0.94) 0%, rgba(234, 229, 217, 0.86) 100%) !important;
+}
+
+html[data-theme="swiss-editorial"] .section-dark,
+html[data-theme="swiss-editorial"] .site-footer,
+html[data-theme="swiss-editorial"] .footer {
+  background: #EAE5D9 !important;
+  color: #141615;
+}
+
+html[data-theme="vision-spatial"] {
+  --bg-primary: #050B16;
+  --bg-secondary: #0B1528;
+  --bg-card: rgba(15, 25, 45, 0.52);
+  --bg-card-hover: rgba(22, 38, 68, 0.72);
+  --bg-glass: rgba(8, 15, 29, 0.72);
+  --accent-green: #0EA5E9;
+  --accent-mint: #38BDF8;
+  --accent-pale: #BAE6FD;
+  --accent-blue: #1E3A8A;
+  --accent-sky: #7DD3FC;
+  --accent-gold: #E0F2FE;
+  --border-color: rgba(255, 255, 255, 0.22);
+  --border-focus: #38BDF8;
+  --border-card: rgba(255, 255, 255, 0.26);
+  --shadow-glow: 0 24px 60px rgba(14, 165, 233, 0.25);
+}
+
+html[data-theme="titanium-quant"] {
+  --bg-primary: #0F1114;
+  --bg-secondary: #16191E;
+  --bg-card: rgba(24, 27, 32, 0.9);
+  --bg-card-hover: rgba(32, 36, 43, 0.98);
+  --bg-glass: rgba(15, 17, 20, 0.9);
+  --accent-green: #D97706;
+  --accent-mint: #F59E0B;
+  --accent-pale: #FDE68A;
+  --accent-blue: #27272A;
+  --accent-sky: #10B981;
+  --accent-gold: #F59E0B;
+  --border-color: rgba(245, 158, 11, 0.28);
+  --border-focus: #F59E0B;
+  --border-card: rgba(255, 255, 255, 0.16);
+  --shadow-glow: 0 20px 48px rgba(245, 158, 11, 0.18);
+}
+
+/* Surface Physics Variations for Random Roll */
+html[data-surface="swiss-grid"] {
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+}
+
+html[data-surface="spatial-glass"] {
+  --radius-sm: 12px;
+  --radius-md: 22px;
+  --radius-lg: 30px;
+}
+
+html[data-surface="luxury-filigree"] .card,
+html[data-surface="luxury-filigree"] .timeline-step,
+html[data-surface="luxury-filigree"] .bento-cell {
+  outline: 1px solid var(--accent-gold-dim);
+  outline-offset: -6px;
+}
+
+/* Luxury Editorial Serif Accent Class */
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* 2. Top Institutional Telemetry Bar (2xa.studio & Cybercore inspired) */
+.qb-telemetry-bar {
+  position: relative;
+  z-index: 102;
+  background: rgba(2, 14, 34, 0.94);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+html[data-theme="swiss-editorial"] .qb-telemetry-bar {
+  background: #141615;
+  color: #F6F3EC;
+}
+
+.qb-telemetry-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.qb-clocks-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.qb-sys-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-mint);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.qb-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-mint);
+  box-shadow: 0 0 8px var(--accent-mint);
+  animation: qbPulse 2s infinite;
+}
+
+@keyframes qbPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.qb-hub-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.qb-hub-clock strong {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.qb-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.qb-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s var(--expo-ease-out);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.qb-ctrl-btn:hover,
+.qb-ctrl-btn.active {
+  background: var(--accent-mint);
+  color: #031D44;
+  border-color: var(--accent-mint);
+  box-shadow: 0 0 14px rgba(148, 201, 126, 0.4);
+}
+
+.qb-ctrl-btn.qb-roll-btn {
+  background: linear-gradient(135deg, var(--accent-mint), var(--accent-green));
+  color: #031D44;
+  border-color: rgba(255, 255, 255, 0.35);
+  font-weight: 700;
+}
+
+.qb-ctrl-btn.qb-roll-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 18px var(--accent-mint);
+}
+
+/* 3. Top Scroll Progress Bar (ollivere.webflow.io inspired) */
+.qb-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--accent-mint), var(--accent-gold), var(--accent-green));
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 12px var(--accent-mint);
+}
+
+/* 4. 12-Column Architectural Swiss Grid Overlay (bulbs.simondupety.com) */
+.qb-swiss-grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  padding: 0 24px;
+}
+
+.qb-swiss-grid-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.qb-swiss-col {
+  height: 100%;
+  background: rgba(148, 201, 126, 0.035);
+  border-left: 1px dashed rgba(148, 201, 126, 0.22);
+  border-right: 1px dashed rgba(148, 201, 126, 0.22);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 460ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: relative;
+}
+
+.qb-swiss-col::before {
+  content: attr(data-col);
+  position: absolute;
+  top: 96px;
+  left: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--accent-mint);
+  opacity: 0.7;
+  letter-spacing: 0.08em;
+}
+
+body.show-swiss-grid .qb-swiss-col {
+  transform: scaleY(1);
+}
+
+/* 5. Dense 25%-Opacity Live Scroll Section Minimap Index (bulbs.simondupety.com) */
+.qb-minimap-index {
+  position: fixed;
+  left: 20px;
+  bottom: 24px;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-subtle);
+  max-width: 190px;
+}
+
+.qb-minimap-header {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent-gold);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qb-minimap-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  opacity: 0.28;
+  text-decoration: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qb-minimap-item::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.qb-minimap-item:hover,
+.qb-minimap-item.is-active {
+  opacity: 1;
+  color: var(--accent-mint);
+  transform: translateX(3px);
+}
+
+.qb-minimap-item.is-active::before {
+  box-shadow: 0 0 8px var(--accent-mint);
+}
+
+/* 6. Dual-Layer Character Split Wave Hover (danilodemarco.com) */
+.qb-split-wrap {
+  display: inline-grid;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.2;
+}
+
+.qb-split-layer {
+  grid-area: 1 / 1;
+  display: inline-flex;
+}
+
+.qb-split-layer .qb-char {
+  display: inline-block;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--char-index, 0) * 16ms);
+  will-change: transform;
+}
+
+.qb-split-layer.layer-clone .qb-char {
+  transform: translateY(115%);
+  color: var(--accent-mint);
+}
+
+a:hover .qb-split-layer.layer-orig .qb-char,
+button:hover .qb-split-layer.layer-orig .qb-char {
+  transform: translateY(-115%);
+}
+
+a:hover .qb-split-layer.layer-clone .qb-char,
+button:hover .qb-split-layer.layer-clone .qb-char {
+  transform: translateY(0%);
+}
+
+/* 7. Cursor-Reactive Radial Spotlight & Specular Rim Cards (React Bits & Spatial visionOS) */
+.card,
+.timeline-step,
+.team-card,
+.office-card,
+.blog-card,
+.news-card,
+.job-card,
+.bento-cell {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  /* Zero-duration border highlight entry + 450ms eased exit trail (bleibtgleich.dev) */
+  transition:
+    transform 0.45s var(--expo-ease-out),
+    box-shadow 0.45s var(--expo-ease-out),
+    background 0.45s var(--expo-ease-out),
+    border-color 0.45s var(--expo-ease-out);
+}
+
+.card:hover,
+.timeline-step:hover,
+.team-card:hover,
+.office-card:hover,
+.blog-card:hover,
+.news-card:hover,
+.job-card:hover,
+.bento-cell:hover {
+  transition:
+    transform 0.35s var(--expo-ease-out),
+    box-shadow 0.2s ease,
+    background 0s,
+    border-color 0s;
+}
+
+.card::before,
+.timeline-step::before,
+.team-card::before,
+.office-card::before,
+.bento-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(148, 201, 126, 0.15),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover::before,
+.timeline-step:hover::before,
+.team-card:hover::before,
+.office-card:hover::before,
+.bento-cell:hover::before {
+  opacity: 1;
+}
+
+.card > *,
+.timeline-step > *,
+.bento-cell > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 8. Custom Magnetic Spring Cursor & Context Pill Host (thibaut.cool & danilodemarco.com) */
+@media (pointer: fine) {
+  .qb-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(148, 201, 126, 0.55);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate3d(-100px, -100px, 0);
+    transition: width 0.28s var(--expo-ease-out), height 0.28s var(--expo-ease-out), background 0.28s ease, border-color 0.28s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qb-cursor-ring.is-hovering {
+    width: 54px;
+    height: 54px;
+    background: rgba(148, 201, 126, 0.12);
+    border-color: var(--accent-gold);
+  }
+
+  .qb-cursor-pill {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: rgba(3, 29, 68, 0.92);
+    color: var(--accent-mint);
+    border: 1px solid var(--accent-mint);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0) scale(0.85);
+    transition: opacity 0.2s var(--expo-ease-out);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+  }
+
+  .qb-cursor-pill.is-visible {
+    opacity: 1;
+  }
+}
+
+/* 9. GPU-Composited Infinite Institutional Marquee Ticker (niccolomiranda.com) */
+.qb-marquee-strip {
+  position: relative;
+  overflow: hidden;
+  background: rgba(6, 22, 48, 0.86);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 13px 0;
+  backdrop-filter: blur(12px);
+  z-index: 5;
+}
+
+html[data-theme="swiss-editorial"] .qb-marquee-strip {
+  background: #EAE5D9;
+}
+
+.qb-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 42px;
+  will-change: transform;
+  animation: qbMarqueeScroll 38s linear infinite;
+}
+
+.qb-marquee-strip:hover .qb-marquee-track {
+  animation-play-state: paused;
+}
+
+.qb-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.qb-marquee-item strong {
+  color: var(--accent-mint);
+}
+
+.qb-marquee-sep {
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+@keyframes qbMarqueeScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* 10. Continuous 360° Rotating Circular SVG Seal Stamp (danilodemarco.com & surrealism) */
+.qb-rotating-seal {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.qb-rotating-seal svg.seal-ring {
+  width: 100%;
+  height: 100%;
+  animation: qbSealSpin 22s linear infinite;
+}
+
+.qb-rotating-seal:hover svg.seal-ring {
+  animation-duration: 7s;
+}
+
+.qb-rotating-seal .seal-core {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-gold-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 700;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes qbSealSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 11. Interactive QuantLab Strategy & Alpha Simulator */
+.quantlab-shell {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantlab-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.quantlab-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(3, 18, 42, 0.55);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+html[data-theme="swiss-editorial"] .quantlab-controls {
+  background: rgba(234, 229, 217, 0.7);
+}
+
+.quantlab-field label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-mint);
+  margin-bottom: 8px;
+}
+
+.quantlab-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quantlab-pill {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quantlab-pill:hover,
+.quantlab-pill.active {
+  background: var(--accent-mint);
+  color: #031D44;
+  border-color: var(--accent-mint);
+  font-weight: 700;
+}
+
+.quantlab-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.quantlab-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.quantlab-metric-box {
+  background: rgba(3, 18, 42, 0.52);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+html[data-theme="swiss-editorial"] .quantlab-metric-box {
+  background: rgba(234, 229, 217, 0.75);
+}
+
+.quantlab-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.quantlab-metric-val {
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--accent-mint);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.quantlab-canvas-wrap {
+  position: relative;
+  height: 250px;
+  border-radius: 14px;
+  background: rgba(2, 12, 28, 0.72);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* 12. Bento Grid Matrix (Style #11 Bento Grid) */
+.bento-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.bento-cell {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-span-2 {
+  grid-column: span 2;
+}
+
+.bento-row-2 {
+  grid-row: span 2;
+}
+
+/* 13. Command Palette Modal (#qb-cmd-palette) & Random Roll Toast */
+.qb-cmd-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(2, 10, 24, 0.78);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 11vh;
+}
+
+.qb-cmd-backdrop.is-open {
+  display: flex;
+}
+
+.qb-cmd-box {
+  width: 92%;
+  max-width: 620px;
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-focus);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), var(--specular-top);
+  overflow: hidden;
+}
+
+.qb-cmd-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.qb-cmd-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.qb-cmd-list {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.qb-cmd-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.qb-cmd-item:hover {
+  background: rgba(148, 201, 126, 0.16);
+  color: var(--accent-mint);
+}
+
+.qb-roll-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9995;
+  background: var(--bg-glass);
+  border: 1px solid var(--accent-mint);
+  border-radius: 16px;
+  padding: 14px 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 24px rgba(148, 201, 126, 0.25);
+  backdrop-filter: blur(18px);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transform: translateY(130%);
+  opacity: 0;
+  transition: transform 0.45s var(--expo-ease-out), opacity 0.45s ease;
+  max-width: 340px;
+}
+
+.qb-roll-toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .quantlab-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-matrix {
+    grid-template-columns: 1fr 1fr;
+  }
+  .qb-minimap-index {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .quantlab-metrics-row,
+  .bento-matrix {
+    grid-template-columns: 1fr;
+  }
+  .bento-span-2 {
+    grid-column: span 1;
+  }
+  .qb-clocks-group .qb-hub-clock:nth-child(n+4) {
+    display: none;
   }
 }

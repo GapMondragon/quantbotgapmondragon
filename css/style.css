@@ -2402,755 +2402,951 @@ html[data-theme="swiss-editorial"] .quantlab-metric-box {
 }
 
 /* ============================================================================
-   14. PINNED STAGE RUNWAY & SCROLL-SCRUBBED PRESENTATION DECK (HOMEPAGE)
+   14. UNIFIED HEADER TELEMETRY & FLUID 7-STAGE PRESENTATION DECK (HOMEPAGE)
    ============================================================================ */
 
-/* Keep Telemetry Bar & Header Pinned at Top */
-.qb-telemetry-bar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1200 !important;
-}
-
-.site-header {
-  position: fixed !important;
-  top: 31px;
-  left: 0;
-  right: 0;
-  z-index: 1150 !important;
-}
-
-body:not(.has-scrolly-deck) {
-  padding-top: calc(31px + var(--header-height));
-}
-
-/* Main Scrollytelling Presentation Deck Container */
-.qb-scrolly-deck {
-  position: relative;
-  width: 100%;
-}
-
-/* Tall Scroll Runway for Each Presentation Stage */
-.stage-runway {
-  position: relative;
-  width: 100%;
-  height: var(--runway-height, 320vh);
-}
-
-/* Pinned 100dvh Sticky Stage Theater Inside Each Runway */
-.stage-sticky-theater {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100dvh;
-  min-height: 100dvh;
-  padding: 112px 0 78px !important;
-  margin: 0 !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  will-change: transform, opacity, filter;
-  transform-origin: center center;
-}
-
-/* Free-Scroll Compact Mode (when toggled via [D]) */
-body.qb-free-scroll-mode .stage-runway {
-  height: auto !important;
-}
-
-body.qb-free-scroll-mode .stage-sticky-theater {
-  position: relative !important;
-  height: auto !important;
-  min-height: 85vh !important;
-  padding: 96px 0 !important;
-}
-
-/* Stage Inner Container */
-.deck-stage-inner {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 14px;
-  position: relative;
-  z-index: 4;
-}
-
-/* Top Stage Metadata Ribbon */
-.deck-stage-top-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 10px;
-  margin-bottom: 6px;
-  border-bottom: 1px solid rgba(148, 201, 126, 0.24);
-}
-
-.deck-stage-pill {
+/* Unified Header Telemetry Pill & Action Buttons */
+.qb-header-telemetry {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-mint);
-  background: rgba(148, 201, 126, 0.12);
-  border: 1px solid rgba(148, 201, 126, 0.36);
-  padding: 4px 12px;
+  padding: 6px 13px;
   border-radius: 999px;
-}
-
-.deck-stage-hint,
-.deck-stage-substep-indicator {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
   font-family: var(--font-mono);
   font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.qb-header-telemetry strong {
+  color: var(--text-primary);
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.qb-header-telemetry .sep {
+  opacity: 0.35;
+}
+
+.qb-header-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.qb-header-pill-btn:hover {
+  border-color: var(--accent-mint);
+  background: rgba(148, 201, 126, 0.14);
+  color: var(--accent-mint);
+  transform: translateY(-1px);
+}
+
+.qb-header-pill-btn kbd {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
   color: var(--accent-gold);
 }
 
-/* Stage 01: Hero KPI Strip & Docked Marquee */
-.deck-hero-kpis {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(110px, 1fr));
+/* Hide side minimap on homepage presentation deck so only the bottom Stage HUD shows */
+body.is-home-presentation .qb-minimap-index {
+  display: none;
+}
+
+/* Shared Presentation Stage Typography & Tokens */
+.p-stage {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.p-stage-container {
+  position: relative;
+  z-index: 2;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.p-eyebrow {
+  display: inline-flex;
+  align-items: center;
   gap: 12px;
-  margin-top: 22px;
-  max-width: 650px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+  margin-bottom: 18px;
 }
 
-.deck-kpi-chip {
-  background: rgba(6, 24, 54, 0.68);
+.p-eyebrow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(148, 201, 126, 0.14);
+  border: 1px solid rgba(148, 201, 126, 0.38);
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.p-stage-title {
+  font-size: clamp(2rem, 3.6vw, 3.15rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+.p-stage-desc {
+  font-size: 1.06rem;
+  line-height: 1.72;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* ----------------------------------------------------------------------------
+   STAGE 01: OPENING KEYNOTE HERO
+   ---------------------------------------------------------------------------- */
+.p-stage-hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: var(--header-height);
+  overflow: hidden;
+}
+
+.p-stage-hero .p-stage-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 48px;
+  padding-bottom: 42px;
+}
+
+.p-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.p-hero-title {
+  font-size: clamp(2.75rem, 5.4vw, 4.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+}
+
+.p-hero-title .p-line {
+  display: block;
+}
+
+.p-hero-title .p-serif-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.3vw, 2.05rem);
+  color: var(--accent-gold);
+  letter-spacing: 0.01em;
+  margin-top: 12px;
+}
+
+.p-hero-lead {
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+  line-height: 1.72;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-bottom: 32px;
+}
+
+.p-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.p-hero-plinth {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-color);
+}
+
+.p-plinth-item {
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(6, 26, 58, 0.58);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 10px 14px;
-  backdrop-filter: blur(12px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.deck-kpi-chip.is-kpi-lit {
-  border-color: var(--accent-mint);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 18px rgba(148, 201, 126, 0.28);
-  transform: translateY(-4px) scale(1.03);
+html[data-theme="swiss-editorial"] .p-plinth-item {
+  background: rgba(255, 255, 255, 0.85);
 }
 
-html[data-theme="swiss-editorial"] .deck-kpi-chip {
-  background: rgba(234, 229, 217, 0.88);
+.p-plinth-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
 }
 
-.deck-kpi-val {
+.p-plinth-val {
   display: block;
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--accent-mint);
-}
-
-.deck-kpi-lbl {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.deck-hero-marquee {
-  position: absolute !important;
-  left: 0;
-  right: 0;
-  bottom: 66px;
-  padding: 9px 0;
-}
-
-/* Stage 02: Interactive 4-Pillar Spotlight Cards & 3D Stacked Slide Deck */
-.deck-pillar-card {
-  cursor: pointer;
-  padding: 18px 20px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0.52;
-}
-
-.deck-pillar-card .card-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
-.deck-pillar-card .card-title {
-  font-size: 1.04rem;
   margin-bottom: 4px;
 }
 
-.deck-pillar-card .card-text {
-  font-size: 0.85rem;
-  line-height: 1.48;
+.p-plinth-lbl {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
 }
 
-.deck-pillar-card.is-pillar-active {
-  opacity: 1;
-  border-color: var(--accent-mint) !important;
-  background: var(--bg-card-hover) !important;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 26px rgba(148, 201, 126, 0.3);
-  transform: translateY(-5px) scale(1.03);
-}
-
-/* 3D Stacked Presentation Slides on Right Side of Stage 02 */
-.deck-slide-stack-viewport {
+/* ----------------------------------------------------------------------------
+   STAGE 02: PINNED 4-SLIDE ARCHITECTURAL DECK (WHAT MAKES US DIFFERENT)
+   ---------------------------------------------------------------------------- */
+.p-stage-pillars {
   position: relative;
-  height: 430px;
+  height: 340vh;
+  background: linear-gradient(180deg, rgba(3, 22, 52, 0.55) 0%, rgba(4, 29, 68, 0.82) 100%);
+}
+
+html[data-theme="swiss-editorial"] .p-stage-pillars {
+  background: #EFECE4;
+}
+
+.p-pillars-sticky {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100dvh - var(--header-height));
   width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.p-pillars-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  align-items: center;
+  width: 100%;
+}
+
+.p-pillar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.p-pillar-tab {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.p-pillar-tab:hover {
+  border-color: rgba(148, 201, 126, 0.45);
+  color: var(--text-primary);
+}
+
+.p-pillar-tab.is-active {
+  background: linear-gradient(135deg, rgba(148, 201, 126, 0.16), rgba(7, 67, 157, 0.28));
+  border-color: var(--accent-mint);
+  color: var(--text-primary);
+  transform: translateX(8px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.p-pillar-tab-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.p-pillar-tab.is-active .p-pillar-tab-num {
+  background: var(--accent-mint);
+  color: #031D44;
+}
+
+.p-pillar-tab-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.p-pillar-tab-meta {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Right 3D Card Stack */
+.p-pillars-right {
+  position: relative;
+  height: min(560px, 72vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
   perspective: 1400px;
 }
 
-.deck-visual-slide {
+.p-deck-card {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-lg);
+  border-radius: 24px;
+  background: rgba(6, 26, 58, 0.92);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  border: 1px solid var(--border-focus);
-  background: var(--bg-card);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-  transition:
-    transform 0.68s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s ease;
-  will-change: transform, opacity;
+  display: grid;
+  grid-template-rows: 220px 1fr;
   opacity: 0;
-  transform: translate3d(0, 90px, -120px) rotateX(-12deg) scale(0.9);
   pointer-events: none;
+  transform: translate3d(0, 64px, -90px) scale(0.92);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease;
 }
 
-.deck-visual-slide.is-slide-past {
-  opacity: 0.35;
-  transform: translate3d(0, -26px, -90px) rotateX(6deg) scale(0.92);
-  filter: blur(2px) brightness(0.65);
+html[data-theme="swiss-editorial"] .p-deck-card {
+  background: #FFFFFF;
+  box-shadow: 0 24px 60px rgba(20, 22, 21, 0.12);
+}
+
+.p-deck-card.is-past {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -56px, -60px) scale(0.94);
+}
+
+.p-deck-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  border-color: var(--accent-gold);
+  transform: translate3d(0, 0, 0) scale(1);
+  z-index: 4;
+}
+
+.p-deck-card.is-next {
+  opacity: 0.32;
+  pointer-events: none;
+  transform: translate3d(0, 28px, -40px) scale(0.96);
   z-index: 2;
 }
 
-.deck-visual-slide.is-slide-active {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
-  filter: blur(0px) brightness(1);
-  pointer-events: auto;
-  z-index: 5;
+.p-deck-card-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.deck-slide-bg-img {
+.p-deck-card-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.75) contrast(1.08);
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.9s ease;
 }
 
-.deck-visual-slide.is-slide-active .deck-slide-bg-img {
-  transform: scale(1.05);
+.p-deck-card.is-active .p-deck-card-media img {
+  transform: scale(1.04);
 }
 
-.deck-slide-glass-plate {
+.p-deck-card-media::after {
+  content: "";
   position: absolute;
-  left: 18px;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 29, 68, 0.1) 0%, rgba(6, 26, 58, 0.92) 100%);
+}
+
+html[data-theme="swiss-editorial"] .p-deck-card-media::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(20, 22, 21, 0.55) 100%);
+}
+
+.p-deck-card-tag {
+  position: absolute;
+  top: 16px;
   right: 18px;
-  bottom: 18px;
-  padding: 20px 22px;
-  border-radius: 18px;
-  background: rgba(3, 18, 42, 0.9);
-  border: 1px solid var(--accent-mint);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-}
-
-.deck-slide-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.deck-slide-badge {
+  z-index: 2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(3, 18, 42, 0.85);
+  border: 1px solid var(--accent-gold);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 2px 9px;
-  border-radius: 999px;
-  background: rgba(148, 201, 126, 0.18);
-  color: var(--accent-mint);
-  border: 1px solid var(--accent-mint);
-}
-
-.deck-slide-glass-plate h3 {
-  font-size: 1.28rem;
-  color: #FFFFFF;
-  margin-bottom: 6px;
-}
-
-.deck-slide-glass-plate p {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.82);
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-
-.deck-slide-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  font-family: var(--font-mono);
-}
-
-.deck-slide-metrics span {
-  display: block;
-  font-size: 0.6rem;
-  color: var(--accent-gold);
-  letter-spacing: 0.1em;
-}
-
-.deck-slide-metrics strong {
-  font-size: 0.78rem;
-  color: var(--accent-mint);
-}
-
-/* Stage 03: Horizontal Scroll-Scrubbed 6-Phase Pipeline Conveyor */
-.deck-pipeline-inspector {
-  max-width: 980px;
-  margin: 0 auto 16px;
-  width: 100%;
-  background: rgba(4, 20, 46, 0.68);
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 12px 18px;
-  backdrop-filter: blur(12px);
-}
-
-html[data-theme="swiss-editorial"] .deck-pipeline-inspector {
-  background: rgba(234, 229, 217, 0.85);
-}
-
-.deck-pipeline-track-bar {
-  width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.deck-pipeline-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-mint), var(--accent-gold));
-  border-radius: 999px;
-  transition: width 0.25s ease-out;
-  box-shadow: 0 0 12px var(--accent-mint);
-}
-
-.deck-pipeline-readout {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.deck-horizontal-pipeline-viewport {
-  width: 100%;
-  overflow: visible;
-  padding: 14px 0;
-}
-
-#strategyProcessStage .deck-horizontal-track {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 24px !important;
-  width: max-content;
-  margin-top: 4px;
-  will-change: transform;
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-#strategyProcessStage .deck-horizontal-track .timeline-step {
-  width: 340px;
-  flex: 0 0 340px;
-  padding: 24px;
-  cursor: pointer;
-  opacity: 0.48;
-  transform: scale(0.94);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#strategyProcessStage .deck-horizontal-track .timeline-step.is-phase-complete {
-  opacity: 0.78;
-  transform: scale(0.97);
-  border-color: rgba(148, 201, 126, 0.4);
-}
-
-#strategyProcessStage .deck-horizontal-track .timeline-step.is-phase-active {
-  opacity: 1;
-  border-color: var(--accent-mint) !important;
-  background: var(--bg-card-hover) !important;
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6), 0 0 28px rgba(148, 201, 126, 0.32);
-  transform: translateY(-8px) scale(1.04);
-}
-
-.step-stage-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  color: var(--accent-gold);
-}
-
-/* Stage 04: Kinetic Word-by-Word Quote & Story Gallery Frames */
-.qb-quote-word {
-  display: inline-block;
-  margin-right: 0.26em;
-  opacity: 0.24;
-  transform: translateY(4px);
-  transition: opacity 0.28s ease, transform 0.28s ease, color 0.28s ease;
-}
-
-.qb-quote-word.is-word-lit {
-  opacity: 1;
-  transform: translateY(0);
-  color: var(--accent-mint);
-}
-
-.deck-story-frame {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-card);
-  cursor: pointer;
-  opacity: 0.55;
-  transform: scale(0.95);
-  transition: all 0.45s var(--expo-ease-out);
-}
-
-.deck-story-frame img {
-  transition: transform 0.65s var(--expo-ease-out);
-}
-
-.deck-story-frame.is-story-active {
-  opacity: 1;
-  border-color: var(--accent-gold);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55), 0 0 24px rgba(230, 213, 184, 0.32);
-  transform: translateY(-5px) scale(1.03);
-}
-
-.deck-story-frame.is-story-active img {
-  transform: scale(1.07);
-}
-
-.deck-story-caption {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: rgba(3, 18, 42, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-}
-
-.deck-story-caption span {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
   letter-spacing: 0.12em;
   color: var(--accent-gold);
 }
 
-.deck-story-caption strong {
-  font-size: 0.88rem;
-  color: #FFFFFF;
-}
-
-/* Stage 07: Finale Stage CTA + Embedded Footer */
-.deck-finale-cta-card {
-  text-align: center;
-  padding: 26px 32px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(7, 67, 157, 0.35) 0%, rgba(3, 29, 68, 0.82) 100%);
-  border: 1px solid var(--border-card);
-  box-shadow: var(--shadow-card);
-}
-
-.deck-embedded-footer {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  padding: 0 24px 12px;
-  background: rgba(2, 14, 34, 0.78);
-  backdrop-filter: blur(16px);
-}
-
-/* ============================================================================
-   15. PRESENTATION DECK DIRECTOR HUD (BOTTOM DOCK + RIGHT SLIDE RAIL + CURTAIN)
-   ============================================================================ */
-
-/* Right-Side Vertical Keynote Slide Rail */
-.qb-deck-rail {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1100;
+.p-deck-card-body {
+  padding: 28px 32px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 10px 8px;
-  border-radius: 999px;
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--shadow-subtle);
+  justify-content: space-between;
 }
 
-body:not(.qb-deck-active) .qb-deck-rail {
-  opacity: 0.45;
+.p-deck-card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
-.qb-deck-rail-dot {
-  position: relative;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
+.p-deck-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(148, 201, 126, 0.12);
+  border: 1px solid rgba(148, 201, 126, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s var(--expo-ease-out);
+  padding: 10px;
+  flex-shrink: 0;
 }
 
-.qb-deck-rail-dot:hover,
-.qb-deck-rail-dot.is-active {
-  background: var(--accent-mint);
-  color: #031D44;
-  border-color: var(--accent-mint);
-  box-shadow: 0 0 14px rgba(148, 201, 126, 0.55);
-  transform: scale(1.12);
+.p-deck-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.qb-deck-rail-dot::after {
-  content: attr(data-stage-tooltip);
-  position: absolute;
-  right: 36px;
-  top: 50%;
-  transform: translateY(-50%) translateX(8px);
-  background: rgba(3, 20, 46, 0.95);
-  color: var(--accent-mint);
-  border: 1px solid var(--border-focus);
-  padding: 4px 10px;
-  border-radius: 8px;
+.p-deck-card-head h3 {
+  font-size: 1.55rem;
+  margin: 4px 0 0;
+}
+
+.p-deck-card-body p {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.p-deck-card-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.p-deck-card-specs span {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.2s ease;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
-.qb-deck-rail-dot:hover::after {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
+.p-deck-card-specs strong {
+  font-size: 0.86rem;
+  color: var(--accent-mint);
 }
 
-/* Bottom-Center "What to Present Next" Stage Director Dock */
-.qb-deck-director-dock {
-  position: fixed;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  z-index: 1120;
+/* ----------------------------------------------------------------------------
+   STAGE 03: PINNED HORIZONTAL STRATEGY PIPELINE CONVEYOR
+   ---------------------------------------------------------------------------- */
+.p-stage-pipeline {
+  position: relative;
+  height: 360vh;
+}
+
+.p-pipeline-sticky {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100dvh - var(--header-height));
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.p-pipeline-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.p-pipeline-status-box {
+  min-width: 280px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(6, 26, 58, 0.72);
+  border: 1px solid var(--border-color);
+}
+
+html[data-theme="swiss-editorial"] .p-pipeline-status-box {
+  background: #FFFFFF;
+}
+
+.p-pipe-progress-track {
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+html[data-theme="swiss-editorial"] .p-pipe-progress-track {
+  background: rgba(20, 22, 21, 0.12);
+}
+
+.p-pipe-progress-fill {
+  height: 100%;
+  width: 16.6%;
+  background: linear-gradient(90deg, var(--accent-mint), var(--accent-gold));
+  border-radius: 999px;
+  transition: width 0.15s ease-out;
+}
+
+.p-pipeline-track-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 12px max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+}
+
+.p-pipeline-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+}
+
+.p-phase-card {
+  width: clamp(320px, 32vw, 410px);
+  min-height: 320px;
+  padding: 30px;
+  border-radius: 22px;
+  background: rgba(6, 26, 58, 0.75);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              opacity 0.35s ease;
+  cursor: pointer;
+}
+
+html[data-theme="swiss-editorial"] .p-phase-card {
+  background: #FFFFFF;
+}
+
+.p-phase-card.is-active {
+  border-color: var(--accent-mint);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.42), 0 0 28px rgba(148, 201, 126, 0.16);
+}
+
+.p-phase-card.is-complete {
+  border-color: rgba(230, 213, 184, 0.45);
+}
+
+.p-phase-top {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(3, 18, 42, 0.9);
-  border: 1px solid var(--border-focus);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(148, 201, 126, 0.18);
-  max-width: 95vw;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
 
-html[data-theme="swiss-editorial"] .qb-deck-director-dock {
+.p-phase-num {
+  font-family: var(--font-mono);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--accent-mint);
+}
+
+.p-phase-card.is-active .p-phase-num {
+  color: var(--accent-gold);
+}
+
+.p-phase-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(148, 201, 126, 0.12);
+  color: var(--accent-mint);
+}
+
+.p-phase-title {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.p-phase-desc {
+  font-size: 0.96rem;
+  line-height: 1.68;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.p-phase-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.p-phase-footer strong {
+  color: var(--accent-gold);
+}
+
+/* ----------------------------------------------------------------------------
+   STAGE 04: OUR STORY — EDITORIAL SCROLLYTELLING & PORTRAIT GALLERY
+   ---------------------------------------------------------------------------- */
+.p-story-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.p-kinetic-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1.48;
+  color: var(--text-primary);
+  padding: 22px 26px;
+  margin: 24px 0;
+  border-left: 3px solid var(--accent-gold);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 16px 16px 0;
+}
+
+.qb-quote-word {
+  opacity: 0.28;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+.qb-quote-word.is-word-lit {
+  opacity: 1;
+  color: var(--accent-gold);
+}
+
+.p-story-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.p-story-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  aspect-ratio: 4 / 4.4;
+  background: #041531;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.p-story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s ease;
+}
+
+.p-story-card:hover img,
+.p-story-card.is-active img {
+  transform: scale(1.06);
+}
+
+.p-story-card:hover,
+.p-story-card.is-active {
+  border-color: var(--accent-gold);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
+}
+
+.p-story-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 18px 16px 14px;
+  background: linear-gradient(180deg, rgba(3, 18, 42, 0) 0%, rgba(3, 18, 42, 0.94) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.p-story-caption span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-mint);
+}
+
+.p-story-caption strong {
+  font-size: 0.98rem;
+  color: #FFFFFF;
+}
+
+/* ----------------------------------------------------------------------------
+   15. UNIFIED FLOATING PRESENTATION STAGE HUD BAR (BOTTOM CENTER)
+   ---------------------------------------------------------------------------- */
+.p-deck-hud {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1180;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(3, 18, 42, 0.88);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-mono);
+}
+
+html[data-theme="swiss-editorial"] .p-deck-hud {
   background: rgba(20, 22, 21, 0.94);
   color: #F6F3EC;
 }
 
-.qb-deck-dock-status {
+.p-hud-stages {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-}
-
-.qb-deck-stage-counter {
-  color: var(--accent-gold);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-
-.qb-deck-substeps-dots {
-  display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
-.qb-deck-substep-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-  transition: all 0.25s ease;
-}
-
-.qb-deck-substep-dot.is-active {
-  width: 16px;
+.p-hud-pill {
+  padding: 5px 10px;
   border-radius: 999px;
-  background: var(--accent-mint);
-  box-shadow: 0 0 8px var(--accent-mint);
-}
-
-.qb-deck-next-btn {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(148, 201, 126, 0.14);
-  border: 1px solid rgba(148, 201, 126, 0.45);
-  color: #FFFFFF;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 6px 14px;
-  border-radius: 999px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.22s ease;
-  white-space: nowrap;
-}
-
-.qb-deck-next-btn:hover {
-  background: var(--accent-mint);
-  color: #031D44;
-}
-
-.qb-deck-charge-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0%;
-  background: rgba(148, 201, 126, 0.32);
-  pointer-events: none;
-  transition: width 0.12s linear;
-}
-
-.qb-deck-dock-actions {
+  transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
 
-.qb-deck-icon-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.p-hud-pill:hover {
+  color: var(--text-primary);
   background: rgba(255, 255, 255, 0.06);
-  color: #FFFFFF;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.qb-deck-icon-btn:hover,
-.qb-deck-icon-btn.active {
+.p-hud-pill.is-active {
+  background: rgba(148, 201, 126, 0.18);
+  border-color: var(--accent-mint);
+  color: var(--accent-mint);
+}
+
+.p-hud-pill-label {
+  display: none;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+.p-hud-pill.is-active .p-hud-pill-label {
+  display: inline;
+}
+
+.p-hud-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+}
+
+.p-hud-next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 201, 126, 0.4);
+  background: rgba(148, 201, 126, 0.12);
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.p-hud-next-btn:hover {
   background: var(--accent-mint);
   color: #031D44;
   border-color: var(--accent-mint);
 }
 
-/* Stage Transition Top Curtain Toast */
-.qb-stage-curtain-toast {
-  position: fixed;
-  top: 108px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-24px) scale(0.94);
-  z-index: 1180;
-  padding: 7px 18px;
-  border-radius: 999px;
-  background: rgba(3, 18, 42, 0.92);
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+.p-hud-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.qb-stage-curtain-toast.is-visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+.p-hud-icon-btn:hover,
+.p-hud-icon-btn.is-active {
+  background: var(--accent-mint);
+  color: #031D44;
+  border-color: var(--accent-mint);
 }
 
-@media (max-width: 1024px) {
+/* ----------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS FOR PRESENTATION DECK
+   ---------------------------------------------------------------------------- */
+@media (max-width: 1120px) {
+  .qb-header-telemetry {
+    display: none;
+  }
+  .p-pillars-grid,
+  .p-story-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .p-stage-pillars {
+    height: auto;
+  }
+  .p-pillars-sticky {
+    position: relative;
+    top: 0;
+    height: auto;
+    padding: 80px 0;
+  }
+  .p-pillars-right {
+    height: auto;
+  }
+  .p-card-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    height: auto;
+  }
+  .p-deck-card,
+  .p-deck-card.is-past,
+  .p-deck-card.is-active,
+  .p-deck-card.is-next {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  .p-stage-pipeline {
+    height: auto;
+  }
+  .p-pipeline-sticky {
+    position: relative;
+    top: 0;
+    height: auto;
+    padding: 80px 0;
+  }
+  .p-pipeline-track-viewport {
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
   .quantlab-grid {
     grid-template-columns: 1fr;
   }
   .bento-matrix {
     grid-template-columns: 1fr 1fr;
   }
-  .qb-minimap-index,
-  .qb-deck-rail {
-    display: none;
-  }
-  .deck-hero-kpis {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .p-hero-layout {
+    grid-template-columns: 1fr;
+  }
+  .p-hero-aside {
+    display: none;
+  }
+  .p-hero-plinth {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .p-story-gallery,
   .quantlab-metrics-row,
   .bento-matrix {
     grid-template-columns: 1fr;
@@ -3158,10 +3354,13 @@ html[data-theme="swiss-editorial"] .qb-deck-director-dock {
   .bento-span-2 {
     grid-column: span 1;
   }
-  .qb-clocks-group .qb-hub-clock:nth-child(n+4) {
-    display: none;
+  .p-hud-next-btn,
+  .p-hud-pill-label {
+    display: none !important;
   }
-  .qb-deck-stage-counter {
+  .qb-header-pill-btn span,
+  .qb-header-pill-btn kbd {
     display: none;
   }
 }
+

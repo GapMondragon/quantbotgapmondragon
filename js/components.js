@@ -633,92 +633,78 @@ function initAestheticRollEngine(Sound) {
   return api;
 }
 
-// 3. Top Institutional Telemetry Bar with Multi-Timezone Clocks & ASCII Spinner (2xa.studio)
+// 3. Unified Institutional Header Telemetry & Controls Binder (Zero Duplicate Top Bars)
 function initTelemetryBar(RollEngine, Sound) {
-  if (document.querySelector('.qb-telemetry-bar')) return;
+  const headerInner = document.querySelector('.site-header .header-inner');
+  if (headerInner && !headerInner.querySelector('.qb-header-telemetry')) {
+    const brandLogo = headerInner.querySelector('.brand-logo');
+    if (brandLogo) {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex; align-items:center; gap:20px;';
+      brandLogo.parentNode.insertBefore(wrap, brandLogo);
+      wrap.appendChild(brandLogo);
 
-  const bar = document.createElement('div');
-  bar.className = 'qb-telemetry-bar';
-  bar.innerHTML = `
-    <div class="wrapper qb-telemetry-inner">
-      <div class="qb-clocks-group">
-        <span class="qb-sys-prefix">
-          <span class="qb-pulse-dot"></span>
-          <span>SYS.QB // 24/5 ALPHA</span>
-          <span id="qb-ascii-spinner" style="color:var(--accent-gold); display:inline-block; width:10px; text-align:center;">/</span>
-        </span>
-        <span class="qb-hub-clock"><strong>NYC</strong> <span data-tz="America/New_York">--:--:--</span></span>
-        <span class="qb-hub-clock"><strong>LDN</strong> <span data-tz="Europe/London">--:--:--</span></span>
-        <span class="qb-hub-clock"><strong>HKG</strong> <span data-tz="Asia/Hong_Kong">--:--:--</span></span>
-        <span class="qb-hub-clock"><strong>MIA</strong> <span data-tz="America/New_York">--:--:--</span></span>
-      </div>
-      <div class="qb-controls-group">
-        <button type="button" class="qb-ctrl-btn qb-roll-btn" id="qb-btn-roll" title="Random Roll Aesthetic Combination (Shortcut: R)">
-          <i class="fa fa-dice"></i> Random Roll
-        </button>
-        <button type="button" class="qb-ctrl-btn" id="qb-btn-theme" title="Cycle Institutional Theme Palette">
-          <i class="fa fa-palette"></i> Sovereign Navy
-        </button>
-        <button type="button" class="qb-ctrl-btn" id="qb-btn-shader" title="Cycle Background WebGL/Canvas Shader">
-          <i class="fa fa-cube"></i> CONSTELLATION
-        </button>
-        <button type="button" class="qb-ctrl-btn" id="qb-btn-grid" title="Toggle 12-Column Swiss Architectural Grid (Shortcut: G)">
-          <i class="fa fa-table-columns"></i> Grid [G]
-        </button>
-        <button type="button" class="qb-ctrl-btn ${Sound.isEnabled() ? 'active' : ''}" id="qb-btn-sound" title="Toggle Acoustic UI Sound Ticks (Shortcut: M)">
-          <i class="fa ${Sound.isEnabled() ? 'fa-volume-high' : 'fa-volume-xmark'}"></i>
-        </button>
-        <button type="button" class="qb-ctrl-btn" id="qb-btn-cmd" title="Open Command Palette (Shortcut: ⌘K)">
-          <i class="fa fa-terminal"></i> ⌘K
-        </button>
-      </div>
-    </div>
-  `;
+      const telem = document.createElement('div');
+      telem.className = 'qb-header-telemetry';
+      telem.setAttribute('aria-label', 'Global Trading Hub Status');
+      telem.innerHTML = `
+        <span class="qb-pulse-dot"></span>
+        <span>NYC <strong data-tz="America/New_York">--:--</strong></span>
+        <span class="sep">·</span>
+        <span>LDN <strong data-tz="Europe/London">--:--</strong></span>
+        <span class="sep">·</span>
+        <span>HKG <strong data-tz="Asia/Hong_Kong">--:--</strong></span>
+      `;
+      wrap.appendChild(telem);
+    }
+  }
 
-  document.body.prepend(bar);
+  const headerActions = document.querySelector('.site-header .header-actions');
+  if (headerActions && !document.getElementById('qb-btn-roll')) {
+    const rollBtn = document.createElement('button');
+    rollBtn.type = 'button';
+    rollBtn.className = 'qb-header-pill-btn';
+    rollBtn.id = 'qb-btn-roll';
+    rollBtn.title = 'Roll Aesthetic Theme, Shader & Surface (Shortcut: R)';
+    rollBtn.innerHTML = '<i class="fa fa-dice"></i> <span>Roll Style</span> <kbd>R</kbd>';
+
+    const cmdBtn = document.createElement('button');
+    cmdBtn.type = 'button';
+    cmdBtn.className = 'qb-header-pill-btn';
+    cmdBtn.id = 'qb-btn-cmd';
+    cmdBtn.title = 'Command Palette (Shortcut: ⌘K)';
+    cmdBtn.innerHTML = '<i class="fa fa-terminal"></i> <kbd>⌘K</kbd>';
+
+    headerActions.prepend(cmdBtn);
+    headerActions.prepend(rollBtn);
+  }
+
   RollEngine.updateToolbarLabels();
 
   // Bind controls
   document.getElementById('qb-btn-roll')?.addEventListener('click', () => RollEngine.roll());
   document.getElementById('qb-btn-theme')?.addEventListener('click', () => RollEngine.cycleTheme());
   document.getElementById('qb-btn-shader')?.addEventListener('click', () => RollEngine.cycleShader());
-  document.getElementById('qb-btn-sound')?.addEventListener('click', (e) => {
-    const on = Sound.toggle();
-    const btn = e.currentTarget;
-    btn.classList.toggle('active', on);
-    btn.innerHTML = `<i class="fa ${on ? 'fa-volume-high' : 'fa-volume-xmark'}"></i>`;
-  });
   document.getElementById('qb-btn-cmd')?.addEventListener('click', () => {
     window.toggleCommandPalette?.(true);
   });
 
-  // Live Multi-Timezone Clocks & ASCII Spinner
-  const asciiFrames = ['/', '-', '\\', '|'];
-  let frameIdx = 0;
-  const spinnerEl = document.getElementById('qb-ascii-spinner');
-  const tzNodes = bar.querySelectorAll('[data-tz]');
-
+  // Live Multi-Timezone Clocks inside Header
   function updateClocks() {
     const now = new Date();
-    tzNodes.forEach((node) => {
+    document.querySelectorAll('[data-tz]').forEach((node) => {
       const tz = node.getAttribute('data-tz');
       try {
-        const formatted = new Intl.DateTimeFormat('en-US', {
+        node.textContent = new Intl.DateTimeFormat('en-US', {
           timeZone: tz,
           hour: '2-digit',
           minute: '2-digit',
-          second: '2-digit',
           hour12: false,
         }).format(now);
-        node.textContent = formatted;
       } catch (_) {
-        node.textContent = now.toTimeString().slice(0, 8);
+        node.textContent = now.toTimeString().slice(0, 5);
       }
     });
-    if (spinnerEl) {
-      frameIdx = (frameIdx + 1) % asciiFrames.length;
-      spinnerEl.textContent = asciiFrames[frameIdx];
-    }
   }
 
   updateClocks();
@@ -1333,15 +1319,42 @@ function initGlobalHubMatrix(Sound) {
   });
 }
 
-// 13. Pinned Runway & Scroll-Scrubbed Presentation Deck Engine (Homepage)
+// 13. Fluid 7-Stage Presentation Deck Engine (Lenis + GSAP ScrollTrigger + Native Scrubbing)
 function initPresentationDeckEngine(Sound) {
+  // Initialize Lenis Smooth Scroll globally if available
+  let lenis = null;
+  if (typeof window.Lenis !== 'undefined') {
+    try {
+      lenis = new window.Lenis({
+        duration: 1.12,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+        window.gsap.registerPlugin(window.ScrollTrigger);
+        lenis.on('scroll', window.ScrollTrigger.update);
+        window.gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+        window.gsap.ticker.lagSmoothing(0);
+      } else {
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+    } catch (_) {
+      lenis = null;
+    }
+  }
+
   const deckEl = document.getElementById('qb-presentation-deck');
   if (!deckEl) return;
 
-  const runways = Array.from(deckEl.querySelectorAll('.stage-runway'));
-  if (runways.length < 2) return;
-
-  document.body.classList.add('has-scrolly-deck');
+  const stages = Array.from(deckEl.querySelectorAll('.p-stage'));
+  if (stages.length < 2) return;
 
   // Split Stage 04 Founding Quote into individual illuminatable words
   const quoteEl = document.getElementById('stage4-kinetic-quote');
@@ -1355,495 +1368,373 @@ function initPresentationDeckEngine(Sound) {
     quoteWordEls = Array.from(quoteEl.querySelectorAll('.qb-quote-word'));
   }
 
-  // Stage metadata & sub-step choreographers
-  const STAGE_DEFS = [
-    {
-      index: 0,
-      code: 'STAGE 01 / 07',
-      title: 'Opening Keynote',
-      subSteps: [
-        'Slide 01.1: Founded 2008 in NYC',
-        'Slide 01.2: 24/5 Systematic Execution',
-        'Slide 01.3: 6 Global Trading Hubs',
-        'Slide 01.4: POC & QMM Alpha Tracks',
-      ],
-      onScrub: (p, subIdx) => {
-        const kpis = document.querySelectorAll('#stage1-kpi-deck .deck-kpi-chip');
-        kpis.forEach((chip, idx) => chip.classList.toggle('is-kpi-lit', idx <= subIdx));
-        const topLbl = document.getElementById('stage1-substep-label');
-        if (topLbl && STAGE_DEFS[0].subSteps[subIdx]) {
-          topLbl.textContent = STAGE_DEFS[0].subSteps[subIdx].toUpperCase();
-        }
-        const sealWrap = document.getElementById('stage1-seal-wrap');
-        if (sealWrap) {
-          sealWrap.style.transform = `rotate(${(p * 140).toFixed(1)}deg) scale(${(1 + p * 0.08).toFixed(3)})`;
-        }
-      },
-    },
-    {
-      index: 1,
-      code: 'STAGE 02 / 07',
-      title: 'What Makes Us Different',
-      subSteps: [
-        'Pillar 01: Global Footprint',
-        'Pillar 02: Quantitative Methodologies',
-        'Pillar 03: Streamlined Business Process',
-        'Pillar 04: Research & Infrastructure',
-      ],
-      onScrub: (p, subIdx) => {
-        const cards = document.querySelectorAll('.deck-pillar-card');
-        cards.forEach((c, idx) => c.classList.toggle('is-pillar-active', idx === subIdx));
-
-        const slides = document.querySelectorAll('.deck-visual-slide');
-        slides.forEach((sl, idx) => {
-          sl.classList.toggle('is-slide-past', idx < subIdx);
-          sl.classList.toggle('is-slide-active', idx === subIdx);
-        });
-
-        const topLbl = document.getElementById('stage2-substep-label');
-        if (topLbl && STAGE_DEFS[1].subSteps[subIdx]) {
-          topLbl.textContent = `SLIDE 0${subIdx + 1} / 04 — ${STAGE_DEFS[1].subSteps[subIdx].toUpperCase()}`;
-        }
-      },
-    },
-    {
-      index: 2,
-      code: 'STAGE 03 / 07',
-      title: 'Strategy Development Process',
-      subSteps: [
-        'Phase 01: Idea Generation',
-        'Phase 02: Data Analysis',
-        'Phase 03: Code Development',
-        'Phase 04: Trading Logic & Risk',
-        'Phase 05: Paper Trading & Testing',
-        'Phase 06: Live Production Trading',
-      ],
-      onScrub: (p, subIdx) => {
-        const track = document.getElementById('stage3-horizontal-track');
-        const steps = document.querySelectorAll('#strategyProcessStage .timeline-step');
-        steps.forEach((st, idx) => {
-          st.classList.toggle('is-phase-active', idx === subIdx);
-          st.classList.toggle('is-phase-complete', idx < subIdx);
-        });
-
-        if (track && track.parentElement) {
-          const maxShift = Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
-          const shiftX = p * maxShift;
-          track.style.transform = `translate3d(${-shiftX.toFixed(1)}px, 0, 0)`;
-        }
-
-        const fillEl = document.getElementById('qb-pipeline-fill');
-        const codeEl = document.getElementById('qb-pipeline-code');
-        const gateEl = document.getElementById('qb-pipeline-gate');
-        const topLbl = document.getElementById('stage3-substep-label');
-
-        if (fillEl) fillEl.style.width = `${Math.max(16.66, p * 100).toFixed(1)}%`;
-        const activeStep = steps[subIdx];
-        if (activeStep) {
-          if (codeEl) codeEl.textContent = activeStep.getAttribute('data-phase-code') || '';
-          if (gateEl) gateEl.textContent = activeStep.getAttribute('data-phase-gate') || '';
-          if (topLbl) {
-            topLbl.textContent = `ACTIVE ${STAGE_DEFS[2].subSteps[subIdx].toUpperCase()}`;
-          }
-        }
-      },
-    },
-    {
-      index: 3,
-      code: 'STAGE 04 / 07',
-      title: 'Our Founding Story',
-      subSteps: [
-        'Spotlight: Paul White (Co-Founder & CEO)',
-        'Spotlight: Ashar Mahboob (Chief Investment Officer)',
-        'Spotlight: New York Americas Headquarters',
-        'Spotlight: London European Operations',
-      ],
-      onScrub: (p, subIdx) => {
-        // Word-by-word quote illumination
-        if (quoteWordEls.length) {
-          const litCount = Math.ceil(Math.min(1, p / 0.82) * quoteWordEls.length);
-          quoteWordEls.forEach((wEl, i) => wEl.classList.toggle('is-word-lit', i <= litCount));
-        }
-
-        const frames = document.querySelectorAll('.deck-story-frame');
-        frames.forEach((f, idx) => f.classList.toggle('is-story-active', idx === subIdx));
-
-        const topLbl = document.getElementById('stage4-substep-label');
-        if (topLbl && STAGE_DEFS[3].subSteps[subIdx]) {
-          topLbl.textContent = `DOSSIER 0${subIdx + 1} / 04 — ${STAGE_DEFS[3].subSteps[subIdx].toUpperCase()}`;
-        }
-      },
-    },
-    {
-      index: 4,
-      code: 'STAGE 05 / 07',
-      title: 'QuantLab Simulator',
-      subSteps: [
-        'Universe 01: Statistical Arbitrage (OOS)',
-        'Universe 02: Global Cash Equities (OOS)',
-        'Universe 03: Electronic Futures (OOS)',
-        'Universe 04: Tensor Machine Learning Alpha',
-      ],
-      onScrub: (p, subIdx) => {
-        const keys = ['statarb', 'equities', 'futures', 'mlalpha'];
-        const key = keys[subIdx] || 'statarb';
-        const btn = document.querySelector(`[data-ql-asset="${key}"]`);
-        if (btn && !btn.classList.contains('active')) {
-          btn.click();
-        }
-        const topLbl = document.getElementById('stage5-substep-label');
-        if (topLbl && STAGE_DEFS[4].subSteps[subIdx]) {
-          topLbl.textContent = STAGE_DEFS[4].subSteps[subIdx].toUpperCase();
-        }
-      },
-    },
-    {
-      index: 5,
-      code: 'STAGE 06 / 07',
-      title: 'Global Execution Matrix',
-      subSteps: [
-        'Hub 01: New York Headquarters (NY4)',
-        'Hub 02: London European Hub (LD4)',
-        'Hub 03: Hong Kong APAC Hub (HK1)',
-        'Hub 04: Miami Quantitative Center',
-      ],
-      onScrub: (p, subIdx) => {
-        const keys = ['ny', 'london', 'hk', 'miami'];
-        const key = keys[subIdx] || 'ny';
-        const btn = document.querySelector(`[data-hub-select="${key}"]`);
-        if (btn && !btn.classList.contains('active')) {
-          btn.click();
-        }
-        const topLbl = document.getElementById('stage6-substep-label');
-        if (topLbl && STAGE_DEFS[5].subSteps[subIdx]) {
-          topLbl.textContent = STAGE_DEFS[5].subSteps[subIdx].toUpperCase();
-        }
-      },
-    },
-    {
-      index: 6,
-      code: 'STAGE 07 / 07',
-      title: 'Careers & Global Directory',
-      subSteps: ['Closing Keynote: POC, QMM & Global Directory'],
-      onScrub: () => {},
-    },
+  const PILLAR_TITLES = [
+    'Pillar 01: Global Footprint',
+    'Pillar 02: Quantitative Methodologies',
+    'Pillar 03: Streamlined Business Process',
+    'Pillar 04: Research & Infrastructure',
   ];
 
-  let currentStage = 0;
-  let currentSubStep = 0;
+  const PHASE_TITLES = [
+    'PHASE 01 // 06 — IDEA GENERATION',
+    'PHASE 02 // 06 — DATA ANALYSIS',
+    'PHASE 03 // 06 — CODE DEVELOPMENT',
+    'PHASE 04 // 06 — TRADING LOGIC & RISK',
+    'PHASE 05 // 06 — PAPER TRADING & TESTING',
+    'PHASE 06 // 06 — LIVE TRADING',
+  ];
+
+  const STAGE_META = stages.map((sec, idx) => ({
+    index: idx,
+    id: sec.id || `stage-0${idx + 1}`,
+    num: sec.getAttribute('data-stage-num') || `0${idx + 1}`,
+    label: sec.getAttribute('data-stage-label') || `Stage 0${idx + 1}`,
+    el: sec,
+  }));
+
+  let currentStageIdx = 0;
+  let currentPillarIdx = 0;
+  let currentPhaseIdx = 0;
   let autoPlayTimer = null;
-  let compactMode = false;
 
-  // Inject "🎬 Deck [D]" toggle button into Top Telemetry Bar
-  const controlsGroup = document.querySelector('.qb-controls-group');
-  if (controlsGroup && !document.getElementById('qb-btn-deckmode')) {
-    const deckBtn = document.createElement('button');
-    deckBtn.type = 'button';
-    deckBtn.id = 'qb-btn-deckmode';
-    deckBtn.className = 'qb-ctrl-btn active';
-    deckBtn.title = 'Toggle Pinned Presentation Runway vs Compact Scroll (Shortcut: D)';
-    deckBtn.innerHTML = '<i class="fa fa-film"></i> Deck [D]';
-    controlsGroup.prepend(deckBtn);
-    deckBtn.addEventListener('click', () => toggleDeckMode());
+  // Create Single Sleek Bottom-Center Presentation Stage HUD
+  const hud = document.createElement('nav');
+  hud.className = 'p-deck-hud';
+  hud.setAttribute('aria-label', 'Presentation Stage Director');
+  hud.innerHTML = `
+    <div class="p-hud-stages">
+      ${STAGE_META.map(
+        (st, idx) => `
+        <button type="button" class="p-hud-pill ${idx === 0 ? 'is-active' : ''}" data-hud-stage="${idx}" title="Jump to Stage ${st.num}: ${st.label}">
+          <span>${st.num}</span>
+          <span class="p-hud-pill-label">${st.label}</span>
+        </button>
+      `
+      ).join('')}
+    </div>
+    <span class="p-hud-divider"></span>
+    <button type="button" class="p-hud-next-btn" id="p-hud-next" title="Scroll or Click to Present Next">
+      <span id="p-hud-next-label">NEXT: PILLAR 01 — GLOBAL FOOTPRINT ↓</span>
+    </button>
+    <button type="button" class="p-hud-icon-btn" id="p-hud-autoplay" title="Auto-Present Keynote Deck (Shortcut: P)">
+      <i class="fa fa-play"></i>
+    </button>
+  `;
+  document.body.appendChild(hud);
+
+  const hudPills = Array.from(hud.querySelectorAll('.p-hud-pill'));
+  const nextLabelEl = document.getElementById('p-hud-next-label');
+  const nextBtnEl = document.getElementById('p-hud-next');
+  const autoPlayBtn = document.getElementById('p-hud-autoplay');
+
+  function smoothScrollToY(targetY) {
+    if (lenis) {
+      lenis.scrollTo(targetY, { duration: 1.05 });
+    } else {
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
   }
 
-  // Create Top Stage Transition Curtain Toast
-  const curtainToast = document.createElement('div');
-  curtainToast.className = 'qb-stage-curtain-toast';
-  document.body.appendChild(curtainToast);
-  let curtainTimer = null;
-
-  function showStageCurtain(text) {
-    curtainToast.textContent = text;
-    curtainToast.classList.add('is-visible');
-    clearTimeout(curtainTimer);
-    curtainTimer = setTimeout(() => curtainToast.classList.remove('is-visible'), 1600);
+  function scrollToStage(stageIdx, subRatio = 0) {
+    const clamped = Math.max(0, Math.min(STAGE_META.length - 1, stageIdx));
+    const sec = STAGE_META[clamped].el;
+    if (!sec) return;
+    const headerOffset = 80;
+    const top = sec.offsetTop - headerOffset;
+    const scrollable = Math.max(0, sec.offsetHeight - window.innerHeight);
+    smoothScrollToY(top + scrollable * subRatio);
   }
 
-  // Create Right-Edge Presentation Slide Rail
-  const rail = document.createElement('aside');
-  rail.className = 'qb-deck-rail';
-  rail.setAttribute('aria-label', 'Presentation Stage Slide Rail');
-  rail.innerHTML = STAGE_DEFS.map(
-    (st, idx) => `
-      <button type="button" class="qb-deck-rail-dot ${idx === 0 ? 'is-active' : ''}"
-              data-rail-stage="${idx}"
-              data-stage-tooltip="${st.code} // ${st.title}">
-        0${idx + 1}
-      </button>
-    `
-  ).join('');
-  document.body.appendChild(rail);
+  // Stage 02 Pillar state updater
+  const pillarTabs = Array.from(document.querySelectorAll('.p-pillar-tab'));
+  const pillarCards = Array.from(document.querySelectorAll('.p-deck-card'));
 
-  rail.querySelectorAll('[data-rail-stage]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetStage = parseInt(btn.getAttribute('data-rail-stage'), 10);
-      scrollToStageStep(targetStage, 0);
+  function setActivePillar(idx) {
+    const clamped = Math.max(0, Math.min(pillarCards.length - 1, idx));
+    if (clamped !== currentPillarIdx) {
+      currentPillarIdx = clamped;
+      Sound.playTick(1220 + clamped * 90, 0.02, 0.02);
+    }
+    pillarTabs.forEach((tab, i) => tab.classList.toggle('is-active', i === clamped));
+    pillarCards.forEach((card, i) => {
+      card.classList.toggle('is-past', i < clamped);
+      card.classList.toggle('is-active', i === clamped);
+      card.classList.toggle('is-next', i === clamped + 1);
+    });
+  }
+
+  pillarTabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      setActivePillar(idx);
+      const sec2 = document.getElementById('stage-02');
+      if (sec2 && window.innerWidth > 1120) {
+        const scrollable = Math.max(0, sec2.offsetHeight - window.innerHeight);
+        const targetY = sec2.offsetTop - 70 + scrollable * ((idx + 0.2) / pillarCards.length);
+        smoothScrollToY(targetY);
+      }
     });
   });
 
-  // Create Bottom-Center "What to Present Next" Stage Director Dock
-  const dock = document.createElement('div');
-  dock.className = 'qb-deck-director-dock';
-  dock.innerHTML = `
-    <div class="qb-deck-dock-status">
-      <span class="qb-deck-stage-counter" id="qb-dock-stage-code">STAGE 01 / 07</span>
-      <span class="qb-deck-substeps-dots" id="qb-dock-substeps"></span>
-    </div>
-    <button type="button" class="qb-deck-next-btn" id="qb-dock-next-btn" title="Scroll or Click to Present Next">
-      <span class="qb-deck-charge-fill" id="qb-dock-charge-fill"></span>
-      <span style="position:relative; z-index:2;" id="qb-dock-next-label">SCROLL NEXT: SLIDE 01.2 — 24/5 SYSTEMATIC EXECUTION ↓</span>
-    </button>
-    <div class="qb-deck-dock-actions">
-      <button type="button" class="qb-deck-icon-btn" id="qb-dock-prev" title="Previous Step / Stage (↑)">
-        <i class="fa fa-chevron-up"></i>
-      </button>
-      <button type="button" class="qb-deck-icon-btn" id="qb-dock-skip-stage" title="Jump to Next Stage (PageDown)">
-        <i class="fa fa-forward-step"></i>
-      </button>
-      <button type="button" class="qb-deck-icon-btn" id="qb-dock-autoplay" title="Auto-Present Keynote Deck (Shortcut: P)">
-        <i class="fa fa-play"></i>
-      </button>
-    </div>
-  `;
-  document.body.appendChild(dock);
+  // Stage 03 Pipeline state updater
+  const pipelineTrack = document.getElementById('p-pipeline-track');
+  const phaseCards = Array.from(document.querySelectorAll('.p-phase-card'));
+  const pipeCodeEl = document.getElementById('p-pipe-active-code');
+  const pipeFillEl = document.getElementById('p-pipe-progress-fill');
 
-  const chargeFillEl = document.getElementById('qb-dock-charge-fill');
-  const stageCodeEl = document.getElementById('qb-dock-stage-code');
-  const substepsEl = document.getElementById('qb-dock-substeps');
-  const nextLabelEl = document.getElementById('qb-dock-next-label');
+  function updatePipelineStage(progress) {
+    const p = Math.min(1, Math.max(0, progress));
+    const idx = Math.min(phaseCards.length - 1, Math.max(0, Math.floor(p * phaseCards.length)));
 
-  function getNextPresentationLabel() {
-    const def = STAGE_DEFS[currentStage];
-    if (currentSubStep + 1 < def.subSteps.length) {
-      return `SCROLL NEXT: ${def.subSteps[currentSubStep + 1].toUpperCase()} ↓`;
+    if (idx !== currentPhaseIdx) {
+      currentPhaseIdx = idx;
+      Sound.playTick(1160 + idx * 75, 0.02, 0.02);
     }
-    if (currentStage + 1 < STAGE_DEFS.length) {
-      const nextSt = STAGE_DEFS[currentStage + 1];
-      return `NEXT STAGE 0${currentStage + 2}: ${nextSt.title.toUpperCase()} ⇊`;
+
+    phaseCards.forEach((card, i) => {
+      card.classList.toggle('is-active', i === idx);
+      card.classList.toggle('is-complete', i < idx);
+    });
+
+    if (pipeCodeEl && PHASE_TITLES[idx]) {
+      pipeCodeEl.textContent = PHASE_TITLES[idx];
     }
-    return `RETURN TO STAGE 01: OPENING KEYNOTE ↺`;
+    if (pipeFillEl) {
+      pipeFillEl.style.width = `${Math.max(16.6, p * 100).toFixed(1)}%`;
+    }
+
+    if (pipelineTrack && pipelineTrack.parentElement && window.innerWidth > 1120) {
+      const viewportW = pipelineTrack.parentElement.clientWidth;
+      const trackW = pipelineTrack.scrollWidth;
+      const maxShift = Math.max(0, trackW - viewportW + 96);
+      const shiftX = p * maxShift;
+      pipelineTrack.style.transform = `translate3d(${-shiftX.toFixed(1)}px, 0, 0)`;
+    } else if (pipelineTrack) {
+      pipelineTrack.style.transform = '';
+    }
   }
 
-  // Smoothly scroll window to exact scrollY for a given stageIdx and subStepIdx
-  function scrollToStageStep(stageIdx, subStepIdx = 0) {
-    const clampedStage = Math.max(0, Math.min(STAGE_DEFS.length - 1, stageIdx));
-    const runway = runways[clampedStage];
-    if (!runway) return;
+  phaseCards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      const sec3 = document.getElementById('stage-03');
+      if (sec3 && window.innerWidth > 1120) {
+        const scrollable = Math.max(0, sec3.offsetHeight - window.innerHeight);
+        const targetY = sec3.offsetTop - 70 + scrollable * ((idx + 0.15) / phaseCards.length);
+        smoothScrollToY(targetY);
+      } else {
+        updatePipelineStage((idx + 0.1) / phaseCards.length);
+      }
+    });
+  });
 
-    const def = STAGE_DEFS[clampedStage];
-    const clampedSub = Math.max(0, Math.min(def.subSteps.length - 1, subStepIdx));
-    const runwayTop = runway.offsetTop;
-    const scrollable = Math.max(0, runway.offsetHeight - window.innerHeight);
+  // Stage 04 Story Cards click interaction
+  const storyCards = Array.from(document.querySelectorAll('.p-story-card'));
+  storyCards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      Sound.playTick(1280, 0.02, 0.02);
+      storyCards.forEach((c, i) => c.classList.toggle('is-active', i === idx));
+    });
+  });
 
-    let ratio = 0;
-    if (def.subSteps.length > 1) {
-      ratio = (clampedSub + 0.15) / def.subSteps.length;
+  function computeNextLabel() {
+    if (currentStageIdx === 0) {
+      return 'NEXT: STAGE 02 — WHAT MAKES US DIFFERENT ↓';
     }
-    const targetY = runwayTop + scrollable * Math.min(0.96, ratio);
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    if (currentStageIdx === 1) {
+      if (currentPillarIdx + 1 < PILLAR_TITLES.length) {
+        return `SCROLL NEXT: ${PILLAR_TITLES[currentPillarIdx + 1].toUpperCase()} ↓`;
+      }
+      return 'NEXT: STAGE 03 — STRATEGY PIPELINE ↓';
+    }
+    if (currentStageIdx === 2) {
+      if (currentPhaseIdx + 1 < PHASE_TITLES.length) {
+        return `SCROLL NEXT: ${PHASE_TITLES[currentPhaseIdx + 1]} ↓`;
+      }
+      return 'NEXT: STAGE 04 — OUR STORY ↓';
+    }
+    if (currentStageIdx + 1 < STAGE_META.length) {
+      const nextSt = STAGE_META[currentStageIdx + 1];
+      return `NEXT: STAGE ${nextSt.num} — ${nextSt.label.toUpperCase()} ↓`;
+    }
+    return 'RETURN TO STAGE 01 — OPENING KEYNOTE ↺';
   }
 
-  function stepForward() {
-    const def = STAGE_DEFS[currentStage];
-    if (currentSubStep + 1 < def.subSteps.length) {
-      scrollToStageStep(currentStage, currentSubStep + 1);
-    } else if (currentStage + 1 < STAGE_DEFS.length) {
-      scrollToStageStep(currentStage + 1, 0);
+  function advancePresentation() {
+    if (currentStageIdx === 1 && currentPillarIdx + 1 < PILLAR_TITLES.length && window.innerWidth > 1120) {
+      scrollToStage(1, (currentPillarIdx + 1.2) / PILLAR_TITLES.length);
+    } else if (currentStageIdx === 2 && currentPhaseIdx + 1 < PHASE_TITLES.length && window.innerWidth > 1120) {
+      scrollToStage(2, (currentPhaseIdx + 1.15) / PHASE_TITLES.length);
+    } else if (currentStageIdx + 1 < STAGE_META.length) {
+      scrollToStage(currentStageIdx + 1, 0);
     } else {
-      scrollToStageStep(0, 0);
+      scrollToStage(0, 0);
     }
   }
 
-  function stepBackward() {
-    if (currentSubStep > 0) {
-      scrollToStageStep(currentStage, currentSubStep - 1);
-    } else if (currentStage > 0) {
-      const prevStage = currentStage - 1;
-      scrollToStageStep(prevStage, STAGE_DEFS[prevStage].subSteps.length - 1);
-    } else {
-      scrollToStageStep(0, 0);
-    }
-  }
-
-  function skipToNextStage() {
-    const nextIdx = (currentStage + 1) % STAGE_DEFS.length;
-    scrollToStageStep(nextIdx, 0);
-  }
-
-  // Main 60fps Scroll-Scrubbing Director Loop
-  function evaluateScrollScrub() {
+  // Main Scroll Evaluation Loop
+  function onDeckScroll() {
     const vh = window.innerHeight;
     let detectedStage = 0;
-    let detectedSubStep = 0;
-    let activeStageProgress = 0;
 
-    runways.forEach((runway, idx) => {
-      const rect = runway.getBoundingClientRect();
-      const theater = runway.querySelector('.stage-sticky-theater');
-      const scrollable = Math.max(1, rect.height - vh);
-      const rawP = -rect.top / scrollable;
-      const p = Math.min(1, Math.max(0, rawP));
-
-      // Determine which stage is currently dominant in viewport
-      if (rect.top <= vh * 0.45 && rect.bottom >= vh * 0.45) {
+    stages.forEach((sec, idx) => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= vh * 0.45 && rect.bottom >= vh * 0.35) {
         detectedStage = idx;
-        activeStageProgress = p;
       }
 
-      const def = STAGE_DEFS[idx];
-      const subCount = def ? def.subSteps.length : 1;
-      const subIdx = Math.min(subCount - 1, Math.floor(p * subCount));
-
-      if (idx === detectedStage) {
-        detectedSubStep = subIdx;
+      // Stage 02: Pinned 4-Slide Pillar Stack
+      if (sec.id === 'stage-02' && window.innerWidth > 1120) {
+        const scrollable = Math.max(1, rect.height - vh * 0.9);
+        const rawP = (vh * 0.18 - rect.top) / scrollable;
+        const p = Math.min(1, Math.max(0, rawP));
+        const pillarIdx = Math.min(3, Math.max(0, Math.floor(p * 4)));
+        setActivePillar(pillarIdx);
       }
 
-      // Run stage's internal scroll-scrub choreography
-      def?.onScrub(p, subIdx);
+      // Stage 03: Pinned Horizontal 6-Phase Pipeline Conveyor
+      if (sec.id === 'stage-03') {
+        const scrollable = Math.max(1, rect.height - vh * 0.9);
+        const rawP = (vh * 0.18 - rect.top) / scrollable;
+        const p = Math.min(1, Math.max(0, rawP));
+        updatePipelineStage(p);
+      }
 
-      // Apply 3D Stage Curtain Enter / Exit camera transforms on .stage-sticky-theater
-      if (theater && !compactMode) {
-        if (rect.top > 0 && rect.top < vh) {
-          // Incoming stage rising from bottom
-          const enterRatio = rect.top / vh; // 1 -> 0
-          const scale = (1 - enterRatio * 0.06).toFixed(3);
-          const ty = (enterRatio * 34).toFixed(1);
-          theater.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
-          theater.style.opacity = String((1 - enterRatio * 0.35).toFixed(3));
-        } else if (rect.bottom < vh && rect.bottom > 0) {
-          // Outgoing stage receding at top as next stage takes over
-          const exitRatio = 1 - rect.bottom / vh; // 0 -> 1
-          const scale = (1 - exitRatio * 0.08).toFixed(3);
-          const ty = (-exitRatio * 42).toFixed(1);
-          theater.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
-          theater.style.opacity = String((1 - exitRatio * 0.6).toFixed(3));
-        } else {
-          // Locked full-screen pinned stage
-          theater.style.transform = 'translate3d(0, 0, 0) scale(1)';
-          theater.style.opacity = '1';
+      // Stage 04: Word-by-word Founding Quote Illumination & Story Card Spotlight
+      if (sec.id === 'stage-04') {
+        const rawP = (vh * 0.78 - rect.top) / Math.max(1, rect.height * 0.85);
+        const p = Math.min(1, Math.max(0, rawP));
+        if (quoteWordEls.length) {
+          const litCount = Math.ceil(p * quoteWordEls.length);
+          quoteWordEls.forEach((wEl, i) => wEl.classList.toggle('is-word-lit', i <= litCount));
         }
-      } else if (theater) {
-        theater.style.transform = '';
-        theater.style.opacity = '';
+        if (storyCards.length) {
+          const sIdx = Math.min(storyCards.length - 1, Math.max(0, Math.floor(p * storyCards.length)));
+          storyCards.forEach((c, i) => c.classList.toggle('is-active', i === sIdx));
+        }
       }
     });
 
-    // Trigger acoustic & warp feedback when stage or sub-step changes
-    if (detectedStage !== currentStage) {
-      const dir = detectedStage > currentStage ? 1 : -1;
-      currentStage = detectedStage;
-      currentSubStep = detectedSubStep;
+    if (detectedStage !== currentStageIdx) {
+      const dir = detectedStage > currentStageIdx ? 1 : -1;
+      currentStageIdx = detectedStage;
       Sound.playChime();
       window.QuantCanvas?.pulseWarp(dir);
-      const def = STAGE_DEFS[currentStage];
-      if (def) showStageCurtain(`${def.code} — ${def.title}`);
-    } else if (detectedSubStep !== currentSubStep) {
-      currentSubStep = detectedSubStep;
-      Sound.playTick(1260 + currentSubStep * 80, 0.02, 0.022);
-      window.QuantCanvas?.pulseWarp(0.35);
     }
 
-    // Update HUD Elements
-    const def = STAGE_DEFS[currentStage];
-    if (stageCodeEl && def) stageCodeEl.textContent = `${def.code} // ${def.title.toUpperCase()}`;
-    if (substepsEl && def) {
-      substepsEl.innerHTML = def.subSteps
-        .map((_, sIdx) => `<span class="qb-deck-substep-dot ${sIdx === currentSubStep ? 'is-active' : ''}"></span>`)
-        .join('');
-    }
-    if (nextLabelEl) nextLabelEl.textContent = getNextPresentationLabel();
-    if (chargeFillEl) chargeFillEl.style.width = `${Math.round(activeStageProgress * 100)}%`;
-
-    rail.querySelectorAll('[data-rail-stage]').forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === currentStage);
+    hudPills.forEach((pill, idx) => {
+      pill.classList.toggle('is-active', idx === currentStageIdx);
     });
+
+    if (nextLabelEl) {
+      nextLabelEl.textContent = computeNextLabel();
+    }
   }
 
-  window.addEventListener('scroll', evaluateScrollScrub, { passive: true });
-  window.addEventListener('resize', evaluateScrollScrub);
+  window.addEventListener('scroll', onDeckScroll, { passive: true });
+  window.addEventListener('resize', onDeckScroll);
 
-  // Interactive click bindings for cards inside stages
-  document.querySelectorAll('.deck-pillar-card').forEach((card, idx) => {
-    card.addEventListener('click', () => scrollToStageStep(1, idx));
-  });
-
-  document.querySelectorAll('#strategyProcessStage .timeline-step').forEach((step, idx) => {
-    step.addEventListener('click', () => scrollToStageStep(2, idx));
-  });
-
-  document.querySelectorAll('.deck-story-frame').forEach((frame, idx) => {
-    frame.addEventListener('click', () => scrollToStageStep(3, idx));
-  });
-
-  document.querySelectorAll('[data-deck-goto]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = parseInt(link.getAttribute('data-deck-goto'), 10);
-      scrollToStageStep(target, 0);
+  // Bind HUD Stage Buttons
+  hudPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const idx = parseInt(pill.getAttribute('data-hud-stage'), 10);
+      scrollToStage(idx, 0);
     });
   });
 
-  // Bind Bottom Director Dock Controls
-  document.getElementById('qb-dock-next-btn')?.addEventListener('click', () => stepForward());
-  document.getElementById('qb-dock-prev')?.addEventListener('click', () => stepBackward());
-  document.getElementById('qb-dock-skip-stage')?.addEventListener('click', () => skipToNextStage());
+  nextBtnEl?.addEventListener('click', () => advancePresentation());
 
-  const autoPlayBtn = document.getElementById('qb-dock-autoplay');
   function toggleAutoPlay() {
     if (autoPlayTimer) {
       clearInterval(autoPlayTimer);
       autoPlayTimer = null;
-      autoPlayBtn?.classList.remove('active');
+      autoPlayBtn?.classList.remove('is-active');
       if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-play"></i>';
     } else {
       Sound.playChime();
-      autoPlayBtn?.classList.add('active');
+      autoPlayBtn?.classList.add('is-active');
       if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-pause"></i>';
       autoPlayTimer = setInterval(() => {
-        stepForward();
-      }, 3000);
+        advancePresentation();
+      }, 3200);
     }
   }
+
   autoPlayBtn?.addEventListener('click', toggleAutoPlay);
 
-  function toggleDeckMode(forceCompact) {
-    compactMode = typeof forceCompact === 'boolean' ? forceCompact : !compactMode;
-    document.body.classList.toggle('qb-free-scroll-mode', compactMode);
-    document.getElementById('qb-btn-deckmode')?.classList.toggle('active', !compactMode);
-    showStageCurtain(!compactMode ? '🎬 PINNED PRESENTATION STAGES ENABLED' : '📜 COMPACT SCROLL MODE ENABLED');
-    evaluateScrollScrub();
+  // Smoothly intercept internal #stage-XX anchor links
+  document.querySelectorAll('a[href^="#stage-"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      const target = href ? document.querySelector(href) : null;
+      if (target) {
+        e.preventDefault();
+        const stIdx = stages.indexOf(target);
+        if (stIdx >= 0) scrollToStage(stIdx, 0);
+      }
+    });
+  });
+
+  // GSAP 3 + ScrollTrigger Stage Entrance & Parallax Choreography
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+    const gsap = window.gsap;
+
+    // Stage 01 Opening Keynote Entrance Timeline
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.p-stage-hero .p-eyebrow', { y: 20, opacity: 0, duration: 0.7 })
+      .from('.p-hero-title .p-line', { y: 36, opacity: 0, duration: 0.85, stagger: 0.12 }, '-=0.45')
+      .from('.p-hero-lead', { y: 24, opacity: 0, duration: 0.75 }, '-=0.55')
+      .from('.p-hero-actions .btn', { y: 18, opacity: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
+      .from('.p-hero-plinth .p-plinth-item', { y: 24, opacity: 0, duration: 0.65, stagger: 0.08 }, '-=0.45');
+
+    // Stage 04, 05, 06, 07 ScrollTrigger Reveal Animations
+    ['#stage-04', '#stage-05', '#stage-06', '#stage-07'].forEach((sel) => {
+      const sec = document.querySelector(sel);
+      if (!sec) return;
+      const elems = sec.querySelectorAll('.p-eyebrow, .p-stage-title, .p-stage-desc, .quantlab-shell, .bento-cell, .p-story-card');
+      gsap.from(elems, {
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top 78%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 32,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.07,
+        ease: 'power3.out',
+      });
+    });
   }
 
-  // Keyboard Navigation (↓, ↑, Space, PageDown, PageUp, D, P)
+  // Keyboard shortcuts for Presentation Deck (PageDown, PageUp, ArrowRight, ArrowLeft, P)
   window.addEventListener('keydown', (e) => {
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
     if (document.getElementById('qb-cmd-palette')?.classList.contains('is-open')) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
 
-    if (e.key.toLowerCase() === 'd') {
-      e.preventDefault();
-      toggleDeckMode();
-    } else if (e.key.toLowerCase() === 'p') {
+    if (e.key.toLowerCase() === 'p') {
       e.preventDefault();
       toggleAutoPlay();
     } else if (e.key === 'PageDown' || e.key === 'ArrowRight') {
       e.preventDefault();
-      skipToNextStage();
+      advancePresentation();
     } else if (e.key === 'PageUp' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      scrollToStageStep(Math.max(0, currentStage - 1), 0);
+      scrollToStage(Math.max(0, currentStageIdx - 1), 0);
     }
   });
 
-  evaluateScrollScrub();
+  // Initial state setup
+  setActivePillar(0);
+  updatePipelineStage(0);
+  onDeckScroll();
+
   window.QuantDeck = {
-    scrollToStageStep,
-    stepForward,
-    stepBackward,
-    skipToNextStage,
+    scrollToStage,
+    advancePresentation,
+    setActivePillar,
+    updatePipelineStage,
     toggleAutoPlay,
-    toggleDeckMode,
   };
 }

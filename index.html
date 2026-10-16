@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quantbot Technologies, LP | Quantitative Investment Strategies</title>
-  <meta name="description" content="Quantbot Technologies, LP is a systematic quantitative investment management firm harnessing global electronic markets through advanced research, technology, and machine learning.">
+  <title>Quantbot Technologies, LP | Systematic Quantitative Investment Management</title>
+  <meta name="description" content="Quantbot Technologies, LP is a systematic quantitative investment management firm harnessing global electronic markets through mathematical rigor, high-performance compute, and machine learning.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Stylesheets -->
+  <!-- Master Architectural & Luxury Presentation Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="is-home-presentation">
+
+  <!-- Layer 01: Full-Bleed Vanta.js + Three.js 3D WebGL Background Canvas -->
+  <div id="vanta-bg" aria-hidden="true"></div>
 
   <!-- Unified Architectural Site Header -->
   <header class="site-header">
     <div class="wrapper">
       <div class="header-inner">
-        <div style="display:flex; align-items:center; gap:20px;">
+        <div style="display:flex; align-items:center; gap:18px;">
           <a href="index.html" class="brand-logo" aria-label="Quantbot Home">
             <img src="assets/logo.png" alt="Quantbot Technologies Logo">
           </a>
@@ -61,7 +64,7 @@
 
         <!-- Header Actions -->
         <div class="header-actions">
-          <button type="button" class="qb-header-pill-btn" id="qb-btn-roll" title="Roll Aesthetic Theme, Shader & Surface (Shortcut: R)">
+          <button type="button" class="qb-header-pill-btn" id="qb-btn-roll" title="Roll Aesthetic Theme, 3D WebGL Shader & Surface (Shortcut: R)">
             <i class="fa fa-dice"></i> <span>Roll Style</span> <kbd>R</kbd>
           </button>
           <button type="button" class="qb-header-pill-btn" id="qb-btn-cmd" title="Command Palette (Shortcut: ⌘K)">
@@ -83,7 +86,7 @@
   <aside class="mobile-drawer" aria-label="Mobile Navigation">
     <ul class="mobile-nav-list">
       <li>
-        <span class="mobile-nav-link text-mint">Explore</span>
+        <span class="mobile-nav-link text-gold">Explore</span>
         <ul class="mobile-submenu">
           <li><a href="about-us.html" class="mobile-submenu-link">About Us</a></li>
           <li><a href="proof-of-concept.html" class="mobile-submenu-link">Proof of Concept</a></li>
@@ -93,7 +96,7 @@
       </li>
       <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
       <li>
-        <span class="mobile-nav-link text-mint">Insights</span>
+        <span class="mobile-nav-link text-gold">Insights</span>
         <ul class="mobile-submenu">
           <li><a href="news.html" class="mobile-submenu-link">News</a></li>
           <li><a href="blog.html" class="mobile-submenu-link">Blog</a></li>
@@ -114,7 +117,7 @@
   </aside>
 
   <!-- =========================================================================
-       FLUID 7-STAGE PRESENTATION DECK (GSAP SCROLLTRIGGER + LENIS SMOOTH SCROLL)
+       LAYER 03: MASTER 7-STAGE PRESENTATION DECK (GSAP SCROLLTRIGGER + LENIS)
        ========================================================================= -->
   <main id="qb-presentation-deck">
 
@@ -122,59 +125,112 @@
          STAGE 01: OPENING KEYNOTE — HARNESS THE POWER OF GLOBAL MARKETS
          ======================================================================= -->
     <section class="p-stage p-stage-hero" id="stage-01" data-stage-num="01" data-stage-label="Global Markets">
-      <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/poc_hero.png">
-        <source src="https://www.quantbot.com/wp-content/uploads/2024/02/Hero-01-Desktop-V2-compressed.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
+      <div class="p-stage-watermark" aria-hidden="true">01</div>
 
       <div class="wrapper p-stage-container">
-        <div class="p-hero-layout">
+        <div class="p-hero-grid">
+          <!-- Left Keynote Column -->
           <div class="p-hero-main">
             <div class="p-eyebrow" data-decrypt>
-              <span class="p-eyebrow-num">01 // 07</span>
-              <span>Unlocking Opportunities, Maximizing Returns</span>
+              <span class="p-eyebrow-num">STAGE 01 // 07</span>
+              <span>Unlocking Opportunities · Maximizing Returns</span>
             </div>
 
             <h1 class="p-hero-title">
               <span class="p-line">Harness the Power of</span>
-              <span class="p-line"><span class="gradient-text">Global Markets</span></span>
+              <span class="p-line"><span class="serif-italic gradient-text" style="font-size:1.08em;">Global Markets</span></span>
               <span class="p-line p-serif-sub">Mathematical Rigor. Systematic Alpha. Global Scale.</span>
             </h1>
 
             <p class="p-hero-lead">
-              Explore the intricacies of quantitative investment strategies tailored for global markets. Driven by rigorous mathematical discipline, advanced compute infrastructure, and machine learning innovation.
+              Explore the intricacies of quantitative investment strategies tailored for global markets. Driven by empirical backtesting discipline, distributed high-performance compute, and machine learning innovation across six global trading hubs.
             </p>
 
             <div class="p-hero-actions">
-              <a href="#stage-02" class="btn btn-primary" data-cursor-label="BEGIN DECK ↓">
-                Begin Presentation <i class="fa fa-arrow-down" style="font-size:0.8rem;"></i>
+              <a href="#stage-02" class="btn btn-primary" data-cursor-label="PRESENT STAGE 02 ↓">
+                Begin Presentation <i class="fa fa-arrow-down" style="font-size:0.78rem;"></i>
               </a>
               <a href="#stage-05" class="btn btn-secondary" data-cursor-label="ALPHA SIMULATOR">
                 <i class="fa fa-chart-line"></i> Interactive Alpha Lab
               </a>
-              <a href="about-us.html" class="btn btn-secondary" data-cursor-label="OUR STORY ↗">
-                Our Story <i class="fa fa-arrow-right" style="font-size:0.8rem;"></i>
+              <a href="about-us.html" class="btn btn-secondary" data-cursor-label="EXECUTIVE BIOS ↗">
+                About Quantbot <i class="fa fa-arrow-right" style="font-size:0.78rem;"></i>
               </a>
             </div>
           </div>
 
-          <div class="p-hero-aside">
-            <div class="qb-rotating-seal" title="Click to Roll Aesthetic Combination" onclick="window.QuantRoll && window.QuantRoll.roll()" data-cursor-label="🎲 ROLL AESTHETIC">
-              <svg class="seal-ring" viewBox="0 0 140 140">
+          <!-- Right Architectural Telemetry Monolith -->
+          <div class="p-hero-monolith qb-spotlight-card">
+            <div class="p-monolith-head">
+              <span style="display:inline-flex; align-items:center; gap:8px;">
+                <span class="qb-pulse-dot"></span>
+                <strong style="color:var(--accent-gold);">SYSTEM TELEMETRY // 24/5 LIVE</strong>
+              </span>
+              <span>EST. 2008 · NYC</span>
+            </div>
+
+            <!-- Interactive SVG Global Fiber Topology Ring -->
+            <div class="p-monolith-radar">
+              <svg viewBox="0 0 360 160" style="width:100%; height:100%;">
                 <defs>
-                  <path id="qbSealPath" d="M 70,70 m -54,0 a 54,54 0 1,1 108,0 a 54,54 0 1,1 -108,0" />
+                  <linearGradient id="qbFiberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#E6D5B8" stop-opacity="0.15" />
+                    <stop offset="50%" stop-color="#10B981" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="#E6D5B8" stop-opacity="0.15" />
+                  </linearGradient>
                 </defs>
-                <circle cx="70" cy="70" r="64" fill="none" stroke="rgba(230,213,184,0.28)" stroke-width="1" stroke-dasharray="3 3" />
-                <text fill="currentColor" style="font-family:var(--font-mono); font-size:8.6px; letter-spacing:2.7px; fill:var(--accent-mint); text-transform:uppercase;">
-                  <textPath href="#qbSealPath">QUANTBOT TECHNOLOGIES LP • EST. 2008 • SYSTEMATIC ALPHA • </textPath>
-                </text>
+                <!-- Subtle Grid Coordinates -->
+                <line x1="0" y1="40" x2="360" y2="40" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3" />
+                <line x1="0" y1="80" x2="360" y2="80" stroke="rgba(255,255,255,0.07)" />
+                <line x1="0" y1="120" x2="360" y2="120" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3" />
+                <!-- Optical Fiber Arcs Connecting NYC -> LDN -> HKG -> MIA -->
+                <path d="M 55 95 Q 125 22 185 68 T 305 58" fill="none" stroke="url(#qbFiberGrad)" stroke-width="1.8" />
+                <path d="M 55 95 Q 140 138 225 105 T 305 58" fill="none" stroke="rgba(230,213,184,0.28)" stroke-width="1.2" stroke-dasharray="4 4" />
+                <!-- Hub Nodes -->
+                <g transform="translate(55,95)">
+                  <circle r="5" fill="#10B981" />
+                  <circle r="11" fill="none" stroke="#10B981" stroke-opacity="0.4" />
+                  <text y="22" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="8">NY4 · NYC</text>
+                </g>
+                <g transform="translate(140,115)">
+                  <circle r="4" fill="#E6D5B8" />
+                  <text y="19" text-anchor="middle" fill="rgba(248,250,252,0.7)" font-family="JetBrains Mono" font-size="8">MIA</text>
+                </g>
+                <g transform="translate(185,68)">
+                  <circle r="5" fill="#10B981" />
+                  <circle r="11" fill="none" stroke="#10B981" stroke-opacity="0.4" />
+                  <text y="-14" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="8">LD4 · LDN</text>
+                </g>
+                <g transform="translate(305,58)">
+                  <circle r="5" fill="#10B981" />
+                  <circle r="11" fill="none" stroke="#10B981" stroke-opacity="0.4" />
+                  <text y="-14" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="8">HK1 · HKG</text>
+                </g>
               </svg>
-              <div class="seal-core">Q</div>
+            </div>
+
+            <div class="p-monolith-metrics">
+              <div class="p-monolith-stat">
+                <span>ASSET COVERAGE</span>
+                <strong>Cash Equities &amp; Futures</strong>
+              </div>
+              <div class="p-monolith-stat">
+                <span>CO-LOCATION</span>
+                <strong>NY4 · LD4 · HK1 Fiber</strong>
+              </div>
+              <div class="p-monolith-stat">
+                <span>DISCIPLINE</span>
+                <strong>100% Systematic Alpha</strong>
+              </div>
+              <div class="p-monolith-stat">
+                <span>COMPUTE STACK</span>
+                <strong>Python · C++20 · R · ML</strong>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Stage 01 Institutional Plinth -->
+        <!-- Stage 01 Bottom 4-Column Swiss Hairline Plinth -->
         <div class="p-hero-plinth">
           <div class="p-plinth-item">
             <span class="p-plinth-val">Est. 2008</span>
@@ -213,145 +269,194 @@
     </section>
 
     <!-- =======================================================================
-         STAGE 02: WHAT MAKES US DIFFERENT (PINNED 4-SLIDE ARCHITECTURAL DECK)
+         STAGE 02: WHAT MAKES US DIFFERENT (GSAP PINNED 4-SLIDE PRESENTATION DECK)
          ======================================================================= -->
     <section class="p-stage p-stage-pillars" id="stage-02" data-stage-num="02" data-stage-label="What Makes Us Different">
-      <div class="p-pillars-sticky">
-        <div class="wrapper p-pillars-grid">
+      <div class="p-stage-watermark" aria-hidden="true">02</div>
+
+      <div class="wrapper p-stage-container">
+        <div class="p-pillars-grid">
           <!-- Left Anchor Column -->
           <div class="p-pillars-left">
             <div class="p-eyebrow">
-              <span class="p-eyebrow-num">02 // 07</span>
+              <span class="p-eyebrow-num">STAGE 02 // 07</span>
               <span>What Makes Us Different</span>
             </div>
             <h2 class="p-stage-title">
               Innovative Hedge Fund Strategies <span class="serif-italic text-gold">&amp; Integrated Solutions</span>
             </h2>
             <p class="p-stage-desc">
-              At Quantbot, we differentiate ourselves from other hedge funds through our unique approach and comprehensive services. Scroll to advance through our four institutional pillars:
+              At Quantbot, we differentiate ourselves from other hedge funds through our unique approach and comprehensive services. Scroll or click to present each institutional pillar:
             </p>
 
-            <!-- Interactive Pillar Index List -->
+            <!-- Interactive 4-Pillar Vertical Index -->
             <div class="p-pillar-nav" role="tablist">
               <button type="button" class="p-pillar-tab is-active" data-pillar-target="0">
-                <span class="p-pillar-tab-num">01</span>
+                <span class="p-pillar-tab-num">I</span>
                 <span class="p-pillar-tab-title">Global Footprint</span>
                 <span class="p-pillar-tab-meta">AMER · EMEA · APAC</span>
               </button>
               <button type="button" class="p-pillar-tab" data-pillar-target="1">
-                <span class="p-pillar-tab-num">02</span>
+                <span class="p-pillar-tab-num">II</span>
                 <span class="p-pillar-tab-title">Quantitative Methodologies</span>
                 <span class="p-pillar-tab-meta">100% Systematic</span>
               </button>
               <button type="button" class="p-pillar-tab" data-pillar-target="2">
-                <span class="p-pillar-tab-num">03</span>
+                <span class="p-pillar-tab-num">III</span>
                 <span class="p-pillar-tab-title">Streamlined Business Process</span>
                 <span class="p-pillar-tab-meta">Risk Governed</span>
               </button>
               <button type="button" class="p-pillar-tab" data-pillar-target="3">
-                <span class="p-pillar-tab-num">04</span>
+                <span class="p-pillar-tab-num">IV</span>
                 <span class="p-pillar-tab-title">Research &amp; Infrastructure</span>
                 <span class="p-pillar-tab-meta">ML &amp; Cloud Scale</span>
               </button>
             </div>
           </div>
 
-          <!-- Right 3D Stacked Slide Stage -->
+          <!-- Right Architectural Slide Deck (Zero Stretched Stock Photos) -->
           <div class="p-pillars-right">
             <div class="p-card-stack">
-              <!-- Pillar Slide 01 -->
-              <article class="p-deck-card is-active" data-pillar-card="0">
-                <div class="p-deck-card-media">
-                  <img src="assets/what_makes_different.webp" alt="Global Footprint">
-                  <span class="p-deck-card-tag">PILLAR 01 // 04</span>
-                </div>
-                <div class="p-deck-card-body">
-                  <div class="p-deck-card-head">
-                    <div class="p-deck-card-icon"><img src="assets/global_footprint.png" alt="Global Footprint Icon"></div>
-                    <div>
-                      <span class="mono-tag text-gold">24/5 MULTI-EXCHANGE PRESENCE</span>
-                      <h3>Global Footprint</h3>
-                    </div>
+              <!-- Slide I: Global Footprint -->
+              <article class="p-deck-card qb-spotlight-card is-active" data-pillar-card="0">
+                <span class="p-deck-roman" aria-hidden="true">I</span>
+                <div>
+                  <div class="p-deck-top">
+                    <span class="p-deck-badge"><span class="qb-pulse-dot"></span> PILLAR I // 04 · 24/5 MULTI-EXCHANGE</span>
                   </div>
+
+                  <div class="p-deck-schematic">
+                    <svg viewBox="0 0 480 96" style="width:100%; height:100%;">
+                      <line x1="30" y1="48" x2="450" y2="48" stroke="rgba(230,213,184,0.22)" stroke-width="1" stroke-dasharray="4 4" />
+                      <path d="M 60 64 Q 150 14 240 48 T 420 34" fill="none" stroke="#10B981" stroke-width="2" />
+                      <circle cx="60" cy="64" r="5" fill="#E6D5B8" />
+                      <text x="60" y="84" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="9">NEW YORK</text>
+                      <circle cx="180" cy="36" r="5" fill="#10B981" />
+                      <text x="180" y="20" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="9">LONDON</text>
+                      <circle cx="300" cy="54" r="5" fill="#10B981" />
+                      <text x="300" y="76" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="9">MIAMI</text>
+                      <circle cx="420" cy="34" r="5" fill="#E6D5B8" />
+                      <text x="420" y="18" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="9">HONG KONG</text>
+                    </svg>
+                  </div>
+
+                  <h3>Global Footprint</h3>
                   <p>
                     We maintain a consistent presence in global cash equities and electronic futures markets across all major trading hubs—executing seamlessly across New York, London, Hong Kong, and Miami.
                   </p>
-                  <div class="p-deck-card-specs">
-                    <div><span>ASSET CLASSES</span><strong>Global Cash Equities &amp; Electronic Futures</strong></div>
-                    <div><span>CO-LOCATION</span><strong>NY4 · LD4 · HK1 Direct Optical Fiber</strong></div>
-                  </div>
+                </div>
+
+                <div class="p-deck-card-specs">
+                  <div><span>ASSET CLASSES</span><strong>Global Cash Equities &amp; Futures</strong></div>
+                  <div><span>CO-LOCATION</span><strong>NY4 · LD4 · HK1 Direct Fiber</strong></div>
+                  <div><span>EXECUTION WINDOW</span><strong>24 / 5 Continuous Routing</strong></div>
                 </div>
               </article>
 
-              <!-- Pillar Slide 02 -->
-              <article class="p-deck-card" data-pillar-card="1">
-                <div class="p-deck-card-media">
-                  <img src="assets/poc_hero.png" alt="Quantitative Methodologies">
-                  <span class="p-deck-card-tag">PILLAR 02 // 04</span>
-                </div>
-                <div class="p-deck-card-body">
-                  <div class="p-deck-card-head">
-                    <div class="p-deck-card-icon"><img src="assets/quant_methodologies.png" alt="Quantitative Methodologies Icon"></div>
-                    <div>
-                      <span class="mono-tag text-gold">EMPIRICAL BACKTEST INTEGRITY</span>
-                      <h3>Quantitative Methodologies</h3>
-                    </div>
+              <!-- Slide II: Quantitative Methodologies -->
+              <article class="p-deck-card qb-spotlight-card" data-pillar-card="1">
+                <span class="p-deck-roman" aria-hidden="true">II</span>
+                <div>
+                  <div class="p-deck-top">
+                    <span class="p-deck-badge"><span class="qb-pulse-dot"></span> PILLAR II // 04 · EMPIRICAL VALIDATION</span>
                   </div>
+
+                  <div class="p-deck-schematic">
+                    <svg viewBox="0 0 480 96" style="width:100%; height:100%;">
+                      <rect x="24" y="16" width="200" height="64" rx="8" fill="rgba(230,213,184,0.06)" stroke="rgba(230,213,184,0.3)" />
+                      <text x="124" y="38" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="9">IN-SAMPLE TRAINING</text>
+                      <path d="M 40 64 Q 80 42 120 56 T 204 38" fill="none" stroke="#E6D5B8" stroke-width="1.8" />
+                      <line x1="240" y1="8" x2="240" y2="88" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3 3" />
+                      <rect x="256" y="16" width="200" height="64" rx="8" fill="rgba(16,185,129,0.07)" stroke="rgba(16,185,129,0.4)" />
+                      <text x="356" y="38" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono" font-size="9">OUT-OF-SAMPLE PRODUCTION</text>
+                      <path d="M 272 64 L 310 52 L 350 55 L 395 36 L 440 26" fill="none" stroke="#10B981" stroke-width="2" />
+                    </svg>
+                  </div>
+
+                  <h3>Quantitative Methodologies</h3>
                   <p>
                     Our strategies are developed using rigorous backtesting processes, eliminating manual interventions in production testing and ensuring strict out-of-sample empirical validation.
                   </p>
-                  <div class="p-deck-card-specs">
-                    <div><span>DISCIPLINE</span><strong>In-Sample / Out-of-Sample Partitioning</strong></div>
-                    <div><span>PRODUCTION</span><strong>Zero Manual Override · 100% Algorithmic</strong></div>
-                  </div>
+                </div>
+
+                <div class="p-deck-card-specs">
+                  <div><span>DISCIPLINE</span><strong>In-Sample / Out-of-Sample Split</strong></div>
+                  <div><span>PRODUCTION</span><strong>Zero Manual Intervention</strong></div>
+                  <div><span>SIGNAL HORIZON</span><strong>Intraday to Multi-Factor</strong></div>
                 </div>
               </article>
 
-              <!-- Pillar Slide 03 -->
-              <article class="p-deck-card" data-pillar-card="2">
-                <div class="p-deck-card-media">
-                  <img src="assets/ny.png" alt="Streamlined Business Process">
-                  <span class="p-deck-card-tag">PILLAR 03 // 04</span>
-                </div>
-                <div class="p-deck-card-body">
-                  <div class="p-deck-card-head">
-                    <div class="p-deck-card-icon"><img src="assets/streamlined_process.png" alt="Streamlined Business Process Icon"></div>
-                    <div>
-                      <span class="mono-tag text-gold">VELOCITY &amp; OPERATIONAL RISK</span>
-                      <h3>Streamlined Business Process</h3>
-                    </div>
+              <!-- Slide III: Streamlined Business Process -->
+              <article class="p-deck-card qb-spotlight-card" data-pillar-card="2">
+                <span class="p-deck-roman" aria-hidden="true">III</span>
+                <div>
+                  <div class="p-deck-top">
+                    <span class="p-deck-badge"><span class="qb-pulse-dot"></span> PILLAR III // 04 · OPERATIONAL VELOCITY</span>
                   </div>
+
+                  <div class="p-deck-schematic">
+                    <svg viewBox="0 0 480 96" style="width:100%; height:100%;">
+                      <g font-family="JetBrains Mono" font-size="8.5" text-anchor="middle">
+                        <rect x="20" y="26" width="110" height="44" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(230,213,184,0.35)" />
+                        <text x="75" y="52" fill="#E6D5B8">01 HYPOTHESIS</text>
+                        <line x1="130" y1="48" x2="180" y2="48" stroke="#E6D5B8" stroke-width="1.5" />
+                        <rect x="180" y="26" width="120" height="44" rx="8" fill="rgba(16,185,129,0.08)" stroke="#10B981" />
+                        <text x="240" y="52" fill="#10B981">02 RISK GOVERNANCE</text>
+                        <line x1="300" y1="48" x2="350" y2="48" stroke="#10B981" stroke-width="1.5" />
+                        <rect x="350" y="26" width="110" height="44" rx="8" fill="rgba(230,213,184,0.1)" stroke="#E6D5B8" />
+                        <text x="405" y="52" fill="#E6D5B8">03 LIVE CAPITAL</text>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <h3>Streamlined Business Process</h3>
                   <p>
                     Our proven business process enables us to swiftly assess new investment ideas while maintaining stringent operational risk controls, real-time exposure limits, and compliance governance.
                   </p>
-                  <div class="p-deck-card-specs">
-                    <div><span>VELOCITY</span><strong>Rapid Hypothesis-to-Capital Deployment</strong></div>
-                    <div><span>GOVERNANCE</span><strong>Automated Pre-Trade &amp; Intraday Risk Limits</strong></div>
-                  </div>
+                </div>
+
+                <div class="p-deck-card-specs">
+                  <div><span>VELOCITY</span><strong>Rapid Hypothesis Deployment</strong></div>
+                  <div><span>GOVERNANCE</span><strong>Automated Pre-Trade Limits</strong></div>
+                  <div><span>RISK ENGINE</span><strong>Real-Time Factor Neutrality</strong></div>
                 </div>
               </article>
 
-              <!-- Pillar Slide 04 -->
-              <article class="p-deck-card" data-pillar-card="3">
-                <div class="p-deck-card-media">
-                  <img src="assets/london_skyline.png" alt="Commitment to Research and Infrastructure">
-                  <span class="p-deck-card-tag">PILLAR 04 // 04</span>
-                </div>
-                <div class="p-deck-card-body">
-                  <div class="p-deck-card-head">
-                    <div class="p-deck-card-icon"><img src="assets/commitment_research.png" alt="Research & Infrastructure Icon"></div>
-                    <div>
-                      <span class="mono-tag text-gold">MACHINE LEARNING &amp; COMPUTE</span>
-                      <h3>Commitment to Research &amp; Infrastructure</h3>
-                    </div>
+              <!-- Slide IV: Commitment to Research and Infrastructure -->
+              <article class="p-deck-card qb-spotlight-card" data-pillar-card="3">
+                <span class="p-deck-roman" aria-hidden="true">IV</span>
+                <div>
+                  <div class="p-deck-top">
+                    <span class="p-deck-badge"><span class="qb-pulse-dot"></span> PILLAR IV // 04 · MACHINE LEARNING &amp; COMPUTE</span>
                   </div>
+
+                  <div class="p-deck-schematic">
+                    <svg viewBox="0 0 480 96" style="width:100%; height:100%;">
+                      <g stroke="rgba(230,213,184,0.28)" stroke-width="1.2">
+                        <line x1="90" y1="24" x2="240" y2="48" />
+                        <line x1="90" y1="72" x2="240" y2="48" />
+                        <line x1="240" y1="48" x2="390" y2="24" />
+                        <line x1="240" y1="48" x2="390" y2="72" />
+                      </g>
+                      <circle cx="90" cy="24" r="7" fill="#E6D5B8" />
+                      <circle cx="90" cy="72" r="7" fill="#E6D5B8" />
+                      <circle cx="240" cy="48" r="12" fill="#10B981" />
+                      <circle cx="390" cy="24" r="7" fill="#E6D5B8" />
+                      <circle cx="390" cy="72" r="7" fill="#E6D5B8" />
+                      <text x="240" y="84" text-anchor="middle" fill="#E6D5B8" font-family="JetBrains Mono" font-size="8.5">DISTRIBUTED TENSOR ML &amp; CLOUD COMPUTE CLUSTER</text>
+                    </svg>
+                  </div>
+
+                  <h3>Commitment to Research &amp; Infrastructure</h3>
                   <p>
                     We invest in cutting-edge machine learning and cloud computing to continually refine our strategies and lead market innovation across petabyte-scale historical and real-time datasets.
                   </p>
-                  <div class="p-deck-card-specs">
-                    <div><span>ENVIRONMENT</span><strong>Python · C++20 · R · Tensor ML Clusters</strong></div>
-                    <div><span>INFRASTRUCTURE</span><strong>Distributed High-Performance Compute</strong></div>
-                  </div>
+                </div>
+
+                <div class="p-deck-card-specs">
+                  <div><span>ENVIRONMENT</span><strong>Python · C++20 · R · Tensor ML</strong></div>
+                  <div><span>INFRASTRUCTURE</span><strong>Distributed HPC &amp; Cloud Scale</strong></div>
+                  <div><span>DATA ARCHIVE</span><strong>Petabyte Tick-Level History</strong></div>
                 </div>
               </article>
             </div>
@@ -361,35 +466,44 @@
     </section>
 
     <!-- =======================================================================
-         STAGE 03: STRATEGY DEVELOPMENT PROCESS (PINNED HORIZONTAL CINEMA STAGE)
+         STAGE 03: STRATEGY DEVELOPMENT PROCESS (GSAP PINNED HORIZONTAL CINEMA)
          ======================================================================= -->
     <section class="p-stage p-stage-pipeline" id="stage-03" data-stage-num="03" data-stage-label="Strategy Pipeline">
-      <div class="p-pipeline-sticky">
-        <div class="wrapper">
-          <div class="p-pipeline-header">
-            <div>
-              <div class="p-eyebrow">
-                <span class="p-eyebrow-num">03 // 07</span>
-                <span>Strategy Development Process</span>
-              </div>
-              <h2 class="p-stage-title" style="margin-bottom:6px;">
-                Empowering Investors with <span class="serif-italic text-gold">Quantitative Expertise</span>
-              </h2>
+      <div class="p-stage-watermark" aria-hidden="true">03</div>
+
+      <div class="wrapper">
+        <div class="p-pipeline-header">
+          <div>
+            <div class="p-eyebrow">
+              <span class="p-eyebrow-num">STAGE 03 // 07</span>
+              <span>Strategy Development Process</span>
             </div>
-            <div class="p-pipeline-status-box">
-              <span class="mono-tag text-gold" id="p-pipe-active-code">PHASE 01 // 06 — IDEA GENERATION</span>
-              <div class="p-pipe-progress-track">
-                <div class="p-pipe-progress-fill" id="p-pipe-progress-fill"></div>
-              </div>
-            </div>
+            <h2 class="p-stage-title" style="margin-bottom:4px;">
+              Empowering Investors with <span class="serif-italic text-gold">Quantitative Expertise</span>
+            </h2>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-gold); letter-spacing:0.1em;" id="p-pipe-active-code">
+            PHASE 01 // 06 — IDEA GENERATION
           </div>
         </div>
 
-        <!-- Horizontal Cinema Track -->
-        <div class="p-pipeline-track-viewport">
-          <div class="p-pipeline-track" id="p-pipeline-track">
-            <!-- Step 01 -->
-            <article class="p-phase-card is-active" data-phase-card="0">
+        <!-- 6-Node Architectural Stepper Bar -->
+        <div class="p-pipeline-nodes" role="tablist">
+          <button type="button" class="p-pipe-node-btn is-active" data-pipe-node="0"><strong>01</strong> <span>Idea Gen</span></button>
+          <button type="button" class="p-pipe-node-btn" data-pipe-node="1"><strong>02</strong> <span>Data Analysis</span></button>
+          <button type="button" class="p-pipe-node-btn" data-pipe-node="2"><strong>03</strong> <span>Code Dev</span></button>
+          <button type="button" class="p-pipe-node-btn" data-pipe-node="3"><strong>04</strong> <span>Logic &amp; Risk</span></button>
+          <button type="button" class="p-pipe-node-btn" data-pipe-node="4"><strong>05</strong> <span>Paper Testing</span></button>
+          <button type="button" class="p-pipe-node-btn" data-pipe-node="5"><strong>06</strong> <span>Live Trading</span></button>
+        </div>
+      </div>
+
+      <!-- Horizontal Cinema Track Scrubbed by GSAP ScrollTrigger -->
+      <div class="p-pipeline-track-viewport">
+        <div class="p-pipeline-track" id="p-pipeline-track">
+          <!-- Step 01 -->
+          <article class="p-phase-card qb-spotlight-card is-active" data-phase-card="0">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">01</span>
                 <span class="p-phase-tag">HYPOTHESIS</span>
@@ -398,14 +512,16 @@
               <p class="p-phase-desc">
                 Start with a basic strategy idea, such as in futures or cash equities, and collaborate directly with our specialist data and research teams.
               </p>
-              <div class="p-phase-footer">
-                <span>GATE // Specialist Research Review</span>
-                <strong>STAGE 01 / 06</strong>
-              </div>
-            </article>
+            </div>
+            <div class="p-phase-footer">
+              <span>GATE // Specialist Research Review</span>
+              <strong>STAGE 01 / 06</strong>
+            </div>
+          </article>
 
-            <!-- Step 02 -->
-            <article class="p-phase-card" data-phase-card="1">
+          <!-- Step 02 -->
+          <article class="p-phase-card qb-spotlight-card" data-phase-card="1">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">02</span>
                 <span class="p-phase-tag">DATA HYGIENE</span>
@@ -414,14 +530,16 @@
               <p class="p-phase-desc">
                 Gain access to necessary datasets, partition into in-sample and out-of-sample datasets, and thoroughly analyze data quality and market outliers.
               </p>
-              <div class="p-phase-footer">
-                <span>GATE // IS / OOS Strict Partitioning</span>
-                <strong>STAGE 02 / 06</strong>
-              </div>
-            </article>
+            </div>
+            <div class="p-phase-footer">
+              <span>GATE // IS / OOS Strict Partitioning</span>
+              <strong>STAGE 02 / 06</strong>
+            </div>
+          </article>
 
-            <!-- Step 03 -->
-            <article class="p-phase-card" data-phase-card="2">
+          <!-- Step 03 -->
+          <article class="p-phase-card qb-spotlight-card" data-phase-card="2">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">03</span>
                 <span class="p-phase-tag">ENGINEERING</span>
@@ -430,14 +548,16 @@
               <p class="p-phase-desc">
                 Test the hypothesis on in-sample data using our development environment (Python, C++, R), evaluating performance against rigorous empirical benchmarks.
               </p>
-              <div class="p-phase-footer">
-                <span>GATE // Empirical Benchmark Hurdle</span>
-                <strong>STAGE 03 / 06</strong>
-              </div>
-            </article>
+            </div>
+            <div class="p-phase-footer">
+              <span>GATE // Empirical Benchmark Hurdle</span>
+              <strong>STAGE 03 / 06</strong>
+            </div>
+          </article>
 
-            <!-- Step 04 -->
-            <article class="p-phase-card" data-phase-card="3">
+          <!-- Step 04 -->
+          <article class="p-phase-card qb-spotlight-card" data-phase-card="3">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">04</span>
                 <span class="p-phase-tag">RISK &amp; LOGIC</span>
@@ -446,14 +566,16 @@
               <p class="p-phase-desc">
                 If in-sample results meet expectations, further develop the strategy by implementing trading logic and risk management using our proprietary backtesting platform.
               </p>
-              <div class="p-phase-footer">
-                <span>GATE // Drawdown &amp; Factor Neutrality</span>
-                <strong>STAGE 04 / 06</strong>
-              </div>
-            </article>
+            </div>
+            <div class="p-phase-footer">
+              <span>GATE // Drawdown &amp; Factor Neutrality</span>
+              <strong>STAGE 04 / 06</strong>
+            </div>
+          </article>
 
-            <!-- Step 05 -->
-            <article class="p-phase-card" data-phase-card="4">
+          <!-- Step 05 -->
+          <article class="p-phase-card qb-spotlight-card" data-phase-card="4">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">05</span>
                 <span class="p-phase-tag">SHADOW LIVE</span>
@@ -462,14 +584,16 @@
               <p class="p-phase-desc">
                 Deploy the strategy in paper trading mode, monitoring daily performance and comparing with previous backtests to guarantee execution accuracy and remove lookahead bias.
               </p>
-              <div class="p-phase-footer">
-                <span>GATE // Zero Lookahead Reconciliation</span>
-                <strong>STAGE 05 / 06</strong>
-              </div>
-            </article>
+            </div>
+            <div class="p-phase-footer">
+              <span>GATE // Zero Lookahead Reconciliation</span>
+              <strong>STAGE 05 / 06</strong>
+            </div>
+          </article>
 
-            <!-- Step 06 -->
-            <article class="p-phase-card" data-phase-card="5">
+          <!-- Step 06 -->
+          <article class="p-phase-card qb-spotlight-card" data-phase-card="5">
+            <div>
               <div class="p-phase-top">
                 <span class="p-phase-num">06</span>
                 <span class="p-phase-tag">PRODUCTION</span>
@@ -478,12 +602,12 @@
               <p class="p-phase-desc">
                 Once all benchmarks, risk tolerances, and execution hurdles are met, the strategy is fully deployed into actual live production trading across global markets.
               </p>
-              <div class="p-phase-footer">
-                <span>OUTPUT // 24/5 Co-Located Execution</span>
-                <strong>STAGE 06 / 06</strong>
-              </div>
-            </article>
-          </div>
+            </div>
+            <div class="p-phase-footer">
+              <span>OUTPUT // 24/5 Co-Located Execution</span>
+              <strong>STAGE 06 / 06</strong>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -491,12 +615,14 @@
     <!-- =======================================================================
          STAGE 04: OUR STORY — TAKING A QUANTUM LEAP IN INVESTING
          ======================================================================= -->
-    <section class="p-stage p-stage-story section-dark" id="stage-04" data-stage-num="04" data-stage-label="Our Story">
+    <section class="p-stage p-stage-story" id="stage-04" data-stage-num="04" data-stage-label="Our Story">
+      <div class="p-stage-watermark" aria-hidden="true">04</div>
+
       <div class="wrapper p-stage-container">
         <div class="p-story-grid">
           <div class="p-story-left">
             <div class="p-eyebrow">
-              <span class="p-eyebrow-num">04 // 07</span>
+              <span class="p-eyebrow-num">STAGE 04 // 07</span>
               <span>Our Story · Est. 2008</span>
             </div>
             <h2 class="p-stage-title">
@@ -507,12 +633,12 @@
               "At Quantbot, we are driven by our passion for quantitative trading and our commitment to delivering exceptional investment solutions."
             </blockquote>
 
-            <p class="p-stage-desc" style="margin-bottom:32px;">
+            <p class="p-stage-desc" style="margin-bottom:28px;">
               Founded during the financial crisis of 2008, our team of seasoned experts realized the unique edge we had over the competition due to years of experience in quantitative strategies and expertise working with cutting-edge technology. Today, we operate across New York, London, Hong Kong, and Miami, executing algorithmic strategies 24 hours a day.
             </p>
 
-            <div style="display:flex; gap:16px; flex-wrap:wrap;">
-              <a href="about-us.html" class="btn btn-primary">Discover About Us <i class="fa fa-arrow-right" style="font-size:0.8rem;"></i></a>
+            <div style="display:flex; gap:14px; flex-wrap:wrap;">
+              <a href="about-us.html" class="btn btn-primary">Discover About Us <i class="fa fa-arrow-right" style="font-size:0.78rem;"></i></a>
               <a href="meet-the-founders.html" class="btn btn-secondary">Meet The Founders</a>
             </div>
           </div>
@@ -555,14 +681,16 @@
          STAGE 05: INTERACTIVE QUANTLAB STRATEGY & ALPHA BACKTEST SIMULATOR
          ======================================================================= -->
     <section class="p-stage p-stage-quantlab" id="stage-05" data-stage-num="05" data-stage-label="QuantLab Simulator">
+      <div class="p-stage-watermark" aria-hidden="true">05</div>
+
       <div class="wrapper p-stage-container">
-        <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:28px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:24px;">
           <div>
             <div class="p-eyebrow">
-              <span class="p-eyebrow-num">05 // 07</span>
+              <span class="p-eyebrow-num">STAGE 05 // 07</span>
               <span>Interactive Alpha Telemetry</span>
             </div>
-            <h2 class="p-stage-title" style="margin-bottom:8px;">
+            <h2 class="p-stage-title" style="margin-bottom:6px;">
               Systematic Strategy Simulation <span class="serif-italic text-gold">&amp; Execution Engine</span>
             </h2>
             <p class="p-stage-desc" style="margin-bottom:0;">
@@ -578,7 +706,7 @@
           <div class="quantlab-grid">
             <div class="quantlab-controls">
               <div class="quantlab-field">
-                <label><span>01 // Asset Universe</span> <span class="text-gold">ACTIVE</span></label>
+                <label><span>01 // Asset Universe</span> <span>ACTIVE</span></label>
                 <div class="quantlab-pill-group">
                   <button type="button" class="quantlab-pill active" data-ql-asset="statarb">Stat-Arb</button>
                   <button type="button" class="quantlab-pill" data-ql-asset="equities">Cash Equities</button>
@@ -596,10 +724,10 @@
                 </div>
               </div>
 
-              <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border-color); font-family:var(--font-mono); font-size:0.74rem; color:var(--text-secondary); line-height:1.75;">
-                <div><strong class="text-mint">ENVIRONMENT:</strong> Python / C++20 / R</div>
-                <div><strong class="text-mint">DATA MART:</strong> Tick-Level Global Feed</div>
-                <div><strong class="text-mint">BIAS GUARD:</strong> Zero Lookahead Verified</div>
+              <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); line-height:1.75;">
+                <div><strong class="text-gold">ENVIRONMENT:</strong> Python / C++20 / R</div>
+                <div><strong class="text-gold">DATA MART:</strong> Tick-Level Global Feed</div>
+                <div><strong class="text-gold">BIAS GUARD:</strong> Zero Lookahead Verified</div>
               </div>
             </div>
 
@@ -624,11 +752,11 @@
               </div>
 
               <div class="quantlab-canvas-wrap">
-                <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); margin-bottom:6px;">
-                  <span><span style="color:#94C97E;">●</span> QUANTBOT SYSTEMATIC ALPHA (OOS) &nbsp;&nbsp; <span style="opacity:0.6;">---</span> GLOBAL BENCHMARK</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted); margin-bottom:6px;">
+                  <span><span style="color:#10B981;">●</span> QUANTBOT SYSTEMATIC ALPHA (OOS) &nbsp;&nbsp; <span style="opacity:0.6;">---</span> GLOBAL BENCHMARK</span>
                   <span>252 TRADING DAYS // NORMALIZED NAV = 100</span>
                 </div>
-                <canvas id="quantlab-chart" style="width:100%; height:210px; display:block;"></canvas>
+                <canvas id="quantlab-chart" style="width:100%; height:170px; display:block;"></canvas>
               </div>
             </div>
           </div>
@@ -639,24 +767,28 @@
     <!-- =======================================================================
          STAGE 06: 24-HOUR GLOBAL EXECUTION MATRIX & DUAL PLATFORMS (POC + QMM)
          ======================================================================= -->
-    <section class="p-stage p-stage-bento section-dark" id="stage-06" data-stage-num="06" data-stage-label="Global Matrix">
+    <section class="p-stage p-stage-bento" id="stage-06" data-stage-num="06" data-stage-label="Global Matrix">
+      <div class="p-stage-watermark" aria-hidden="true">06</div>
+
       <div class="wrapper p-stage-container">
-        <div style="text-align:center; max-width:820px; margin:0 auto 36px;">
-          <div class="p-eyebrow" style="justify-content:center;">
-            <span class="p-eyebrow-num">06 // 07</span>
-            <span>Global Infrastructure &amp; Platforms</span>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:26px;">
+          <div>
+            <div class="p-eyebrow">
+              <span class="p-eyebrow-num">STAGE 06 // 07</span>
+              <span>Global Infrastructure &amp; Institutional Platforms</span>
+            </div>
+            <h2 class="p-stage-title" style="margin-bottom:4px;">
+              24-Hour Algorithmic Execution <span class="serif-italic text-gold">Across Six Hubs</span>
+            </h2>
           </div>
-          <h2 class="p-stage-title">
-            24-Hour Algorithmic Execution <span class="serif-italic text-gold">Across Six Hubs</span>
-          </h2>
-          <p class="p-stage-desc" style="margin:0 auto;">
-            Select any global hub below to inspect regional market coverage, infrastructure telemetry, and direct office coordinates.
+          <p class="p-stage-desc" style="margin:0; max-width:440px;">
+            Inspect regional market coverage and explore our dual institutional onboarding tracks: Proof of Concept (POC) and Multi-Manager (QMM).
           </p>
         </div>
 
         <div class="bento-matrix">
-          <!-- 2x2 Interactive Hub Inspector -->
-          <div class="bento-cell bento-span-2 bento-row-2" style="gap:18px;">
+          <!-- Left 7 Columns: Interactive Global Hub Command Center -->
+          <div class="bento-cell bento-hub-inspector" style="gap:16px;">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
               <div class="quantlab-pill-group">
                 <button type="button" class="quantlab-pill active" data-hub-select="ny">New York</button>
@@ -664,51 +796,51 @@
                 <button type="button" class="quantlab-pill" data-hub-select="hk">Hong Kong</button>
                 <button type="button" class="quantlab-pill" data-hub-select="miami">Miami</button>
               </div>
-              <span class="mono-tag" id="qb-hub-coords" style="font-size:0.72rem; color:var(--accent-gold);">40.7549° N, 73.9840° W</span>
+              <span class="mono-tag" id="qb-hub-coords" style="font-size:0.7rem; color:var(--accent-gold);">40.7549° N, 73.9840° W</span>
             </div>
 
-            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--border-color); height:220px;">
-              <img id="qb-hub-img" src="assets/ny.png" alt="Quantbot Global Office" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s ease;">
+            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--border-color); height:180px;">
+              <img id="qb-hub-img" src="assets/ny.png" alt="Quantbot Global Office" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
 
             <div>
-              <h3 id="qb-hub-title" style="font-size:1.45rem; margin-bottom:6px;">New York Headquarters</h3>
-              <p id="qb-hub-addr" class="mono-tag" style="font-size:0.76rem; color:var(--accent-mint); margin-bottom:8px;">505 Fifth Avenue, 6th Floor, New York, NY 10017</p>
-              <p id="qb-hub-focus" style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:12px;">Americas Cash Equities, Electronic Futures, Core Alpha Research &amp; Executive Operations</p>
-              <div style="display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-gold); padding:5px 12px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid var(--border-color);">
+              <h3 id="qb-hub-title" style="font-size:1.38rem; margin-bottom:4px;">New York Headquarters</h3>
+              <p id="qb-hub-addr" class="mono-tag" style="font-size:0.72rem; color:var(--accent-gold); margin-bottom:6px;">505 Fifth Avenue, 6th Floor, New York, NY 10017</p>
+              <p id="qb-hub-focus" style="font-size:0.92rem; color:var(--text-secondary); margin-bottom:12px;">Americas Cash Equities, Electronic Futures, Core Alpha Research &amp; Executive Operations</p>
+              <div style="display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-mint); padding:5px 12px; border-radius:999px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.28);">
                 <span class="qb-pulse-dot"></span>
                 <span id="qb-hub-latency">0.18ms NY4 Equinix Co-Location</span>
               </div>
             </div>
           </div>
 
-          <!-- 2x1 POC & QMM Dual Track Cell -->
-          <div class="bento-cell bento-span-2">
-            <div>
-              <span class="mono-tag" style="font-size:0.7rem; color:var(--accent-gold);">TWO TAILORED TRACKS // PM &amp; RESEARCH</span>
-              <h3 style="font-size:1.4rem; margin:10px 0;">Proof of Concept (POC) &amp; Multi-Manager (QMM)</h3>
-              <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6;">
-                Rapidly validate novel trading hypotheses in our zero-friction POC sandbox or scale established systematic portfolios inside our institutional QMM architecture.
-              </p>
+          <!-- Right 5 Columns: Dual Institutional Tracks (POC & QMM) -->
+          <div class="bento-tracks-col">
+            <div class="bento-cell" style="flex:1;">
+              <div>
+                <span class="mono-tag" style="font-size:0.66rem; color:var(--accent-gold);">TRACK 01 // RAPID HYPOTHESIS VALIDATION</span>
+                <h3 style="font-size:1.32rem; margin:8px 0;">Proof of Concept (POC) Program</h3>
+                <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
+                  Test and validate novel quantitative strategies inside our zero-friction research environment with full access to clean tick datasets, HPC clusters, and specialist mentorship.
+                </p>
+              </div>
+              <div style="margin-top:16px;">
+                <a href="proof-of-concept.html" class="btn btn-primary btn-sm">Explore POC Track <i class="fa fa-arrow-right" style="font-size:0.7rem;"></i></a>
+              </div>
             </div>
-            <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
-              <a href="proof-of-concept.html" class="btn btn-primary btn-sm">Explore POC Track</a>
-              <a href="qmm-setup.html" class="btn btn-secondary btn-sm">Explore QMM Setup</a>
+
+            <div class="bento-cell" style="flex:1;">
+              <div>
+                <span class="mono-tag" style="font-size:0.66rem; color:var(--accent-mint);">TRACK 02 // INSTITUTIONAL POD ARCHITECTURE</span>
+                <h3 style="font-size:1.32rem; margin:8px 0;">Quantbot Multi-Manager (QMM)</h3>
+                <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6;">
+                  Scale proven systematic portfolios with dedicated institutional capital, ultra-low-latency global execution, and centralized operational risk management.
+                </p>
+              </div>
+              <div style="margin-top:16px;">
+                <a href="qmm-setup.html" class="btn btn-secondary btn-sm">Explore QMM Setup <i class="fa fa-arrow-right" style="font-size:0.7rem;"></i></a>
+              </div>
             </div>
-          </div>
-
-          <!-- 1x1 Compute Scale Tile -->
-          <div class="bento-cell">
-            <span class="mono-tag" style="font-size:0.68rem; color:var(--text-muted);">DATA &amp; COMPUTE</span>
-            <div style="font-family:var(--font-mono); font-size:2.4rem; font-weight:700; color:var(--accent-mint); margin:8px 0;">24/5</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary);">Round-the-clock systematic execution across global cash equities &amp; futures.</p>
-          </div>
-
-          <!-- 1x1 Heritage Tile -->
-          <div class="bento-cell">
-            <span class="mono-tag" style="font-size:0.68rem; color:var(--text-muted);">HERITAGE</span>
-            <div style="font-family:var(--font-serif); font-style:italic; font-size:2.4rem; font-weight:700; color:var(--accent-gold); margin:8px 0;">Est. 2008</div>
-            <p style="font-size:0.9rem; color:var(--text-secondary);">Built by visionary scientists, mathematicians, and algorithmic pioneers.</p>
           </div>
         </div>
       </div>
@@ -718,21 +850,23 @@
          STAGE 07: CLOSING KEYNOTE — EMPOWERING QUANT TALENT
          ======================================================================= -->
     <section class="p-stage p-stage-finale" id="stage-07" data-stage-num="07" data-stage-label="Join Quantbot">
-      <div class="wrapper p-stage-container" style="text-align:center; max-width:900px; margin:0 auto;">
+      <div class="p-stage-watermark" aria-hidden="true">07</div>
+
+      <div class="wrapper p-stage-container" style="text-align:center; max-width:860px; margin:0 auto;">
         <div class="p-eyebrow" style="justify-content:center;">
-          <span class="p-eyebrow-num">07 // 07</span>
-          <span>Empowering Quant Talent</span>
+          <span class="p-eyebrow-num">STAGE 07 // 07</span>
+          <span>Empowering Quantitative Talent</span>
         </div>
-        <h2 class="p-stage-title" style="font-size:clamp(2.2rem, 4.2vw, 3.4rem);">
+        <h2 class="p-stage-title" style="font-size:clamp(2.4rem, 4.4vw, 3.8rem);">
           Ready to Elevate Your Quantitative <span class="serif-italic text-gold">Career or Strategy?</span>
         </h2>
-        <p class="p-stage-desc" style="margin:0 auto 36px; max-width:760px;">
+        <p class="p-stage-desc" style="margin:0 auto 34px; max-width:700px;">
           Whether you are an experienced Portfolio Manager looking for the QMM multi-manager setup, a quantitative researcher testing new concepts in our POC program, or exceptional engineering talent, Quantbot provides the capital, datasets, and high-performance computing to thrive.
         </p>
-        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
           <a href="proof-of-concept.html" class="btn btn-primary">Explore POC Program</a>
           <a href="qmm-setup.html" class="btn btn-secondary">Learn About QMM Setup</a>
-          <a href="careers.html" class="btn btn-primary" style="background:linear-gradient(135deg, #07439D, #0C2747);">View Careers</a>
+          <a href="careers.html" class="btn btn-secondary">View Open Careers (11 Roles)</a>
         </div>
       </div>
     </section>
@@ -740,19 +874,18 @@
   </main>
 
   <!-- Global Institutional Footer -->
-  <footer class="site-footer" style="margin-top:0;">
-    <div class="footer-overlay"></div>
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="wrapper">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="index.html" class="brand-logo" style="margin-bottom:16px;">
+            <a href="index.html" class="brand-logo" style="margin-bottom:14px;">
               <img src="assets/logo.png" alt="Quantbot Technologies Logo">
             </a>
             <p>Quantbot Technologies, LP is a premier quantitative investment management firm harnessing mathematical models, big data, and machine learning across global markets.</p>
-            <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px;">
-              <a href="mailto:info@quantbot.com" class="text-mint" style="text-decoration:none;"><i class="fa fa-envelope" style="margin-right:8px;"></i> info@quantbot.com</a>
-              <a href="mailto:jobs@quantbot.com" class="text-mint" style="text-decoration:none;"><i class="fa fa-briefcase" style="margin-right:8px;"></i> jobs@quantbot.com</a>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:18px; font-family:var(--font-mono); font-size:0.78rem;">
+              <a href="mailto:info@quantbot.com" class="text-gold" style="text-decoration:none;"><i class="fa fa-envelope" style="margin-right:8px;"></i> info@quantbot.com</a>
+              <a href="mailto:jobs@quantbot.com" class="text-gold" style="text-decoration:none;"><i class="fa fa-briefcase" style="margin-right:8px;"></i> jobs@quantbot.com</a>
             </div>
           </div>
 
@@ -778,11 +911,11 @@
 
           <div>
             <h4 class="footer-col-title">Global Presence</h4>
-            <ul class="footer-links" style="font-size:0.9rem;">
-              <li><strong>New York:</strong> 505 Fifth Ave, 6th Fl</li>
-              <li><strong>London:</strong> 125 Old Broad St, 26th Fl</li>
-              <li><strong>Hong Kong:</strong> 4-4A Des Voeux Road Central</li>
-              <li><strong>Miami:</strong> 1111 Brickell Avenue</li>
+            <ul class="footer-links" style="font-size:0.88rem; color:var(--text-secondary);">
+              <li><strong class="text-gold">New York:</strong> 505 Fifth Ave, 6th Fl</li>
+              <li><strong class="text-gold">London:</strong> 125 Old Broad St, 26th Fl</li>
+              <li><strong class="text-gold">Hong Kong:</strong> 4-4A Des Voeux Road Central</li>
+              <li><strong class="text-gold">Miami:</strong> 1111 Brickell Avenue</li>
             </ul>
           </div>
         </div>
@@ -813,12 +946,17 @@
     </div>
   </div>
 
-  <!-- GSAP 3 + ScrollTrigger + Lenis Smooth Scroll Frameworks -->
+  <!-- 3-Layer Antigravity Pipeline Dependencies: Three.js + Vanta.js + GSAP 3 + ScrollTrigger + Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-  <!-- Quantbot Core & Choreography Engines -->
+  <!-- Quantbot Core & Presentation Deck Engines -->
   <script src="js/data.js"></script>
   <script src="js/canvas-bg.js"></script>
   <script src="js/components.js"></script>

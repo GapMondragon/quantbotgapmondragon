@@ -1319,16 +1319,16 @@ function initGlobalHubMatrix(Sound) {
   });
 }
 
-// 13. Fluid 7-Stage Presentation Deck Engine (Lenis + GSAP ScrollTrigger + Native Scrubbing)
+// 13. Fluid 7-Stage Presentation Deck Engine (Lenis + GSAP ScrollTrigger + Pinning Scrub)
 function initPresentationDeckEngine(Sound) {
-  // Initialize Lenis Smooth Scroll globally if available
+  // Initialize Lenis Smooth Scroll globally
   let lenis = null;
   if (typeof window.Lenis !== 'undefined') {
     try {
       lenis = new window.Lenis({
-        duration: 1.12,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lerp: 0.08,
         smoothWheel: true,
+        syncTouch: false,
       });
 
       if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
@@ -1369,10 +1369,10 @@ function initPresentationDeckEngine(Sound) {
   }
 
   const PILLAR_TITLES = [
-    'Pillar 01: Global Footprint',
-    'Pillar 02: Quantitative Methodologies',
-    'Pillar 03: Streamlined Business Process',
-    'Pillar 04: Research & Infrastructure',
+    'Pillar I: Global Footprint',
+    'Pillar II: Quantitative Methodologies',
+    'Pillar III: Streamlined Business Process',
+    'Pillar IV: Research & Infrastructure',
   ];
 
   const PHASE_TITLES = [
@@ -1397,7 +1397,7 @@ function initPresentationDeckEngine(Sound) {
   let currentPhaseIdx = 0;
   let autoPlayTimer = null;
 
-  // Create Single Sleek Bottom-Center Presentation Stage HUD
+  // Single Floating Bottom-Center Presentation Stage HUD
   const hud = document.createElement('nav');
   hud.className = 'p-deck-hud';
   hud.setAttribute('aria-label', 'Presentation Stage Director');
@@ -1414,7 +1414,7 @@ function initPresentationDeckEngine(Sound) {
     </div>
     <span class="p-hud-divider"></span>
     <button type="button" class="p-hud-next-btn" id="p-hud-next" title="Scroll or Click to Present Next">
-      <span id="p-hud-next-label">NEXT: PILLAR 01 — GLOBAL FOOTPRINT ↓</span>
+      <span id="p-hud-next-label">NEXT: PILLAR I — GLOBAL FOOTPRINT ↓</span>
     </button>
     <button type="button" class="p-hud-icon-btn" id="p-hud-autoplay" title="Auto-Present Keynote Deck (Shortcut: P)">
       <i class="fa fa-play"></i>
@@ -1429,23 +1429,33 @@ function initPresentationDeckEngine(Sound) {
 
   function smoothScrollToY(targetY) {
     if (lenis) {
-      lenis.scrollTo(targetY, { duration: 1.05 });
+      lenis.scrollTo(targetY, { duration: 1.0 });
     } else {
       window.scrollTo({ top: targetY, behavior: 'smooth' });
     }
+  }
+
+  function getScrollTriggerFor(element) {
+    if (typeof window.ScrollTrigger === 'undefined') return null;
+    return window.ScrollTrigger.getAll().find((st) => st.trigger === element);
   }
 
   function scrollToStage(stageIdx, subRatio = 0) {
     const clamped = Math.max(0, Math.min(STAGE_META.length - 1, stageIdx));
     const sec = STAGE_META[clamped].el;
     if (!sec) return;
-    const headerOffset = 80;
-    const top = sec.offsetTop - headerOffset;
-    const scrollable = Math.max(0, sec.offsetHeight - window.innerHeight);
-    smoothScrollToY(top + scrollable * subRatio);
+
+    const st = getScrollTriggerFor(sec);
+    if (st) {
+      const targetY = st.start + (st.end - st.start) * subRatio;
+      smoothScrollToY(targetY);
+    } else {
+      const top = sec.getBoundingClientRect().top + window.scrollY - 70;
+      smoothScrollToY(top);
+    }
   }
 
-  // Stage 02 Pillar state updater
+  // Stage 02 Pillar Card Stack State Updater
   const pillarTabs = Array.from(document.querySelectorAll('.p-pillar-tab'));
   const pillarCards = Array.from(document.querySelectorAll('.p-deck-card'));
 
@@ -1453,7 +1463,7 @@ function initPresentationDeckEngine(Sound) {
     const clamped = Math.max(0, Math.min(pillarCards.length - 1, idx));
     if (clamped !== currentPillarIdx) {
       currentPillarIdx = clamped;
-      Sound.playTick(1220 + clamped * 90, 0.02, 0.02);
+      Sound.playTick(1220 + clamped * 80, 0.02, 0.02);
     }
     pillarTabs.forEach((tab, i) => tab.classList.toggle('is-active', i === clamped));
     pillarCards.forEach((card, i) => {
@@ -1467,27 +1477,26 @@ function initPresentationDeckEngine(Sound) {
     tab.addEventListener('click', () => {
       setActivePillar(idx);
       const sec2 = document.getElementById('stage-02');
-      if (sec2 && window.innerWidth > 1120) {
-        const scrollable = Math.max(0, sec2.offsetHeight - window.innerHeight);
-        const targetY = sec2.offsetTop - 70 + scrollable * ((idx + 0.2) / pillarCards.length);
-        smoothScrollToY(targetY);
+      if (sec2) {
+        scrollToStage(1, (idx + 0.15) / Math.max(1, pillarCards.length));
       }
     });
   });
 
-  // Stage 03 Pipeline state updater
+  // Stage 03 Pipeline State Updater
   const pipelineTrack = document.getElementById('p-pipeline-track');
   const phaseCards = Array.from(document.querySelectorAll('.p-phase-card'));
+  const pipeNodes = Array.from(document.querySelectorAll('.p-pipe-node-btn'));
   const pipeCodeEl = document.getElementById('p-pipe-active-code');
-  const pipeFillEl = document.getElementById('p-pipe-progress-fill');
 
   function updatePipelineStage(progress) {
     const p = Math.min(1, Math.max(0, progress));
-    const idx = Math.min(phaseCards.length - 1, Math.max(0, Math.floor(p * phaseCards.length)));
+    const count = Math.max(1, phaseCards.length);
+    const idx = Math.min(count - 1, Math.max(0, Math.floor(p * count)));
 
     if (idx !== currentPhaseIdx) {
       currentPhaseIdx = idx;
-      Sound.playTick(1160 + idx * 75, 0.02, 0.02);
+      Sound.playTick(1180 + idx * 70, 0.02, 0.02);
     }
 
     phaseCards.forEach((card, i) => {
@@ -1495,17 +1504,19 @@ function initPresentationDeckEngine(Sound) {
       card.classList.toggle('is-complete', i < idx);
     });
 
+    pipeNodes.forEach((node, i) => {
+      node.classList.toggle('is-active', i === idx);
+      node.classList.toggle('is-complete', i < idx);
+    });
+
     if (pipeCodeEl && PHASE_TITLES[idx]) {
       pipeCodeEl.textContent = PHASE_TITLES[idx];
-    }
-    if (pipeFillEl) {
-      pipeFillEl.style.width = `${Math.max(16.6, p * 100).toFixed(1)}%`;
     }
 
     if (pipelineTrack && pipelineTrack.parentElement && window.innerWidth > 1120) {
       const viewportW = pipelineTrack.parentElement.clientWidth;
       const trackW = pipelineTrack.scrollWidth;
-      const maxShift = Math.max(0, trackW - viewportW + 96);
+      const maxShift = Math.max(0, trackW - viewportW + 64);
       const shiftX = p * maxShift;
       pipelineTrack.style.transform = `translate3d(${-shiftX.toFixed(1)}px, 0, 0)`;
     } else if (pipelineTrack) {
@@ -1513,15 +1524,20 @@ function initPresentationDeckEngine(Sound) {
     }
   }
 
+  pipeNodes.forEach((node, idx) => {
+    node.addEventListener('click', () => {
+      const sec3 = document.getElementById('stage-03');
+      if (sec3) {
+        scrollToStage(2, (idx + 0.1) / Math.max(1, phaseCards.length));
+      }
+    });
+  });
+
   phaseCards.forEach((card, idx) => {
     card.addEventListener('click', () => {
       const sec3 = document.getElementById('stage-03');
-      if (sec3 && window.innerWidth > 1120) {
-        const scrollable = Math.max(0, sec3.offsetHeight - window.innerHeight);
-        const targetY = sec3.offsetTop - 70 + scrollable * ((idx + 0.15) / phaseCards.length);
-        smoothScrollToY(targetY);
-      } else {
-        updatePipelineStage((idx + 0.1) / phaseCards.length);
+      if (sec3) {
+        scrollToStage(2, (idx + 0.1) / Math.max(1, phaseCards.length));
       }
     });
   });
@@ -1541,13 +1557,13 @@ function initPresentationDeckEngine(Sound) {
     }
     if (currentStageIdx === 1) {
       if (currentPillarIdx + 1 < PILLAR_TITLES.length) {
-        return `SCROLL NEXT: ${PILLAR_TITLES[currentPillarIdx + 1].toUpperCase()} ↓`;
+        return `SCROLL: ${PILLAR_TITLES[currentPillarIdx + 1].toUpperCase()} ↓`;
       }
       return 'NEXT: STAGE 03 — STRATEGY PIPELINE ↓';
     }
     if (currentStageIdx === 2) {
       if (currentPhaseIdx + 1 < PHASE_TITLES.length) {
-        return `SCROLL NEXT: ${PHASE_TITLES[currentPhaseIdx + 1]} ↓`;
+        return `SCROLL: ${PHASE_TITLES[currentPhaseIdx + 1]} ↓`;
       }
       return 'NEXT: STAGE 04 — OUR STORY ↓';
     }
@@ -1560,9 +1576,9 @@ function initPresentationDeckEngine(Sound) {
 
   function advancePresentation() {
     if (currentStageIdx === 1 && currentPillarIdx + 1 < PILLAR_TITLES.length && window.innerWidth > 1120) {
-      scrollToStage(1, (currentPillarIdx + 1.2) / PILLAR_TITLES.length);
+      scrollToStage(1, (currentPillarIdx + 1.1) / PILLAR_TITLES.length);
     } else if (currentStageIdx === 2 && currentPhaseIdx + 1 < PHASE_TITLES.length && window.innerWidth > 1120) {
-      scrollToStage(2, (currentPhaseIdx + 1.15) / PHASE_TITLES.length);
+      scrollToStage(2, (currentPhaseIdx + 1.1) / PHASE_TITLES.length);
     } else if (currentStageIdx + 1 < STAGE_META.length) {
       scrollToStage(currentStageIdx + 1, 0);
     } else {
@@ -1570,46 +1586,15 @@ function initPresentationDeckEngine(Sound) {
     }
   }
 
-  // Main Scroll Evaluation Loop
+  // Active Stage Detection
   function onDeckScroll() {
     const vh = window.innerHeight;
     let detectedStage = 0;
 
     stages.forEach((sec, idx) => {
       const rect = sec.getBoundingClientRect();
-      if (rect.top <= vh * 0.45 && rect.bottom >= vh * 0.35) {
+      if (rect.top <= vh * 0.5 && rect.bottom >= vh * 0.25) {
         detectedStage = idx;
-      }
-
-      // Stage 02: Pinned 4-Slide Pillar Stack
-      if (sec.id === 'stage-02' && window.innerWidth > 1120) {
-        const scrollable = Math.max(1, rect.height - vh * 0.9);
-        const rawP = (vh * 0.18 - rect.top) / scrollable;
-        const p = Math.min(1, Math.max(0, rawP));
-        const pillarIdx = Math.min(3, Math.max(0, Math.floor(p * 4)));
-        setActivePillar(pillarIdx);
-      }
-
-      // Stage 03: Pinned Horizontal 6-Phase Pipeline Conveyor
-      if (sec.id === 'stage-03') {
-        const scrollable = Math.max(1, rect.height - vh * 0.9);
-        const rawP = (vh * 0.18 - rect.top) / scrollable;
-        const p = Math.min(1, Math.max(0, rawP));
-        updatePipelineStage(p);
-      }
-
-      // Stage 04: Word-by-word Founding Quote Illumination & Story Card Spotlight
-      if (sec.id === 'stage-04') {
-        const rawP = (vh * 0.78 - rect.top) / Math.max(1, rect.height * 0.85);
-        const p = Math.min(1, Math.max(0, rawP));
-        if (quoteWordEls.length) {
-          const litCount = Math.ceil(p * quoteWordEls.length);
-          quoteWordEls.forEach((wEl, i) => wEl.classList.toggle('is-word-lit', i <= litCount));
-        }
-        if (storyCards.length) {
-          const sIdx = Math.min(storyCards.length - 1, Math.max(0, Math.floor(p * storyCards.length)));
-          storyCards.forEach((c, i) => c.classList.toggle('is-active', i === sIdx));
-        }
       }
     });
 
@@ -1654,7 +1639,7 @@ function initPresentationDeckEngine(Sound) {
       if (autoPlayBtn) autoPlayBtn.innerHTML = '<i class="fa fa-pause"></i>';
       autoPlayTimer = setInterval(() => {
         advancePresentation();
-      }, 3200);
+      }, 3400);
     }
   }
 
@@ -1673,40 +1658,99 @@ function initPresentationDeckEngine(Sound) {
     });
   });
 
-  // GSAP 3 + ScrollTrigger Stage Entrance & Parallax Choreography
+  // GSAP 3 + ScrollTrigger Pinned Narrative Choreography
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
 
-    // Stage 01 Opening Keynote Entrance Timeline
+    // Stage 01 Entrance Timeline
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTl
       .from('.p-stage-hero .p-eyebrow', { y: 20, opacity: 0, duration: 0.7 })
-      .from('.p-hero-title .p-line', { y: 36, opacity: 0, duration: 0.85, stagger: 0.12 }, '-=0.45')
-      .from('.p-hero-lead', { y: 24, opacity: 0, duration: 0.75 }, '-=0.55')
-      .from('.p-hero-actions .btn', { y: 18, opacity: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
-      .from('.p-hero-plinth .p-plinth-item', { y: 24, opacity: 0, duration: 0.65, stagger: 0.08 }, '-=0.45');
+      .from('.p-hero-title .p-line', { y: 34, opacity: 0, duration: 0.8, stagger: 0.12 }, '-=0.45')
+      .from('.p-hero-lead', { y: 22, opacity: 0, duration: 0.7 }, '-=0.55')
+      .from('.p-hero-actions .btn', { y: 16, opacity: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
+      .from('.p-hero-monolith', { y: 28, opacity: 0, duration: 0.75 }, '-=0.6')
+      .from('.p-hero-plinth .p-plinth-item', { y: 20, opacity: 0, duration: 0.6, stagger: 0.07 }, '-=0.45');
 
-    // Stage 04, 05, 06, 07 ScrollTrigger Reveal Animations
-    ['#stage-04', '#stage-05', '#stage-06', '#stage-07'].forEach((sel) => {
+    // Stage 02: Pinned 4-Pillar Deck
+    const sec2 = document.getElementById('stage-02');
+    if (sec2 && window.innerWidth > 1120) {
+      ScrollTrigger.create({
+        trigger: sec2,
+        start: 'top top',
+        end: '+=260%',
+        pin: true,
+        scrub: 0.65,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const idx = Math.min(3, Math.max(0, Math.floor(self.progress * 4)));
+          setActivePillar(idx);
+        },
+      });
+    }
+
+    // Stage 03: Pinned 6-Phase Pipeline
+    const sec3 = document.getElementById('stage-03');
+    if (sec3 && window.innerWidth > 1120) {
+      ScrollTrigger.create({
+        trigger: sec3,
+        start: 'top top',
+        end: '+=300%',
+        pin: true,
+        scrub: 0.65,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          updatePipelineStage(self.progress);
+        },
+      });
+    }
+
+    // Stage 04: Pinned Founding Manifesto & Portrait Gallery
+    const sec4 = document.getElementById('stage-04');
+    if (sec4 && window.innerWidth > 1120) {
+      ScrollTrigger.create({
+        trigger: sec4,
+        start: 'top top',
+        end: '+=180%',
+        pin: true,
+        scrub: 0.65,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const p = self.progress;
+          if (quoteWordEls.length) {
+            const litCount = Math.ceil(p * quoteWordEls.length);
+            quoteWordEls.forEach((wEl, i) => wEl.classList.toggle('is-word-lit', i <= litCount));
+          }
+          if (storyCards.length) {
+            const sIdx = Math.min(storyCards.length - 1, Math.max(0, Math.floor(p * storyCards.length)));
+            storyCards.forEach((c, i) => c.classList.toggle('is-active', i === sIdx));
+          }
+        },
+      });
+    }
+
+    // Stage 05, 06, 07 Reveals
+    ['#stage-05', '#stage-06', '#stage-07'].forEach((sel) => {
       const sec = document.querySelector(sel);
       if (!sec) return;
-      const elems = sec.querySelectorAll('.p-eyebrow, .p-stage-title, .p-stage-desc, .quantlab-shell, .bento-cell, .p-story-card');
+      const elems = sec.querySelectorAll('.p-eyebrow, .p-stage-title, .p-stage-desc, .quantlab-shell, .bento-cell');
       gsap.from(elems, {
         scrollTrigger: {
           trigger: sec,
           start: 'top 78%',
           toggleActions: 'play none none reverse',
         },
-        y: 32,
+        y: 28,
         opacity: 0,
-        duration: 0.75,
-        stagger: 0.07,
+        duration: 0.7,
+        stagger: 0.08,
         ease: 'power3.out',
       });
     });
   }
 
-  // Keyboard shortcuts for Presentation Deck (PageDown, PageUp, ArrowRight, ArrowLeft, P)
+  // Keyboard Navigation for Presentation Deck
   window.addEventListener('keydown', (e) => {
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
@@ -1716,16 +1760,16 @@ function initPresentationDeckEngine(Sound) {
     if (e.key.toLowerCase() === 'p') {
       e.preventDefault();
       toggleAutoPlay();
-    } else if (e.key === 'PageDown' || e.key === 'ArrowRight') {
+    } else if (e.key === 'PageDown' || e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       advancePresentation();
-    } else if (e.key === 'PageUp' || e.key === 'ArrowLeft') {
+    } else if (e.key === 'PageUp' || e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
       scrollToStage(Math.max(0, currentStageIdx - 1), 0);
     }
   });
 
-  // Initial state setup
+  // Initial State Setup
   setActivePillar(0);
   updatePipelineStage(0);
   onDeckScroll();

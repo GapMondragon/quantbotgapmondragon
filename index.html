@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quantbot Technologies, LP | Official Institutional Platform</title>
-  <meta name="description" content="Quantbot Technologies, LP — Founded in 2008 with over 80 years of leadership experience. Trading 24/7 across global cash equities and electronic futures.">
+  <meta name="description" content="Quantbot Technologies, LP is a systematic quantitative asset management firm trading 24/7 across global cash equities and electronic futures. Founded in 2008.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,919 +14,1078 @@
 <body class="spatial-app-body">
 
   <!-- =======================================================================
-       1. VIRTUAL SCROLL TRACK (Native scroll height & URL anchor targets)
+       AMBIENT OBSIDIAN MESH BACKDROP
        ======================================================================= -->
-  <div id="scroll-track" style="height: 600vh; width: 100%; position: relative; pointer-events: none;">
-    <div id="hero" class="virtual-anchor" style="position: absolute; top: 0vh;"></div>
-    <div id="about" class="virtual-anchor" style="position: absolute; top: 85vh;"></div>
-    <div id="differentiators" class="virtual-anchor" style="position: absolute; top: 120vh;"></div>
-    <div id="process" class="virtual-anchor" style="position: absolute; top: 180vh;"></div>
-    
-    <!-- 6-Stage Quantitative Research Lifecycle Anchors -->
-    <div id="stage-01" class="virtual-anchor stage-anchor" style="position: absolute; top: 180vh;"></div>
-    <div id="stage-02" class="virtual-anchor stage-anchor" style="position: absolute; top: 230vh;"></div>
-    <div id="stage-03" class="virtual-anchor stage-anchor" style="position: absolute; top: 280vh;"></div>
-    <div id="stage-04" class="virtual-anchor stage-anchor" style="position: absolute; top: 330vh;"></div>
-    <div id="stage-05" class="virtual-anchor stage-anchor" style="position: absolute; top: 380vh;"></div>
-    <div id="stage-06" class="virtual-anchor stage-anchor" style="position: absolute; top: 430vh;"></div>
-    
-    <!-- Signature Programs & Desks Anchors -->
-    <div id="programs" class="virtual-anchor" style="position: absolute; top: 480vh;"></div>
-    <div id="qmm" class="virtual-anchor" style="position: absolute; top: 480vh;"></div>
-    <div id="poc" class="virtual-anchor" style="position: absolute; top: 510vh;"></div>
-    <div id="leadership" class="virtual-anchor" style="position: absolute; top: 540vh;"></div>
-    <div id="offices" class="virtual-anchor" style="position: absolute; top: 570vh;"></div>
-    <div id="contact" class="virtual-anchor" style="position: absolute; top: 595vh;"></div>
+  <div id="ambient-mesh-canvas" aria-hidden="true">
+    <div class="mesh-orb orb-cobalt"></div>
+    <div class="mesh-orb orb-cyan"></div>
+    <div class="mesh-orb orb-emerald"></div>
+    <div class="mesh-orb orb-indigo"></div>
   </div>
 
-
   <!-- =======================================================================
-       2. FIXED SPATIAL CAMERA VIEWPORT (100vw x 100vh Locked Stage)
+       1. TOP FLOATING iOS DYNAMIC ISLAND NAVBAR
        ======================================================================= -->
-  <main id="spatial-viewport">
+  <header id="dynamic-island-nav">
+    <div class="island-capsule">
+      
+      <!-- Brand Identity -->
+      <a href="#hero" class="island-brand-unit" aria-label="Quantbot Home">
+        <img src="assets/logo.png" alt="Quantbot Technologies Logo" class="island-logo">
+        <span class="island-title font-mono">Quantbot Technologies, LP</span>
+      </a>
 
-    <!-- -------------------------------------------------------------------
-         PLANE 0: DEEP SPACE BACKDROP & OPTICAL LASER HORIZON
-         ------------------------------------------------------------------- -->
-    <div id="plane-0-deepspace" aria-hidden="true">
-      <!-- Ambient Nebulae -->
-      <div class="ambient-glow orb-cobalt"></div>
-      <div class="ambient-glow orb-cyan"></div>
-      <div class="ambient-glow orb-indigo"></div>
-
-      <!-- Optical Laser Horizon Line at 50vh -->
-      <div id="horizon-laser-system">
-        <div id="horizon-ambient-bloom"></div>
-        <div id="horizon-laser-line"></div>
+      <!-- Telemetry Live Pulse -->
+      <div class="island-pulse-pill font-mono">
+        <span class="engine-pulse-dot"></span>
+        <span class="pulse-text">24/7 GLOBAL EXECUTION</span>
       </div>
 
-      <!-- 3D Perspective Vector Floor Grid (Shifts in Z-space) -->
-      <div id="perspective-grid-floor"></div>
+      <!-- Segmented Navigation Links -->
+      <nav class="island-nav-links font-mono" aria-label="Main Navigation">
+        <div id="island-glider-pill"></div>
+        <a href="#about" class="island-link is-active" data-nav="about">About</a>
+        <a href="#process" class="island-link" data-nav="process">Process</a>
+        <a href="#programs" class="island-link" data-nav="programs">Programs</a>
+        <a href="#leadership" class="island-link" data-nav="leadership">Leadership</a>
+        <a href="#offices" class="island-link" data-nav="offices">Offices</a>
+      </nav>
+
+      <!-- Tactile Contact Pill -->
+      <div class="island-action-wrap">
+        <button type="button" id="btn-island-contact" class="island-contact-pill font-mono">
+          <span>Contact Us</span>
+          <i class="fa fa-envelope"></i>
+        </button>
+      </div>
+
     </div>
+  </header>
 
+  <!-- =======================================================================
+       MAIN SPATIAL RUNWAY
+       ======================================================================= -->
+  <main id="spatial-runway">
 
-    <!-- -------------------------------------------------------------------
-         PLANE 1: REFRACTION WATERMARK LAYER (Behind Frosted Glass)
-         ------------------------------------------------------------------- -->
-    <div id="plane-1-watermark" aria-hidden="true">
-      <div id="refraction-watermark-text" class="font-mono">QUANTBOT // 2008</div>
-    </div>
-
-
-    <!-- -------------------------------------------------------------------
-         PLANE 2: PRIMARY SPATIAL STAGE (Dynamic In-Place Transitions)
-         ------------------------------------------------------------------- -->
-    <div id="plane-2-primary-stage">
-
-      <!-- SCENE 0: HERO — HERITAGE, FORMULA & IDEA-TO-ALPHA PARADIGM -->
-      <section id="scene-hero" class="spatial-scene scene-active">
-        <div class="hero-content-wrap">
-          
+    <!-- =====================================================================
+         SECTION 1: HERO (WITH MULTI-LAYER PARALLAX)
+         ===================================================================== -->
+    <section id="hero" class="spatial-hero-section">
+      <div class="hero-container">
+        
+        <!-- Centerpiece Header Block -->
+        <div class="hero-header-block">
           <div class="hero-eyebrow-pill font-mono">
             <span class="pulse-indicator"></span>
-            <span>QUANTBOT TECHNOLOGIES, LP &middot; FOUNDED 2008</span>
+            <span>QUANTBOT TECHNOLOGIES, LP &middot; EST. 2008</span>
           </div>
 
           <h1 class="hero-headline text-metallic">
-            Redefining Quantitative Finance.<br>
-            Taking a Quantum Leap in Investing.
+            Redefining Quantitative Finance.<br>Taking a Quantum Leap in Investing.
           </h1>
 
-          <p class="hero-lead-narrative">
-            Founded during the 2008 financial crisis with over 80 years of collective leadership experience, rooted in Merrill Lynch Electronic Product Development. We are a pure research and technology company trading 24/7 across global cash equities and electronic futures.
+          <p class="hero-subheadline">
+            Founded during the 2008 financial crisis with over 80 years of collective leadership experience. A research and technology company trading 24/7 across global cash equities and electronic futures.
           </p>
 
-          <!-- Specular Glass Operating Formula -->
-          <div class="formula-specular-container glass-panel-specular font-mono">
-            <span class="formula-block formula-primary">DATA</span>
-            <span class="formula-operator">+</span>
-            <span class="formula-block formula-primary">INTELLIGENCE</span>
-            <span class="formula-operator">+</span>
-            <span class="formula-block formula-primary">COMPUTE</span>
-            <span class="formula-equal">=</span>
-            <span class="formula-result text-emerald">P&amp;L</span>
-          </div>
-
-          <!-- Idea-to-Alpha Paradigm: CEO Paul White's Operational Thesis -->
-          <div class="idea-to-alpha-bar glass-panel font-mono">
-            <div class="ita-col">
-              <span class="ita-tag">DATA ONBOARDING ACCELERATION</span>
-              <div class="ita-metric">
-                <span class="ita-old">30 Days</span>
-                <i class="fa fa-arrow-right text-emerald"></i>
-                <span class="ita-new text-emerald">24 Hours</span>
-              </div>
-            </div>
-            <div class="ita-divider"></div>
-            <div class="ita-col">
-              <span class="ita-tag">ACADEMIC PAPER &amp; ALPHA ANALYSIS</span>
-              <div class="ita-metric">
-                <span class="ita-old">Months</span>
-                <i class="fa fa-arrow-right text-emerald"></i>
-                <span class="ita-new text-emerald">5 Hours</span>
-              </div>
-            </div>
-            <div class="ita-divider"></div>
-            <div class="ita-col ita-highlight">
-              <span class="ita-tag">PARADIGM</span>
-              <strong class="text-white">People + AI &rarr; Ideas</strong>
-            </div>
+          <!-- Specular Formula Pill -->
+          <div class="formula-specular-pill glass-panel-specular font-mono">
+            <span class="formula-word">DATA</span>
+            <span class="formula-op">+</span>
+            <span class="formula-word">INTELLIGENCE</span>
+            <span class="formula-op">+</span>
+            <span class="formula-word">COMPUTE</span>
+            <span class="formula-eq">=</span>
+            <span class="formula-res text-emerald">P&amp;L</span>
           </div>
 
           <!-- Primary CTAs -->
-          <div class="hero-action-group">
-            <a href="#stage-01" class="btn-apple-capsule btn-primary-capsule">
+          <div class="hero-cta-group">
+            <a href="#process" class="btn-apple-capsule btn-primary-capsule">
               <span>Explore Research Lifecycle</span>
               <i class="fa fa-arrow-down"></i>
             </a>
-            <a href="#qmm" class="btn-apple-capsule btn-secondary-capsule">
+            <a href="#programs" class="btn-apple-capsule btn-secondary-capsule">
               <span>Partner Programs (QMM / POC)</span>
               <i class="fa fa-chevron-right"></i>
             </a>
           </div>
-
         </div>
-      </section>
 
-
-      <!-- SCENE 1: THE 4 CORPORATE DIFFERENTIATORS (VISIONOS BENTO GRID) -->
-      <section id="scene-differentiators" class="spatial-scene">
-        <div class="bento-container">
-          <div class="scene-header-center">
-            <span class="scene-tag font-mono text-cyan">INSTITUTIONAL CORE</span>
-            <h2 class="scene-title text-metallic">The 4 Corporate Differentiators</h2>
-            <p class="scene-subtitle">Architected for resilience, transparency, and continuous global alpha generation.</p>
-          </div>
-
-          <div class="bento-grid-4">
-            <!-- 1. Global Footprint -->
-            <div class="bento-box glass-panel-specular" data-tilt>
-              <div class="bento-box-header">
-                <span class="bento-num font-mono text-cobalt">01</span>
-                <span class="bento-badge font-mono">24/7 ACTIVE</span>
-              </div>
-              <h3 class="bento-box-title">Global Footprint</h3>
-              <p class="bento-box-text">
-                Uninterrupted 24/7 liquidity participation across North American, European, and Asian cash equities and electronic futures markets.
-              </p>
-              <div class="bento-box-footer font-mono">
-                <span>NEW YORK &middot; LONDON &middot; HONG KONG</span>
-              </div>
+        <!-- 3D Tilted Glass Command Display & Floating Parallax Differentiators -->
+        <div class="hero-3d-stage" id="hero-3d-stage">
+          
+          <!-- Widget 1: Top-Left — Global Footprint (Speed 0.25x) -->
+          <div class="parallax-widget widget-top-left glass-panel-specular" data-speed="0.25">
+            <div class="widget-head">
+              <span class="widget-tag font-mono">01 &middot; GLOBAL FOOTPRINT</span>
+              <span class="widget-badge font-mono text-cobalt"><i class="fa fa-globe"></i> 24/7 ACTIVE</span>
             </div>
-
-            <!-- 2. Quantitative Methodologies -->
-            <div class="bento-box glass-panel-specular" data-tilt>
-              <div class="bento-box-header">
-                <span class="bento-num font-mono text-emerald">02</span>
-                <span class="bento-badge font-mono text-emerald">AUTONOMOUS</span>
-              </div>
-              <h3 class="bento-box-title">Quantitative Methodologies</h3>
-              <p class="bento-box-text">
-                End-to-end algorithmic execution with zero discretionary or manual intervention in live production.
-              </p>
-              <div class="bento-box-footer font-mono">
-                <span>RIGOROUS BACKTESTS &middot; DETERMINISTIC GATES</span>
-              </div>
-            </div>
-
-            <!-- 3. Streamlined Business Process -->
-            <div class="bento-box glass-panel-specular" data-tilt>
-              <div class="bento-box-header">
-                <span class="bento-num font-mono text-indigo">03</span>
-                <span class="bento-badge font-mono text-indigo">CONTROLLED</span>
-              </div>
-              <h3 class="bento-box-title">Streamlined Business Process</h3>
-              <p class="bento-box-text">
-                Fast-track validation for systematic alphas, fortified by multi-layer operational, liquidity, and investment risk guardrails.
-              </p>
-              <div class="bento-box-footer font-mono">
-                <span>MULTI-LAYER RISK INTERLOCKS</span>
-              </div>
-            </div>
-
-            <!-- 4. Research & Infrastructure -->
-            <div class="bento-box glass-panel-specular" data-tilt>
-              <div class="bento-box-header">
-                <span class="bento-num font-mono text-cyan">04</span>
-                <span class="bento-badge font-mono text-cyan">PETABYTE SCALE</span>
-              </div>
-              <h3 class="bento-box-title">Research &amp; Infrastructure</h3>
-              <p class="bento-box-text">
-                State-of-the-art machine learning research workflows, petabyte-scale curated market databases, and elastic on-demand cloud compute.
-              </p>
-              <div class="bento-box-footer font-mono">
-                <span>HPC LINUX CLUSTER &middot; CURATED DATA MART</span>
+            <div class="widget-body">
+              <img src="assets/global_footprint.png" alt="Global Footprint" class="widget-icon-img" onerror="this.style.display='none'">
+              <div>
+                <h4 class="widget-title">Global Footprint</h4>
+                <p class="widget-desc">Consistent liquidity across North American, European, and Asian cash equities &amp; electronic futures.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
+          <!-- Widget 2: Top-Right — Quantitative Methodologies (Speed 0.50x) -->
+          <div class="parallax-widget widget-top-right glass-panel-specular" data-speed="0.50">
+            <div class="widget-head">
+              <span class="widget-tag font-mono">02 &middot; METHODOLOGIES</span>
+              <span class="widget-badge font-mono text-emerald"><i class="fa fa-microchip"></i> DETERMINISTIC</span>
+            </div>
+            <div class="widget-body">
+              <img src="assets/quant_methodologies.png" alt="Quantitative Methodologies" class="widget-icon-img" onerror="this.style.display='none'">
+              <div>
+                <h4 class="widget-title">Quant Methodologies</h4>
+                <p class="widget-desc">End-to-end algorithmic execution eliminating discretionary manual intervention in production.</p>
+              </div>
+            </div>
+          </div>
 
-      <!-- SCENE 2: THE 6-STAGE QUANTITATIVE RESEARCH LIFECYCLE (HORIZON-LOCKED) -->
-      <section id="scene-pipeline" class="spatial-scene">
-        
-        <!-- Expanding Spatial Portal Frame (Optical Zoom) -->
-        <div id="spatial-portal-frame">
-          <div id="portal-inner-world">
+          <!-- Widget 3: Bottom-Left — Streamlined Business Process (Speed 0.85x) -->
+          <div class="parallax-widget widget-bottom-left glass-panel-specular" data-speed="0.85">
+            <div class="widget-head">
+              <span class="widget-tag font-mono">03 &middot; PROCESS</span>
+              <span class="widget-badge font-mono text-indigo"><i class="fa fa-shield-halved"></i> HARD-LOCKED</span>
+            </div>
+            <div class="widget-body">
+              <img src="assets/streamlined_process.png" alt="Streamlined Business Process" class="widget-icon-img" onerror="this.style.display='none'">
+              <div>
+                <h4 class="widget-title">Streamlined Process</h4>
+                <p class="widget-desc">Fast-track hypothesis assessment protected by rigorous operational, liquidity, and investment risk guardrails.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Widget 4: Bottom-Right — Research & Infrastructure (Speed 1.20x) -->
+          <div class="parallax-widget widget-bottom-right glass-panel-specular" data-speed="1.20">
+            <div class="widget-head">
+              <span class="widget-tag font-mono">04 &middot; RESEARCH &amp; HPC</span>
+              <span class="widget-badge font-mono text-cyan"><i class="fa fa-server"></i> PETABYTE</span>
+            </div>
+            <div class="widget-body">
+              <img src="assets/research_tech.png" alt="Research & Technology" class="widget-icon-img" onerror="this.style.display='none'">
+              <div>
+                <h4 class="widget-title">Research &amp; Compute</h4>
+                <p class="widget-desc">Machine learning research workflows, curated alternative datasets, and high-performance cloud compute on demand.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Centerpiece 3D Glass Command Display -->
+          <div class="command-display-board glass-panel-specular" id="hero-command-board">
             
-            <div class="pipeline-split-layout">
-              
-              <!-- Left Column: Stage Narrative & Interactive Stage Scrub Bar -->
-              <div class="pipeline-left-col">
-                <div class="stage-eyebrow-pill font-mono">
-                  <span id="stage-eyebrow-num" class="stage-tag-pill">STAGE 01 // 06</span>
-                  <span id="stage-eyebrow-phase" class="text-silver">RESEARCH LIFECYCLE</span>
+            <div class="command-topbar">
+              <div class="command-window-dots">
+                <span class="dot-mac dot-r"></span>
+                <span class="dot-mac dot-y"></span>
+                <span class="dot-mac dot-g"></span>
+                <span class="command-board-title font-mono">QUANTBOT_NETWORK // 24_7_GLOBAL_MARKET_EXECUTION</span>
+              </div>
+              <div class="command-meta-strip font-mono">
+                <span>ESTABLISHED: <strong class="text-silver">2008</strong></span>
+                <span class="sep">/</span>
+                <span>ASSETS: <strong class="text-emerald">EQUITIES &amp; FUTURES</strong></span>
+                <span class="sep">/</span>
+                <span>EXECUTION: <strong class="text-cobalt">AUTONOMOUS</strong></span>
+              </div>
+            </div>
+
+            <!-- Live Session Clocks Strip -->
+            <div class="session-clocks-grid font-mono">
+              <div class="session-clock-pill">
+                <span class="clock-dot dot-ny"></span>
+                <div class="clock-data">
+                  <span class="clock-name">NEW YORK (HQ)</span>
+                  <span class="clock-time text-emerald" id="clock-ny">--:--:-- EDT</span>
                 </div>
+                <span class="clock-tag">AMER TRADING</span>
+              </div>
 
-                <h2 id="stage-title-text" class="stage-main-title text-metallic">
-                  Idea Generation
-                </h2>
+              <div class="session-clock-pill">
+                <span class="clock-dot dot-ldn"></span>
+                <div class="clock-data">
+                  <span class="clock-name">LONDON</span>
+                  <span class="clock-time text-cyan" id="clock-ldn">--:--:-- BST</span>
+                </div>
+                <span class="clock-tag">EMEA TRADING</span>
+              </div>
 
-                <p id="stage-desc-text" class="stage-narrative-copy">
-                  Formulate systematic hypotheses across global equities and electronic futures, collaborating directly with the dedicated internal data engineering desk.
+              <div class="session-clock-pill">
+                <span class="clock-dot dot-hk"></span>
+                <div class="clock-data">
+                  <span class="clock-name">HONG KONG</span>
+                  <span class="clock-time text-cobalt" id="clock-hk">--:--:-- HKT</span>
+                </div>
+                <span class="clock-tag">APAC TRADING</span>
+              </div>
+            </div>
+
+            <!-- Animated SVG Global Market Mesh Visualizer -->
+            <div class="command-chart-viewport">
+              <svg class="global-flow-svg" viewBox="0 0 960 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="flowMeshGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#0A84FF" />
+                    <stop offset="50%" stop-color="#00C7BE" />
+                    <stop offset="100%" stop-color="#30D158" />
+                  </linearGradient>
+                  <linearGradient id="areaMeshGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.22" />
+                    <stop offset="100%" stop-color="#0A84FF" stop-opacity="0.0" />
+                  </linearGradient>
+                  <filter id="svgGlow">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Grid lines -->
+                <line x1="0" y1="65" x2="960" y2="65" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4" />
+                <line x1="0" y1="130" x2="960" y2="130" stroke="rgba(255,255,255,0.06)" />
+                <line x1="0" y1="195" x2="960" y2="195" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4" />
+
+                <!-- Market Arcs -->
+                <path d="M 180 140 Q 330 35 480 95" fill="none" stroke="url(#flowMeshGrad)" stroke-width="3" filter="url(#svgGlow)" />
+                <path d="M 480 95 Q 630 30 780 120" fill="none" stroke="url(#flowMeshGrad)" stroke-width="3" filter="url(#svgGlow)" />
+                <path d="M 780 120 C 900 170, 60 200, 180 140" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.8" stroke-dasharray="6 6" />
+
+                <!-- Area Fill Under Arc -->
+                <path d="M 180 140 Q 330 35 480 95 Q 630 30 780 120 L 780 250 L 180 250 Z" fill="url(#areaMeshGrad)" />
+
+                <!-- NY Node -->
+                <circle cx="180" cy="140" r="7" fill="#0A84FF" filter="url(#svgGlow)" />
+                <circle cx="180" cy="140" r="16" fill="none" stroke="#0A84FF" stroke-opacity="0.4" />
+                <text x="180" y="174" fill="#FFFFFF" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">NEW YORK</text>
+                <text x="180" y="190" fill="#A1A1A6" font-family="JetBrains Mono" font-size="9" text-anchor="middle">NYSE &middot; NASDAQ &middot; CME</text>
+
+                <!-- London Node -->
+                <circle cx="480" cy="95" r="7" fill="#00C7BE" filter="url(#svgGlow)" />
+                <circle cx="480" cy="95" r="16" fill="none" stroke="#00C7BE" stroke-opacity="0.4" />
+                <text x="480" y="70" fill="#FFFFFF" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">LONDON</text>
+                <text x="480" y="54" fill="#A1A1A6" font-family="JetBrains Mono" font-size="9" text-anchor="middle">LSE &middot; EUREX &middot; ICE</text>
+
+                <!-- Hong Kong Node -->
+                <circle cx="780" cy="120" r="7" fill="#30D158" filter="url(#svgGlow)" />
+                <circle cx="780" cy="120" r="16" fill="none" stroke="#30D158" stroke-opacity="0.4" />
+                <text x="780" y="154" fill="#FFFFFF" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">HONG KONG</text>
+                <text x="780" y="170" fill="#A1A1A6" font-family="JetBrains Mono" font-size="9" text-anchor="middle">HKEX &middot; TSE &middot; SGX</text>
+
+                <!-- Animated Flow Dots -->
+                <circle class="flow-pulse-dot dot-alpha" r="4.5" fill="#FFFFFF" filter="url(#svgGlow)" />
+                <circle class="flow-pulse-dot dot-beta" r="4.5" fill="#30D158" filter="url(#svgGlow)" />
+              </svg>
+            </div>
+
+            <!-- Footer Stats Plinth -->
+            <div class="command-footer-plinth font-mono">
+              <div class="plinth-cell">
+                <span class="plinth-lbl">FOUNDING HERITAGE</span>
+                <strong class="plinth-val">Morgan Stanley ETL &middot; Merrill Lynch QSA</strong>
+              </div>
+              <div class="plinth-cell">
+                <span class="plinth-lbl">GLOBAL TRADING DESKS</span>
+                <strong class="plinth-val text-emerald">6 Locations (NY, LDN, HK, MIA, NJ, CT)</strong>
+              </div>
+              <div class="plinth-cell">
+                <span class="plinth-lbl">TRADING REGIME</span>
+                <strong class="plinth-val">24/7 Systematic Alpha</strong>
+              </div>
+              <div class="plinth-cell">
+                <span class="plinth-lbl">MANUAL INTERVENTION</span>
+                <strong class="plinth-val text-emerald">0.00% Zero-Discretionary</strong>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         SECTION 2: EXPANDING SPATIAL PORTAL ("INSIDE THE QUANT CORE")
+         ===================================================================== -->
+    <section id="about" class="spatial-portal-section">
+      <div class="portal-sticky-viewport">
+        
+        <!-- Expanding Squircle Portal Frame (Interpolates on scroll) -->
+        <div class="portal-expanding-squircle glass-panel-specular" id="portal-squircle">
+          
+          <div class="portal-inner-environment" id="portal-environment">
+            
+            <div class="portal-header-block">
+              <span class="portal-badge-pill font-mono text-cyan"><i class="fa fa-atom"></i> THE 2008 ORIGIN &middot; IDEA 2 ALPHA</span>
+              <h2 class="portal-headline text-metallic">Inside the Quant Core</h2>
+              <p class="portal-subtitle">
+                Born in the 2008 financial crisis, Quantbot is an engineering-first firm. Today, we accelerate discovery through CEO Paul White's operational thesis: fusing human quantitative ingenuity with specialized AI agents.
+              </p>
+            </div>
+
+            <!-- 2-Module Core Architecture -->
+            <div class="portal-core-grid">
+              
+              <!-- Module 1: 2008 Origin & Unleashing Potential -->
+              <div class="portal-card glass-panel">
+                <div class="p-card-top">
+                  <div class="p-card-icon text-cobalt"><i class="fa fa-monument"></i></div>
+                  <div>
+                    <span class="p-card-tag font-mono">FOUNDED 2008</span>
+                    <h3 class="p-card-title">Unleashing Potential</h3>
+                  </div>
+                </div>
+                <p class="p-card-text">
+                  During the unfolding 2008 crisis, our founding partners recognized that decades of proprietary trading leadership at Morgan Stanley ETL and Merrill Lynch QSA provided the foundation for an unconstrained, researcher-centric firm.
+                </p>
+                <div class="p-card-checklist font-mono">
+                  <div><i class="fa fa-check text-emerald"></i> 80+ Years Combined Quantitative Experience</div>
+                  <div><i class="fa fa-check text-emerald"></i> Merrill Lynch Electronic Product Development Lineage</div>
+                  <div><i class="fa fa-check text-emerald"></i> Co-Owned Intellectual Property &amp; Researcher Alignment</div>
+                </div>
+              </div>
+
+              <!-- Module 2: Idea 2 Alpha Acceleration (Paul White's Vision) -->
+              <div class="portal-card glass-panel card-highlighted">
+                <div class="p-card-top">
+                  <div class="p-card-icon text-emerald"><i class="fa fa-bolt-lightning"></i></div>
+                  <div>
+                    <span class="p-card-tag font-mono text-emerald">IDEA 2 ALPHA // PAUL WHITE'S VISION</span>
+                    <h3 class="p-card-title">People + AI &rarr; Ideas</h3>
+                  </div>
+                </div>
+                <p class="p-card-text">
+                  By automating exploratory research bottlenecks, Quantbot compresses data onboarding and literature review cycles, letting quantitative researchers validate alphas with extreme speed.
                 </p>
 
-                <!-- Interactive 6-Stage Progress Scrubber -->
-                <div class="stage-scrub-rail">
-                  <div class="scrub-track-line">
-                    <div id="scrub-indicator-beam" class="scrub-fill-beam"></div>
+                <!-- Compression Metric Pills -->
+                <div class="compression-strip font-mono">
+                  <div class="compression-pill">
+                    <span class="c-lbl">DATA ONBOARDING</span>
+                    <div class="c-val">
+                      <span class="c-old">&gt; 30 Days</span>
+                      <i class="fa fa-arrow-right text-emerald"></i>
+                      <strong class="c-new text-emerald">24 Hours</strong>
+                    </div>
                   </div>
-                  <div class="scrub-stage-buttons">
-                    <button type="button" class="scrub-btn is-active" data-stage="1">
-                      <span class="font-mono">01</span>
-                      <strong>Idea Generation</strong>
-                    </button>
-                    <button type="button" class="scrub-btn" data-stage="2">
-                      <span class="font-mono">02</span>
-                      <strong>Data Analysis</strong>
-                    </button>
-                    <button type="button" class="scrub-btn" data-stage="3">
-                      <span class="font-mono">03</span>
-                      <strong>Code Development</strong>
-                    </button>
-                    <button type="button" class="scrub-btn" data-stage="4">
-                      <span class="font-mono">04</span>
-                      <strong>Trading Logic &amp; Risk</strong>
-                    </button>
-                    <button type="button" class="scrub-btn" data-stage="5">
-                      <span class="font-mono">05</span>
-                      <strong>Paper Trading &amp; Testing</strong>
-                    </button>
-                    <button type="button" class="scrub-btn" data-stage="6">
-                      <span class="font-mono">06</span>
-                      <strong>Live Production</strong>
-                    </button>
+                  <div class="compression-pill">
+                    <span class="c-lbl">ACADEMIC PAPER ANALYSIS</span>
+                    <div class="c-val">
+                      <span class="c-old">Months</span>
+                      <i class="fa fa-arrow-right text-emerald"></i>
+                      <strong class="c-new text-emerald">5 Hours</strong>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Right Column: Single Morphing Liquid Glass Vessel -->
-              <div class="pipeline-right-col">
-                <div id="master-liquid-glass-vessel" class="glass-panel-specular" data-tilt>
-                  
-                  <div class="vessel-topbar">
-                    <div class="vessel-status-tag font-mono" id="vessel-tag-text">STAGE 01 &middot; HYPOTHESIS &middot; ACTIVE</div>
-                    <div class="vessel-hash-tag font-mono" id="vessel-hash-text">LIFECYCLE // #0A84FF</div>
-                  </div>
-
-                  <!-- Dynamic Stage Schematic Canvases (Morphs in Place) -->
-                  <div class="vessel-visual-viewport">
-                    
-                    <!-- SVG Stage 01: Idea Generation -->
-                    <div class="vessel-stage-schematic active-schematic" id="schematic-stage-1">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <defs>
-                          <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#0A84FF"/>
-                            <stop offset="100%" stop-color="#00C7BE"/>
-                          </linearGradient>
-                        </defs>
-                        <!-- Node links -->
-                        <line x1="100" y1="70" x2="250" y2="120" stroke="url(#linkGrad)" stroke-width="2" stroke-dasharray="5 3"/>
-                        <line x1="400" y1="70" x2="250" y2="120" stroke="url(#linkGrad)" stroke-width="2" stroke-dasharray="5 3"/>
-                        <line x1="250" y1="120" x2="250" y2="190" stroke="#00C7BE" stroke-width="2"/>
-
-                        <!-- Central Hypothesis Core -->
-                        <circle cx="250" cy="120" r="32" fill="rgba(10, 132, 255, 0.2)" stroke="#0A84FF" stroke-width="2.5"/>
-                        <text x="250" y="117" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9.5" font-weight="700" text-anchor="middle">SYSTEMATIC</text>
-                        <text x="250" y="130" fill="#0A84FF" font-family="JetBrains Mono" font-size="8.5" text-anchor="middle">HYPOTHESIS</text>
-
-                        <!-- Left Node: Equities & Futures Domain -->
-                        <circle cx="100" cy="70" r="26" fill="rgba(255, 255, 255, 0.05)" stroke="#0A84FF" stroke-width="1.5"/>
-                        <text x="100" y="67" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">RESEARCH</text>
-                        <text x="100" y="78" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7" text-anchor="middle">Ideation</text>
-
-                        <!-- Right Node: Dedicated Data Desk -->
-                        <circle cx="400" cy="70" r="26" fill="rgba(0, 199, 190, 0.12)" stroke="#00C7BE" stroke-width="1.5"/>
-                        <text x="400" y="67" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">DATA DESK</text>
-                        <text x="400" y="78" fill="#00C7BE" font-family="JetBrains Mono" font-size="7" text-anchor="middle">Feed Curation</text>
-
-                        <!-- Bottom Tag -->
-                        <rect x="175" y="190" width="150" height="26" rx="13" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
-                        <text x="250" y="206" fill="#E5E5EA" font-family="JetBrains Mono" font-size="8.5" text-anchor="middle">Cash Equities &amp; Futures</text>
-                      </svg>
-                    </div>
-
-                    <!-- SVG Stage 02: Data Analysis -->
-                    <div class="vessel-stage-schematic" id="schematic-stage-2">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <!-- In-Sample Box (60%) -->
-                        <rect x="40" y="50" width="250" height="120" rx="14" fill="rgba(0, 199, 190, 0.08)" stroke="#00C7BE" stroke-width="1.5"/>
-                        <text x="60" y="75" fill="#00C7BE" font-family="JetBrains Mono" font-size="10" font-weight="700">IN-SAMPLE TEST SET (60%)</text>
-                        <text x="60" y="92" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">Hypothesis Calibration &amp; Training</text>
-                        <path d="M 60 145 Q 120 135 180 115 T 270 95" fill="none" stroke="#00C7BE" stroke-width="2"/>
-
-                        <!-- Out-of-Sample Box (40%) -->
-                        <rect x="305" y="50" width="155" height="120" rx="14" fill="rgba(10, 132, 255, 0.08)" stroke="#0A84FF" stroke-width="1.5" stroke-dasharray="4 4"/>
-                        <text x="320" y="75" fill="#0A84FF" font-family="JetBrains Mono" font-size="10" font-weight="700">OUT-OF-SAMPLE</text>
-                        <text x="320" y="92" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">Microstructure Audit</text>
-                        <path d="M 320 125 Q 360 110 400 100 T 445 85" fill="none" stroke="#0A84FF" stroke-width="2"/>
-
-                        <!-- Outlier Scrub Badge -->
-                        <rect x="180" y="190" width="140" height="24" rx="12" fill="rgba(48, 209, 88, 0.15)" stroke="#30D158" stroke-width="1"/>
-                        <text x="250" y="206" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">BIAS &amp; OUTLIERS CLEANSED</text>
-                      </svg>
-                    </div>
-
-                    <!-- SVG Stage 03: Code Development -->
-                    <div class="vessel-stage-schematic" id="schematic-stage-3">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <!-- Languages Bar -->
-                        <g transform="translate(45, 35)">
-                          <rect x="0" y="0" width="125" height="44" rx="12" fill="rgba(48, 209, 88, 0.12)" stroke="#30D158" stroke-width="1.5"/>
-                          <text x="20" y="26" fill="#30D158" font-family="JetBrains Mono" font-size="13" font-weight="700">C++</text>
-                          <text x="20" y="38" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">Low-Latency</text>
-                        </g>
-                        <g transform="translate(187, 35)">
-                          <rect x="0" y="0" width="125" height="44" rx="12" fill="rgba(10, 132, 255, 0.12)" stroke="#0A84FF" stroke-width="1.5"/>
-                          <text x="20" y="26" fill="#0A84FF" font-family="JetBrains Mono" font-size="13" font-weight="700">PYTHON</text>
-                          <text x="20" y="38" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">ML &amp; Discovery</text>
-                        </g>
-                        <g transform="translate(330, 35)">
-                          <rect x="0" y="0" width="125" height="44" rx="12" fill="rgba(94, 92, 230, 0.12)" stroke="#5E5CE6" stroke-width="1.5"/>
-                          <text x="20" y="26" fill="#5E5CE6" font-family="JetBrains Mono" font-size="13" font-weight="700">R</text>
-                          <text x="20" y="38" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">Statistics</text>
-                        </g>
-
-                        <!-- Linux Cluster Backtest Grid -->
-                        <rect x="45" y="100" width="410" height="100" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.12)"/>
-                        <text x="65" y="124" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9" font-weight="700">HIGH-PERFORMANCE LINUX CLUSTERS &middot; BENCHMARK BASELINES</text>
-                        <path d="M 65 175 Q 160 165 260 155 T 435 140" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                        <path d="M 65 180 C 150 170 230 140 330 130 L 435 115" fill="none" stroke="#30D158" stroke-width="2.5"/>
-                        <text x="360" y="112" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700">ALPHA PASSING</text>
-                      </svg>
-                    </div>
-
-                    <!-- SVG Stage 04: Trading Logic & Risk Management -->
-                    <div class="vessel-stage-schematic" id="schematic-stage-4">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <!-- Proprietary Backtest Engine Box -->
-                        <rect x="40" y="30" width="420" height="85" rx="14" fill="rgba(94, 92, 230, 0.08)" stroke="#5E5CE6" stroke-width="1.5"/>
-                        <text x="60" y="55" fill="#5E5CE6" font-family="JetBrains Mono" font-size="10.5" font-weight="700">PROPRIETARY BACKTESTING ENGINE</text>
-                        <text x="60" y="72" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8.5">Global Factor Risk Models &middot; Transaction Cost Models (TCM) &middot; Slippage Penalties</text>
-
-                        <!-- Risk Parameters Triad -->
-                        <g transform="translate(40, 135)">
-                          <rect x="0" y="0" width="130" height="70" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
-                          <text x="14" y="24" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">GLOBAL FACTOR MODEL</text>
-                          <text x="14" y="45" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10.5" font-weight="700">Factor Neutral</text>
-                          <text x="14" y="58" fill="#30D158" font-family="JetBrains Mono" font-size="8">Controlled Exposures</text>
-                        </g>
-                        <g transform="translate(185, 135)">
-                          <rect x="0" y="0" width="130" height="70" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
-                          <text x="14" y="24" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">TRANSACTION COSTS</text>
-                          <text x="14" y="45" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10.5" font-weight="700">TCM Calibrated</text>
-                          <text x="14" y="58" fill="#5E5CE6" font-family="JetBrains Mono" font-size="8">Spread + Impact</text>
-                        </g>
-                        <g transform="translate(330, 135)">
-                          <rect x="0" y="0" width="130" height="70" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
-                          <text x="14" y="24" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">PORTFOLIO BOUNDS</text>
-                          <text x="14" y="45" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10.5" font-weight="700">Risk Guardrails</text>
-                          <text x="14" y="58" fill="#30D158" font-family="JetBrains Mono" font-size="8">Hard Interlocks</text>
-                        </g>
-                      </svg>
-                    </div>
-
-                    <!-- SVG Stage 05: Paper Trading & Testing -->
-                    <div class="vessel-stage-schematic" id="schematic-stage-5">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <rect x="40" y="30" width="420" height="155" rx="14" fill="rgba(255, 159, 10, 0.06)" stroke="#FF9F0A" stroke-width="1.5"/>
-                        <text x="60" y="55" fill="#FF9F0A" font-family="JetBrains Mono" font-size="10.5" font-weight="700">PAPER TRADING &middot; DAILY TRADE OPERATIONS RECONCILIATION</text>
-                        <text x="60" y="72" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8.5">Reconciling Fill Quality, Realized Slippage, and Benchmark Convergence</text>
-
-                        <!-- Backtest vs Simulated Live Curves -->
-                        <path d="M 60 150 Q 150 135 250 120 T 420 95" fill="none" stroke="#FF9F0A" stroke-width="2" stroke-dasharray="5 5"/>
-                        <text x="330" y="90" fill="#FF9F0A" font-family="JetBrains Mono" font-size="8">BACKTEST BASELINE</text>
-
-                        <path d="M 60 152 C 140 142 220 125 310 110 L 420 92" fill="none" stroke="#00C7BE" stroke-width="2.5"/>
-                        <text x="330" y="112" fill="#00C7BE" font-family="JetBrains Mono" font-size="8" font-weight="700">SIMULATED PRODUCTION</text>
-
-                        <!-- Convergence Status Pill -->
-                        <rect x="60" y="140" width="180" height="24" rx="12" fill="rgba(48, 209, 88, 0.15)" stroke="#30D158" stroke-width="1"/>
-                        <text x="150" y="156" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">EXECUTION SLIPPAGE VERIFIED</text>
-                      </svg>
-                    </div>
-
-                    <!-- SVG Stage 06: Live Production Trading -->
-                    <div class="vessel-stage-schematic" id="schematic-stage-6">
-                      <svg viewBox="0 0 500 240" class="stage-svg">
-                        <!-- Global Execution Gateway Ring -->
-                        <circle cx="250" cy="120" r="80" fill="none" stroke="#30D158" stroke-width="2" stroke-dasharray="6 4"/>
-                        <circle cx="250" cy="120" r="38" fill="rgba(48, 209, 88, 0.18)" stroke="#30D158" stroke-width="2"/>
-                        <text x="250" y="117" fill="#FFFFFF" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">LIVE</text>
-                        <text x="250" y="130" fill="#30D158" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">PRODUCTION</text>
-
-                        <!-- Exchanges Triad -->
-                        <circle cx="160" cy="75" r="16" fill="#0A84FF"/>
-                        <text x="160" y="79" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">US</text>
-
-                        <circle cx="340" cy="75" r="16" fill="#00C7BE"/>
-                        <text x="340" y="79" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">EU</text>
-
-                        <circle cx="250" cy="200" r="16" fill="#5E5CE6"/>
-                        <text x="250" y="204" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">ASIA</text>
-
-                        <!-- Status Badge -->
-                        <rect x="120" y="15" width="260" height="24" rx="12" fill="rgba(48, 209, 88, 0.18)" stroke="#30D158" stroke-width="1"/>
-                        <text x="250" y="31" fill="#30D158" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle">24/7 AUTOMATED PRODUCTION EXECUTION</text>
-                      </svg>
-                    </div>
-
-                  </div>
-
-                  <!-- Vessel Footer Metrics Plinth -->
-                  <div class="vessel-footer-plinth font-mono">
-                    <div class="plinth-item">
-                      <span class="plinth-k">LIFECYCLE STATUS</span>
-                      <strong class="plinth-v text-emerald" id="plinth-status">Active Stage 01</strong>
-                    </div>
-                    <div class="plinth-item">
-                      <span class="plinth-k">DISCRETIONARY INTERVENTION</span>
-                      <strong class="plinth-v text-white">0.00% Zero-Discretionary</strong>
-                    </div>
-                    <div class="plinth-item">
-                      <span class="plinth-k">MARKET UNIVERSE</span>
-                      <strong class="plinth-v text-cyan">Equities &amp; Electronic Futures</strong>
-                    </div>
-                  </div>
-
+                <div class="p-card-checklist font-mono" style="margin-top:12px;">
+                  <div><i class="fa fa-server text-emerald"></i> Elastic On-Demand Cloud Compute Grid</div>
+                  <div><i class="fa fa-database text-emerald"></i> Curated Petabyte Market Data Store</div>
                 </div>
               </div>
 
             </div>
 
+            <!-- Portal Summary Plinth -->
+            <div class="portal-summary-plinth glass-panel font-mono">
+              <div><span class="plinth-muted">ESTABLISHED:</span> <strong>2008 CRISIS</strong></div>
+              <div><span class="plinth-muted">GLOBAL DESKS:</span> <strong class="text-emerald">NEW YORK &middot; LONDON &middot; HONG KONG</strong></div>
+              <div><span class="plinth-muted">UNIVERSE:</span> <strong>CASH EQUITIES &middot; FUTURES</strong></div>
+              <div><span class="plinth-muted">CULTURE:</span> <strong class="text-cyan">COLLEGIAL &middot; FAIR IP</strong></div>
+            </div>
+
           </div>
+
         </div>
 
-      </section>
+      </div>
+    </section>
 
 
-      <!-- SCENE 3: SIGNATURE PARTNERSHIP PROGRAMS (QMM SETUP & POC PROGRAM) -->
-      <section id="scene-programs" class="spatial-scene">
-        <div class="programs-container">
+    <!-- =====================================================================
+         SECTION 3: HORIZON-LOCKED 6-STAGE RESEARCH LIFECYCLE
+         ===================================================================== -->
+    <section id="process" class="spatial-horizon-section">
+      
+      <!-- Virtual Anchor Targets for #stage-01 through #stage-06 -->
+      <div id="stage-01" class="stage-anchor-flag" style="top: 0vh;"></div>
+      <div id="stage-02" class="stage-anchor-flag" style="top: 60vh;"></div>
+      <div id="stage-03" class="stage-anchor-flag" style="top: 120vh;"></div>
+      <div id="stage-04" class="stage-anchor-flag" style="top: 180vh;"></div>
+      <div id="stage-05" class="stage-anchor-flag" style="top: 240vh;"></div>
+      <div id="stage-06" class="stage-anchor-flag" style="top: 300vh;"></div>
+
+      <div class="horizon-pinned-viewport">
+        
+        <!-- Deep Space Optical Laser Horizon Line & 3D Floor Grid -->
+        <div class="horizon-visual-backdrop" aria-hidden="true">
+          <div class="horizon-laser-glow" id="horizon-laser-glow"></div>
+          <div class="horizon-laser-line"></div>
+          <div class="horizon-vector-floor" id="horizon-floor-grid"></div>
+        </div>
+
+        <!-- Main Horizon Content Stage -->
+        <div class="horizon-stage-container">
           
-          <div class="scene-header-center">
-            <span class="scene-tag font-mono text-emerald">PARTNERSHIP &amp; VALIDATION</span>
-            <h2 class="scene-title text-metallic">Signature Quantbot Programs</h2>
-            <p class="scene-subtitle">
-              Empowering experienced Portfolio Managers and ambitious researchers with balance-sheet capital, curated data, and institutional operations.
+          <!-- Left Column: Narrative & Glowing Stage Scrubber -->
+          <div class="horizon-narrative-col">
+            <div class="stage-eyebrow-line font-mono">
+              <span class="stage-tag-capsule" id="lifecycle-tag-capsule">STAGE 01 // 06</span>
+              <span class="text-silver" id="lifecycle-phase-label">QUANTITATIVE LIFECYCLE</span>
+            </div>
+
+            <h2 class="stage-headline text-metallic" id="lifecycle-headline">
+              Stage 01 &middot; Idea Generation
+            </h2>
+
+            <p class="stage-body-narrative" id="lifecycle-body">
+              Formulate systematic hypotheses across global equities and electronic futures, collaborating directly with the dedicated internal data engineering desk.
             </p>
 
-            <!-- Tactile iOS Segmented Switcher -->
-            <div class="segmented-control-capsule">
-              <button type="button" class="segment-pill is-active" data-prog="qmm">
-                <i class="fa fa-handshake"></i> Quantbot Multi-Manager (QMM) Setup
-              </button>
-              <button type="button" class="segment-pill" data-prog="poc">
-                <i class="fa fa-flask-vial"></i> Proof of Concept (POC) Program
-              </button>
+            <!-- Vertical Glowing Progress Scrubber Rail -->
+            <div class="stage-scrubber-rail">
+              <div class="scrubber-track-line">
+                <div class="scrubber-active-beam" id="scrubber-beam"></div>
+              </div>
+
+              <div class="scrubber-buttons-stack">
+                <button type="button" class="scrubber-pill-btn is-active" data-stage="0">
+                  <span class="font-mono">01</span>
+                  <div>
+                    <strong>Idea Generation</strong>
+                    <span>Systematic Hypotheses &middot; Data Sync</span>
+                  </div>
+                </button>
+
+                <button type="button" class="scrubber-pill-btn" data-stage="1">
+                  <span class="font-mono">02</span>
+                  <div>
+                    <strong>Data Analysis</strong>
+                    <span>In-Sample &middot; Out-of-Sample Partitioning</span>
+                  </div>
+                </button>
+
+                <button type="button" class="scrubber-pill-btn" data-stage="2">
+                  <span class="font-mono">03</span>
+                  <div>
+                    <strong>Code Development</strong>
+                    <span>C++, Python, R on Linux Compute Grid</span>
+                  </div>
+                </button>
+
+                <button type="button" class="scrubber-pill-btn" data-stage="3">
+                  <span class="font-mono">04</span>
+                  <div>
+                    <strong>Trading Logic &amp; Risk</strong>
+                    <span>Factor Risk Models &middot; TCM Engine</span>
+                  </div>
+                </button>
+
+                <button type="button" class="scrubber-pill-btn" data-stage="4">
+                  <span class="font-mono">05</span>
+                  <div>
+                    <strong>Paper Trading &amp; Testing</strong>
+                    <span>Daily Reconciliation &middot; Fill Audits</span>
+                  </div>
+                </button>
+
+                <button type="button" class="scrubber-pill-btn" data-stage="5">
+                  <span class="font-mono">06</span>
+                  <div>
+                    <strong>Live Production Trading</strong>
+                    <span>24/7 Automated Production Execution</span>
+                  </div>
+                </button>
+              </div>
             </div>
+
           </div>
 
-          <!-- Dynamic Program Cards -->
-          <div class="program-content-display">
-            
-            <!-- VIEW A: QMM SETUP -->
-            <div class="program-tab-view view-active" id="prog-view-qmm">
-              <div class="program-bento-layout">
+          <!-- Right Column: Single Morphing Liquid Glass Master Vessel -->
+          <div class="horizon-vessel-col">
+            <div class="master-morphing-vessel glass-panel-specular" id="master-stage-vessel" data-tilt>
+              
+              <div class="vessel-header-strip">
+                <div class="vessel-badge font-mono" id="vessel-badge-label">STAGE 01 &middot; IDEA GENERATION</div>
+                <div class="vessel-hash font-mono" id="vessel-hash-label">LIFECYCLE // #0A84FF_GEN</div>
+              </div>
+
+              <!-- Schematic Viewport (Morphs in Place across 6 Stages) -->
+              <div class="vessel-schematic-viewport">
                 
-                <!-- Main Feature Card -->
-                <div class="program-hero-card glass-panel-specular" data-tilt>
-                  <div class="phc-header">
-                    <div>
-                      <span class="font-mono text-emerald" style="font-size:0.75rem;">JOINT VENTURE PLATFORM</span>
-                      <h3 class="phc-title">Quantbot Multi-Manager (QMM) Setup</h3>
-                    </div>
-                    <span class="phc-icon text-emerald"><i class="fa fa-handshake"></i></span>
-                  </div>
-                  <p class="phc-lead">
-                    A collaborative and supportive joint venture model designed for seasoned systematic Portfolio Managers who require institutional scale without sacrificing IP ownership or research freedom.
-                  </p>
-                  <div class="phc-points-list font-mono">
-                    <div><i class="fa fa-check text-emerald"></i> <strong>Co-Ownership of IP:</strong> Comprehensive IP protection ensuring portfolio managers retain ownership of their research.</div>
-                    <div><i class="fa fa-check text-emerald"></i> <strong>Committed Balance-Sheet Capital:</strong> Dedicated capital allocated to every strategy with discretionary co-investment options.</div>
-                    <div><i class="fa fa-check text-emerald"></i> <strong>Tooling &amp; Language Freedom:</strong> Total flexibility in C++, Python, or R running on high-performance Linux cloud compute nodes.</div>
-                    <div><i class="fa fa-check text-emerald"></i> <strong>Full Operational Backing:</strong> In-house research team, curated data mart, automated daily batch operations, and trade reconciliation.</div>
-                  </div>
-                  <div class="phc-footer font-mono">
-                    <span>COVERAGE: <strong>US, EU &amp; ASIAN CASH EQUITIES &amp; ELECTRONIC FUTURES</strong></span>
-                    <a href="#contact" class="btn-apple-capsule btn-sm btn-primary-capsule">Inquire About QMM &rarr;</a>
-                  </div>
+                <!-- Stage 01 Schematic -->
+                <div class="vessel-stage-schematic schematic-active" id="schematic-0">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <defs>
+                      <linearGradient id="s1LinkGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#0A84FF"/>
+                        <stop offset="100%" stop-color="#00C7BE"/>
+                      </linearGradient>
+                    </defs>
+                    <line x1="90" y1="70" x2="250" y2="115" stroke="url(#s1LinkGrad)" stroke-width="2" stroke-dasharray="5 3"/>
+                    <line x1="410" y1="70" x2="250" y2="115" stroke="url(#s1LinkGrad)" stroke-width="2" stroke-dasharray="5 3"/>
+                    <line x1="250" y1="115" x2="250" y2="185" stroke="#00C7BE" stroke-width="2"/>
+
+                    <circle cx="250" cy="115" r="32" fill="rgba(10, 132, 255, 0.22)" stroke="#0A84FF" stroke-width="2.5"/>
+                    <text x="250" y="112" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">SYSTEMATIC</text>
+                    <text x="250" y="125" fill="#0A84FF" font-family="JetBrains Mono" font-size="8" text-anchor="middle">HYPOTHESIS</text>
+
+                    <circle cx="90" cy="70" r="26" fill="rgba(255, 255, 255, 0.05)" stroke="#0A84FF" stroke-width="1.5"/>
+                    <text x="90" y="67" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">RESEARCH</text>
+                    <text x="90" y="78" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7" text-anchor="middle">Ideation</text>
+
+                    <circle cx="410" cy="70" r="26" fill="rgba(0, 199, 190, 0.12)" stroke="#00C7BE" stroke-width="1.5"/>
+                    <text x="410" y="67" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">DATA DESK</text>
+                    <text x="410" y="78" fill="#00C7BE" font-family="JetBrains Mono" font-size="7" text-anchor="middle">Curated Feeds</text>
+
+                    <rect x="175" y="185" width="150" height="26" rx="13" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+                    <text x="250" y="201" fill="#E5E5EA" font-family="JetBrains Mono" font-size="8.5" text-anchor="middle">Cash Equities &amp; Futures</text>
+                  </svg>
                 </div>
 
-                <!-- Secondary Pillar 1: In-House Research -->
-                <div class="program-sub-card glass-panel" data-tilt>
-                  <div class="psc-icon text-cobalt"><i class="fa fa-users"></i></div>
-                  <h4 class="psc-title">In-House Research Team</h4>
-                  <p class="psc-text">
-                    Direct access to skilled quantitative colleagues proficient in portfolio optimization, algorithmic execution, machine learning, and high-performance computing clusters while preserving separate alpha independence.
-                  </p>
-                  <div class="font-mono text-silver" style="font-size:0.75rem;">COLLEGIAL COLLABORATION</div>
+                <!-- Stage 02 Schematic -->
+                <div class="vessel-stage-schematic" id="schematic-1">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <rect x="40" y="45" width="250" height="120" rx="14" fill="rgba(0, 199, 190, 0.08)" stroke="#00C7BE" stroke-width="1.5"/>
+                    <text x="60" y="70" fill="#00C7BE" font-family="JetBrains Mono" font-size="10" font-weight="700">IN-SAMPLE TEST SET (60%)</text>
+                    <text x="60" y="86" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">Hypothesis Calibration &amp; Training</text>
+                    <path d="M 60 140 Q 120 130 180 110 T 270 90" fill="none" stroke="#00C7BE" stroke-width="2"/>
+
+                    <rect x="305" y="45" width="155" height="120" rx="14" fill="rgba(10, 132, 255, 0.08)" stroke="#0A84FF" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <text x="320" y="70" fill="#0A84FF" font-family="JetBrains Mono" font-size="10" font-weight="700">OUT-OF-SAMPLE</text>
+                    <text x="320" y="86" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">Microstructure Audit</text>
+                    <path d="M 320 120 Q 360 105 400 95 T 445 80" fill="none" stroke="#0A84FF" stroke-width="2"/>
+
+                    <rect x="180" y="185" width="140" height="24" rx="12" fill="rgba(48, 209, 88, 0.15)" stroke="#30D158" stroke-width="1"/>
+                    <text x="250" y="201" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">BIAS &amp; OUTLIERS CLEANSED</text>
+                  </svg>
                 </div>
 
-                <!-- Secondary Pillar 2: Curated Data Resources -->
-                <div class="program-sub-card glass-panel" data-tilt>
-                  <div class="psc-icon text-cyan"><i class="fa fa-database"></i></div>
-                  <h4 class="psc-title">Extensive Data Mart</h4>
-                  <p class="psc-text">
-                    Free access to petabytes of historical tick-level datasets and alternative feeds across global markets, supported by a dedicated data procurement desk ready to onboard new feeds.
-                  </p>
-                  <div class="font-mono text-silver" style="font-size:0.75rem;">ON-DEMAND PROCUREMENT</div>
+                <!-- Stage 03 Schematic -->
+                <div class="vessel-stage-schematic" id="schematic-2">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <g transform="translate(45, 30)">
+                      <rect x="0" y="0" width="125" height="42" rx="12" fill="rgba(48, 209, 88, 0.12)" stroke="#30D158" stroke-width="1.5"/>
+                      <text x="20" y="25" fill="#30D158" font-family="JetBrains Mono" font-size="12" font-weight="700">C++</text>
+                      <text x="20" y="36" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">Low-Latency</text>
+                    </g>
+                    <g transform="translate(187, 30)">
+                      <rect x="0" y="0" width="125" height="42" rx="12" fill="rgba(10, 132, 255, 0.12)" stroke="#0A84FF" stroke-width="1.5"/>
+                      <text x="20" y="25" fill="#0A84FF" font-family="JetBrains Mono" font-size="12" font-weight="700">PYTHON</text>
+                      <text x="20" y="36" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">ML &amp; Discovery</text>
+                    </g>
+                    <g transform="translate(330, 30)">
+                      <rect x="0" y="0" width="125" height="42" rx="12" fill="rgba(94, 92, 230, 0.12)" stroke="#5E5CE6" stroke-width="1.5"/>
+                      <text x="20" y="25" fill="#5E5CE6" font-family="JetBrains Mono" font-size="12" font-weight="700">R</text>
+                      <text x="20" y="36" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">Statistics</text>
+                    </g>
+
+                    <rect x="45" y="95" width="410" height="95" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.12)"/>
+                    <text x="65" y="118" fill="#FFFFFF" font-family="JetBrains Mono" font-size="9" font-weight="700">HIGH-PERFORMANCE LINUX CLUSTERS &middot; BENCHMARK BASELINES</text>
+                    <path d="M 65 170 Q 160 160 260 150 T 435 135" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <path d="M 65 175 C 150 165 230 135 330 125 L 435 110" fill="none" stroke="#30D158" stroke-width="2.5"/>
+                    <text x="360" y="106" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700">ALPHA PASSING</text>
+                  </svg>
+                </div>
+
+                <!-- Stage 04 Schematic -->
+                <div class="vessel-stage-schematic" id="schematic-3">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <rect x="40" y="25" width="420" height="80" rx="14" fill="rgba(94, 92, 230, 0.08)" stroke="#5E5CE6" stroke-width="1.5"/>
+                    <text x="60" y="48" fill="#5E5CE6" font-family="JetBrains Mono" font-size="10.5" font-weight="700">PROPRIETARY BACKTESTING ENGINE</text>
+                    <text x="60" y="64" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8.5">Global Factor Risk Models &middot; Transaction Cost Models (TCM) &middot; Slippage Penalties</text>
+
+                    <g transform="translate(40, 125)">
+                      <rect x="0" y="0" width="130" height="65" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+                      <text x="14" y="22" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">GLOBAL FACTOR MODEL</text>
+                      <text x="14" y="42" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="700">Factor Neutral</text>
+                      <text x="14" y="55" fill="#30D158" font-family="JetBrains Mono" font-size="8">Controlled Exposures</text>
+                    </g>
+                    <g transform="translate(185, 125)">
+                      <rect x="0" y="0" width="130" height="65" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+                      <text x="14" y="22" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">TRANSACTION COSTS</text>
+                      <text x="14" y="42" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="700">TCM Calibrated</text>
+                      <text x="14" y="55" fill="#5E5CE6" font-family="JetBrains Mono" font-size="8">Spread + Impact</text>
+                    </g>
+                    <g transform="translate(330, 125)">
+                      <rect x="0" y="0" width="130" height="65" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+                      <text x="14" y="22" fill="#A1A1A6" font-family="JetBrains Mono" font-size="7.5">PORTFOLIO BOUNDS</text>
+                      <text x="14" y="42" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="700">Risk Guardrails</text>
+                      <text x="14" y="55" fill="#30D158" font-family="JetBrains Mono" font-size="8">Hard Interlocks</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Stage 05 Schematic -->
+                <div class="vessel-stage-schematic" id="schematic-4">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <rect x="40" y="25" width="420" height="150" rx="14" fill="rgba(255, 159, 10, 0.06)" stroke="#FF9F0A" stroke-width="1.5"/>
+                    <text x="60" y="48" fill="#FF9F0A" font-family="JetBrains Mono" font-size="10.5" font-weight="700">PAPER TRADING &middot; DAILY OPERATIONS RECONCILIATION</text>
+                    <text x="60" y="64" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8.5">Reconciling Fill Quality, Realized Slippage, and Benchmark Convergence</text>
+
+                    <path d="M 60 145 Q 150 130 250 115 T 420 90" fill="none" stroke="#FF9F0A" stroke-width="2" stroke-dasharray="5 5"/>
+                    <text x="330" y="85" fill="#FF9F0A" font-family="JetBrains Mono" font-size="8">BACKTEST BASELINE</text>
+
+                    <path d="M 60 147 C 140 138 220 120 310 105 L 420 88" fill="none" stroke="#00C7BE" stroke-width="2.5"/>
+                    <text x="330" y="106" fill="#00C7BE" font-family="JetBrains Mono" font-size="8" font-weight="700">SIMULATED PRODUCTION</text>
+
+                    <rect x="60" y="135" width="180" height="24" rx="12" fill="rgba(48, 209, 88, 0.15)" stroke="#30D158" stroke-width="1"/>
+                    <text x="150" y="151" fill="#30D158" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">EXECUTION SLIPPAGE VERIFIED</text>
+                  </svg>
+                </div>
+
+                <!-- Stage 06 Schematic -->
+                <div class="vessel-stage-schematic" id="schematic-5">
+                  <svg viewBox="0 0 500 230" class="schematic-svg">
+                    <circle cx="250" cy="115" r="75" fill="none" stroke="#30D158" stroke-width="2" stroke-dasharray="6 4"/>
+                    <circle cx="250" cy="115" r="36" fill="rgba(48, 209, 88, 0.18)" stroke="#30D158" stroke-width="2"/>
+                    <text x="250" y="112" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10.5" font-weight="700" text-anchor="middle">LIVE</text>
+                    <text x="250" y="125" fill="#30D158" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle">PRODUCTION</text>
+
+                    <circle cx="160" cy="70" r="15" fill="#0A84FF"/>
+                    <text x="160" y="74" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">US</text>
+
+                    <circle cx="340" cy="70" r="15" fill="#00C7BE"/>
+                    <text x="340" y="74" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">EU</text>
+
+                    <circle cx="250" cy="195" r="15" fill="#5E5CE6"/>
+                    <text x="250" y="199" fill="#FFF" font-family="JetBrains Mono" font-size="8" font-weight="700" text-anchor="middle">ASIA</text>
+
+                    <rect x="120" y="12" width="260" height="24" rx="12" fill="rgba(48, 209, 88, 0.18)" stroke="#30D158" stroke-width="1"/>
+                    <text x="250" y="28" fill="#30D158" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle">24/7 AUTOMATED PRODUCTION EXECUTION</text>
+                  </svg>
                 </div>
 
               </div>
-            </div>
 
-            <!-- VIEW B: POC PROGRAM -->
-            <div class="program-tab-view" id="prog-view-poc">
-              <div class="program-bento-layout">
-                
-                <!-- Main Feature Card -->
-                <div class="program-hero-card glass-panel-specular" data-tilt>
-                  <div class="phc-header">
-                    <div>
-                      <span class="font-mono text-cyan" style="font-size:0.75rem;">SIMULATION SANDBOX &middot; 100% SUBSIDIZED</span>
-                      <h3 class="phc-title">Proof of Concept (POC) Program</h3>
-                    </div>
-                    <span class="phc-icon text-cyan"><i class="fa fa-flask-vial"></i></span>
-                  </div>
-                  <p class="phc-lead">
-                    A unique quantitative incubation environment tailored for researchers and academics seeking to validate novel alpha hypotheses on institutional simulation infrastructure with full cost coverage.
-                  </p>
-                  <div class="phc-points-list font-mono">
-                    <div><i class="fa fa-check text-cyan"></i> <strong>Realistic Simulation Platform:</strong> Test strategies against true exchange order-matching logic and realistic cost curves.</div>
-                    <div><i class="fa fa-check text-cyan"></i> <strong>100% Subsidized Access:</strong> Complete coverage of all cloud computing, tick database access, and infrastructure costs.</div>
-                    <div><i class="fa fa-check text-cyan"></i> <strong>Quant Data Store Access:</strong> Curated historic data, analyst recommendations, news sentiment feeds, and global risk factor models.</div>
-                    <div><i class="fa fa-check text-cyan"></i> <strong>Direct Milestone Advancement:</strong> Clear, meritocratic pathway into the full QMM Program or Quantbot Core Research Team.</div>
-                  </div>
-                  <div class="phc-footer font-mono">
-                    <span>IDEAL FOR: <strong>QUANTITATIVE RESEARCHERS, PHDS &amp; SYSTEMATIC STRATEGISTS</strong></span>
-                    <a href="#contact" class="btn-apple-capsule btn-sm btn-primary-capsule">Submit POC Proposal &rarr;</a>
-                  </div>
+              <!-- Vessel Footer Plinth -->
+              <div class="vessel-footer-plinth font-mono">
+                <div class="v-plinth-item">
+                  <span class="v-plinth-lbl">LIFECYCLE STATUS</span>
+                  <strong class="v-plinth-val text-emerald" id="v-plinth-status">Active Stage 01</strong>
                 </div>
-
-                <!-- Secondary Pillar 1: Realistic Simulation Platform -->
-                <div class="program-sub-card glass-panel" data-tilt>
-                  <div class="psc-icon text-emerald"><i class="fa fa-microchip"></i></div>
-                  <h4 class="psc-title">Production Simulation</h4>
-                  <p class="psc-text">
-                    Utilize the exact same institutional backtesting engine, risk parameters, and execution models used by Quantbot's live automated strategies.
-                  </p>
-                  <div class="font-mono text-silver" style="font-size:0.75rem;">PRODUCTION CONVERGENT</div>
+                <div class="v-plinth-item">
+                  <span class="v-plinth-lbl">DISCRETIONARY INTERVENTION</span>
+                  <strong class="v-plinth-val text-white">0.00% Zero-Discretionary</strong>
                 </div>
-
-                <!-- Secondary Pillar 2: Senior Quant Mentorship -->
-                <div class="program-sub-card glass-panel" data-tilt>
-                  <div class="psc-icon text-indigo"><i class="fa fa-user-graduate"></i></div>
-                  <h4 class="psc-title">Dedicated Quant Guidance</h4>
-                  <p class="psc-text">
-                    Receive expert mentorship from research, data, and technology leaders to structure rigorous in-sample and out-of-sample tests and eliminate bias.
-                  </p>
-                  <div class="font-mono text-silver" style="font-size:0.75rem;">EXPERT MENTORSHIP</div>
+                <div class="v-plinth-item">
+                  <span class="v-plinth-lbl">UNIVERSE</span>
+                  <strong class="v-plinth-val text-cyan">Cash Equities &amp; Futures</strong>
                 </div>
-
               </div>
-            </div>
 
+            </div>
           </div>
 
         </div>
-      </section>
+
+      </div>
+    </section>
 
 
-      <!-- SCENE 4: LEADERSHIP ROSTER & 6 GLOBAL DESKS & INSTITUTIONAL CONTACT -->
-      <section id="scene-leadership-offices" class="spatial-scene">
-        <div class="roster-offices-container">
+    <!-- =====================================================================
+         SECTION 4: SIGNATURE PROGRAMS BENTO SHOWCASE (QMM & POC)
+         ===================================================================== -->
+    <section id="programs" class="spatial-programs-section">
+      <div class="wrapper">
+        
+        <div class="section-center-head">
+          <span class="section-tag-pill font-mono text-emerald">FLAGSHIP PARTNERSHIP &middot; CO-OWNED IP</span>
+          <h2 class="section-display-title text-metallic">Signature Quantbot Programs</h2>
+          <p class="section-subtext">
+            Whether you are an established systematic Portfolio Manager or an ambitious researcher validating breakthrough alphas, Quantbot provides balance-sheet capital, curated data, and full operational backing.
+          </p>
+
+          <!-- Interactive iOS Segmented Switcher -->
+          <div class="ios-segmented-control-capsule">
+            <button type="button" class="segment-capsule-pill is-active" data-prog="qmm">
+              <i class="fa fa-handshake"></i> Quantbot Multi-Manager (QMM) Setup
+            </button>
+            <button type="button" class="segment-capsule-pill" data-prog="poc">
+              <i class="fa fa-flask-vial"></i> Proof of Concept (POC) Program
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Program Tab Containers -->
+        <div class="programs-tab-container">
           
-          <!-- Section A: 10 Partners & Founders -->
-          <div class="roster-block">
-            <div class="scene-header-center">
-              <span class="scene-tag font-mono text-cyan">EXECUTIVE GOVERNANCE &middot; FOUNDED 2008</span>
-              <h2 class="scene-title text-metallic">Leadership Team</h2>
-              <p class="scene-subtitle">
-                Over 80 years of collective quantitative expertise from Morgan Stanley ETL, Merrill Lynch QSA, and premier scientific institutions.
-              </p>
-            </div>
-
-            <div class="roster-grid-10">
-              <!-- Paul White -->
-              <div class="roster-card glass-panel-specular" data-leader="Paul White">
-                <img src="assets/paul.png" alt="Paul White" class="roster-avatar">
-                <span class="roster-role font-mono">CO-FOUNDER &middot; CEO</span>
-                <h4 class="roster-name">Paul White</h4>
-                <p class="roster-summary">Pioneered statistical arbitrage at Morgan Stanley ETL; co-headed Merrill Lynch global QSA.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
+          <!-- TAB A: QMM SETUP (Default Active) -->
+          <div class="prog-tab-view view-active" id="tab-qmm">
+            <div class="prog-bento-grid">
+              
+              <!-- Card 1: Main Joint Venture Feature (Span 2 Rows) -->
+              <div class="prog-hero-card glass-panel-specular" data-tilt>
+                <div class="ph-card-top">
+                  <div>
+                    <span class="font-mono text-emerald" style="font-size:0.75rem;">JOINT VENTURE PARTNERSHIP</span>
+                    <h3 class="ph-card-title">Quantbot Multi-Manager (QMM) Setup</h3>
+                  </div>
+                  <span class="ph-card-icon text-emerald"><i class="fa fa-handshake"></i></span>
+                </div>
+                <p class="ph-card-lead">
+                  Designed for seasoned systematic Portfolio Managers who require institutional scale, capital commitment, and global infrastructure without sacrificing independence or IP ownership.
+                </p>
+                <div class="ph-card-checklist font-mono">
+                  <div><i class="fa fa-check text-emerald"></i> <strong>Co-Ownership of IP:</strong> Comprehensive IP protection ensuring portfolio managers retain ownership of their research.</div>
+                  <div><i class="fa fa-check text-emerald"></i> <strong>Committed Balance-Sheet Capital:</strong> Dedicated capital allocated to every strategy with discretionary co-investment rights.</div>
+                  <div><i class="fa fa-check text-emerald"></i> <strong>Tooling &amp; Language Freedom:</strong> Total flexibility in C++, Python, or R running on high-performance Linux cloud compute nodes.</div>
+                  <div><i class="fa fa-check text-emerald"></i> <strong>Full Operational Backing:</strong> In-house research team, curated data mart, automated daily batch operations, and trade reconciliation.</div>
+                </div>
+                <div class="ph-card-footer font-mono">
+                  <span>UNIVERSE: <strong>CASH EQUITIES &amp; ELECTRONIC FUTURES</strong></span>
+                  <a href="#contact" class="btn-apple-capsule btn-sm btn-primary-capsule">Inquire About QMM &rarr;</a>
+                </div>
               </div>
 
-              <!-- Ashar Mahboob -->
-              <div class="roster-card glass-panel-specular" data-leader="Ashar Mahboob">
-                <img src="assets/ashar.png" alt="Ashar Mahboob" class="roster-avatar">
-                <span class="roster-role font-mono">CO-FOUNDER &middot; CIO</span>
-                <h4 class="roster-name">Ashar Mahboob</h4>
-                <p class="roster-summary">Senior member of Morgan Stanley ETL; Managing Director co-heading Merrill Lynch QSA.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
+              <!-- Card 2: In-House Research Team -->
+              <div class="prog-sub-card glass-panel" data-tilt>
+                <div class="ps-card-icon text-cobalt"><i class="fa fa-users"></i></div>
+                <h4 class="ps-card-title">In-House Research Team</h4>
+                <p class="ps-card-text">
+                  Direct access to skilled quantitative colleagues proficient in portfolio optimization, algorithmic execution, machine learning, and high-performance computing clusters while preserving separate alpha independence.
+                </p>
+                <div class="font-mono text-silver" style="font-size:0.75rem;">COLLEGIAL COLLABORATION</div>
               </div>
 
-              <!-- Michael Lisak -->
-              <div class="roster-card glass-panel-specular" data-leader="Michael Lisak">
-                <img src="assets/lisak.png" alt="Michael Lisak" class="roster-avatar">
-                <span class="roster-role font-mono">CO-FOUNDER &middot; PARTNER</span>
-                <h4 class="roster-name">Michael Lisak</h4>
-                <p class="roster-summary">Executive Director at Morgan Stanley ETL leading algorithmic trading solutions and Merrill Lynch QSA.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
+              <!-- Card 3: Extensive Data Resources -->
+              <div class="prog-sub-card glass-panel" data-tilt>
+                <div class="ps-card-icon text-cyan"><i class="fa fa-database"></i></div>
+                <h4 class="ps-card-title">Extensive Data Mart</h4>
+                <p class="ps-card-text">
+                  Free access to petabytes of historical tick-level datasets and alternative feeds across global markets, supported by a dedicated data procurement desk ready to onboard new feeds.
+                </p>
+                <div class="font-mono text-silver" style="font-size:0.75rem;">ON-DEMAND PROCUREMENT</div>
               </div>
 
-              <!-- Dr. Michael Botlo -->
-              <div class="roster-card glass-panel-specular" data-leader="Dr. Michael Botlo">
-                <img src="assets/botlo.png" alt="Dr. Michael Botlo" class="roster-avatar">
-                <span class="roster-role font-mono">CO-FOUNDER &middot; RETIRED</span>
-                <h4 class="roster-name">Dr. Michael Botlo</h4>
-                <p class="roster-summary">Former CEO; Head of Electronic Product Development at Merrill Lynch and founding leader at Morgan Stanley ETL.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Thuong Lam -->
-              <div class="roster-card glass-panel-specular" data-leader="Thuong Lam">
-                <img src="assets/lam.png" alt="Thuong Lam" class="roster-avatar">
-                <span class="roster-role font-mono">PARTNER &middot; UK MD</span>
-                <h4 class="roster-name">Thuong Lam</h4>
-                <p class="roster-summary">Headed Merrill Lynch QSA in EMEA; established Quantbot European trading operations in London.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Johnson Wu -->
-              <div class="roster-card glass-panel-specular" data-leader="Johnson Wu">
-                <img src="assets/wu.png" alt="Johnson Wu" class="roster-avatar">
-                <span class="roster-role font-mono">PARTNER &middot; HK MD</span>
-                <h4 class="roster-name">Johnson Wu</h4>
-                <p class="roster-summary">Head of QSA-Asia at Merrill Lynch and regional head of equity derivatives technology at UBS &amp; Morgan Stanley.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Thomas Crimi -->
-              <div class="roster-card glass-panel-specular" data-leader="Thomas Crimi">
-                <img src="assets/crimi.png" alt="Thomas Crimi" class="roster-avatar">
-                <span class="roster-role font-mono">PARTNER &middot; CTO</span>
-                <h4 class="roster-name">Thomas Crimi</h4>
-                <p class="roster-summary">Software engineering pioneer in chip design optimization before engineering trading systems at Merrill Lynch QSA.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Benjamin Cilia -->
-              <div class="roster-card glass-panel-specular" data-leader="Benjamin Cilia">
-                <img src="assets/cilia.png" alt="Benjamin Cilia" class="roster-avatar">
-                <span class="roster-role font-mono">PARTNER &middot; CDO</span>
-                <h4 class="roster-name">Benjamin Cilia</h4>
-                <p class="roster-summary">Managed ITG Inc data team before leading Merrill Lynch QSA data infrastructure across all global asset classes.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Rohit Thakare -->
-              <div class="roster-card glass-panel-specular" data-leader="Rohit Thakare">
-                <img src="assets/thakare.webp" alt="Rohit Thakare" class="roster-avatar">
-                <span class="roster-role font-mono">PARTNER &middot; CHIEF TRADING OFFICER</span>
-                <h4 class="roster-name">Rohit Thakare</h4>
-                <p class="roster-summary">Morgan Stanley ETL proprietary trading group before serving as senior programmer in Merrill Lynch QSA.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
-
-              <!-- Debra Wisdom-Spielfogel -->
-              <div class="roster-card glass-panel-specular" data-leader="Debra Wisdom-Spielfogel, Esq.">
-                <img src="assets/wisdom.png" alt="Debra Wisdom" class="roster-avatar">
-                <span class="roster-role font-mono">GENERAL COUNSEL &middot; CCO</span>
-                <h4 class="roster-name">Debra Wisdom-Spielfogel</h4>
-                <p class="roster-summary">Former General Counsel and CCO to registered investment advisers including SB Schonfeld Fund Advisers; JD in law.</p>
-                <button type="button" class="roster-bio-trigger font-mono">Read Bio &rarr;</button>
-              </div>
             </div>
           </div>
 
-          <!-- Section B: 6 Global Desks -->
-          <div class="desks-block">
-            <div class="scene-header-center" style="margin-top:40px;">
-              <span class="scene-tag font-mono text-emerald">GLOBAL DESKS &middot; 24/7 OPERATION</span>
-              <h2 class="scene-title text-metallic">6 Physical Trading Locations</h2>
-              <p class="scene-subtitle">
-                Strategically co-located across major liquidity hubs to maintain uninterrupted trading in all global market regimes.
-              </p>
-            </div>
-
-            <div class="desks-grid-6">
-              <!-- New York (Global HQ) -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/ny.png" alt="New York Office" class="desk-img">
-                  <span class="desk-tag font-mono">GLOBAL HQ</span>
+          <!-- TAB B: POC PROGRAM -->
+          <div class="prog-tab-view" id="tab-poc">
+            <div class="prog-bento-grid">
+              
+              <!-- Card 1: Main POC Feature -->
+              <div class="prog-hero-card glass-panel-specular" data-tilt>
+                <div class="ph-card-top">
+                  <div>
+                    <span class="font-mono text-cyan" style="font-size:0.75rem;">SIMULATION SANDBOX &middot; 100% SUBSIDIZED</span>
+                    <h3 class="ph-card-title">Proof of Concept (POC) Program</h3>
+                  </div>
+                  <span class="ph-card-icon text-cyan"><i class="fa fa-flask-vial"></i></span>
                 </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">New York</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies, LP</div>
-                  <p class="desk-addr">505 Fifth Avenue, 6th Floor<br>New York, NY 10017 USA</p>
+                <p class="ph-card-lead">
+                  A unique quantitative incubation environment tailored for researchers and academics seeking to validate novel alpha hypotheses on institutional simulation infrastructure with full cost coverage.
+                </p>
+                <div class="ph-card-checklist font-mono">
+                  <div><i class="fa fa-check text-cyan"></i> <strong>Realistic Simulation Platform:</strong> Test strategies against true exchange order-matching logic and realistic cost curves.</div>
+                  <div><i class="fa fa-check text-cyan"></i> <strong>100% Subsidized Access:</strong> Complete coverage of all cloud computing, tick database access, and infrastructure costs.</div>
+                  <div><i class="fa fa-check text-cyan"></i> <strong>Quant Data Store Access:</strong> Curated historic data, analyst recommendations, news sentiment feeds, and global risk factor models.</div>
+                  <div><i class="fa fa-check text-cyan"></i> <strong>Direct Milestone Advancement:</strong> Clear, meritocratic pathway into the full QMM Program or Quantbot Core Research Team.</div>
                 </div>
-              </div>
-
-              <!-- London -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/london.png" alt="London Office" class="desk-img">
-                  <span class="desk-tag font-mono">EUROPEAN HUB</span>
-                </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">London</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies, Ltd</div>
-                  <p class="desk-addr">125 Old Broad Street, 26th Floor<br>London EC2N 1AR United Kingdom</p>
+                <div class="ph-card-footer font-mono">
+                  <span>IDEAL FOR: <strong>QUANTITATIVE RESEARCHERS, PHDS &amp; SYSTEMATIC STRATEGISTS</strong></span>
+                  <a href="#contact" class="btn-apple-capsule btn-sm btn-primary-capsule">Submit POC Proposal &rarr;</a>
                 </div>
               </div>
 
-              <!-- Hong Kong -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/hk.png" alt="Hong Kong Office" class="desk-img">
-                  <span class="desk-tag font-mono">ASIA-PACIFIC HUB</span>
-                </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">Hong Kong</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies (HK), Ltd</div>
-                  <p class="desk-addr">Standard Chartered Bank Bldg, 10/F<br>4-4A Des Voeux Road Central, HK</p>
-                </div>
+              <!-- Card 2: Realistic Simulation Platform -->
+              <div class="prog-sub-card glass-panel" data-tilt>
+                <div class="ps-card-icon text-emerald"><i class="fa fa-microchip"></i></div>
+                <h4 class="ps-card-title">Production Simulation</h4>
+                <p class="ps-card-text">
+                  Utilize the exact same institutional backtesting engine, risk parameters, and execution models used by Quantbot's live automated strategies.
+                </p>
+                <div class="font-mono text-silver" style="font-size:0.75rem;">PRODUCTION CONVERGENT</div>
               </div>
 
-              <!-- Miami -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/miami.png" alt="Miami Office" class="desk-img">
-                  <span class="desk-tag font-mono">FLORIDA DESK</span>
-                </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">Miami</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies, LP</div>
-                  <p class="desk-addr">1111 Brickell Avenue, Suite 1840<br>Miami, FL 33131 USA</p>
-                </div>
+              <!-- Card 3: Senior Quant Mentorship -->
+              <div class="prog-sub-card glass-panel" data-tilt>
+                <div class="ps-card-icon text-indigo"><i class="fa fa-user-graduate"></i></div>
+                <h4 class="ps-card-title">Dedicated Quant Guidance</h4>
+                <p class="ps-card-text">
+                  Receive expert mentorship from research, data, and technology leaders to structure rigorous in-sample and out-of-sample tests and eliminate bias.
+                </p>
+                <div class="font-mono text-silver" style="font-size:0.75rem;">EXPERT MENTORSHIP</div>
               </div>
 
-              <!-- New Jersey -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/nj.png" alt="New Jersey Office" class="desk-img">
-                  <span class="desk-tag font-mono">BELL WORKS</span>
-                </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">New Jersey</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies, LP</div>
-                  <p class="desk-addr">Bell Works, 101 Crawfords Corner Rd<br>Suite 130, Holmdel, NJ 07733</p>
-                </div>
-              </div>
-
-              <!-- Connecticut -->
-              <div class="desk-card glass-panel-specular">
-                <div class="desk-img-frame">
-                  <img src="assets/ct.png" alt="Connecticut Office" class="desk-img">
-                  <span class="desk-tag font-mono">GREENWICH</span>
-                </div>
-                <div class="desk-info">
-                  <h4 class="desk-city">Connecticut</h4>
-                  <div class="desk-entity font-mono">Quantbot Technologies, LP</div>
-                  <p class="desk-addr">500 West Putnam Avenue, Suite 400<br>Greenwich, CT 06830 USA</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section C: Official Institutional Communication Routing & Subpage Directory -->
-          <div class="institutional-contact-block glass-panel-specular">
-            <div class="icb-header">
-              <span class="font-mono text-cyan" style="font-size:0.75rem;">OFFICIAL COMMUNICATION ROUTING</span>
-              <h3 class="icb-title text-metallic">Contact Quantbot Technologies</h3>
-              <p class="icb-lead">Encrypted institutional correspondence for portfolio managers, researchers, and counterparties.</p>
-            </div>
-
-            <div class="icb-channels font-mono">
-              <div class="channel-pill">
-                <span class="channel-lbl">GENERAL &amp; INSTITUTIONAL</span>
-                <a href="mailto:info@quantbot.com" class="channel-link"><i class="fa fa-envelope text-emerald"></i> info@quantbot.com</a>
-              </div>
-              <div class="channel-pill">
-                <span class="channel-lbl">QUANTITATIVE TALENT &amp; CAREERS</span>
-                <a href="mailto:jobs@quantbot.com" class="channel-link"><i class="fa fa-briefcase text-cobalt"></i> jobs@quantbot.com</a>
-              </div>
-              <div class="channel-pill">
-                <span class="channel-lbl">UNIVERSITY &amp; CAMPUS PROGRAMS</span>
-                <a href="mailto:campus@quantbot.com" class="channel-link"><i class="fa fa-graduation-cap text-cyan"></i> campus@quantbot.com</a>
-              </div>
-            </div>
-
-            <!-- Subpage Nav Links -->
-            <div class="icb-subpages font-mono">
-              <a href="about-us.html">About Us</a>
-              <a href="proof-of-concept.html">Proof of Concept</a>
-              <a href="qmm-setup.html">QMM Setup</a>
-              <a href="meet-the-founders.html">Meet the Founders</a>
-              <a href="careers.html">Careers</a>
-              <a href="news.html">News</a>
-              <a href="blog.html">Blog</a>
-              <a href="contact-us.html">Contact Us</a>
-            </div>
-
-            <div class="icb-legal font-mono">
-              <div>Copyright &copy; 2026 Quantbot Technologies, LP. All Rights Reserved.</div>
-              <div class="legal-links">
-                <a href="privacy-notice.html">Privacy Notice</a> &middot;
-                <a href="california-privacy-notice.html">California Privacy</a> &middot;
-                <a href="gdpr-privacy-notice.html">GDPR Notice</a> &middot;
-                <a href="disclosures-and-disclaimers.html">Disclosures &amp; Disclaimers</a>
-              </div>
             </div>
           </div>
 
         </div>
-      </section>
 
-    </div>
+      </div>
+    </section>
 
 
-    <!-- -------------------------------------------------------------------
-         PLANE 3: FOREGROUND HUD & TACTICAL CONTROLS
-         ------------------------------------------------------------------- -->
-    <div id="plane-3-hud">
+    <!-- =====================================================================
+         SECTION 5: LEADERSHIP TEAM & 6 GLOBAL DESKS
+         ===================================================================== -->
+    <section id="leadership" class="spatial-leadership-section">
+      <div class="wrapper">
+        
+        <!-- Header -->
+        <div class="section-center-head">
+          <span class="section-tag-pill font-mono text-cyan">EXECUTIVE GOVERNANCE &middot; FOUNDED 2008</span>
+          <h2 class="section-display-title text-metallic">Leadership Team</h2>
+          <p class="section-subtext">
+            Over 80 years of collective quantitative expertise from Morgan Stanley ETL, Merrill Lynch QSA, and premier scientific institutions.
+          </p>
+        </div>
+
+        <!-- 10 Partners & Founders Profile Cards -->
+        <div class="leadership-cards-grid">
+          
+          <!-- Paul White -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Paul White">
+            <img src="assets/paul.png" alt="Paul White" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">CO-FOUNDER &middot; CEO</span>
+            <h4 class="leader-name-text">Paul White</h4>
+            <p class="leader-snippet-text">Pioneered statistical arbitrage at Morgan Stanley ETL; co-headed Merrill Lynch global QSA.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Ashar Mahboob -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Ashar Mahboob">
+            <img src="assets/ashar.png" alt="Ashar Mahboob" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">CO-FOUNDER &middot; CIO</span>
+            <h4 class="leader-name-text">Ashar Mahboob</h4>
+            <p class="leader-snippet-text">Senior member of Morgan Stanley ETL; Managing Director co-heading Merrill Lynch QSA.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Michael Lisak -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Michael Lisak">
+            <img src="assets/lisak.png" alt="Michael Lisak" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">CO-FOUNDER &middot; PARTNER</span>
+            <h4 class="leader-name-text">Michael Lisak</h4>
+            <p class="leader-snippet-text">Executive Director at Morgan Stanley ETL leading algorithmic trading solutions and Merrill Lynch QSA.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Dr. Michael Botlo -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Dr. Michael Botlo">
+            <img src="assets/botlo.png" alt="Dr. Michael Botlo" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">CO-FOUNDER &middot; RETIRED</span>
+            <h4 class="leader-name-text">Dr. Michael Botlo</h4>
+            <p class="leader-snippet-text">Former CEO; Head of Electronic Product Development at Merrill Lynch and founding leader at Morgan Stanley ETL.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Thuong Lam -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Thuong Lam">
+            <img src="assets/lam.png" alt="Thuong Lam" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">PARTNER &middot; UK MD</span>
+            <h4 class="leader-name-text">Thuong Lam</h4>
+            <p class="leader-snippet-text">Headed Merrill Lynch QSA in EMEA; established Quantbot European trading operations in London.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Johnson Wu -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Johnson Wu">
+            <img src="assets/wu.png" alt="Johnson Wu" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">PARTNER &middot; HK MD</span>
+            <h4 class="leader-name-text">Johnson Wu</h4>
+            <p class="leader-snippet-text">Head of QSA-Asia at Merrill Lynch and regional head of equity derivatives technology at UBS &amp; Morgan Stanley.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Thomas Crimi -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Thomas Crimi">
+            <img src="assets/crimi.png" alt="Thomas Crimi" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">PARTNER &middot; CTO</span>
+            <h4 class="leader-name-text">Thomas Crimi</h4>
+            <p class="leader-snippet-text">Software engineering pioneer in chip design optimization before engineering trading systems at Merrill Lynch QSA.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Benjamin Cilia -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Benjamin Cilia">
+            <img src="assets/cilia.png" alt="Benjamin Cilia" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">PARTNER &middot; CDO</span>
+            <h4 class="leader-name-text">Benjamin Cilia</h4>
+            <p class="leader-snippet-text">Managed ITG Inc data team before leading Merrill Lynch QSA data infrastructure across all global asset classes.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Rohit Thakare -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Rohit Thakare">
+            <img src="assets/thakare.webp" alt="Rohit Thakare" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">PARTNER &middot; CHIEF TRADING OFFICER</span>
+            <h4 class="leader-name-text">Rohit Thakare</h4>
+            <p class="leader-snippet-text">Morgan Stanley ETL proprietary trading group before serving as senior programmer in Merrill Lynch QSA.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+          <!-- Debra Wisdom-Spielfogel -->
+          <div class="leader-profile-card glass-panel-specular" data-leader="Debra Wisdom-Spielfogel, Esq.">
+            <img src="assets/wisdom.png" alt="Debra Wisdom" class="leader-avatar-img">
+            <span class="leader-role-tag font-mono">GENERAL COUNSEL &middot; CCO</span>
+            <h4 class="leader-name-text">Debra Wisdom-Spielfogel</h4>
+            <p class="leader-snippet-text">Former General Counsel and CCO to registered investment advisers including SB Schonfeld Fund Advisers; JD in law.</p>
+            <button type="button" class="btn-bio-disclosure font-mono">Read Bio &rarr;</button>
+          </div>
+
+        </div>
+
+        <!-- 6 Global Physical Desks -->
+        <div id="offices" class="offices-block-wrap">
+          <div class="section-center-head" style="margin-top:60px;">
+            <span class="section-tag-pill font-mono text-emerald">GLOBAL TRADING DESKS &middot; 24/7 PARTICIPATION</span>
+            <h2 class="section-display-title text-metallic">6 Physical Locations</h2>
+            <p class="section-subtext">
+              Strategically positioned across North American, European, and Asian liquidity hubs to maintain uninterrupted execution.
+            </p>
+          </div>
+
+          <div class="desks-bento-grid">
+            <!-- New York (Global HQ) -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/ny.png" alt="New York Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">GLOBAL HQ</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">New York</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies, LP</div>
+                <p class="desk-address-text">505 Fifth Avenue, 6th Floor<br>New York, NY 10017 USA</p>
+              </div>
+            </div>
+
+            <!-- London -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/london.png" alt="London Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">EUROPEAN HUB</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">London</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies, Ltd</div>
+                <p class="desk-address-text">125 Old Broad Street, 26th Floor<br>London EC2N 1AR United Kingdom</p>
+              </div>
+            </div>
+
+            <!-- Hong Kong -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/hk.png" alt="Hong Kong Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">ASIA-PACIFIC HUB</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">Hong Kong</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies (HK), Ltd</div>
+                <p class="desk-address-text">Standard Chartered Bank Bldg, 10/F<br>4-4A Des Voeux Road Central, HK</p>
+              </div>
+            </div>
+
+            <!-- Miami -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/miami.png" alt="Miami Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">FLORIDA DESK</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">Miami</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies, LP</div>
+                <p class="desk-address-text">1111 Brickell Avenue, Suite 1840<br>Miami, FL 33131 USA</p>
+              </div>
+            </div>
+
+            <!-- New Jersey -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/nj.png" alt="New Jersey Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">BELL WORKS</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">New Jersey</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies, LP</div>
+                <p class="desk-address-text">Bell Works, 101 Crawfords Corner Rd<br>Suite 130, Holmdel, NJ 07733</p>
+              </div>
+            </div>
+
+            <!-- Connecticut -->
+            <div class="desk-item-card glass-panel-specular">
+              <div class="desk-photo-wrap">
+                <img src="assets/ct.png" alt="Connecticut Office" class="desk-photo">
+                <span class="desk-pill-tag font-mono">GREENWICH</span>
+              </div>
+              <div class="desk-meta">
+                <h4 class="desk-city-name">Connecticut</h4>
+                <div class="desk-entity-name font-mono">Quantbot Technologies, LP</div>
+                <p class="desk-address-text">500 West Putnam Avenue, Suite 400<br>Greenwich, CT 06830 USA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =======================================================================
+       INSTITUTIONAL CONTACT MODAL & FOOTER
+       ======================================================================= -->
+  <footer id="contact" class="spatial-footer-section">
+    <div class="wrapper">
       
-      <!-- Top Floating iOS Dynamic Island Navigation Bar -->
-      <header id="dynamic-island-nav">
-        <div class="island-capsule">
-          
-          <a href="#hero" class="island-brand-unit" aria-label="Quantbot Home">
-            <img src="assets/logo.png" alt="Quantbot Technologies" class="island-logo">
-            <span class="island-title font-mono">QUANTBOT TECHNOLOGIES, LP</span>
-          </a>
-
-          <!-- Center Segmented Links -->
-          <nav class="island-nav-links font-mono" aria-label="Spatial Navigation">
-            <div id="island-glider-pill"></div>
-            <a href="#about" class="island-link" data-scene="hero">About</a>
-            <a href="#differentiators" class="island-link" data-scene="differentiators">Differentiators</a>
-            <a href="#stage-01" class="island-link" data-scene="pipeline">Process</a>
-            <a href="#qmm" class="island-link" data-scene="programs">QMM Setup</a>
-            <a href="#poc" class="island-link" data-scene="programs">POC Program</a>
-            <a href="#leadership" class="island-link" data-scene="leadership-offices">Leadership</a>
-            <a href="#offices" class="island-link" data-scene="leadership-offices">Offices</a>
-          </nav>
-
-          <!-- Right Action Pill -->
-          <button type="button" id="btn-island-contact" class="island-contact-pill font-mono">
-            <span>Contact Us</span>
-            <i class="fa fa-envelope"></i>
-          </button>
-
+      <!-- Institutional Routing Card -->
+      <div class="footer-routing-card glass-panel-specular">
+        <div class="frc-top">
+          <span class="font-mono text-cyan" style="font-size:0.75rem;">OFFICIAL COMMUNICATION ROUTING</span>
+          <h3 class="frc-title text-metallic">Contact Quantbot Technologies</h3>
+          <p class="frc-lead">Encrypted institutional correspondence for portfolio managers, researchers, and counterparties.</p>
         </div>
-      </header>
 
-      <!-- Bottom HUD Scrubber & Stage Telemetry Bar -->
-      <div id="bottom-hud-bar">
-        <div class="hud-capsule font-mono">
-          <div class="hud-status-pill">
-            <span class="hud-dot"></span>
-            <span id="hud-status-label">HERITAGE // 2008</span>
+        <div class="frc-channels-grid font-mono">
+          <div class="channel-box">
+            <span class="c-box-lbl">GENERAL &amp; INSTITUTIONAL</span>
+            <a href="mailto:info@quantbot.com" class="c-box-link"><i class="fa fa-envelope text-emerald"></i> info@quantbot.com</a>
           </div>
-
-          <div class="hud-timeline-progress">
-            <div id="hud-progress-fill"></div>
+          <div class="channel-box">
+            <span class="c-box-lbl">QUANTITATIVE TALENT &amp; CAREERS</span>
+            <a href="mailto:jobs@quantbot.com" class="c-box-link"><i class="fa fa-briefcase text-cobalt"></i> jobs@quantbot.com</a>
           </div>
+          <div class="channel-box">
+            <span class="c-box-lbl">CAMPUS &amp; INTERNSHIP PROGRAMS</span>
+            <a href="mailto:campus@quantbot.com" class="c-box-link"><i class="fa fa-graduation-cap text-cyan"></i> campus@quantbot.com</a>
+          </div>
+        </div>
 
-          <div class="hud-jump-pills">
-            <button type="button" class="hud-jump-btn" data-target="0vh">HERO</button>
-            <button type="button" class="hud-jump-btn" data-target="180vh">STAGE 01</button>
-            <button type="button" class="hud-jump-btn" data-target="280vh">STAGE 03</button>
-            <button type="button" class="hud-jump-btn" data-target="430vh">STAGE 06</button>
-            <button type="button" class="hud-jump-btn" data-target="480vh">QMM/POC</button>
-            <button type="button" class="hud-jump-btn" data-target="540vh">LEADERS</button>
+        <!-- Subpage Directory Links -->
+        <div class="frc-subpage-links font-mono">
+          <a href="about-us.html">About Us</a>
+          <a href="proof-of-concept.html">Proof of Concept</a>
+          <a href="qmm-setup.html">QMM Setup</a>
+          <a href="meet-the-founders.html">Meet the Founders</a>
+          <a href="careers.html">Careers</a>
+          <a href="news.html">News</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact-us.html">Contact Us</a>
+        </div>
+
+        <!-- Legal Bar -->
+        <div class="frc-legal-bar font-mono">
+          <div>Copyright &copy; 2026 Quantbot Technologies, LP. All Rights Reserved.</div>
+          <div class="legal-links">
+            <a href="privacy-notice.html">Privacy Notice</a> &middot;
+            <a href="california-privacy-notice.html">California Privacy</a> &middot;
+            <a href="gdpr-privacy-notice.html">GDPR Notice</a> &middot;
+            <a href="disclosures-and-disclaimers.html">Disclosures &amp; Disclaimers</a>
           </div>
         </div>
       </div>
 
     </div>
-
-  </main>
-
+  </footer>
 
   <!-- =======================================================================
        TACTILE DETAIL DISCLOSURE: LEADERSHIP BIO MODAL
@@ -940,22 +1099,21 @@
     </div>
   </div>
 
-
   <!-- =======================================================================
-       INSTITUTIONAL CONTACT MODAL DRAWER
+       INSTITUTIONAL CONTACT MODAL
        ======================================================================= -->
   <div id="contact-modal" class="spatial-modal-overlay" aria-hidden="true" role="dialog">
     <div class="spatial-modal-container glass-panel-specular" style="max-width: 600px;">
       <button type="button" class="modal-close-pill" id="modal-contact-close" aria-label="Close dialog">&times;</button>
       <div class="contact-modal-body">
-        <div class="scene-header-center" style="margin-bottom:24px;">
-          <span class="scene-tag font-mono text-cyan">INSTITUTIONAL ENCRYPTED CHANNEL</span>
-          <h3 class="scene-title text-metallic" style="font-size:1.8rem;">Direct Communication</h3>
-          <p class="scene-subtitle" style="font-size:0.9rem;">Quantbot Technologies, LP &middot; 505 Fifth Avenue, New York, NY</p>
+        <div class="modal-header-center">
+          <span class="font-mono text-cyan" style="font-size:0.75rem;">INSTITUTIONAL ENCRYPTED CHANNEL</span>
+          <h3 class="text-metallic" style="font-size:1.8rem; margin:6px 0;">Direct Correspondence</h3>
+          <p class="font-mono text-silver" style="font-size:0.85rem;">Quantbot Technologies, LP &middot; 505 Fifth Avenue, New York, NY</p>
         </div>
 
-        <form id="spatial-contact-form" class="spatial-form">
-          <div class="form-grid-2">
+        <form id="spatial-contact-form" class="modal-form-stack">
+          <div class="form-row-2">
             <input type="text" id="form-name" placeholder="Full Name" required class="spatial-input font-mono">
             <input type="email" id="form-email" placeholder="Professional Email" required class="spatial-input font-mono">
           </div>

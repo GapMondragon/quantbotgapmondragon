@@ -1,16 +1,17 @@
 // ============================================================================
-// QUANTBOT TECHNOLOGIES — APPLE PRO / iOS 18 UNIFIED PHYSICS ENGINE
-// Dynamic Island Nav, 3D Hero Parallax, Expanding Portal, Horizon Scrollytelling,
-// and Bento Strategy Visualizer
+// QUANTBOT TECHNOLOGIES, LP — APPLE PRO / iOS 18 UNIFIED PHYSICS ENGINE
+// Authentic 6-Stage Horizon Scrollytelling, Expanding Portal, 3D Global Mesh,
+// QMM/POC Bento Switcher, Leadership Bio Modal, and World Session Clocks
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
   initDynamicIsland();
+  initWorldClocks();
   initHero3DParallax();
   initExpandingPortal();
   initHorizonScrollytelling();
-  initBentoStrategyExplorer();
-  initAllocationSelector();
+  initBentoProgramSwitcher();
+  initLeadershipBioModal();
   initCardSpecularSheen();
   initContactForm();
 });
@@ -26,7 +27,6 @@ function initDynamicIsland() {
   const nav = document.getElementById('dynamic-island-nav');
   const links = document.querySelectorAll('.nav-segment-link');
   const glider = document.getElementById('nav-active-pill');
-  const sections = document.querySelectorAll('section[id]');
 
   // Scroll styling
   window.addEventListener('scroll', () => {
@@ -55,11 +55,44 @@ function initDynamicIsland() {
     updateGlider(current);
   });
 
-  // Smooth anchor navigation
+  // Smooth anchor navigation & special handling for 6 stages
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href === '#' || href === '') return;
+
+      // Handle stage anchors (#stage-01 through #stage-06)
+      if (href.startsWith('#stage-0')) {
+        const stageNum = parseInt(href.replace('#stage-0', '')) - 1;
+        const runway = document.getElementById('pipeline');
+        if (runway && stageNum >= 0 && stageNum <= 5) {
+          e.preventDefault();
+          const runwayTop = runway.offsetTop;
+          const runwayHeight = runway.offsetHeight - window.innerHeight;
+          const targetY = runwayTop + (stageNum / 5) * runwayHeight;
+          window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+          });
+          return;
+        }
+      }
+
+      // Handle QMM or POC jumps
+      if (href === '#qmm' || href === '#poc') {
+        e.preventDefault();
+        const bentoSection = document.getElementById('programs');
+        const tabBtn = document.querySelector(`[data-program="${href.replace('#', '')}"]`);
+        if (tabBtn) tabBtn.click();
+        if (bentoSection) {
+          const headerOffset = 70;
+          const targetPos = bentoSection.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
+        return;
+      }
+
+      // Standard anchors
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
@@ -75,13 +108,21 @@ function initDynamicIsland() {
 
   function updateActiveSectionOnScroll() {
     const scrollMid = window.scrollY + window.innerHeight * 0.35;
-    sections.forEach((sec) => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollMid >= top && scrollMid < top + height) {
-        const id = sec.id;
+    const trackedSections = [
+      { id: 'hero', navKey: '' },
+      { id: 'about', navKey: 'about' },
+      { id: 'pipeline', navKey: 'pipeline' },
+      { id: 'programs', navKey: 'programs' },
+      { id: 'leadership', navKey: 'leadership' },
+      { id: 'offices', navKey: 'offices' }
+    ];
+
+    for (let i = trackedSections.length - 1; i >= 0; i--) {
+      const sec = document.getElementById(trackedSections[i].id);
+      if (sec && scrollMid >= sec.offsetTop) {
+        const key = trackedSections[i].navKey;
         links.forEach((l) => {
-          if (l.dataset.nav === id) {
+          if (l.dataset.nav === key) {
             if (!l.classList.contains('is-active')) {
               links.forEach((link) => link.classList.remove('is-active'));
               l.classList.add('is-active');
@@ -89,426 +130,426 @@ function initDynamicIsland() {
             }
           }
         });
+        break;
       }
-    });
+    }
   }
 }
 
 // ============================================================================
-// 2. HERO 3D TILTED COMMAND DASHBOARD & PARALLAX MICRO-WIDGETS
+// 2. LIVE WORLD MARKET SESSION CLOCKS (NEW YORK, LONDON, HONG KONG)
+// ============================================================================
+function initWorldClocks() {
+  const nyClock = document.getElementById('clock-ny');
+  const ldnClock = document.getElementById('clock-ldn');
+  const hkClock = document.getElementById('clock-hk');
+
+  function updateTimes() {
+    const now = new Date();
+    
+    // New York: America/New_York
+    if (nyClock) {
+      nyClock.textContent = now.toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }) + ' EDT';
+    }
+
+    // London: Europe/London
+    if (ldnClock) {
+      ldnClock.textContent = now.toLocaleTimeString('en-GB', {
+        timeZone: 'Europe/London',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }) + ' BST';
+    }
+
+    // Hong Kong: Asia/Hong_Kong
+    if (hkClock) {
+      hkClock.textContent = now.toLocaleTimeString('en-HK', {
+        timeZone: 'Asia/Hong_Kong',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }) + ' HKT';
+    }
+  }
+
+  updateTimes();
+  setInterval(updateTimes, 1000);
+}
+
+// ============================================================================
+// 3. HERO 3D TILT & PARALLAX DIFFERENTIATORS WIDGETS
 // ============================================================================
 function initHero3DParallax() {
   const stage = document.getElementById('hero-parallax-stage');
   const card = document.getElementById('hero-command-card');
-  const wSharpe = document.getElementById('widget-sharpe');
-  const wLatency = document.getElementById('widget-latency');
-  const wGuard = document.getElementById('widget-guardrail');
+  const widgets = document.querySelectorAll('.parallax-widget');
 
   if (!stage || !card) return;
 
-  let targetMX = 0;
-  let targetMY = 0;
-  let curMX = 0;
-  let curMY = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let currentTiltX = 0;
+  let currentTiltY = 0;
 
   window.addEventListener('mousemove', (e) => {
-    targetMX = (e.clientX / window.innerWidth - 0.5) * 2;
-    targetMY = (e.clientY / window.innerHeight - 0.5) * 2;
-  }, { passive: true });
-
-  function renderHeroParallax() {
-    curMX = lerp(curMX, targetMX, 0.08);
-    curMY = lerp(curMY, targetMY, 0.08);
-
-    // Subtle 3D tilt on main dashboard (max +-4 deg)
-    const rotX = (curMY * -3.8).toFixed(2);
-    const rotY = (curMX * 3.8).toFixed(2);
-    card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
-    // 3 Different Z-Depth speeds for micro-widgets
-    if (wSharpe) {
-      wSharpe.style.transform = `translate3d(${(curMX * -14).toFixed(1)}px, ${(curMY * -12).toFixed(1)}px, 0)`;
+    const rect = stage.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      mouseX = (e.clientX - centerX) / (rect.width / 2);
+      mouseY = (e.clientY - centerY) / (rect.height / 2);
     }
-    if (wLatency) {
-      wLatency.style.transform = `translate3d(${(curMX * 18).toFixed(1)}px, ${(curMY * 14).toFixed(1)}px, 0)`;
-    }
-    if (wGuard) {
-      wGuard.style.transform = `translate3d(${(curMX * 28).toFixed(1)}px, ${(curMY * 22).toFixed(1)}px, 0)`;
-    }
+  });
 
-    requestAnimationFrame(renderHeroParallax);
+  // Parallax animation loop
+  function animateHero() {
+    currentTiltX = lerp(currentTiltX, -mouseY * 7, 0.08);
+    currentTiltY = lerp(currentTiltY, mouseX * 9, 0.08);
+
+    card.style.transform = `rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg) translateZ(10px)`;
+
+    widgets.forEach((w) => {
+      const speed = parseFloat(w.dataset.speed || '0.5');
+      const offsetX = mouseX * 24 * speed;
+      const offsetY = mouseY * 20 * speed;
+      w.style.transform = `translate3d(${offsetX}px, ${offsetY}px, ${speed * 40}px)`;
+    });
+
+    requestAnimationFrame(animateHero);
   }
 
-  requestAnimationFrame(renderHeroParallax);
+  requestAnimationFrame(animateHero);
 }
 
 // ============================================================================
-// 3. SECTION 2: EXPANDING GLASS PORTAL ("INSIDE THE QUANT ENGINE")
+// 4. EXPANDING GLASS PORTAL (ORIGIN 2008 & IDEA 2 ALPHA)
 // ============================================================================
 function initExpandingPortal() {
-  const trigger = document.getElementById('architecture');
+  const trigger = document.getElementById('about');
   const portalBox = document.getElementById('expanding-portal-box');
-  const innerWorld = document.getElementById('portal-inner-content');
+  const innerContent = document.getElementById('portal-inner-content');
 
-  if (!trigger || !portalBox) return;
-
-  let targetT = 0;
-  let currentT = 0;
-
-  function updatePortal() {
-    const rect = trigger.getBoundingClientRect();
-    const scrollDistance = trigger.offsetHeight - window.innerHeight;
-
-    if (scrollDistance > 0) {
-      const scrollProgress = -rect.top / scrollDistance;
-      targetT = clamp(scrollProgress, 0, 1);
-    }
-
-    currentT = lerp(currentT, targetT, 0.09);
-
-    // Interpolate width: 72vw -> 100vw
-    const w = lerp(72, 100, currentT);
-    // Interpolate height: 60vh -> 100vh
-    const h = lerp(60, 100, currentT);
-    // Interpolate border radius: 40px -> 0px
-    const r = lerp(40, 0, currentT);
-    // Counter-scale inner content: 1.2 -> 1.0
-    const s = lerp(1.2, 1.0, currentT);
-
-    portalBox.style.width = `${w.toFixed(1)}vw`;
-    portalBox.style.height = `${h.toFixed(1)}vh`;
-    portalBox.style.borderRadius = `${r.toFixed(1)}px`;
-
-    if (innerWorld) {
-      innerWorld.style.transform = `scale(${s.toFixed(3)})`;
-    }
-
-    requestAnimationFrame(updatePortal);
-  }
-
-  requestAnimationFrame(updatePortal);
-}
-
-// ============================================================================
-// 4. SECTION 3: HORIZON-LOCKED SCROLLYTELLING (3 PILLARS OF ALPHA)
-// ============================================================================
-function initHorizonScrollytelling() {
-  const section = document.getElementById('pillars');
-  const vessel = document.getElementById('morph-vessel');
-  const beam = document.getElementById('pillar-progress-beam');
-  const stepPill = document.getElementById('narrative-step-pill');
-  const titleEl = document.getElementById('narrative-title');
-  const descEl = document.getElementById('narrative-desc');
-  const statusTag = document.getElementById('vessel-status-tag');
-  const codeRef = document.getElementById('vessel-code-ref');
-  const horizonLaser = document.getElementById('pillars-horizon-line');
-  const horizonGlow = document.getElementById('pillars-horizon-glow');
-  const navBtns = document.querySelectorAll('.pillar-nav-btn');
-
-  if (!section || !vessel) return;
-
-  const pillarsData = [
-    {
-      step: 'PILLAR 01 // 03',
-      title: 'Multimodal Market Intelligence.',
-      desc: 'AI-driven structural pattern extraction isolates genuine liquidity imbalances across global order books, filtering out over 99% of retail indicator noise.',
-      badge: 'AI VISION // PATTERN RECOGNITION',
-      code: 'MODEL_HASH: #0A84FF_ALPHA',
-      accent: '#0A84FF',
-      width: 520,
-      height: 400
-    },
-    {
-      step: 'PILLAR 02 // 03',
-      title: 'Battle-Tested Quantitative Validation.',
-      desc: 'Hundreds of thousands of compute hours across distinct macroeconomic volatility regimes ensure persistent statistical edge with zero curve-fitting.',
-      badge: 'MONTE CARLO // ROBUSTNESS AUDIT',
-      code: 'BENCH_HASH: #30D158_VERIFIED',
-      accent: '#30D158',
-      width: 550,
-      height: 420
-    },
-    {
-      step: 'PILLAR 03 // 03',
-      title: 'Zero-Emotion Capital Protection.',
-      desc: 'Automated over-trading locks, strict average daily volume sizing, and hard circuit breakers execute deterministically with zero human hesitation.',
-      badge: 'RISK PROTOCOL // HARD-LOCKED',
-      code: 'CIRCUIT_HASH: #5E5CE6_GUARD',
-      accent: '#5E5CE6',
-      width: 530,
-      height: 440
-    }
-  ];
-
-  let activePillarIdx = 0;
-  let targetProgress = 0;
-  let currentProgress = 0;
+  if (!trigger || !portalBox || !innerContent) return;
 
   function onScroll() {
-    const rect = section.getBoundingClientRect();
-    const scrollDistance = section.offsetHeight - window.innerHeight;
-    if (scrollDistance > 0) {
-      const rawProgress = -rect.top / scrollDistance;
-      targetProgress = clamp(rawProgress, 0, 1);
-    }
+    const rect = trigger.getBoundingClientRect();
+    const triggerH = trigger.offsetHeight - window.innerHeight;
+    const progress = clamp(-rect.top / triggerH, 0, 1);
+
+    // Interpolate: 70vw -> 100vw, 58vh -> 100vh, 40px -> 0px radius
+    const currentW = lerp(70, 100, progress);
+    const currentH = lerp(58, 100, progress);
+    const currentR = lerp(40, 0, progress);
+    const innerScale = lerp(1.22, 1.0, progress);
+
+    portalBox.style.width = `${currentW}vw`;
+    portalBox.style.height = `${currentH}vh`;
+    portalBox.style.borderRadius = `${currentR}px`;
+    innerContent.style.transform = `scale(${innerScale})`;
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
 
-  function renderPillars() {
-    currentProgress = lerp(currentProgress, targetProgress, 0.08);
+// ============================================================================
+// 5. HORIZON-LOCKED 6-STAGE PIPELINE (WITH LIQUID GLASS MORPHING)
+// ============================================================================
+function initHorizonScrollytelling() {
+  const runway = document.getElementById('pipeline');
+  const vessel = document.getElementById('master-stage-vessel');
+  const stepPill = document.getElementById('pipeline-step-pill');
+  const stepTag = document.getElementById('pipeline-step-tag');
+  const titleEl = document.getElementById('pipeline-title');
+  const descEl = document.getElementById('pipeline-desc');
+  const beam = document.getElementById('pipeline-progress-beam');
+  const stageBtns = document.querySelectorAll('.pipeline-nav-rail .pillar-nav-btn');
+  const vesselBadge = document.getElementById('vessel-stage-badge');
+  const vesselMeta = document.getElementById('vessel-stage-meta');
+  const states = [
+    document.getElementById('vessel-state-0'),
+    document.getElementById('vessel-state-1'),
+    document.getElementById('vessel-state-2'),
+    document.getElementById('vessel-state-3'),
+    document.getElementById('vessel-state-4'),
+    document.getElementById('vessel-state-5')
+  ];
 
-    // Compute active pillar index (0, 1, or 2)
-    let idx = 0;
-    if (currentProgress >= 0.66) {
-      idx = 2;
-    } else if (currentProgress >= 0.33) {
-      idx = 1;
+  if (!runway || !vessel) return;
+
+  const stageData = [
+    {
+      step: 'STAGE 01 // 06',
+      tag: 'RESEARCH & DATA SYNC',
+      title: 'Stage 01 · Idea Generation',
+      desc: 'Start with a basic strategy idea, such as in futures or equities, and collaborate directly with our data team.',
+      badge: 'STAGE 01 // IDEA GENERATION',
+      meta: 'PIPELINE_HASH: #0A84FF_GEN',
+      accentColor: '#0A84FF'
+    },
+    {
+      step: 'STAGE 02 // 06',
+      tag: 'DATA CURATION & PARTITION',
+      title: 'Stage 02 · Data Analysis',
+      desc: 'Gain access to necessary curated data, partition it into in-sample and out-of-sample sets, and analyze its quality and outliers.',
+      badge: 'STAGE 02 // DATA ANALYSIS',
+      meta: 'PIPELINE_HASH: #00C7BE_ANALYSIS',
+      accentColor: '#00C7BE'
+    },
+    {
+      step: 'STAGE 03 // 06',
+      tag: 'DEVELOPMENT & BENCHMARKS',
+      title: 'Stage 03 · Code Development',
+      desc: 'Test the idea on in-sample data using our development code in R, Python, or C++, evaluating its performance against strict benchmarks.',
+      badge: 'STAGE 03 // CODE DEVELOPMENT',
+      meta: 'PIPELINE_HASH: #30D158_CODE',
+      accentColor: '#30D158'
+    },
+    {
+      step: 'STAGE 04 // 06',
+      tag: 'BACKTEST & RISK PLATFORM',
+      title: 'Stage 04 · Trading Logic & Risk Management',
+      desc: 'If in-sample results meet expectations, further develop the strategy by implementing trading logic and risk management using our in-house backtesting platform.',
+      badge: 'STAGE 04 // TRADING LOGIC & RISK',
+      meta: 'PIPELINE_HASH: #5E5CE6_RISK',
+      accentColor: '#5E5CE6'
+    },
+    {
+      step: 'STAGE 05 // 06',
+      tag: 'FORWARD OPS VALIDATION',
+      title: 'Stage 05 · Paper Trading & Testing',
+      desc: 'Deploy the strategy in paper trading mode, monitoring daily performance and comparing it with previous backtest results alongside our operations team to ensure accuracy and identify biases.',
+      badge: 'STAGE 05 // PAPER TRADING & TESTING',
+      meta: 'PIPELINE_HASH: #FF9F0A_PAPER',
+      accentColor: '#FF9F0A'
+    },
+    {
+      step: 'STAGE 06 // 06',
+      tag: '24/7 AUTOMATED PRODUCTION',
+      title: 'Stage 06 · Live Trading',
+      desc: 'Once all benchmarks are met, the strategy is deployed into live automated production trading across global exchanges.',
+      badge: 'STAGE 06 // LIVE PRODUCTION',
+      meta: 'PIPELINE_HASH: #30D158_LIVE',
+      accentColor: '#30D158'
     }
+  ];
 
-    if (idx !== activePillarIdx) {
-      activePillarIdx = idx;
-      switchPillar(idx);
-    }
+  let activeIndex = 0;
 
-    // Update glowing progress beam line
+  function updateStage(index) {
+    if (index === activeIndex && states[index]?.classList.contains('vessel-state-active')) return;
+    activeIndex = index;
+
+    const data = stageData[index];
+    if (!data) return;
+
+    // Update Left Column
+    if (stepPill) stepPill.textContent = data.step;
+    if (stepTag) stepTag.textContent = data.tag;
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+
+    // Update Progress Beam and Rail Buttons
     if (beam) {
-      beam.style.height = `${(currentProgress * 100).toFixed(1)}%`;
+      beam.style.top = `${(index / 5) * 83.33}%`;
+      beam.style.height = `16.66%`;
     }
-
-    requestAnimationFrame(renderPillars);
-  }
-
-  function switchPillar(idx) {
-    const p = pillarsData[idx];
-    if (!p) return;
-
-    // 1. Text transition
-    if (stepPill) {
-      stepPill.textContent = p.step;
-      stepPill.style.color = p.accent;
-      stepPill.style.borderColor = `${p.accent}55`;
-      stepPill.style.background = `${p.accent}20`;
-    }
-    if (titleEl) titleEl.textContent = p.title;
-    if (descEl) descEl.textContent = p.desc;
-    if (statusTag) {
-      statusTag.textContent = p.badge;
-      statusTag.style.color = p.accent;
-    }
-    if (codeRef) codeRef.textContent = p.code;
-
-    // 2. Horizon laser line & glow accent color
-    if (horizonLaser) {
-      horizonLaser.style.background = `linear-gradient(90deg, transparent 5%, ${p.accent} 50%, transparent 95%)`;
-      horizonLaser.style.boxShadow = `0 0 14px ${p.accent}`;
-    }
-    if (horizonGlow) {
-      horizonGlow.style.background = `radial-gradient(circle, ${p.accent} 0%, transparent 70%)`;
-    }
-
-    // 3. Liquid morph vessel geometry and lighting
-    vessel.style.borderColor = `${p.accent}44`;
-    vessel.style.boxShadow = `inset 0 1px 0 0 rgba(255, 255, 255, 0.35), 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px ${p.accent}25`;
-
-    // 4. Switch visible body
-    document.querySelectorAll('.vessel-body').forEach((body, bIdx) => {
-      if (bIdx === idx) {
-        body.classList.add('vessel-state-active');
-      } else {
-        body.classList.remove('vessel-state-active');
-      }
+    stageBtns.forEach((btn, idx) => {
+      btn.classList.toggle('is-active', idx === index);
     });
 
-    // 5. Update pillar nav rail button states
-    navBtns.forEach((btn, bIdx) => {
-      if (bIdx === idx) {
-        btn.classList.add('is-active');
-      } else {
-        btn.classList.remove('is-active');
-      }
+    // Morph the Master Vessel
+    vessel.style.borderColor = `${data.accentColor}55`;
+    vessel.style.boxShadow = `0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px ${data.accentColor}25`;
+
+    if (vesselBadge) {
+      vesselBadge.textContent = data.badge;
+      vesselBadge.style.color = data.accentColor;
+    }
+    if (vesselMeta) vesselMeta.textContent = data.meta;
+
+    states.forEach((st, idx) => {
+      if (st) st.classList.toggle('vessel-state-active', idx === index);
     });
+
+    // Horizon glow tint update
+    const glow = document.getElementById('pipeline-horizon-glow');
+    if (glow) {
+      glow.style.background = `radial-gradient(ellipse at center, ${data.accentColor}44 0%, transparent 70%)`;
+    }
   }
 
-  // Pillar click to smooth scroll
-  navBtns.forEach((btn) => {
+  function onScroll() {
+    const rect = runway.getBoundingClientRect();
+    const runwayH = runway.offsetHeight - window.innerHeight;
+    const progress = clamp(-rect.top / runwayH, 0, 1);
+
+    // Compute stage index (0 to 5)
+    const stageIdx = clamp(Math.floor(progress * 5.99), 0, 5);
+    updateStage(stageIdx);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Rail Button Clicks
+  stageBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const targetPillar = parseInt(btn.dataset.pillar, 10);
-      const scrollDistance = section.offsetHeight - window.innerHeight;
-      const targetOffset = section.offsetTop + (targetPillar / 2.5) * scrollDistance;
+      const idx = parseInt(btn.dataset.stage || '0');
+      const runwayTop = runway.offsetTop;
+      const runwayH = runway.offsetHeight - window.innerHeight;
+      const targetY = runwayTop + (idx / 5) * runwayH;
       window.scrollTo({
-        top: targetOffset,
+        top: targetY,
         behavior: 'smooth'
       });
     });
   });
-
-  requestAnimationFrame(renderPillars);
 }
 
 // ============================================================================
-// 5. SECTION 4: INTERACTIVE iOS BENTO STRATEGY EXPLORER
+// 6. BENTO PROGRAM SWITCHER (QMM SETUP vs. POC PROGRAM)
 // ============================================================================
-function initBentoStrategyExplorer() {
-  const buttons = document.querySelectorAll('#strategy-switcher .segment-btn');
-  const chartFill = document.getElementById('bento-chart-fill');
-  const chartLine = document.getElementById('bento-chart-line');
-  const retEl = document.getElementById('stat-return');
-  const pfEl = document.getElementById('stat-pf');
-  const mddEl = document.getElementById('stat-mdd');
-  const winEl = document.getElementById('stat-win');
+function initBentoProgramSwitcher() {
+  const switcher = document.getElementById('program-tab-switcher');
+  const viewQmm = document.getElementById('view-qmm');
+  const viewPoc = document.getElementById('view-poc');
+  if (!switcher) return;
 
-  const strategyRegimes = {
-    all: {
-      return: '+38.4%',
-      pf: '2.42',
-      mdd: '-4.2%',
-      win: '68.5%',
-      linePath: 'M 0 200 Q 150 170 300 120 T 600 30',
-      fillPath: 'M 0 200 Q 150 170 300 120 T 600 30 L 600 240 L 0 240 Z'
-    },
-    vol: {
-      return: '+54.1%',
-      pf: '2.89',
-      mdd: '-5.8%',
-      win: '72.1%',
-      linePath: 'M 0 220 Q 120 190 260 140 T 420 80 T 600 15',
-      fillPath: 'M 0 220 Q 120 190 260 140 T 420 80 T 600 15 L 600 240 L 0 240 Z'
-    },
-    trend: {
-      return: '+31.2%',
-      pf: '2.15',
-      mdd: '-3.1%',
-      win: '63.4%',
-      linePath: 'M 0 190 Q 200 160 380 110 T 600 45',
-      fillPath: 'M 0 190 Q 200 160 380 110 T 600 45 L 600 240 L 0 240 Z'
-    }
-  };
+  const buttons = switcher.querySelectorAll('.segment-btn');
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       buttons.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
 
-      const regime = btn.dataset.regime;
-      const data = strategyRegimes[regime];
-      if (!data) return;
-
-      // Animate SVG path morph
-      if (chartLine) chartLine.setAttribute('d', data.linePath);
-      if (chartFill) chartFill.setAttribute('d', data.fillPath);
-
-      // Animate numbers
-      if (retEl) retEl.textContent = data.return;
-      if (pfEl) pfEl.textContent = data.pf;
-      if (mddEl) mddEl.textContent = data.mdd;
-      if (winEl) winEl.textContent = data.win;
-    });
-  });
-}
-
-// ============================================================================
-// 6. SECTION 5: INVESTOR ALLOCATION PORTAL SELECTOR
-// ============================================================================
-function initAllocationSelector() {
-  const tabs = document.querySelectorAll('#investor-type-selector .alloc-tab');
-  const tagEl = document.getElementById('alloc-gate-tag');
-  const titleEl = document.getElementById('alloc-tier-title');
-  const descEl = document.getElementById('alloc-tier-desc');
-  const listEl = document.getElementById('alloc-checklist');
-
-  const tiers = {
-    inst: {
-      tag: 'INSTITUTIONAL TIER // DIRECT LP ALLOCATION',
-      title: 'Direct SMA & Fund Vehicle Access',
-      desc: 'Qualified institutional clients gain access to separately managed accounts (SMA) and institutional fund vehicles featuring daily liquidity and complete portfolio transparency.',
-      checklist: [
-        'Minimum Allocation: $10M+ USD',
-        'Daily Third-Party NAV Reconciliation',
-        'Dedicated FIX/API Telemetry Reporting'
-      ]
-    },
-    client: {
-      tag: 'PRIVATE WEALTH // FAMILY OFFICE DESK',
-      title: 'Tailored Absolute-Return Mandates',
-      desc: 'Customized multi-strategy mandates designed to deliver uncorrelated capital growth while preserving wealth through macro market dislocations.',
-      checklist: [
-        'Minimum Allocation: $2M+ USD',
-        'Monthly Portfolio Strategy Briefings',
-        'Strict Drawdown Protection SLA'
-      ]
-    },
-    partner: {
-      tag: 'STRATEGY PARTNERSHIP // QUANT COLLABORATIVE',
-      title: 'Co-Located Infrastructure & Seed Capital',
-      desc: 'We provide top-tier quantitative researchers and trading teams with high-speed execution bridges, sub-tick data archives, and strategic seeding.',
-      checklist: [
-        'Direct DMA Exchange Connectivity',
-        'C++20 SIMD High-Throughput Cluster',
-        'Performance-Linked Fee Structures'
-      ]
-    }
-  };
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-
-      const type = tab.dataset.type;
-      const data = tiers[type];
-      if (!data) return;
-
-      if (tagEl) tagEl.textContent = data.tag;
-      if (titleEl) titleEl.textContent = data.title;
-      if (descEl) descEl.textContent = data.desc;
-      if (listEl) {
-        listEl.innerHTML = data.checklist
-          .map((item) => `<div><i class="fa fa-check text-emerald"></i> ${item}</div>`)
-          .join('');
+      const program = btn.dataset.program;
+      if (program === 'qmm') {
+        viewQmm?.classList.add('bento-view-active');
+        viewPoc?.classList.remove('bento-view-active');
+      } else {
+        viewPoc?.classList.add('bento-view-active');
+        viewQmm?.classList.remove('bento-view-active');
       }
     });
   });
 }
 
 // ============================================================================
-// 7. SPECULAR SPOTLIGHT ON CARDS
+// 7. LEADERSHIP BIO MODAL (AUTHENTIC BIOS FROM DATA.JS)
+// ============================================================================
+function initLeadershipBioModal() {
+  const modal = document.getElementById('bio-modal');
+  const modalClose = document.getElementById('bio-modal-close');
+  const modalContent = document.getElementById('bio-modal-content');
+  const leaderCards = document.querySelectorAll('.leader-card');
+
+  if (!modal || !modalContent) return;
+
+  function openBio(memberName) {
+    const data = window.QuantbotData?.teamMembers?.find(
+      (m) => m.name.toLowerCase() === memberName.toLowerCase()
+    );
+
+    if (!data) return;
+
+    modalContent.innerHTML = `
+      <div class="modal-bio-header">
+        <img src="${data.image}" alt="${data.name}" class="modal-bio-avatar" onerror="this.style.display='none'">
+        <div>
+          <h3 class="modal-bio-name">${data.name}</h3>
+          <span class="modal-bio-role font-mono">${data.role}</span>
+        </div>
+      </div>
+      <p class="modal-bio-narrative">${data.bio}</p>
+    `;
+
+    modal.classList.add('is-active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBio() {
+    modal.classList.remove('is-active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  leaderCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      const member = card.dataset.member;
+      if (member) openBio(member);
+    });
+  });
+
+  modalClose?.addEventListener('click', closeBio);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeBio();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+      closeBio();
+    }
+  });
+}
+
+// ============================================================================
+// 8. CARD SPECULAR SHEEN MOUSE TRACKING
 // ============================================================================
 function initCardSpecularSheen() {
-  const cards = document.querySelectorAll('.bento-card, .main-command-dashboard, .allocate-glass-card');
+  const cards = document.querySelectorAll('.glass-panel-specular');
+
   cards.forEach((card) => {
-    card.addEventListener('pointermove', (e) => {
+    card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
-      card.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
     });
   });
 }
 
 // ============================================================================
-// 8. CONTACT FORM SIMULATION
+// 9. CONTACT FORM INTERACTIVE SUBMISSION
 // ============================================================================
 function initContactForm() {
-  const form = document.getElementById('investor-contact-form');
+  const form = document.getElementById('quantbot-contact-form');
+  const status = document.getElementById('contact-form-status');
+
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    if (!btn) return;
-
-    btn.disabled = true;
-    btn.innerHTML = '<span>Verifying Institutional Credentials...</span> <i class="fa fa-spinner fa-spin"></i>';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span>Transmitting to Quantbot Network...</span> <i class="fa fa-spinner fa-spin"></i>`;
+    }
 
     setTimeout(() => {
-      btn.innerHTML = '<span>Inquiry Registered · Secure Briefing Sent</span> <i class="fa fa-circle-check text-emerald"></i>';
       form.reset();
-      setTimeout(() => {
+      if (btn) {
         btn.disabled = false;
-        btn.innerHTML = '<span>Request Track Record Verification</span> <i class="fa fa-shield-halved"></i>';
-      }, 4000);
+        btn.innerHTML = `<span>Transmit Confidential Message</span> <i class="fa fa-paper-plane"></i>`;
+      }
+      if (status) {
+        status.style.display = 'block';
+        status.className = 'form-feedback success font-mono';
+        status.innerHTML = `<i class="fa fa-circle-check"></i> Thank you. Your message has been encrypted and routed directly to Quantbot leadership (info@quantbot.com). We will respond promptly.`;
+      }
     }, 1200);
   });
 }

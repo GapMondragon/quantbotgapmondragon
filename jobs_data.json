@@ -1,0 +1,194 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4344638009?gh_jid=4344638009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_required",
+      "internal_job_id": 4201318009,
+      "location": {
+        "name": "Hong Kong"
+      },
+      "metadata": null,
+      "id": 4344638009,
+      "updated_at": "2026-08-11T15:41:34-04:00",
+      "requisition_id": "55",
+      "title": "Data Trading Analyst Summer Internship - 2027 [Hong Kong]",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-11T15:41:34-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4299767009?gh_jid=4299767009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_required",
+      "internal_job_id": 4175696009,
+      "location": {
+        "name": "New York"
+      },
+      "metadata": null,
+      "id": 4299767009,
+      "updated_at": "2026-08-11T09:26:34-04:00",
+      "requisition_id": "40",
+      "title": "Data Trading Analyst Summer Internship - 2027 [New York]",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-07T13:51:59-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4340833009?gh_jid=4340833009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4199402009,
+      "location": {
+        "name": "New York"
+      },
+      "metadata": null,
+      "id": 4340833009,
+      "updated_at": "2026-09-16T10:13:57-04:00",
+      "requisition_id": "49",
+      "title": "Machine Learning Research Engineer Internship - 2027 [New York] ",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-07T13:49:20-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4341038009?gh_jid=4341038009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4199539009,
+      "location": {
+        "name": "New York"
+      },
+      "metadata": null,
+      "id": 4341038009,
+      "updated_at": "2026-09-16T14:15:09-04:00",
+      "requisition_id": "51",
+      "title": "Quantitative Developer Internship - 2027 [New York] ",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-07T13:58:23-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4348629009?gh_jid=4348629009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_required",
+      "internal_job_id": 4203317009,
+      "location": {
+        "name": "Hong Kong"
+      },
+      "metadata": null,
+      "id": 4348629009,
+      "updated_at": "2026-08-11T15:42:05-04:00",
+      "requisition_id": "56",
+      "title": "Quantitative Researcher Internship - 2027 [Hong Kong]",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-11T15:42:05-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4299863009?gh_jid=4299863009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_required",
+      "internal_job_id": 4175757009,
+      "location": {
+        "name": "London"
+      },
+      "metadata": null,
+      "id": 4299863009,
+      "updated_at": "2026-08-24T12:56:14-04:00",
+      "requisition_id": "47",
+      "title": "Quantitative Researcher Internship - 2027 [London]",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-11T15:44:45-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.quantbot.com/careers/4299496009?gh_jid=4299496009",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_required",
+      "internal_job_id": 4175548009,
+      "location": {
+        "name": "New York"
+      },
+      "metadata": null,
+      "id": 4299496009,
+      "updated_at": "2026-08-12T12:03:03-04:00",
+      "requisition_id": "39",
+      "title": "Quantitative Researcher Internship - 2027 [New York]",
+      "company_name": "Quantbot Technologies",
+      "first_published": "2026-08-07T13:44:08-04:00",
+      "language": "en",
+      "application_deadline": null
+    }
+  ],
+  "meta": {
+    "total": 7
+  }
+}

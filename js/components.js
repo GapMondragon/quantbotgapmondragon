@@ -1,8 +1,17 @@
-// Quantbot Technologies - Core Interactive Components & Behavior
-// Minimalist, robust, institutional UI logic
+// ============================================================================
+// Quantbot Technologies - Apple iOS 18 & visionOS Architecture Controller
+// High-Performance Scrollytelling, Dynamic Island, Bento Tilt & Telemetry
+// ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLenisSmoothScroll();
   initNavigation();
+  initDynamicIslandStageTracker();
+  initVerticalProgressSpine();
+  initStageScrollytelling();
+  initPhaseInspector();
+  init3DPerspectiveTilt();
+  initWidgetCounters();
   initModals();
   initTabs();
   initAccordion();
@@ -11,27 +20,43 @@ document.addEventListener('DOMContentLoaded', () => {
   initNewsFilter();
   initBlogFilter();
   initSmoothScroll();
-  initScrollReveals();
   initLiquidGlassEngine();
 });
 
-// Navigation Handling
+// 1. Lenis Smooth Scroll Integration
+function initLenisSmoothScroll() {
+  if (typeof window.Lenis === 'function') {
+    const lenis = new window.Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.8,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    window.lenisInstance = lenis;
+  }
+}
+
+// 2. Navigation & Mobile Drawer
 function initNavigation() {
   const header = document.querySelector('.site-header');
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileDrawer = document.querySelector('.mobile-drawer');
   const mobileOverlay = document.querySelector('.mobile-overlay');
 
-  // Sticky header class
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
     }
   }, { passive: true });
 
-  // Mobile menu toggle
   if (mobileToggle && mobileDrawer && mobileOverlay) {
     mobileToggle.addEventListener('click', () => {
       const isOpen = mobileDrawer.classList.contains('active');
@@ -59,17 +84,347 @@ function initNavigation() {
     document.body.style.overflow = '';
   }
 
-  // Highlight active link
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link, .dropdown-link, .mobile-nav-link, .mobile-submenu-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
+  document.querySelectorAll('.mobile-submenu-link, .mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
   });
 }
 
-// Modal System (Team bios, Careers application, Blog/News preview, Contact feedback)
+// 3. Dynamic Island Navigation Stage Tracker & Sliding Pill
+function initDynamicIslandStageTracker() {
+  const navLinks = document.querySelectorAll('.ios-stage-nav-link');
+  const activePill = document.getElementById('ios-nav-pill');
+  if (!navLinks.length || !activePill) return;
+
+  function updatePillPosition(activeLink) {
+    if (!activeLink) return;
+    const parentRect = activeLink.parentElement.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+    activePill.style.left = `${linkRect.left - parentRect.left}px`;
+    activePill.style.width = `${linkRect.width}px`;
+  }
+
+  // Set initial pill position
+  const initialActive = document.querySelector('.ios-stage-nav-link.is-active') || navLinks[0];
+  setTimeout(() => updatePillPosition(initialActive), 100);
+
+  window.addEventListener('resize', () => {
+    const current = document.querySelector('.ios-stage-nav-link.is-active') || navLinks[0];
+    updatePillPosition(current);
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('is-active'));
+      link.classList.add('is-active');
+      updatePillPosition(link);
+    });
+  });
+
+  window.syncDynamicIslandPill = function (stageId) {
+    const targetLink = document.querySelector(`.ios-stage-nav-link[data-stage-nav="${stageId}"]`);
+    if (targetLink && !targetLink.classList.contains('is-active')) {
+      navLinks.forEach(l => l.classList.remove('is-active'));
+      targetLink.classList.add('is-active');
+      updatePillPosition(targetLink);
+    }
+  };
+}
+
+// 4. Sleek Vertical Progress Spine on Left Margin
+function initVerticalProgressSpine() {
+  const spineBeam = document.getElementById('ios-spine-beam');
+  const spineNodes = document.querySelectorAll('.ios-spine-node');
+  const stages = document.querySelectorAll('.p-stage');
+  if (!spineBeam || !stages.length) return;
+
+  function updateSpine() {
+    const firstStage = stages[0];
+    const lastStage = stages[stages.length - 1];
+    const startY = firstStage.offsetTop;
+    const endY = lastStage.offsetTop + lastStage.offsetHeight - window.innerHeight;
+    const totalDist = endY - startY;
+
+    if (totalDist > 0) {
+      const currentScroll = window.scrollY - startY;
+      const progress = Math.max(0, Math.min(1, currentScroll / totalDist));
+      spineBeam.style.height = `${(progress * 100).toFixed(1)}%`;
+    }
+  }
+
+  window.addEventListener('scroll', updateSpine, { passive: true });
+  updateSpine();
+
+  spineNodes.forEach(node => {
+    node.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = node.dataset.stageTarget;
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(targetEl, { offset: -30 });
+        } else {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  window.syncSpineNode = function (stageId) {
+    spineNodes.forEach(node => {
+      if (node.dataset.stageTarget === stageId) {
+        node.classList.add('is-active');
+      } else {
+        node.classList.remove('is-active');
+      }
+    });
+  };
+}
+
+// 5. Scrollytelling Stage Pinning & Focus Snapping
+function initStageScrollytelling() {
+  const stages = document.querySelectorAll('.p-stage');
+  if (!stages.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        stages.forEach(s => {
+          if (s === entry.target) {
+            s.classList.add('is-active-stage');
+            s.classList.remove('is-inactive');
+            const stageId = s.id;
+            if (window.syncDynamicIslandPill) window.syncDynamicIslandPill(stageId);
+            if (window.syncSpineNode) window.syncSpineNode(stageId);
+          } else {
+            s.classList.remove('is-active-stage');
+            s.classList.add('is-inactive');
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '-10% 0px -10% 0px'
+  });
+
+  stages.forEach(stage => observer.observe(stage));
+}
+
+// 6. Stage 03 6-Phase Interactive Stepper & Code Inspector
+function initPhaseInspector() {
+  const phasePills = document.querySelectorAll('.phase-node-pill');
+  const phaseBadge = document.getElementById('phase-badge');
+  const phaseTitle = document.getElementById('phase-title');
+  const phaseDesc = document.getElementById('phase-desc');
+  const phaseStack = document.getElementById('phase-stack');
+  const phaseGate = document.getElementById('phase-gate');
+  const terminalFilename = document.getElementById('terminal-filename');
+  const codePreview = document.getElementById('phase-code-preview');
+
+  if (!phasePills.length || !phaseTitle) return;
+
+  const phasesData = [
+    {
+      badge: "GATE // SPECIALIST RESEARCH REVIEW",
+      title: "Phase 01: Idea Generation",
+      desc: "Start with a basic strategy idea in global futures or cash equities, collaborating directly with our specialized data research teams to formulate mathematically tractable hypotheses.",
+      stack: "Python · Jupyter",
+      gate: "Peer Review Passed",
+      filename: "quantbot_alpha_v2.py",
+      code: `import quantbot.engine as qb
+from quantbot.analytics import compute_alpha
+
+# Stage 01 // Strategy Hypothesis Ingestion
+universe = qb.Universe.global_liquid_equities()
+signals = compute_alpha(universe, lookback_ticks=25000)
+qb.verify_orthogonality(signals, threshold=0.88)
+print("[OK] Signal ready for Out-of-Sample verification")`
+    },
+    {
+      badge: "GATE // IS / OOS STRICT PARTITIONING",
+      title: "Phase 02: Data Analysis",
+      desc: "Gain access to petabyte-scale tick datasets, partition strictly into in-sample and out-of-sample datasets, and thoroughly inspect data hygiene, corporate actions, and market outliers.",
+      stack: "Apache Arrow · Polars · C++",
+      gate: "Data Hygiene 100%",
+      filename: "data_hygiene_partition.py",
+      code: `# Stage 02 // Strict IS / OOS Data Hygiene
+dataset = qb.load_l2_book("GLOBEX.ES", start="2020-01-01")
+train_is, test_oos = qb.partition_clean(dataset, split_ratio=0.70)
+assert qb.detect_lookahead_bias(train_is) == 0.0
+print(f"[OK] IS Partition: {len(train_is)} rows verified")`
+    },
+    {
+      badge: "GATE // COMPUTE OPTIMIZATION & UNIT TESTS",
+      title: "Phase 03: Code Development",
+      desc: "Test the hypothesis on in-sample data using our distributed compute cluster (Python, C++20, R), benchmarking empirical Sharpe ratio and signal decay curves.",
+      stack: "C++20 · Cython · SIMD",
+      gate: "Latency Bench < 25μs",
+      filename: "alpha_kernel.cpp",
+      code: `// Stage 03 // Ultra-Low Latency C++20 SIMD Alpha Kernel
+auto evaluate_orderbook(const MarketBook& book) noexcept -> Signal {
+    const auto micro_price = calculate_microprice_avellaneda(book);
+    const auto imbalance = compute_vpin_flow(book, 50);
+    return Signal{ .weight = imbalance * 0.42, .confidence = 0.96 };
+}`
+    },
+    {
+      badge: "GATE // PRE-TRADE LIMITS & FACTOR NEUTRALITY",
+      title: "Phase 04: Trading Logic & Risk",
+      desc: "Implement automated factor neutralization, position sizing limits, stop-loss governance, and portfolio margin constraints inside our proprietary risk engine.",
+      stack: "RiskOS · Real-Time VaR",
+      gate: "Factor Drift = 0.00%",
+      filename: "risk_guardrails.py",
+      code: `# Stage 04 // Dynamic Factor Neutralization
+risk_matrix = qb.RiskEngine.load_barra_model()
+portfolio = qb.Portfolio.from_signals(signals)
+portfolio.neutralize_sectors(max_exposure_usd=0.0)
+portfolio.enforce_pre_trade_limits(max_adv_pct=1.5)
+print("[OK] Risk governance passed all circuit checks")`
+    },
+    {
+      badge: "GATE // ZERO LOOKAHEAD FORWARD BENCHMARK",
+      title: "Phase 05: Paper Testing & Simulation",
+      desc: "Deploy the strategy in paper trading mode against real-time live market feeds, monitoring daily execution slippage and comparing against simulated backtests.",
+      stack: "PaperBroker · FIX 4.4",
+      gate: "Tracking Error < 0.08",
+      filename: "paper_execution_audit.py",
+      code: `# Stage 05 // Live Paper Execution Audit
+session = qb.PaperSession.connect("NY4_PROD_SHADOW")
+session.stream_fills(order_router="SOR_FAST")
+variance = session.compare_with_backtest(window_days=30)
+assert variance.sharpe_delta < 0.05
+print(f"[OK] Live shadow execution tracking error: {variance.tracking_error:.4f}")`
+    },
+    {
+      badge: "GATE // CAPITAL ALLOCATION & LIVE ORDER ROUTING",
+      title: "Phase 06: Live Trading",
+      desc: "Once all empirical thresholds, risk governance tests, and execution benchmarks are satisfied, the strategy is promoted to live production capital allocation.",
+      stack: "Direct Co-Location · FPGA",
+      gate: "Live Capital Deployed",
+      filename: "live_production_alloc.py",
+      code: `# Stage 06 // Production Capital Activation
+engine = qb.LiveTradingEngine.authorize(tier="INSTITUTIONAL")
+engine.allocate_capital(strategy_id="QB_STAT_ARB_09", max_leverage=3.0)
+engine.start_market_making(exchanges=["CME", "EUREX", "HKEX", "NASDAQ"])
+print("[LIVE] 24/5 systematic execution active across global hubs")`
+    }
+  ];
+
+  phasePills.forEach((pill, idx) => {
+    pill.addEventListener('click', () => {
+      phasePills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+
+      const data = phasesData[idx];
+      if (data) {
+        if (phaseBadge) phaseBadge.textContent = data.badge;
+        if (phaseTitle) phaseTitle.textContent = data.title;
+        if (phaseDesc) phaseDesc.textContent = data.desc;
+        if (phaseStack) phaseStack.textContent = data.stack;
+        if (phaseGate) phaseGate.textContent = data.gate;
+        if (terminalFilename) terminalFilename.textContent = data.filename;
+        if (codePreview) codePreview.innerHTML = `<code>${escapeHtml(data.code)}</code>`;
+      }
+    });
+  });
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+}
+
+// 7. Cursor-Aware 3D Perspective Tilt on Glass Bento Cards
+function init3DPerspectiveTilt() {
+  const cards = document.querySelectorAll('.bento-card, .p-monolith-glass, .office-bento-card');
+
+  cards.forEach(card => {
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const midX = rect.width / 2;
+      const midY = rect.height / 2;
+
+      // Max tilt +-5 degrees for subtle, sophisticated feel
+      const rotX = ((y - midY) / midY) * -5;
+      const rotY = ((x - midX) / midX) * 5;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+
+      // Cursor spotlight coordinates for ::before glow
+      const pctX = ((x / rect.width) * 100).toFixed(1);
+      const pctY = ((y / rect.height) * 100).toFixed(1);
+      card.style.setProperty('--mouse-x', `${pctX}%`);
+      card.style.setProperty('--mouse-y', `${pctY}%`);
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+// 8. Animated Counters for Widget Metrics
+function initWidgetCounters() {
+  const counters = document.querySelectorAll('[data-counter-target]');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseFloat(el.dataset.counterTarget);
+        const prefix = el.dataset.counterPrefix || '';
+        const suffix = el.dataset.counterSuffix || '';
+        const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
+        let start = 0;
+        const duration = 1600;
+        const startTime = performance.now();
+
+        function animate(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = (start + (target - start) * easeOut).toFixed(decimals);
+          el.textContent = `${prefix}${currentVal}${suffix}`;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        }
+
+        requestAnimationFrame(animate);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => observer.observe(c));
+}
+
+// 9. Smooth Scroll for Internal Anchors
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#' || targetId === '') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(targetEl, { offset: -30 });
+        } else {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+}
+
+// 10. Modals System (Team bios, Careers, etc.)
 function initModals() {
   const modalOverlay = document.querySelector('#global-modal');
   if (!modalOverlay) return;
@@ -88,43 +443,19 @@ function initModals() {
     }
   });
 
-  window.openModal = function(htmlContent) {
+  window.openModal = function (htmlContent) {
     if (modalBody) modalBody.innerHTML = htmlContent;
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
-  window.closeModal = function() {
+  window.closeModal = function () {
     modalOverlay.classList.remove('active');
     document.body.style.overflow = '';
   };
-
-  // Team Read More Delegation
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.team-read-more');
-    if (!btn) return;
-
-    const memberName = btn.dataset.member;
-    const member = window.QuantbotData?.teamMembers?.find(m => m.name === memberName);
-    if (!member) return;
-
-    const modalHTML = `
-      <div style="display:flex; align-items:center; gap:20px; margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:20px;">
-        <img src="${member.image}" alt="${member.name}" style="width:90px; height:90px; border-radius:50%; object-fit:cover; border:2px solid var(--accent-mint); background:#031d44;">
-        <div>
-          <h2 style="font-size:1.6rem; color:#fff; text-transform:uppercase; margin-bottom:4px;">${member.name}</h2>
-          <span style="color:var(--accent-mint); font-weight:600; font-size:1rem;">${member.role}</span>
-        </div>
-      </div>
-      <div style="color:var(--text-secondary); line-height:1.75; font-size:1.025rem;">
-        <p>${member.bio}</p>
-      </div>
-    `;
-    window.openModal(modalHTML);
-  });
 }
 
-// Tabs Component (POC & QMM Setup)
+// 11. Tabs Component
 function initTabs() {
   const tabsContainer = document.querySelector('.tabs-layout');
   if (!tabsContainer) return;
@@ -135,10 +466,8 @@ function initTabs() {
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.tab;
-
       tabBtns.forEach(b => b.classList.remove('active'));
       tabPanes.forEach(p => p.classList.remove('active'));
-
       btn.classList.add('active');
       const activePane = tabsContainer.querySelector(`#tab-${targetId}`);
       if (activePane) activePane.classList.add('active');
@@ -146,393 +475,87 @@ function initTabs() {
   });
 }
 
-// Accordion (FAQ / Q&A)
+// 12. Accordion Component
 function initAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
+  document.querySelectorAll('.faq-item').forEach(item => {
     const question = item.querySelector('.faq-question');
     question?.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      if (!isActive) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
+      item.classList.toggle('active');
     });
   });
 }
 
-// Careers Job Board Filter & Application Modal
-function initCareers() {
-  const careersList = document.querySelector('#job-openings-list');
-  if (!careersList) return;
-
-  const deptChips = document.querySelectorAll('[data-dept-filter]');
-  const searchInput = document.querySelector('#careers-search');
-
-  function renderJobs() {
-    const selectedDept = document.querySelector('[data-dept-filter].active')?.dataset.deptFilter || 'all';
-    const query = (searchInput?.value || '').toLowerCase().trim();
-
-    const jobs = window.QuantbotData?.jobOpenings || [];
-    const filtered = jobs.filter(job => {
-      const matchesDept = selectedDept === 'all' || job.department.toLowerCase().includes(selectedDept.toLowerCase());
-      const matchesSearch = !query || job.title.toLowerCase().includes(query) || job.description.toLowerCase().includes(query);
-      return matchesDept && matchesSearch;
-    });
-
-    if (filtered.length === 0) {
-      careersList.innerHTML = `<div style="text-align:center; padding:48px; color:var(--text-muted); background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--border-card);">No open roles matching your search criteria. Please contact <strong>${window.QuantbotData.brand.careersEmail}</strong> for exploratory discussions.</div>`;
-      return;
-    }
-
-    careersList.innerHTML = filtered.map(job => `
-      <div class="card" style="margin-bottom:20px;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:12px;">
-          <div>
-            <h3 style="font-size:1.35rem; color:#fff; margin-bottom:6px;">${job.title}</h3>
-            <div style="display:flex; gap:12px; font-size:0.875rem; color:var(--accent-mint); font-weight:600; flex-wrap:wrap;">
-              <span><i class="fa fa-briefcase"></i> ${job.department}</span>
-              <span><i class="fa fa-map-marker-alt"></i> ${job.locations.join(', ')}</span>
-              <span><i class="fa fa-clock"></i> ${job.type}</span>
-            </div>
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="openJobModal('${job.id}')">Apply Now</button>
-        </div>
-        <p style="color:var(--text-secondary); margin-bottom:16px;">${job.description}</p>
-        <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
-          <strong style="color:var(--text-primary); font-size:0.9rem;">Key Requirements:</strong>
-          <ul style="margin:8px 0 0 20px; color:var(--text-secondary); font-size:0.9rem;">
-            ${job.requirements.map(req => `<li style="margin-bottom:4px;">${req}</li>`).join('')}
-          </ul>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  deptChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      deptChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      renderJobs();
-    });
-  });
-
-  searchInput?.addEventListener('input', renderJobs);
-  renderJobs();
-
-  window.openJobModal = function(jobId) {
-    const job = window.QuantbotData?.jobOpenings?.find(j => j.id === jobId);
-    if (!job) return;
-
-    const modalHTML = `
-      <div style="margin-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px;">
-        <span style="color:var(--accent-mint); text-transform:uppercase; font-size:0.8rem; letter-spacing:2px; font-weight:700;">Application Form</span>
-        <h2 style="font-size:1.5rem; color:#fff; margin-top:4px;">${job.title}</h2>
-        <p style="color:var(--text-muted); font-size:0.9rem;">${job.locations.join(', ')} · ${job.department}</p>
-      </div>
-      <form id="job-apply-form" onsubmit="handleJobSubmit(event, '${job.title}')">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Full Name *</label>
-            <input type="text" class="form-control" required placeholder="Jane Doe">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email Address *</label>
-            <input type="email" class="form-control" required placeholder="jane@example.com">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" placeholder="+1 (555) 000-0000">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Preferred Location</label>
-            <select class="form-control">
-              ${job.locations.map(loc => `<option value="${loc}">${loc}</option>`).join('')}
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">LinkedIn / GitHub Profile URL</label>
-          <input type="url" class="form-control" placeholder="https://linkedin.com/in/username">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Brief Background / Cover Note</label>
-          <textarea class="form-control" rows="4" placeholder="Highlight your relevant research, algorithmic systems, or quantitative background..."></textarea>
-        </div>
-        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
-          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn btn-primary btn-sm">Submit Application</button>
-        </div>
-      </form>
-    `;
-    window.openModal(modalHTML);
-  };
-
-  window.handleJobSubmit = function(e, roleTitle) {
-    e.preventDefault();
-    const form = document.querySelector('#job-apply-form');
-    if (form) {
-      form.innerHTML = `
-        <div style="text-align:center; padding:36px 12px;">
-          <div style="width:64px; height:64px; border-radius:50%; background:rgba(96,162,68,0.2); border:2px solid var(--accent-mint); color:var(--accent-mint); font-size:2rem; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">✓</div>
-          <h3 style="color:#fff; font-size:1.4rem; margin-bottom:8px;">Application Received</h3>
-          <p style="color:var(--text-secondary); line-height:1.6; max-width:440px; margin:0 auto 24px;">Thank you for your interest in the <strong>${roleTitle}</strong> position. Our recruiting team will review your qualifications and contact you promptly.</p>
-          <button class="btn btn-primary btn-sm" onclick="closeModal()">Close</button>
-        </div>
-      `;
-    }
-  };
-}
-
-// News Filter
-function initNewsFilter() {
-  const newsGrid = document.querySelector('#news-articles-grid');
-  if (!newsGrid) return;
-
-  const searchInput = document.querySelector('#news-search');
-  const articles = window.QuantbotData?.newsArticles || [];
-
-  function renderNews() {
-    const query = (searchInput?.value || '').toLowerCase().trim();
-    const filtered = articles.filter(item => {
-      return !query || item.title.toLowerCase().includes(query) || item.source.toLowerCase().includes(query) || item.summary.toLowerCase().includes(query);
-    });
-
-    if (filtered.length === 0) {
-      newsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:48px; color:var(--text-muted); background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--border-card);">No news articles found matching your query.</div>`;
-      return;
-    }
-
-    newsGrid.innerHTML = filtered.map(item => `
-      <div class="article-card">
-        <div class="article-body">
-          <div class="article-meta">
-            <span><i class="fa fa-newspaper"></i> ${item.source}</span>
-            <span>·</span>
-            <span>${item.date}</span>
-          </div>
-          <h3 class="article-title"><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
-          <p class="article-excerpt">${item.summary}</p>
-          <div style="margin-top:auto;">
-            <a href="${item.url}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width:100%;">Read Full Story <i class="fa fa-external-link-alt" style="font-size:0.75rem;"></i></a>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  searchInput?.addEventListener('input', renderNews);
-  renderNews();
-}
-
-// Blog Filter & Reader
-function initBlogFilter() {
-  const blogGrid = document.querySelector('#blog-posts-grid');
-  if (!blogGrid) return;
-
-  const searchInput = document.querySelector('#blog-search');
-  const catChips = document.querySelectorAll('[data-blog-cat]');
-  const posts = window.QuantbotData?.blogPosts || [];
-
-  function renderBlog() {
-    const selectedCat = document.querySelector('[data-blog-cat].active')?.dataset.blogCat || 'all';
-    const query = (searchInput?.value || '').toLowerCase().trim();
-
-    const filtered = posts.filter(post => {
-      const matchesCat = selectedCat === 'all' || post.category.toLowerCase().includes(selectedCat.toLowerCase());
-      const matchesSearch = !query || post.title.toLowerCase().includes(query) || post.excerpt.toLowerCase().includes(query);
-      return matchesCat && matchesSearch;
-    });
-
-    if (filtered.length === 0) {
-      blogGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:48px; color:var(--text-muted); background:var(--bg-card); border-radius:var(--radius-md); border:1px solid var(--border-card);">No blog posts found matching your criteria.</div>`;
-      return;
-    }
-
-    blogGrid.innerHTML = filtered.map(post => `
-      <div class="article-card">
-        <img src="${post.image}" alt="${post.title}" class="article-img">
-        <div class="article-body">
-          <div class="article-meta">
-            <span>${post.category}</span>
-            <span>·</span>
-            <span>${post.date}</span>
-          </div>
-          <h3 class="article-title"><a href="javascript:void(0)" onclick="openPostModal('${post.id}')">${post.title}</a></h3>
-          <p class="article-excerpt">${post.excerpt}</p>
-          <div style="margin-top:auto;">
-            <button class="btn btn-secondary btn-sm" onclick="openPostModal('${post.id}')" style="width:100%;">Read Article</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  catChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      catChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      renderBlog();
-    });
-  });
-
-  searchInput?.addEventListener('input', renderBlog);
-  renderBlog();
-
-  window.openPostModal = function(postId) {
-    const post = window.QuantbotData?.blogPosts?.find(p => p.id === postId);
-    if (!post) return;
-
-    const modalHTML = `
-      <div style="margin-bottom:20px;">
-        <span style="color:var(--accent-mint); font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:2px;">${post.category} · ${post.date}</span>
-        <h2 style="font-size:1.8rem; color:#fff; margin:10px 0 16px;">${post.title}</h2>
-        <img src="${post.image}" alt="${post.title}" style="width:100%; max-height:360px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:24px; border:1px solid var(--border-card);">
-      </div>
-      <div style="color:var(--text-secondary); line-height:1.8; font-size:1.05rem;">
-        ${post.content}
-      </div>
-    `;
-    window.openModal(modalHTML);
-  };
-}
-
-// Contact Form Handling with instant validation & feedback
+// 13. Contact Form
 function initContactForm() {
-  const form = document.querySelector('#main-contact-form');
+  const form = document.querySelector('#contact-form');
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    const firstName = form.querySelector('[name="first-name"]')?.value || '';
-    const lastName = form.querySelector('[name="last-name"]')?.value || '';
-    const inquiry = form.querySelector('[name="inquiry-about"]')?.value || '';
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn ? submitBtn.innerHTML : 'Send Message';
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fa fa-spinner fa-spin"></i> Sending...`;
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Transmitting Encrypted Request...';
     }
 
     setTimeout(() => {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }
-
-      const confirmationHTML = `
-        <div style="text-align:center; padding:36px 16px;">
-          <div style="width:70px; height:70px; border-radius:50%; background:rgba(96,162,68,0.2); border:2px solid var(--accent-mint); color:var(--accent-mint); font-size:2.2rem; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">✓</div>
-          <h2 style="color:#fff; font-size:1.6rem; margin-bottom:10px;">Message Delivered</h2>
-          <p style="color:var(--text-secondary); line-height:1.6; max-width:440px; margin:0 auto 24px;">
-            Thank you, <strong>${firstName} ${lastName}</strong>. Your inquiry regarding <strong>${inquiry}</strong> has been forwarded to our team at <strong>info@quantbot.com</strong>. We will review your message and get in touch with you shortly.
-          </p>
-          <button class="btn btn-primary" onclick="closeModal()">Close</button>
-        </div>
-      `;
-      window.openModal(confirmationHTML);
+      if (btn) btn.textContent = 'Request Received · Confirmation Dispatched';
       form.reset();
-    }, 800);
+      setTimeout(() => {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Submit Inquiry';
+        }
+      }, 3500);
+    }, 1200);
   });
 }
 
-// Smooth scrolling with Lenis
-function initSmoothScroll() {
-  if (typeof Lenis !== 'undefined') {
-    try {
-      const lenis = new Lenis({
-        duration: 1.1,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
+// 14. Careers Filtering
+function initCareers() {
+  const deptFilters = document.querySelectorAll('[data-dept-filter]');
+  const jobCards = document.querySelectorAll('.job-card');
+  if (!deptFilters.length) return;
+
+  deptFilters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      deptFilters.forEach(f => f.classList.remove('active'));
+      filter.classList.add('active');
+      const dept = filter.dataset.deptFilter;
+
+      jobCards.forEach(card => {
+        if (dept === 'all' || card.dataset.dept === dept) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
       });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-      window.lenis = lenis;
-    } catch (_) {}
-  }
-}
-
-// Subtle intersection observer for graceful content reveal
-function initScrollReveals() {
-  if (!('IntersectionObserver' in window)) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-revealed');
-        observer.unobserve(entry.target);
-      }
     });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  document.querySelectorAll('.card, .feature-item, .step-card, .location-card, .section-header').forEach(el => {
-    el.classList.add('fade-in-target');
-    observer.observe(el);
   });
 }
 
-// ============================================================================
-// APPLE iOS 18 / VISIONOS INTERACTIVE LIQUID GLASS ENGINE
-// Powered by @liquidglassjs/core with real SVG feDisplacementMap refraction
-// ============================================================================
+// 15. News & Blog Filtering
+function initNewsFilter() {}
+function initBlogFilter() {}
 
+// 16. Apple iOS Liquid Glass Material System
 function initLiquidGlassEngine() {
-  if (typeof window.LiquidGlass === 'undefined') return;
-
-  initSpecularSheenTracker();
+  if (!window.LiquidGlass) return;
   initLiquidRipples();
   initInteractiveLiquidLens();
   initGlassDock();
 }
 
-// 1. Apple VisionOS Cursor-Tracking Specular Sheen on Glass Cards
-function initSpecularSheenTracker() {
-  const cards = document.querySelectorAll(
-    '.card, .timeline-card, .office-card, .team-card, .media-card, .tab-pane, .modal-card, .feature-item'
-  );
-
-  cards.forEach((card) => {
-    card.addEventListener('pointermove', (e) => {
-      const rect = card.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0) {
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
-        card.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
-      }
-    });
-  });
-}
-
-// 2. High-Refraction Fluid SVG Ripples on Buttons & Controls
 function initLiquidRipples() {
-  const targets = document.querySelectorAll(
-    '.btn, .email-pill, .tab-btn, [data-dept-filter], [data-blog-cat], .footer-contact-pills a, .team-read-more, .nav-link'
-  );
-
+  const targets = document.querySelectorAll('.btn, .phase-node-pill, .ios-stage-nav-link');
   targets.forEach((el) => {
     try {
       const ripple = window.LiquidGlass.mountSvgRipple({
         target: el,
         host: document.body,
-        strength: 28,
-        chroma: 0.45,
-        duration: 750,
+        strength: 24,
+        chroma: 0.4,
+        duration: 700,
         blur: 0.35,
         spec: 0.85,
       });
@@ -549,9 +572,7 @@ function initLiquidRipples() {
   });
 }
 
-// 3. Visible Apple iOS Floating Liquid Glass Lens
 function initInteractiveLiquidLens() {
-  // Create physical floating glass ring
   let lensRing = document.querySelector('.ios-liquid-lens');
   if (!lensRing) {
     lensRing = document.createElement('div');
@@ -559,7 +580,7 @@ function initInteractiveLiquidLens() {
     document.body.appendChild(lensRing);
   }
 
-  const lensTargets = document.querySelectorAll('.media-card, .timeline-card, .card, .office-card, .team-card');
+  const lensTargets = document.querySelectorAll('.bento-card, .p-monolith-glass, .office-bento-card');
   lensTargets.forEach((target) => {
     try {
       const lens = window.LiquidGlass.mountGlassLens({
@@ -571,8 +592,8 @@ function initInteractiveLiquidLens() {
         depth: 22,
         dome: 16,
         profile: 'circle',
-        strength: 28,
-        chroma: 0.45,
+        strength: 26,
+        chroma: 0.4,
         glow: 0.65,
         edge: 0.9,
         active: false,
@@ -608,13 +629,12 @@ function initInteractiveLiquidLens() {
         lens.setDisplScale(0);
         setTimeout(() => {
           if (!isHovered) lens.setActive(false);
-        }, 200);
+        }, 180);
       });
     } catch (_) {}
   });
 }
 
-// 4. Floating iOS Glass Controller Dock in Bottom Right
 function initGlassDock() {
   if (document.querySelector('.ios-glass-dock')) return;
 
@@ -622,16 +642,17 @@ function initGlassDock() {
   dock.className = 'ios-glass-dock';
   dock.setAttribute('role', 'button');
   dock.setAttribute('tabindex', '0');
-  dock.setAttribute('title', 'Apple iOS Liquid Glass UI active');
+  dock.setAttribute('title', 'Apple iOS 18 Glass Engine Active');
   dock.innerHTML = `
     <div class="ios-glass-dock-icon"><i class="fa fa-sparkles"></i></div>
-    <div class="ios-glass-dock-text">Liquid Glass UI</div>
+    <div class="ios-glass-dock-text">QuantBot Architecture</div>
     <div class="ios-glass-dock-badge">iOS 18</div>
   `;
 
   document.body.appendChild(dock);
 
   dock.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     dock.style.transform = 'translateY(-1px) scale(0.96)';
     setTimeout(() => {
       dock.style.transform = '';

@@ -487,35 +487,54 @@ function initScrollReveals() {
 }
 
 // ============================================================================
-// FORWARD-THINKING LIQUID GLASS ENGINE (powered by @liquidglassjs/core)
-// Real SVG feDisplacementMap refraction, ripples, and dynamic optical lenses
+// APPLE iOS 18 / VISIONOS INTERACTIVE LIQUID GLASS ENGINE
+// Powered by @liquidglassjs/core with real SVG feDisplacementMap refraction
 // ============================================================================
 
 function initLiquidGlassEngine() {
   if (typeof window.LiquidGlass === 'undefined') return;
 
+  initSpecularSheenTracker();
   initLiquidRipples();
-  initLiquidMediaLens();
-  initLiquidTimelineLoupe();
-  initLiquidGlassCards();
+  initInteractiveLiquidLens();
+  initGlassDock();
 }
 
-// 1. Fluid SVG Refraction Ripples on Interactive Controls
-function initLiquidRipples() {
-  const interactiveTargets = document.querySelectorAll(
-    '.btn, .email-pill, .tab-btn, [data-dept-filter], [data-blog-cat], .footer-contact-pills a, .team-read-more'
+// 1. Apple VisionOS Cursor-Tracking Specular Sheen on Glass Cards
+function initSpecularSheenTracker() {
+  const cards = document.querySelectorAll(
+    '.card, .timeline-card, .office-card, .team-card, .media-card, .tab-pane, .modal-card, .feature-item'
   );
 
-  interactiveTargets.forEach((el) => {
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
+        card.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
+      }
+    });
+  });
+}
+
+// 2. High-Refraction Fluid SVG Ripples on Buttons & Controls
+function initLiquidRipples() {
+  const targets = document.querySelectorAll(
+    '.btn, .email-pill, .tab-btn, [data-dept-filter], [data-blog-cat], .footer-contact-pills a, .team-read-more, .nav-link'
+  );
+
+  targets.forEach((el) => {
     try {
       const ripple = window.LiquidGlass.mountSvgRipple({
         target: el,
         host: document.body,
-        strength: 20,
-        chroma: 0.35,
-        duration: 700,
+        strength: 28,
+        chroma: 0.45,
+        duration: 750,
         blur: 0.35,
-        spec: 0.75,
+        spec: 0.85,
       });
 
       el.addEventListener('pointerdown', (e) => {
@@ -530,117 +549,92 @@ function initLiquidRipples() {
   });
 }
 
-// 2. Interactive SVG Liquid Glass Lens on Platform Media Cards
-function initLiquidMediaLens() {
-  const mediaCards = document.querySelectorAll('.media-card, .text-with-media-grid img');
-  mediaCards.forEach((media) => {
+// 3. Visible Apple iOS Floating Liquid Glass Lens
+function initInteractiveLiquidLens() {
+  // Create physical floating glass ring
+  let lensRing = document.querySelector('.ios-liquid-lens');
+  if (!lensRing) {
+    lensRing = document.createElement('div');
+    lensRing.className = 'ios-liquid-lens';
+    document.body.appendChild(lensRing);
+  }
+
+  const lensTargets = document.querySelectorAll('.media-card, .timeline-card, .card, .office-card, .team-card');
+  lensTargets.forEach((target) => {
     try {
       const lens = window.LiquidGlass.mountGlassLens({
-        target: media,
+        target: target,
         host: document.body,
-        lensW: 190,
-        lensH: 190,
-        radius: 95,
-        depth: 16,
-        dome: 12,
+        lensW: 176,
+        lensH: 176,
+        radius: 88,
+        depth: 22,
+        dome: 16,
         profile: 'circle',
-        strength: 22,
-        chroma: 0.35,
-        glow: 0.45,
-        edge: 0.85,
+        strength: 28,
+        chroma: 0.45,
+        glow: 0.65,
+        edge: 0.9,
         active: false,
       });
 
       let isHovered = false;
 
-      media.addEventListener('pointerenter', () => {
+      target.addEventListener('pointerenter', (e) => {
         isHovered = true;
+        lensRing.classList.add('is-visible');
         lens.setActive(true);
         lens.setDisplScale(1);
+        updatePos(e);
       });
 
-      media.addEventListener('pointermove', (e) => {
+      function updatePos(e) {
+        lensRing.style.left = `${e.clientX}px`;
+        lensRing.style.top = `${e.clientY}px`;
+        const rect = target.getBoundingClientRect();
+        const lx = e.clientX - rect.left - 88;
+        const ly = e.clientY - rect.top - 88;
+        lens.setPos(lx, ly);
+      }
+
+      target.addEventListener('pointermove', (e) => {
         if (!isHovered) return;
-        const rect = media.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        lens.setPos(x, y);
+        updatePos(e);
       });
 
-      media.addEventListener('pointerleave', () => {
+      target.addEventListener('pointerleave', () => {
         isHovered = false;
+        lensRing.classList.remove('is-visible');
         lens.setDisplScale(0);
         setTimeout(() => {
           if (!isHovered) lens.setActive(false);
-        }, 220);
-      });
-    } catch (_) {}
-  });
-}
-
-// 3. Tactile Liquid Glass Meniscus across Strategy Timeline Cards
-function initLiquidTimelineLoupe() {
-  const processCards = document.querySelectorAll('.timeline-card, .tab-pane');
-  processCards.forEach((card) => {
-    try {
-      const lens = window.LiquidGlass.mountGlassLens({
-        target: card,
-        host: document.body,
-        lensW: 160,
-        lensH: 160,
-        radius: 80,
-        depth: 14,
-        dome: 10,
-        profile: 'circle',
-        strength: 16,
-        chroma: 0.28,
-        glow: 0.4,
-        edge: 0.8,
-        active: false,
-      });
-
-      let active = false;
-
-      card.addEventListener('pointerenter', () => {
-        active = true;
-        lens.setActive(true);
-        lens.setDisplScale(1);
-      });
-
-      card.addEventListener('pointermove', (e) => {
-        if (!active) return;
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        lens.setPos(x, y);
-      });
-
-      card.addEventListener('pointerleave', () => {
-        active = false;
-        lens.setDisplScale(0);
-        setTimeout(() => {
-          if (!active) lens.setActive(false);
         }, 200);
       });
     } catch (_) {}
   });
 }
 
-// 4. Liquid Glass Surfaces on Cards and Modals
-function initLiquidGlassCards() {
-  const cards = document.querySelectorAll('.card, .location-card, .article-card');
-  cards.forEach((card) => {
-    try {
-      window.LiquidGlass.mountGlass(card, {
-        radius: 16,
-        depth: 18,
-        profile: 'circle',
-        strength: 14,
-        chroma: 0.25,
-        dome: 10,
-        tint: 10,
-        mode: 'frost',
-      });
-    } catch (_) {}
+// 4. Floating iOS Glass Controller Dock in Bottom Right
+function initGlassDock() {
+  if (document.querySelector('.ios-glass-dock')) return;
+
+  const dock = document.createElement('div');
+  dock.className = 'ios-glass-dock';
+  dock.setAttribute('role', 'button');
+  dock.setAttribute('tabindex', '0');
+  dock.setAttribute('title', 'Apple iOS Liquid Glass UI active');
+  dock.innerHTML = `
+    <div class="ios-glass-dock-icon"><i class="fa fa-sparkles"></i></div>
+    <div class="ios-glass-dock-text">Liquid Glass UI</div>
+    <div class="ios-glass-dock-badge">iOS 18</div>
+  `;
+
+  document.body.appendChild(dock);
+
+  dock.addEventListener('click', () => {
+    dock.style.transform = 'translateY(-1px) scale(0.96)';
+    setTimeout(() => {
+      dock.style.transform = '';
+    }, 180);
   });
 }

@@ -26,6 +26,19 @@
   --glass-frost-bg: rgba(3, 29, 68, 0.78);
   --glass-backdrop: linear-gradient(135deg, rgba(9, 42, 91, 0.75) 0%, rgba(3, 29, 68, 0.88) 100%);
 
+  /* Apple iOS Liquid Glass Material System */
+  --ios-glass-bg: rgba(7, 32, 70, 0.52);
+  --ios-glass-bg-hover: rgba(12, 45, 96, 0.68);
+  --ios-glass-border: rgba(255, 255, 255, 0.18);
+  --ios-glass-border-hover: rgba(148, 201, 126, 0.55);
+  --ios-glass-rim: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+  --ios-glass-rim-hover: inset 0 2px 2px 0 rgba(255, 255, 255, 0.7), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+  --ios-glass-blur: blur(28px) saturate(200%) brightness(1.08);
+  --ios-glass-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.52);
+  --ios-glass-shadow-hover: 0 28px 65px -12px rgba(0, 0, 0, 0.65), 0 0 35px rgba(96, 162, 68, 0.25);
+  --ios-spring: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --ios-spring-press: 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+
   --accent-green: #60A244;
   --accent-mint: #94C97E;
   --accent-pale: #D0E7C5;
@@ -177,29 +190,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================================
-   MINIMALIST SITE HEADER & NAVIGATION
+   APPLE iOS LIQUID GLASS FLOATING ISLAND NAVIGATION
    ============================================================================ */
 .site-header {
   position: sticky;
-  top: 0;
+  top: 14px;
   z-index: 1000;
-  background: rgba(3, 29, 68, 0.78);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(148, 201, 126, 0.22);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  height: var(--header-height);
+  max-width: 1240px;
+  margin: 0 auto;
+  border-radius: var(--radius-full);
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
+  transition: all var(--ios-spring);
+  height: 68px;
   display: flex;
   align-items: center;
+  padding: 0 24px;
 }
 
 .site-header.scrolled {
-  background: rgba(2, 22, 53, 0.92);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(148, 201, 126, 0.25);
-  border-bottom-color: rgba(96, 162, 68, 0.4);
+  top: 8px;
+  background: rgba(4, 22, 53, 0.78);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
+  border-color: rgba(148, 201, 126, 0.4);
+  height: 64px;
 }
 
 .header-inner {
@@ -336,7 +353,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 26px;
+  padding: 12px 28px;
   font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -344,39 +361,53 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all var(--ios-spring);
   border: none;
   outline: none;
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  user-select: none;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #60A244 0%, #46842c 100%);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(96, 162, 68, 0.35);
-  border: 1px solid rgba(148, 201, 126, 0.35);
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35),
+    0 8px 24px -2px rgba(96, 162, 68, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #71ba51 0%, #519634 100%);
-  box-shadow: 0 6px 20px rgba(96, 162, 68, 0.5);
-  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.65),
+    0 12px 30px rgba(96, 162, 68, 0.6);
+  transform: translateY(-3px) scale(1.02);
   color: #FFFFFF;
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--accent-green);
+  background: rgba(9, 42, 91, 0.4);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  color: #FFFFFF;
+  border: 1px solid rgba(148, 201, 126, 0.4);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary:hover {
-  background: rgba(96, 162, 68, 0.16);
+  background: rgba(96, 162, 68, 0.22);
   border-color: var(--accent-mint);
   color: var(--accent-mint);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.4),
+    0 12px 26px rgba(96, 162, 68, 0.35);
 }
 
 .btn-sm {
@@ -645,10 +676,12 @@ main {
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid rgba(148, 201, 126, 0.35);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  background: var(--bg-card);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  transition: all var(--ios-spring);
   isolation: isolate;
 }
 
@@ -658,8 +691,8 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(148, 201, 126, 0.8), transparent);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   z-index: 3;
   pointer-events: none;
 }
@@ -668,11 +701,16 @@ main {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-card:hover {
+  border-color: var(--ios-glass-border-hover);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
 }
 
 .media-card:hover img {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 /* Strategy Development Process — 6 Responsive Steps */
@@ -684,18 +722,20 @@ main {
 }
 
 .timeline-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
   border-radius: var(--radius-md);
   padding: 30px 26px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--ios-spring);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
 }
 
 .timeline-card::before {
@@ -704,17 +744,17 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(148, 201, 126, 0.6), transparent);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   z-index: 2;
   pointer-events: none;
 }
 
 .timeline-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-mint);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(96, 162, 68, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  background: var(--bg-card-hover);
+  transform: translateY(-6px) scale(1.01);
+  border-color: var(--ios-glass-border-hover);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
+  background: var(--ios-glass-bg-hover);
 }
 
 .timeline-card-head {
@@ -798,17 +838,23 @@ main {
 }
 
 .office-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+  position: relative;
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all var(--ios-spring);
+  isolation: isolate;
 }
 
 .office-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-mint);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-6px) scale(1.01);
+  background: var(--ios-glass-bg-hover);
+  border-color: var(--ios-glass-border-hover);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
 }
 
 .office-card-img {
@@ -816,10 +862,17 @@ main {
   height: 160px;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.office-card:hover .office-card-img {
+  transform: scale(1.05);
 }
 
 .office-card-body {
   padding: 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .office-card-city {
@@ -837,20 +890,63 @@ main {
 
 /* Generic Cards & Components for Inner Pages */
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+  position: relative;
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
   border-radius: var(--radius-md);
   padding: 32px 28px;
-  transition: var(--transition-normal);
-  position: relative;
+  transition: all var(--ios-spring);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  background: var(--bg-card-hover);
-  border-color: var(--accent-mint);
-  box-shadow: var(--shadow-card);
+  transform: translateY(-6px) scale(1.01);
+  background: var(--ios-glass-bg-hover);
+  border-color: var(--ios-glass-border-hover);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
+}
+
+/* Dynamic Cursor-Tracking Specular Sheen on Glass Cards */
+.card::after,
+.timeline-card::after,
+.office-card::after,
+.team-card::after,
+.media-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(148, 201, 126, 0.08) 35%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card:hover::after,
+.timeline-card:hover::after,
+.office-card:hover::after,
+.team-card:hover::after,
+.media-card:hover::after {
+  opacity: 1;
+}
+
+.card:active,
+.timeline-card:active,
+.office-card:active,
+.team-card:active,
+.btn:active {
+  transform: scale(0.975);
+  transition: transform var(--ios-spring-press) !important;
 }
 
 .team-grid {
@@ -861,21 +957,28 @@ main {
 }
 
 .team-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+  position: relative;
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
   border-radius: var(--radius-md);
   padding: 30px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: var(--transition-normal);
+  transition: all var(--ios-spring);
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .team-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-mint);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-6px) scale(1.01);
+  background: var(--ios-glass-bg-hover);
+  border-color: var(--ios-glass-border-hover);
+  box-shadow: var(--ios-glass-rim-hover), var(--ios-glass-shadow-hover);
 }
 
 .team-avatar-wrapper {
@@ -1356,6 +1459,17 @@ textarea.form-control {
    RESPONSIVE BREAKPOINTS
    ============================================================================ */
 @media (max-width: 1024px) {
+  .site-header {
+    top: 8px;
+    width: calc(100% - 24px);
+    margin: 0 12px;
+    padding: 0 18px;
+    height: 60px;
+  }
+  .site-header.scrolled {
+    top: 6px;
+    height: 58px;
+  }
   .nav-desktop {
     display: none;
   }
@@ -1424,4 +1538,169 @@ textarea.form-control {
     transition: none;
   }
 }
+
+/* ============================================================================
+   APPLE iOS 18 / VISIONOS INTERACTIVE LIQUID GLASS CONTROLS
+   ============================================================================ */
+
+/* 1. Physical Floating Liquid Glass Lens Follower Ring */
+.ios-liquid-lens {
+  position: fixed;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(148, 201, 126, 0.5),
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(148, 201, 126, 0.4);
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 70%
+  );
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  will-change: transform, left, top;
+}
+
+.ios-liquid-lens.is-visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.ios-liquid-lens::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  width: 50px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, transparent 100%);
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+
+/* 2. Floating iOS Glass Controller Dock (Bottom Right) */
+.ios-glass-dock {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px 8px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(4, 25, 59, 0.72);
+  backdrop-filter: blur(28px) saturate(210%) brightness(1.1);
+  -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+    0 16px 40px -4px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(96, 162, 68, 0.2);
+  transition: all var(--ios-spring);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ios-glass-dock:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    0 24px 50px -6px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(148, 201, 126, 0.35);
+  border-color: rgba(148, 201, 126, 0.6);
+}
+
+.ios-glass-dock-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(148, 201, 126, 0.4) 0%, rgba(96, 162, 68, 0.6) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.ios-glass-dock-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+.ios-glass-dock-badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(148, 201, 126, 0.22);
+  border: 1px solid rgba(148, 201, 126, 0.5);
+  color: var(--accent-mint);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 3. Hero Glass Floating Metrics Capsule */
+.hero-glass-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  background: rgba(4, 25, 59, 0.6);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: 1px solid var(--ios-glass-border);
+  box-shadow: var(--ios-glass-rim), var(--ios-glass-shadow);
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.hero-glass-pill-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.hero-glass-pill-item i {
+  color: var(--accent-mint);
+  font-size: 0.8rem;
+}
+
+.hero-glass-pill-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 640px) {
+  .hero-glass-pill-divider {
+    display: none;
+  }
+  .ios-glass-dock {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 14px 6px 8px;
+  }
+}
+
 

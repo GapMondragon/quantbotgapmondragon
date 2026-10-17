@@ -8,9 +8,7 @@
     "build": "npm run build:glass"
   },
   "dependencies": {
-    "@liquidglassjs/core": "^0.6.1"
-  },
-  "devDependencies": {
+    "@liquidglassjs/core": "^0.6.1",
     "esbuild": "^0.28.2"
   }
 }

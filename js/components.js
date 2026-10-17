@@ -1,19 +1,14 @@
 // ============================================================================
-// QUANTBOT TECHNOLOGIES, LP — APPLE PRO / iOS 18 UNIFIED PHYSICS ENGINE
-// Authentic 6-Stage Horizon Scrollytelling, Expanding Portal, 3D Global Mesh,
-// QMM/POC Bento Switcher, Leadership Bio Modal, and World Session Clocks
+// QUANTBOT TECHNOLOGIES, LP — OFFICIAL INSTITUTIONAL SPATIAL ENGINE
+// Unified requestAnimationFrame lerp loop (damping: 0.075), Horizon-Locked Camera,
+// Liquid Glass Morphing, Expanding Portals, Multi-Plane Parallax, and Tactile Modals
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  initDynamicIsland();
-  initWorldClocks();
-  initHero3DParallax();
-  initExpandingPortal();
-  initHorizonScrollytelling();
-  initBentoProgramSwitcher();
-  initLeadershipBioModal();
-  initCardSpecularSheen();
-  initContactForm();
+  initSpatialPhysicsEngine();
+  initSegmentedControllers();
+  initTactileModals();
+  initMouseOptics();
 });
 
 // Helper math
@@ -21,535 +16,470 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
 // ============================================================================
-// 1. DYNAMIC ISLAND NAVBAR & ACTIVE PILL GLIDER
+// 1. UNIFIED PHYSICS ENGINE & CAMERA TIMELINE (lerp: 0.075)
 // ============================================================================
-function initDynamicIsland() {
-  const nav = document.getElementById('dynamic-island-nav');
-  const links = document.querySelectorAll('.nav-segment-link');
-  const glider = document.getElementById('nav-active-pill');
+function initSpatialPhysicsEngine() {
+  const scrollTrack = document.getElementById('scroll-track');
+  const floorGrid = document.getElementById('perspective-grid-floor');
+  const watermarkText = document.getElementById('refraction-watermark-text');
+  const horizonBloom = document.getElementById('horizon-ambient-bloom');
+  const portalFrame = document.getElementById('spatial-portal-frame');
+  const portalInner = document.getElementById('portal-inner-world');
+  const hudProgressFill = document.getElementById('hud-progress-fill');
+  const hudStatusLabel = document.getElementById('hud-status-label');
+  const islandGlider = document.getElementById('island-glider-pill');
+  const islandLinks = document.querySelectorAll('.island-link');
 
-  // Scroll styling
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
+  // Scenes
+  const scenes = {
+    hero: document.getElementById('scene-hero'),
+    differentiators: document.getElementById('scene-differentiators'),
+    pipeline: document.getElementById('scene-pipeline'),
+    programs: document.getElementById('scene-programs'),
+    leadershipOffices: document.getElementById('scene-leadership-offices')
+  };
+
+  // Pipeline Master Vessel Elements
+  const masterVessel = document.getElementById('master-liquid-glass-vessel');
+  const stageEyebrowNum = document.getElementById('stage-eyebrow-num');
+  const stageEyebrowPhase = document.getElementById('stage-eyebrow-phase');
+  const stageTitleText = document.getElementById('stage-title-text');
+  const stageDescText = document.getElementById('stage-desc-text');
+  const scrubBeam = document.getElementById('scrub-indicator-beam');
+  const scrubBtns = document.querySelectorAll('.scrub-btn');
+  const vesselTag = document.getElementById('vessel-tag-text');
+  const vesselHash = document.getElementById('vessel-hash-text');
+  const plinthStatus = document.getElementById('plinth-status');
+  const schematics = [
+    document.getElementById('schematic-stage-1'),
+    document.getElementById('schematic-stage-2'),
+    document.getElementById('schematic-stage-3'),
+    document.getElementById('schematic-stage-4'),
+    document.getElementById('schematic-stage-5'),
+    document.getElementById('schematic-stage-6')
+  ];
+
+  const authenticStages = [
+    {
+      num: '01',
+      tag: 'HYPOTHESIS FORMULATION',
+      phase: 'STAGE 01 // 06',
+      title: 'Idea Generation',
+      desc: 'Formulate systematic hypotheses across global equities and electronic futures, collaborating directly with the dedicated internal data engineering desk.',
+      hash: 'LIFECYCLE // #0A84FF',
+      accent: '#0A84FF'
+    },
+    {
+      num: '02',
+      tag: 'DATA CURATION & AUDIT',
+      phase: 'STAGE 02 // 06',
+      title: 'Data Analysis',
+      desc: 'Acquire curated historical feeds, partition data into in-sample and out-of-sample test sets, and perform rigorous bias, microstructure, and outlier audits.',
+      hash: 'LIFECYCLE // #00C7BE',
+      accent: '#00C7BE'
+    },
+    {
+      num: '03',
+      tag: 'LINUX CLUSTER BENCHMARKS',
+      phase: 'STAGE 03 // 06',
+      title: 'Code Development',
+      desc: 'Model and backtest trading alphas using R, Python, and C++ on high-performance Linux compute clusters against benchmark index baselines.',
+      hash: 'LIFECYCLE // #30D158',
+      accent: '#30D158'
+    },
+    {
+      num: '04',
+      tag: 'FACTOR RISK & TCM ENGINE',
+      phase: 'STAGE 04 // 06',
+      title: 'Trading Logic & Risk Management',
+      desc: 'Integrate validated alpha signals into the proprietary backtesting engine, applying global factor risk models, transaction cost models (TCM), and portfolio constraints.',
+      hash: 'LIFECYCLE // #5E5CE6',
+      accent: '#5E5CE6'
+    },
+    {
+      num: '05',
+      tag: 'FORWARD OPS RECONCILIATION',
+      phase: 'STAGE 05 // 06',
+      title: 'Paper Trading & Testing',
+      desc: 'Deploy validated strategies into simulated production, reconciling daily performance, execution fill quality, and slippage alongside the trade operations desk.',
+      hash: 'LIFECYCLE // #FF9F0A',
+      accent: '#FF9F0A'
+    },
+    {
+      num: '06',
+      tag: '24/7 AUTOMATED PRODUCTION',
+      phase: 'STAGE 06 // 06',
+      title: 'Live Production Trading',
+      desc: 'Full deployment into automated production, executing across global exchange gateways with continuous algorithmic risk telemetry.',
+      hash: 'LIFECYCLE // #30D158',
+      accent: '#30D158'
     }
-    updateActiveSectionOnScroll();
+  ];
+
+  let currentScrollY = window.scrollY || 0;
+  let targetScrollY = window.scrollY || 0;
+  let currentActiveScene = 'hero';
+  let currentActiveStageIndex = 0;
+
+  // Window scroll event simply captures targetScrollY without layout thrashing
+  window.addEventListener('scroll', () => {
+    targetScrollY = window.scrollY;
   }, { passive: true });
 
+  // Update Island Glider Position
   function updateGlider(activeLink) {
-    if (!activeLink || !glider || !activeLink.parentElement) return;
+    if (!activeLink || !islandGlider || !activeLink.parentElement) return;
     const parentRect = activeLink.parentElement.getBoundingClientRect();
     const linkRect = activeLink.getBoundingClientRect();
-    glider.style.left = `${linkRect.left - parentRect.left}px`;
-    glider.style.width = `${linkRect.width}px`;
+    islandGlider.style.left = `${linkRect.left - parentRect.left}px`;
+    islandGlider.style.width = `${linkRect.width}px`;
   }
 
-  // Initial glider position
-  const initial = document.querySelector('.nav-segment-link.is-active') || links[0];
-  setTimeout(() => updateGlider(initial), 150);
+  // Master requestAnimationFrame Loop (damping 0.075)
+  function renderPhysicsEngine() {
+    currentScrollY = lerp(currentScrollY, targetScrollY, 0.075);
 
-  window.addEventListener('resize', () => {
-    const current = document.querySelector('.nav-segment-link.is-active') || links[0];
-    updateGlider(current);
+    const maxScroll = (scrollTrack?.offsetHeight || 6000) - window.innerHeight;
+    const progress = clamp(currentScrollY / maxScroll, 0, 1);
+
+    // 1. Plane 0 Floor Grid shift in Z-space
+    if (floorGrid) {
+      floorGrid.style.backgroundPositionY = `${(currentScrollY * 0.45) % 50}px`;
+    }
+
+    // 2. HUD Progress bar
+    if (hudProgressFill) {
+      hudProgressFill.style.width = `${(progress * 100).toFixed(1)}%`;
+    }
+
+    // 3. Scene Timeline Mapping:
+    // Scene 0: 0.00 - 0.14 (Hero)
+    // Scene 1: 0.14 - 0.28 (Differentiators)
+    // Scene 2: 0.28 - 0.72 (6-Stage Pipeline)
+    // Scene 3: 0.72 - 0.85 (QMM & POC Programs)
+    // Scene 4: 0.85 - 1.00 (Leadership & Offices & Contact)
+
+    let activeScene = 'hero';
+    let watermarkString = 'QUANTBOT // 2008';
+    let statusLabelString = 'HERITAGE // 2008';
+
+    if (progress < 0.14) {
+      activeScene = 'hero';
+      watermarkString = 'QUANTBOT // 2008';
+      statusLabelString = 'HERITAGE // 2008';
+    } else if (progress < 0.28) {
+      activeScene = 'differentiators';
+      watermarkString = 'CORE // 4 PILLARS';
+      statusLabelString = 'DIFFERENTIATORS';
+    } else if (progress < 0.72) {
+      activeScene = 'pipeline';
+      
+      // Calculate active stage (0 to 5)
+      const pipelineProgress = (progress - 0.28) / (0.72 - 0.28);
+      const stageIdx = clamp(Math.floor(pipelineProgress * 5.99), 0, 5);
+      const stageObj = authenticStages[stageIdx];
+      
+      watermarkString = `STAGE // ${stageObj.num}`;
+      statusLabelString = `PIPELINE // STAGE ${stageObj.num}`;
+
+      // Expanding Spatial Portal Zoom & Counter-Scaling
+      if (portalFrame && portalInner) {
+        const portalZoom = clamp((progress - 0.28) / 0.10, 0, 1);
+        const insetY = lerp(12, 0, portalZoom);
+        const insetX = lerp(10, 0, portalZoom);
+        const radius = lerp(40, 0, portalZoom);
+        const scale = lerp(1.15, 1.0, portalZoom);
+
+        portalFrame.style.clipPath = `inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round ${radius}px)`;
+        portalInner.style.transform = `scale(${scale})`;
+      }
+
+      // Update In-Place Morphing Master Vessel
+      if (stageIdx !== currentActiveStageIndex) {
+        currentActiveStageIndex = stageIdx;
+        
+        if (stageEyebrowNum) stageEyebrowNum.textContent = stageObj.phase;
+        if (stageEyebrowPhase) stageEyebrowPhase.textContent = 'RESEARCH LIFECYCLE';
+        if (stageTitleText) stageTitleText.textContent = stageObj.title;
+        if (stageDescText) stageDescText.textContent = stageObj.desc;
+
+        if (scrubBeam) {
+          scrubBeam.style.top = `${(stageIdx / 5) * 83.33}%`;
+        }
+        scrubBtns.forEach((btn, idx) => {
+          btn.classList.toggle('is-active', idx === stageIdx);
+        });
+
+        if (vesselTag) {
+          vesselTag.textContent = `STAGE ${stageObj.num} \u00B7 ${stageObj.tag}`;
+          vesselTag.style.color = stageObj.accent;
+        }
+        if (vesselHash) vesselHash.textContent = stageObj.hash;
+        if (plinthStatus) {
+          plinthStatus.textContent = `Active Stage ${stageObj.num}`;
+          plinthStatus.style.color = stageObj.accent;
+        }
+
+        if (masterVessel) {
+          masterVessel.style.borderColor = `${stageObj.accent}55`;
+          masterVessel.style.boxShadow = `0 30px 80px rgba(0, 0, 0, 0.85), 0 0 35px ${stageObj.accent}25`;
+        }
+
+        if (horizonBloom) {
+          horizonBloom.style.background = `radial-gradient(ellipse at center, ${stageObj.accent}44 0%, transparent 70%)`;
+        }
+
+        schematics.forEach((sch, idx) => {
+          if (sch) sch.classList.toggle('active-schematic', idx === stageIdx);
+        });
+      }
+
+    } else if (progress < 0.85) {
+      activeScene = 'programs';
+      watermarkString = 'QMM // POC PROGRAMS';
+      statusLabelString = 'PROGRAMS & ALLOCATION';
+    } else {
+      activeScene = 'leadershipOffices';
+      watermarkString = 'LEADERSHIP // 6 DESKS';
+      statusLabelString = 'GOVERNANCE & DESKS';
+    }
+
+    // Update active scene DOM class
+    if (activeScene !== currentActiveScene) {
+      currentActiveScene = activeScene;
+      Object.keys(scenes).forEach((k) => {
+        scenes[k]?.classList.toggle('scene-active', k === activeScene);
+      });
+
+      // Update Nav Link Glider
+      islandLinks.forEach((link) => {
+        if (link.dataset.scene === activeScene) {
+          islandLinks.forEach((l) => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+          updateGlider(link);
+        }
+      });
+    }
+
+    // Update watermark text & HUD status
+    if (watermarkText && watermarkText.textContent !== watermarkString) {
+      watermarkText.textContent = watermarkString;
+    }
+    if (hudStatusLabel && hudStatusLabel.textContent !== statusLabelString) {
+      hudStatusLabel.textContent = statusLabelString;
+    }
+
+    // Refraction watermark parallax translation
+    if (watermarkText) {
+      watermarkText.style.transform = `translateY(${(-currentScrollY * 0.12) % 60}px) scale(${1 + progress * 0.05})`;
+    }
+
+    requestAnimationFrame(renderPhysicsEngine);
+  }
+
+  requestAnimationFrame(renderPhysicsEngine);
+
+  // Initialize Glider
+  setTimeout(() => {
+    const active = document.querySelector('.island-link.is-active') || islandLinks[0];
+    if (active) updateGlider(active);
+  }, 200);
+
+  // Scrub Rail Buttons
+  scrubBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const stage = parseInt(btn.dataset.stage || '1');
+      const targetAnchor = document.getElementById(`stage-0${stage}`);
+      if (targetAnchor) {
+        const targetTop = targetAnchor.offsetTop;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      }
+    });
   });
 
-  // Smooth anchor navigation & special handling for 6 stages
+  // HUD Jump Buttons
+  document.querySelectorAll('.hud-jump-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetVH = parseFloat(btn.dataset.target || '0');
+      const targetY = (targetVH / 100) * window.innerHeight;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    });
+  });
+
+  // Smooth Anchor Jumps
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href === '#' || href === '') return;
 
-      // Handle stage anchors (#stage-01 through #stage-06)
-      if (href.startsWith('#stage-0')) {
-        const stageNum = parseInt(href.replace('#stage-0', '')) - 1;
-        const runway = document.getElementById('pipeline');
-        if (runway && stageNum >= 0 && stageNum <= 5) {
-          e.preventDefault();
-          const runwayTop = runway.offsetTop;
-          const runwayHeight = runway.offsetHeight - window.innerHeight;
-          const targetY = runwayTop + (stageNum / 5) * runwayHeight;
-          window.scrollTo({
-            top: targetY,
-            behavior: 'smooth'
-          });
-          return;
-        }
-      }
-
-      // Handle QMM or POC jumps
-      if (href === '#qmm' || href === '#poc') {
-        e.preventDefault();
-        const bentoSection = document.getElementById('programs');
-        const tabBtn = document.querySelector(`[data-program="${href.replace('#', '')}"]`);
-        if (tabBtn) tabBtn.click();
-        if (bentoSection) {
-          const headerOffset = 70;
-          const targetPos = bentoSection.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: targetPos, behavior: 'smooth' });
-        }
-        return;
-      }
-
-      // Standard anchors
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        const headerOffset = 70;
-        const targetPos = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-        window.scrollTo({
-          top: targetPos,
-          behavior: 'smooth'
-        });
+        const targetY = target.offsetTop;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     });
   });
-
-  function updateActiveSectionOnScroll() {
-    const scrollMid = window.scrollY + window.innerHeight * 0.35;
-    const trackedSections = [
-      { id: 'hero', navKey: '' },
-      { id: 'about', navKey: 'about' },
-      { id: 'pipeline', navKey: 'pipeline' },
-      { id: 'programs', navKey: 'programs' },
-      { id: 'leadership', navKey: 'leadership' },
-      { id: 'offices', navKey: 'offices' }
-    ];
-
-    for (let i = trackedSections.length - 1; i >= 0; i--) {
-      const sec = document.getElementById(trackedSections[i].id);
-      if (sec && scrollMid >= sec.offsetTop) {
-        const key = trackedSections[i].navKey;
-        links.forEach((l) => {
-          if (l.dataset.nav === key) {
-            if (!l.classList.contains('is-active')) {
-              links.forEach((link) => link.classList.remove('is-active'));
-              l.classList.add('is-active');
-              updateGlider(l);
-            }
-          }
-        });
-        break;
-      }
-    }
-  }
 }
 
 // ============================================================================
-// 2. LIVE WORLD MARKET SESSION CLOCKS (NEW YORK, LONDON, HONG KONG)
+// 2. TACTILE SEGMENTED CONTROLLERS (QMM & POC PROGRAM SWITCHER)
 // ============================================================================
-function initWorldClocks() {
-  const nyClock = document.getElementById('clock-ny');
-  const ldnClock = document.getElementById('clock-ldn');
-  const hkClock = document.getElementById('clock-hk');
+function initSegmentedControllers() {
+  const segmentBtns = document.querySelectorAll('.segment-pill');
+  const viewQmm = document.getElementById('prog-view-qmm');
+  const viewPoc = document.getElementById('prog-view-poc');
 
-  function updateTimes() {
-    const now = new Date();
-    
-    // New York: America/New_York
-    if (nyClock) {
-      nyClock.textContent = now.toLocaleTimeString('en-US', {
-        timeZone: 'America/New_York',
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }) + ' EDT';
-    }
-
-    // London: Europe/London
-    if (ldnClock) {
-      ldnClock.textContent = now.toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/London',
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }) + ' BST';
-    }
-
-    // Hong Kong: Asia/Hong_Kong
-    if (hkClock) {
-      hkClock.textContent = now.toLocaleTimeString('en-HK', {
-        timeZone: 'Asia/Hong_Kong',
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }) + ' HKT';
-    }
-  }
-
-  updateTimes();
-  setInterval(updateTimes, 1000);
-}
-
-// ============================================================================
-// 3. HERO 3D TILT & PARALLAX DIFFERENTIATORS WIDGETS
-// ============================================================================
-function initHero3DParallax() {
-  const stage = document.getElementById('hero-parallax-stage');
-  const card = document.getElementById('hero-command-card');
-  const widgets = document.querySelectorAll('.parallax-widget');
-
-  if (!stage || !card) return;
-
-  let mouseX = 0;
-  let mouseY = 0;
-  let currentTiltX = 0;
-  let currentTiltY = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    const rect = stage.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      mouseX = (e.clientX - centerX) / (rect.width / 2);
-      mouseY = (e.clientY - centerY) / (rect.height / 2);
-    }
-  });
-
-  // Parallax animation loop
-  function animateHero() {
-    currentTiltX = lerp(currentTiltX, -mouseY * 7, 0.08);
-    currentTiltY = lerp(currentTiltY, mouseX * 9, 0.08);
-
-    card.style.transform = `rotateX(${currentTiltX}deg) rotateY(${currentTiltY}deg) translateZ(10px)`;
-
-    widgets.forEach((w) => {
-      const speed = parseFloat(w.dataset.speed || '0.5');
-      const offsetX = mouseX * 24 * speed;
-      const offsetY = mouseY * 20 * speed;
-      w.style.transform = `translate3d(${offsetX}px, ${offsetY}px, ${speed * 40}px)`;
-    });
-
-    requestAnimationFrame(animateHero);
-  }
-
-  requestAnimationFrame(animateHero);
-}
-
-// ============================================================================
-// 4. EXPANDING GLASS PORTAL (ORIGIN 2008 & IDEA 2 ALPHA)
-// ============================================================================
-function initExpandingPortal() {
-  const trigger = document.getElementById('about');
-  const portalBox = document.getElementById('expanding-portal-box');
-  const innerContent = document.getElementById('portal-inner-content');
-
-  if (!trigger || !portalBox || !innerContent) return;
-
-  function onScroll() {
-    const rect = trigger.getBoundingClientRect();
-    const triggerH = trigger.offsetHeight - window.innerHeight;
-    const progress = clamp(-rect.top / triggerH, 0, 1);
-
-    // Interpolate: 70vw -> 100vw, 58vh -> 100vh, 40px -> 0px radius
-    const currentW = lerp(70, 100, progress);
-    const currentH = lerp(58, 100, progress);
-    const currentR = lerp(40, 0, progress);
-    const innerScale = lerp(1.22, 1.0, progress);
-
-    portalBox.style.width = `${currentW}vw`;
-    portalBox.style.height = `${currentH}vh`;
-    portalBox.style.borderRadius = `${currentR}px`;
-    innerContent.style.transform = `scale(${innerScale})`;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
-
-// ============================================================================
-// 5. HORIZON-LOCKED 6-STAGE PIPELINE (WITH LIQUID GLASS MORPHING)
-// ============================================================================
-function initHorizonScrollytelling() {
-  const runway = document.getElementById('pipeline');
-  const vessel = document.getElementById('master-stage-vessel');
-  const stepPill = document.getElementById('pipeline-step-pill');
-  const stepTag = document.getElementById('pipeline-step-tag');
-  const titleEl = document.getElementById('pipeline-title');
-  const descEl = document.getElementById('pipeline-desc');
-  const beam = document.getElementById('pipeline-progress-beam');
-  const stageBtns = document.querySelectorAll('.pipeline-nav-rail .pillar-nav-btn');
-  const vesselBadge = document.getElementById('vessel-stage-badge');
-  const vesselMeta = document.getElementById('vessel-stage-meta');
-  const states = [
-    document.getElementById('vessel-state-0'),
-    document.getElementById('vessel-state-1'),
-    document.getElementById('vessel-state-2'),
-    document.getElementById('vessel-state-3'),
-    document.getElementById('vessel-state-4'),
-    document.getElementById('vessel-state-5')
-  ];
-
-  if (!runway || !vessel) return;
-
-  const stageData = [
-    {
-      step: 'STAGE 01 // 06',
-      tag: 'RESEARCH & DATA SYNC',
-      title: 'Stage 01 · Idea Generation',
-      desc: 'Start with a basic strategy idea, such as in futures or equities, and collaborate directly with our data team.',
-      badge: 'STAGE 01 // IDEA GENERATION',
-      meta: 'PIPELINE_HASH: #0A84FF_GEN',
-      accentColor: '#0A84FF'
-    },
-    {
-      step: 'STAGE 02 // 06',
-      tag: 'DATA CURATION & PARTITION',
-      title: 'Stage 02 · Data Analysis',
-      desc: 'Gain access to necessary curated data, partition it into in-sample and out-of-sample sets, and analyze its quality and outliers.',
-      badge: 'STAGE 02 // DATA ANALYSIS',
-      meta: 'PIPELINE_HASH: #00C7BE_ANALYSIS',
-      accentColor: '#00C7BE'
-    },
-    {
-      step: 'STAGE 03 // 06',
-      tag: 'DEVELOPMENT & BENCHMARKS',
-      title: 'Stage 03 · Code Development',
-      desc: 'Test the idea on in-sample data using our development code in R, Python, or C++, evaluating its performance against strict benchmarks.',
-      badge: 'STAGE 03 // CODE DEVELOPMENT',
-      meta: 'PIPELINE_HASH: #30D158_CODE',
-      accentColor: '#30D158'
-    },
-    {
-      step: 'STAGE 04 // 06',
-      tag: 'BACKTEST & RISK PLATFORM',
-      title: 'Stage 04 · Trading Logic & Risk Management',
-      desc: 'If in-sample results meet expectations, further develop the strategy by implementing trading logic and risk management using our in-house backtesting platform.',
-      badge: 'STAGE 04 // TRADING LOGIC & RISK',
-      meta: 'PIPELINE_HASH: #5E5CE6_RISK',
-      accentColor: '#5E5CE6'
-    },
-    {
-      step: 'STAGE 05 // 06',
-      tag: 'FORWARD OPS VALIDATION',
-      title: 'Stage 05 · Paper Trading & Testing',
-      desc: 'Deploy the strategy in paper trading mode, monitoring daily performance and comparing it with previous backtest results alongside our operations team to ensure accuracy and identify biases.',
-      badge: 'STAGE 05 // PAPER TRADING & TESTING',
-      meta: 'PIPELINE_HASH: #FF9F0A_PAPER',
-      accentColor: '#FF9F0A'
-    },
-    {
-      step: 'STAGE 06 // 06',
-      tag: '24/7 AUTOMATED PRODUCTION',
-      title: 'Stage 06 · Live Trading',
-      desc: 'Once all benchmarks are met, the strategy is deployed into live automated production trading across global exchanges.',
-      badge: 'STAGE 06 // LIVE PRODUCTION',
-      meta: 'PIPELINE_HASH: #30D158_LIVE',
-      accentColor: '#30D158'
-    }
-  ];
-
-  let activeIndex = 0;
-
-  function updateStage(index) {
-    if (index === activeIndex && states[index]?.classList.contains('vessel-state-active')) return;
-    activeIndex = index;
-
-    const data = stageData[index];
-    if (!data) return;
-
-    // Update Left Column
-    if (stepPill) stepPill.textContent = data.step;
-    if (stepTag) stepTag.textContent = data.tag;
-    if (titleEl) titleEl.textContent = data.title;
-    if (descEl) descEl.textContent = data.desc;
-
-    // Update Progress Beam and Rail Buttons
-    if (beam) {
-      beam.style.top = `${(index / 5) * 83.33}%`;
-      beam.style.height = `16.66%`;
-    }
-    stageBtns.forEach((btn, idx) => {
-      btn.classList.toggle('is-active', idx === index);
-    });
-
-    // Morph the Master Vessel
-    vessel.style.borderColor = `${data.accentColor}55`;
-    vessel.style.boxShadow = `0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px ${data.accentColor}25`;
-
-    if (vesselBadge) {
-      vesselBadge.textContent = data.badge;
-      vesselBadge.style.color = data.accentColor;
-    }
-    if (vesselMeta) vesselMeta.textContent = data.meta;
-
-    states.forEach((st, idx) => {
-      if (st) st.classList.toggle('vessel-state-active', idx === index);
-    });
-
-    // Horizon glow tint update
-    const glow = document.getElementById('pipeline-horizon-glow');
-    if (glow) {
-      glow.style.background = `radial-gradient(ellipse at center, ${data.accentColor}44 0%, transparent 70%)`;
-    }
-  }
-
-  function onScroll() {
-    const rect = runway.getBoundingClientRect();
-    const runwayH = runway.offsetHeight - window.innerHeight;
-    const progress = clamp(-rect.top / runwayH, 0, 1);
-
-    // Compute stage index (0 to 5)
-    const stageIdx = clamp(Math.floor(progress * 5.99), 0, 5);
-    updateStage(stageIdx);
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Rail Button Clicks
-  stageBtns.forEach((btn) => {
+  segmentBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.stage || '0');
-      const runwayTop = runway.offsetTop;
-      const runwayH = runway.offsetHeight - window.innerHeight;
-      const targetY = runwayTop + (idx / 5) * runwayH;
-      window.scrollTo({
-        top: targetY,
-        behavior: 'smooth'
-      });
-    });
-  });
-}
-
-// ============================================================================
-// 6. BENTO PROGRAM SWITCHER (QMM SETUP vs. POC PROGRAM)
-// ============================================================================
-function initBentoProgramSwitcher() {
-  const switcher = document.getElementById('program-tab-switcher');
-  const viewQmm = document.getElementById('view-qmm');
-  const viewPoc = document.getElementById('view-poc');
-  if (!switcher) return;
-
-  const buttons = switcher.querySelectorAll('.segment-btn');
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      buttons.forEach((b) => b.classList.remove('is-active'));
+      segmentBtns.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
 
-      const program = btn.dataset.program;
-      if (program === 'qmm') {
-        viewQmm?.classList.add('bento-view-active');
-        viewPoc?.classList.remove('bento-view-active');
+      const prog = btn.dataset.prog;
+      if (prog === 'qmm') {
+        viewQmm?.classList.add('view-active');
+        viewPoc?.classList.remove('view-active');
       } else {
-        viewPoc?.classList.add('bento-view-active');
-        viewQmm?.classList.remove('bento-view-active');
+        viewPoc?.classList.add('view-active');
+        viewQmm?.classList.remove('view-active');
       }
     });
   });
 }
 
 // ============================================================================
-// 7. LEADERSHIP BIO MODAL (AUTHENTIC BIOS FROM DATA.JS)
+// 3. TACTILE MODALS (LEADERSHIP BIO & INSTITUTIONAL CONTACT DRAWER)
 // ============================================================================
-function initLeadershipBioModal() {
-  const modal = document.getElementById('bio-modal');
-  const modalClose = document.getElementById('bio-modal-close');
-  const modalContent = document.getElementById('bio-modal-content');
-  const leaderCards = document.querySelectorAll('.leader-card');
+function initTactileModals() {
+  // Bio Modal
+  const bioModal = document.getElementById('leadership-bio-modal');
+  const bioClose = document.getElementById('modal-bio-close');
+  const bioContent = document.getElementById('modal-bio-content');
+  const rosterCards = document.querySelectorAll('.roster-card');
 
-  if (!modal || !modalContent) return;
-
-  function openBio(memberName) {
-    const data = window.QuantbotData?.teamMembers?.find(
-      (m) => m.name.toLowerCase() === memberName.toLowerCase()
+  function openBio(leaderName) {
+    const leader = window.QuantbotData?.teamMembers?.find(
+      (m) => m.name.toLowerCase() === leaderName.toLowerCase()
     );
 
-    if (!data) return;
+    if (!leader || !bioContent) return;
 
-    modalContent.innerHTML = `
-      <div class="modal-bio-header">
-        <img src="${data.image}" alt="${data.name}" class="modal-bio-avatar" onerror="this.style.display='none'">
+    bioContent.innerHTML = `
+      <div class="modal-bio-top">
+        <img src="${leader.image}" alt="${leader.name}" class="modal-bio-img" onerror="this.style.display='none'">
         <div>
-          <h3 class="modal-bio-name">${data.name}</h3>
-          <span class="modal-bio-role font-mono">${data.role}</span>
+          <h3 class="modal-bio-title">${leader.name}</h3>
+          <span class="modal-bio-role font-mono">${leader.role}</span>
         </div>
       </div>
-      <p class="modal-bio-narrative">${data.bio}</p>
+      <p class="modal-bio-text">${leader.bio}</p>
     `;
 
-    modal.classList.add('is-active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    bioModal?.classList.add('is-active');
+    bioModal?.setAttribute('aria-hidden', 'false');
   }
 
-  function closeBio() {
-    modal.classList.remove('is-active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  leaderCards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-      const member = card.dataset.member;
-      if (member) openBio(member);
+  rosterCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const name = card.dataset.leader;
+      if (name) openBio(name);
     });
   });
 
-  modalClose?.addEventListener('click', closeBio);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeBio();
+  bioClose?.addEventListener('click', () => {
+    bioModal?.classList.remove('is-active');
+    bioModal?.setAttribute('aria-hidden', 'true');
   });
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-      closeBio();
+  bioModal?.addEventListener('click', (e) => {
+    if (e.target === bioModal) {
+      bioModal.classList.remove('is-active');
+      bioModal.setAttribute('aria-hidden', 'true');
     }
   });
-}
 
-// ============================================================================
-// 8. CARD SPECULAR SHEEN MOUSE TRACKING
-// ============================================================================
-function initCardSpecularSheen() {
-  const cards = document.querySelectorAll('.glass-panel-specular');
+  // Contact Modal
+  const contactModal = document.getElementById('contact-modal');
+  const contactClose = document.getElementById('modal-contact-close');
+  const btnIslandContact = document.getElementById('btn-island-contact');
+  const contactForm = document.getElementById('spatial-contact-form');
+  const formStatus = document.getElementById('form-feedback-status');
 
-  cards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+  function openContactModal() {
+    contactModal?.classList.add('is-active');
+    contactModal?.setAttribute('aria-hidden', 'false');
+  }
 
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
+  function closeContactModal() {
+    contactModal?.classList.remove('is-active');
+    contactModal?.setAttribute('aria-hidden', 'true');
+  }
+
+  btnIslandContact?.addEventListener('click', openContactModal);
+  contactClose?.addEventListener('click', closeContactModal);
+
+  contactModal?.addEventListener('click', (e) => {
+    if (e.target === contactModal) closeContactModal();
   });
-}
 
-// ============================================================================
-// 9. CONTACT FORM INTERACTIVE SUBMISSION
-// ============================================================================
-function initContactForm() {
-  const form = document.getElementById('quantbot-contact-form');
-  const status = document.getElementById('contact-form-status');
-
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
+  // Handle Form Submission
+  contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
+    const btn = contactForm.querySelector('button[type="submit"]');
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = `<span>Transmitting to Quantbot Network...</span> <i class="fa fa-spinner fa-spin"></i>`;
+      btn.innerHTML = `<span>Encrypting &amp; Routing...</span> <i class="fa fa-spinner fa-spin"></i>`;
     }
 
     setTimeout(() => {
-      form.reset();
+      contactForm.reset();
       if (btn) {
         btn.disabled = false;
-        btn.innerHTML = `<span>Transmit Confidential Message</span> <i class="fa fa-paper-plane"></i>`;
+        btn.innerHTML = `<span>Transmit Encrypted Message</span> <i class="fa fa-paper-plane"></i>`;
       }
-      if (status) {
-        status.style.display = 'block';
-        status.className = 'form-feedback success font-mono';
-        status.innerHTML = `<i class="fa fa-circle-check"></i> Thank you. Your message has been encrypted and routed directly to Quantbot leadership (info@quantbot.com). We will respond promptly.`;
+      if (formStatus) {
+        formStatus.style.display = 'block';
+        formStatus.className = 'form-feedback-pill font-mono';
+        formStatus.innerHTML = `<i class="fa fa-circle-check"></i> Encrypted message successfully transmitted to Quantbot Technologies executive routing (info@quantbot.com).`;
       }
-    }, 1200);
+    }, 1100);
+  });
+
+  // Global Escape Key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      bioModal?.classList.remove('is-active');
+      bioModal?.setAttribute('aria-hidden', 'true');
+      contactModal?.classList.remove('is-active');
+      contactModal?.setAttribute('aria-hidden', 'true');
+    }
+  });
+}
+
+// ============================================================================
+// 4. MOUSE OPTICS: 3D CARD TILT & SPECULAR SHEEN TRACKING (max 3.5deg)
+// ============================================================================
+function initMouseOptics() {
+  const tiltElements = document.querySelectorAll('[data-tilt]');
+
+  tiltElements.forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const normX = (x / rect.width) * 2 - 1;
+      const normY = (y / rect.height) * 2 - 1;
+
+      // Max 3.5deg tilt
+      const rotX = -normY * 3.5;
+      const rotY = normX * 3.5;
+
+      el.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.01)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)`;
+    });
   });
 }

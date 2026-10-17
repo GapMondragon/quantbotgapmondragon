@@ -3,806 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quantbot Technologies, LP | Quantitative Investment Strategies &amp; AI Platform</title>
-  <meta name="description" content="Quantbot Technologies, LP is a systematic quantitative investment management firm harnessing global electronic markets through advanced research, technology, and machine learning.">
+  <title>Quantbot Technologies | Autonomous Quantitative Intelligence</title>
+  <meta name="description" content="Precision algorithmic infrastructure built for institutional capital and zero-latency execution.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="background: #030407; margin: 0; padding: 0; overflow-x: hidden;">
 
-  <!-- Modern iOS 18 & visionOS Obsidian Ambient Mesh Canvas -->
-  <canvas id="quant-canvas" aria-hidden="true"></canvas>
-
-  <!-- Sleek Vertical Progress Spine on Left Margin -->
-  <aside class="ios-progress-spine" aria-label="Pipeline Stage Progress">
-    <div class="ios-spine-track">
-      <div class="ios-spine-beam" id="ios-spine-beam"></div>
-    </div>
-    <a href="#stage-01" class="ios-spine-node is-active" data-stage-target="stage-01" aria-label="Stage 01: Global Markets">
-      01
-      <span class="node-tooltip">01 // Global Markets</span>
-    </a>
-    <a href="#stage-02" class="ios-spine-node" data-stage-target="stage-02" aria-label="Stage 02: Execution Architecture">
-      02
-      <span class="node-tooltip">02 // Execution Architecture</span>
-    </a>
-    <a href="#stage-03" class="ios-spine-node" data-stage-target="stage-03" aria-label="Stage 03: Strategy Pipeline">
-      03
-      <span class="node-tooltip">03 // Strategy Pipeline</span>
-    </a>
-    <a href="#stage-04" class="ios-spine-node" data-stage-target="stage-04" aria-label="Stage 04: Our Story">
-      04
-      <span class="node-tooltip">04 // Our Story</span>
-    </a>
-    <a href="#stage-05" class="ios-spine-node" data-stage-target="stage-05" aria-label="Stage 05: Global Matrix">
-      05
-      <span class="node-tooltip">05 // Global Matrix</span>
-    </a>
-  </aside>
-
-  <!-- Floating Dynamic Island Navigation Bar -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="Quantbot Home">
-        <img src="assets/logo.png" alt="Quantbot Technologies Logo">
-      </a>
-
-      <!-- Dynamic Island Live System Telemetry Status -->
-      <div class="ios-status-badge">
-        <span class="ios-status-dot"></span>
-        <span>ENGINE ACTIVE · 24/5 · 0.42ms</span>
-      </div>
-
-      <!-- Segmented Stage Switcher Pills -->
-      <nav class="ios-stage-nav-pill-group" aria-label="Stage Navigation">
-        <div class="ios-nav-active-pill" id="ios-nav-pill"></div>
-        <a href="#stage-01" class="ios-stage-nav-link is-active" data-stage-nav="stage-01">Stage 01</a>
-        <a href="#stage-02" class="ios-stage-nav-link" data-stage-nav="stage-02">Stage 02</a>
-        <a href="#stage-03" class="ios-stage-nav-link" data-stage-nav="stage-03">Stage 03</a>
-        <a href="#stage-04" class="ios-stage-nav-link" data-stage-nav="stage-04">Stage 04</a>
-        <a href="#stage-05" class="ios-stage-nav-link" data-stage-nav="stage-05">Stage 05</a>
-      </nav>
-
-      <!-- Desktop Navigation Links -->
-      <nav aria-label="Secondary Navigation">
-        <ul class="nav-desktop">
-          <li class="nav-item">
-            <a href="#" class="nav-link">Explore <i class="fa fa-caret-down caret"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="about-us.html" class="dropdown-link">About Us</a></li>
-              <li><a href="proof-of-concept.html" class="dropdown-link">Proof of Concept (POC)</a></li>
-              <li><a href="qmm-setup.html" class="dropdown-link">QMM Setup</a></li>
-              <li><a href="meet-the-founders.html" class="dropdown-link">Meet the Founders</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="careers.html" class="nav-link">Careers</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Insights <i class="fa fa-caret-down caret"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="news.html" class="dropdown-link">News &amp; Press</a></li>
-              <li><a href="blog.html" class="dropdown-link">Blog &amp; Insights</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="contact-us.html" class="nav-link">Contact</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Header Actions -->
-      <div class="header-actions">
-        <a href="contact-us.html" class="btn btn-primary btn-sm">Request Access</a>
-        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Overlay & Drawer -->
-  <div class="mobile-overlay"></div>
-  <aside class="mobile-drawer" aria-label="Mobile Navigation">
-    <ul class="mobile-nav-list">
-      <li>
-        <span class="mobile-nav-link text-mint">Explore</span>
-        <ul class="mobile-submenu">
-          <li><a href="about-us.html" class="mobile-submenu-link">About Us</a></li>
-          <li><a href="proof-of-concept.html" class="mobile-submenu-link">Proof of Concept</a></li>
-          <li><a href="qmm-setup.html" class="mobile-submenu-link">QMM Setup</a></li>
-          <li><a href="meet-the-founders.html" class="mobile-submenu-link">Meet the Founders</a></li>
-        </ul>
-      </li>
-      <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
-      <li>
-        <span class="mobile-nav-link text-mint">Insights</span>
-        <ul class="mobile-submenu">
-          <li><a href="news.html" class="mobile-submenu-link">News</a></li>
-          <li><a href="blog.html" class="mobile-submenu-link">Blog</a></li>
-        </ul>
-      </li>
-      <li><a href="contact-us.html" class="mobile-nav-link">Contact Us</a></li>
-    </ul>
-
-    <div class="mobile-contact-info">
-      <a href="mailto:info@quantbot.com" class="footer-links" style="color:var(--apple-emerald); text-decoration:none;">
-        <i class="fa fa-envelope" style="margin-right:6px;"></i> info@quantbot.com
-      </a>
-      <a href="mailto:jobs@quantbot.com" class="footer-links" style="color:var(--apple-emerald); text-decoration:none;">
-        <i class="fa fa-briefcase" style="margin-right:6px;"></i> jobs@quantbot.com
-      </a>
-      <a href="contact-us.html" class="btn btn-primary" style="margin-top:12px;">Request Access</a>
-    </div>
-  </aside>
-
-  <!-- Main Pipeline Scrollytelling Architecture -->
-  <main>
-
-    <!-- =======================================================================
-         STAGE 01: OPENING MONOLITH — HARNESS THE POWER OF GLOBAL MARKETS
-         ======================================================================= -->
-    <section class="p-stage p-stage-hero is-active-stage" id="stage-01" data-stage-num="01" data-stage-label="Global Markets">
-      <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/poc_hero.png">
-        <source src="https://www.quantbot.com/wp-content/uploads/2024/02/Hero-01-Desktop-V2-compressed.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="p-stage-watermark" aria-hidden="true">01</div>
-
-      <div class="wrapper">
-        <div class="p-hero-grid">
-          <!-- Left Column -->
-          <div>
-            <div class="p-eyebrow">
-              <span class="p-eyebrow-num">STAGE 01 // 05</span>
-              <span>Global Electronic Connectivity</span>
-            </div>
-            <h1 class="p-stage-title text-gradient">
-              Harness the Power of Global Markets
-            </h1>
-            <p class="p-stage-desc">
-              Explore the intricacies of quantitative investment strategies tailored for global electronic markets. Driven by mathematical rigor, high-performance technology, and continuous machine learning innovation.
-            </p>
-            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:28px;">
-              <a href="#stage-02" class="btn btn-primary">Inspect Stage 02 Architecture <i class="fa fa-arrow-down"></i></a>
-              <a href="contact-us.html" class="btn btn-secondary">Request Investor Access</a>
-            </div>
-          </div>
-
-          <!-- Right Column: Institutional Fiber Monolith -->
-          <div class="p-monolith-glass">
-            <div class="p-monolith-header">
-              <div class="p-monolith-title">
-                <span class="ios-status-dot"></span>
-                <span>Global Fiber Topology Ring</span>
-              </div>
-              <span class="font-mono text-silver" style="font-size:0.75rem;">NY4 · LD4 · HK1 · MIA</span>
-            </div>
-
-            <!-- Interactive SVG Fiber Topology Ring -->
-            <div style="width:100%; height:150px;">
-              <svg viewBox="0 0 360 150" style="width:100%; height:100%;">
-                <defs>
-                  <linearGradient id="fiberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.2" />
-                    <stop offset="50%" stop-color="#30D158" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#5E5CE6" stop-opacity="0.2" />
-                  </linearGradient>
-                </defs>
-                <line x1="0" y1="40" x2="360" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3" />
-                <line x1="0" y1="80" x2="360" y2="80" stroke="rgba(255,255,255,0.08)" />
-                <line x1="0" y1="120" x2="360" y2="120" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3" />
-
-                <!-- Optical Fiber Wave Lines -->
-                <path d="M 50 90 Q 120 20 180 65 T 310 55" fill="none" stroke="url(#fiberGrad)" stroke-width="2.2" />
-                <path d="M 50 90 Q 130 135 220 100 T 310 55" fill="none" stroke="rgba(48,209,88,0.3)" stroke-width="1.2" stroke-dasharray="4 4" />
-
-                <!-- Node Points -->
-                <g transform="translate(50,90)">
-                  <circle r="6" fill="#30D158" />
-                  <circle r="12" fill="none" stroke="#30D158" stroke-opacity="0.4" />
-                  <text y="24" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8">NY4 · NYC</text>
-                </g>
-                <g transform="translate(135,112)">
-                  <circle r="5" fill="#0A84FF" />
-                  <text y="20" text-anchor="middle" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">MIA</text>
-                </g>
-                <g transform="translate(180,65)">
-                  <circle r="6" fill="#30D158" />
-                  <circle r="12" fill="none" stroke="#30D158" stroke-opacity="0.4" />
-                  <text y="-14" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8">LD4 · LDN</text>
-                </g>
-                <g transform="translate(310,55)">
-                  <circle r="6" fill="#30D158" />
-                  <circle r="12" fill="none" stroke="#30D158" stroke-opacity="0.4" />
-                  <text y="-14" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8">HK1 · HKG</text>
-                </g>
-              </svg>
-            </div>
-
-            <!-- Telemetry Metrics Grid -->
-            <div class="p-monolith-metrics-grid">
-              <div class="p-monolith-stat-card">
-                <span class="p-monolith-stat-lbl">Asset Coverage</span>
-                <strong class="p-monolith-stat-val">Cash Equities &amp; Futures</strong>
-              </div>
-              <div class="p-monolith-stat-card">
-                <span class="p-monolith-stat-lbl">Co-Location</span>
-                <strong class="p-monolith-stat-val font-mono">NY4 · LD4 · HK1 Fiber</strong>
-              </div>
-              <div class="p-monolith-stat-card">
-                <span class="p-monolith-stat-lbl">Discipline</span>
-                <strong class="p-monolith-stat-val">100% Systematic Alpha</strong>
-              </div>
-              <div class="p-monolith-stat-card">
-                <span class="p-monolith-stat-lbl">Compute Stack</span>
-                <strong class="p-monolith-stat-val font-mono">Python · C++20 · R · ML</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4-Column Plinth -->
-        <div class="p-hero-plinth">
-          <div class="p-plinth-item">
-            <span class="p-plinth-val font-mono">Est. 2008</span>
-            <span class="p-plinth-lbl">Founded in New York City</span>
-          </div>
-          <div class="p-plinth-item">
-            <span class="p-plinth-val font-mono">24 / 5</span>
-            <span class="p-plinth-lbl">Continuous Global Execution</span>
-          </div>
-          <div class="p-plinth-item">
-            <span class="p-plinth-val font-mono">4 Hubs</span>
-            <span class="p-plinth-lbl">NY · LDN · HKG · MIA</span>
-          </div>
-          <div class="p-plinth-item">
-            <span class="p-plinth-val font-mono">POC &amp; QMM</span>
-            <span class="p-plinth-lbl">Dual Institutional Platforms</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Marquee Telemetry Ticker -->
-      <div class="qb-marquee-strip" aria-label="Quantbot Telemetry Ticker">
-        <div class="qb-marquee-track">
-          <span class="qb-marquee-item"><strong>ASSET COVERAGE</strong> GLOBAL CASH EQUITIES &amp; ELECTRONIC FUTURES <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>TRADING HUBS</strong> NEW YORK • LONDON • HONG KONG • MIAMI <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>EXECUTION ENGINE</strong> 0.42ms MEDIAN LATENCY • DIRECT EXCHANGE CO-LOCATION <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>PLATFORMS</strong> PROOF OF CONCEPT (POC) &amp; QUANTBOT MULTI-MANAGER (QMM) <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>ASSET COVERAGE</strong> GLOBAL CASH EQUITIES &amp; ELECTRONIC FUTURES <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>TRADING HUBS</strong> NEW YORK • LONDON • HONG KONG • MIAMI <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>EXECUTION ENGINE</strong> 0.42ms MEDIAN LATENCY • DIRECT EXCHANGE CO-LOCATION <span class="qb-marquee-sep">✦</span></span>
-          <span class="qb-marquee-item"><strong>PLATFORMS</strong> PROOF OF CONCEPT (POC) &amp; QUANTBOT MULTI-MANAGER (QMM) <span class="qb-marquee-sep">✦</span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         STAGE 02: WHAT MAKES US DIFFERENT — LIVING MODULAR EXECUTION ENGINE
-         ======================================================================= -->
-    <section class="p-stage" id="stage-02" data-stage-num="02" data-stage-label="Execution Architecture">
-      <div class="p-stage-watermark" aria-hidden="true">02</div>
-
-      <div class="wrapper">
-        <div class="p-eyebrow">
-          <span class="p-eyebrow-num">STAGE 02 // 05</span>
-          <span>Execution Architecture &amp; Institutional Pillars</span>
-        </div>
-        <h2 class="p-stage-title text-gradient">
-          Innovative Hedge Fund Strategies &amp; Integrated Solutions
-        </h2>
-        <p class="p-stage-desc">
-          At Quantbot, we differentiate ourselves through our living execution architecture: continuous signal ingestion, automated AI/quant filtering, microsecond risk guardrails, and direct market connectivity.
-        </p>
-
-        <!-- 1. Interactive Animated SVG Data-Flow Pipeline -->
-        <div class="stage-pipeline-container">
-          <div class="pipeline-header">
-            <div class="pipeline-title">
-              <span class="ios-status-dot"></span>
-              <span>Live Algorithmic Execution Pipeline</span>
-            </div>
-            <span class="font-mono text-silver" style="font-size:0.75rem;">THROUGHPUT: 1.2M TICKS / SEC</span>
-          </div>
-
-          <!-- Animated SVG Circuit Pipeline -->
-          <div class="pipeline-svg-wrapper">
-            <svg class="pipeline-svg" viewBox="0 0 1000 80">
-              <defs>
-                <linearGradient id="pipeLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#0A84FF" />
-                  <stop offset="35%" stop-color="#30D158" />
-                  <stop offset="70%" stop-color="#5E5CE6" />
-                  <stop offset="100%" stop-color="#30D158" />
-                </linearGradient>
-                <filter id="packetGlow">
-                  <feGaussianBlur stdDeviation="3" result="glow" />
-                  <feMerge>
-                    <feMergeNode in="glow" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <!-- Main Connecting Data Bus -->
-              <path id="pipelinePath" d="M 60 40 L 320 40 L 620 40 L 940 40" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-linecap="round" />
-              <path d="M 60 40 L 320 40 L 620 40 L 940 40" fill="none" stroke="url(#pipeLineGrad)" stroke-width="2" stroke-dasharray="8 12" opacity="0.8" />
-
-              <!-- Active Data Packet Particles Traveling Continuously -->
-              <circle r="5" fill="#30D158" filter="url(#packetGlow)">
-                <animateMotion path="M 60 40 L 320 40 L 620 40 L 940 40" dur="2.4s" repeatCount="indefinite" />
-              </circle>
-              <circle r="4" fill="#0A84FF" filter="url(#packetGlow)">
-                <animateMotion path="M 60 40 L 320 40 L 620 40 L 940 40" dur="2.4s" begin="0.8s" repeatCount="indefinite" />
-              </circle>
-              <circle r="4.5" fill="#5E5CE6" filter="url(#packetGlow)">
-                <animateMotion path="M 60 40 L 320 40 L 620 40 L 940 40" dur="2.4s" begin="1.6s" repeatCount="indefinite" />
-              </circle>
-
-              <!-- Node Hub 01 -->
-              <g transform="translate(60, 40)">
-                <circle r="14" fill="#0A0B0E" stroke="#0A84FF" stroke-width="2.5" />
-                <circle r="6" fill="#0A84FF" />
-              </g>
-
-              <!-- Node Hub 02 -->
-              <g transform="translate(320, 40)">
-                <circle r="14" fill="#0A0B0E" stroke="#30D158" stroke-width="2.5" />
-                <circle r="6" fill="#30D158" />
-              </g>
-
-              <!-- Node Hub 03 -->
-              <g transform="translate(620, 40)">
-                <circle r="14" fill="#0A0B0E" stroke="#5E5CE6" stroke-width="2.5" />
-                <circle r="6" fill="#5E5CE6" />
-              </g>
-
-              <!-- Node Hub 04 -->
-              <g transform="translate(940, 40)">
-                <circle r="14" fill="#0A0B0E" stroke="#30D158" stroke-width="2.5" />
-                <circle r="6" fill="#30D158" />
-              </g>
-            </svg>
-          </div>
-
-          <!-- 4-Node Live Telemetry Cards -->
-          <div class="pipeline-nodes-grid">
-            <div class="pipeline-node-card">
-              <span class="pipeline-node-tag"><i class="fa fa-satellite-dish"></i> 01 Signal Ingestion</span>
-              <div class="pipeline-node-title">Tick-Level Market Feeds</div>
-              <div class="pipeline-node-meta font-mono">1.2M ticks/sec · Full L2/L3 Book Processing</div>
-            </div>
-            <div class="pipeline-node-card">
-              <span class="pipeline-node-tag"><i class="fa fa-brain"></i> 02 AI Pattern &amp; Quant</span>
-              <div class="pipeline-node-title">Tensor ML Discovery</div>
-              <div class="pipeline-node-meta font-mono">Orthogonal Alpha · Zero Manual Interventions</div>
-            </div>
-            <div class="pipeline-node-card">
-              <span class="pipeline-node-tag"><i class="fa fa-shield-halved"></i> 03 Risk Guardrails</span>
-              <div class="pipeline-node-title">Pre-Trade Governance</div>
-              <div class="pipeline-node-meta font-mono">Factor Neutral · Dynamic Stop &amp; VaR Circuit</div>
-            </div>
-            <div class="pipeline-node-card">
-              <span class="pipeline-node-tag"><i class="fa fa-bolt"></i> 04 Direct Execution</span>
-              <div class="pipeline-node-title">Smart Order Routing</div>
-              <div class="pipeline-node-meta font-mono">0.42ms Median Latency · NY4 · LD4 · HK1 Co-Lo</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Apple visionOS Bento Grid of the 4 Pillars -->
-        <div class="bento-grid">
-          <!-- Bento 1: Global Footprint -->
-          <div class="bento-card bento-col-8">
-            <div>
-              <span class="bento-badge"><i class="fa fa-globe"></i> PILLAR I // 04 · GLOBAL FOOTPRINT</span>
-              <h3 class="bento-title">Consistent Presence Across Global Cash Equities &amp; Futures</h3>
-              <p class="bento-desc">
-                We maintain direct electronic connectivity across the Americas, EMEA, and Asia-Pacific markets. Co-located inside premier financial data centers (NY4, LD4, HK1), our algorithms trade round-the-clock with microsecond responsiveness.
-              </p>
-            </div>
-            <div class="widget-telemetry-grid">
-              <div class="widget-card">
-                <span class="widget-val">0.38<span class="widget-val-unit">ms</span></span>
-                <span class="widget-lbl">NY4 Cross-Connect</span>
-              </div>
-              <div class="widget-card">
-                <span class="widget-val">0.44<span class="widget-val-unit">ms</span></span>
-                <span class="widget-lbl">LD4 Equinix Slough</span>
-              </div>
-              <div class="widget-card">
-                <span class="widget-val">0.51<span class="widget-val-unit">ms</span></span>
-                <span class="widget-lbl">HK1 Tseung Kwan O</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bento 2: Quantitative Methodologies & Model Alpha -->
-          <div class="bento-card bento-col-4">
-            <div>
-              <span class="bento-badge"><i class="fa fa-chart-line"></i> PILLAR II // 04 · METHODOLOGIES</span>
-              <h3 class="bento-title">Empirical Rigor</h3>
-              <p class="bento-desc">
-                Our strategies are developed through strict in-sample and out-of-sample partitioning, eliminating lookahead bias and subjective interference.
-              </p>
-            </div>
-            <div class="widget-card" style="margin-top:auto;">
-              <span class="widget-val">+3.42<span class="widget-val-unit">Sharpe</span></span>
-              <span class="widget-lbl">Model Alpha Resilience</span>
-              <!-- Smooth Bezier Sparkline SVG -->
-              <svg class="widget-sparkline-svg" viewBox="0 0 160 48">
-                <defs>
-                  <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#30D158" stop-opacity="0.4" />
-                    <stop offset="100%" stop-color="#30D158" stop-opacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <path d="M 0 40 Q 30 35 55 24 T 105 14 T 160 4 L 160 48 L 0 48 Z" fill="url(#sparkGrad)" />
-                <path d="M 0 40 Q 30 35 55 24 T 105 14 T 160 4" fill="none" stroke="#30D158" stroke-width="2.2" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Bento 3: Streamlined Business Process & Risk Governance -->
-          <div class="bento-card bento-col-6">
-            <div>
-              <span class="bento-badge"><i class="fa fa-sliders"></i> PILLAR III // 04 · GOVERNANCE</span>
-              <h3 class="bento-title">Streamlined Business Process</h3>
-              <p class="bento-desc">
-                Our proven framework enables us to rapidly evaluate new investment hypotheses while enforcing automated pre-trade exposure limits, sector neutrality, and real-time compliance governance.
-              </p>
-            </div>
-            <div class="widget-telemetry-grid" style="grid-template-columns: repeat(2, 1fr);">
-              <div class="widget-card">
-                <span class="widget-val">0.00%</span>
-                <span class="widget-lbl">Unhedged Factor Drift</span>
-              </div>
-              <div class="widget-card">
-                <span class="widget-val">100%</span>
-                <span class="widget-lbl">Pre-Trade Automation</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bento 4: Commitment to Research & Infrastructure -->
-          <div class="bento-card bento-col-6">
-            <div>
-              <span class="bento-badge"><i class="fa fa-microchip"></i> PILLAR IV // 04 · INFRASTRUCTURE</span>
-              <h3 class="bento-title">Commitment to Research &amp; Cloud HPC</h3>
-              <p class="bento-desc">
-                We invest heavily in distributed machine learning, high-performance compute clusters, and petabyte-scale tick data archives to continuously lead algorithmic innovation in electronic trading.
-              </p>
-            </div>
-            <div class="widget-telemetry-grid" style="grid-template-columns: repeat(2, 1fr);">
-              <div class="widget-card">
-                <span class="widget-val font-mono">10+ PB</span>
-                <span class="widget-lbl">Tick Data Archive</span>
-              </div>
-              <div class="widget-card">
-                <span class="widget-val font-mono">C++20</span>
-                <span class="widget-lbl">HPC &amp; Distributed ML</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         STAGE 03: STRATEGY DEVELOPMENT PROCESS — 6-PHASE CINEMA
-         ======================================================================= -->
-    <section class="p-stage" id="stage-03" data-stage-num="03" data-stage-label="Strategy Pipeline">
-      <div class="p-stage-watermark" aria-hidden="true">03</div>
-
-      <div class="wrapper">
-        <div class="p-eyebrow">
-          <span class="p-eyebrow-num">STAGE 03 // 05</span>
-          <span>Strategy Development Process</span>
-        </div>
-        <h2 class="p-stage-title text-gradient">
-          Empowering Investors with Quantitative Expertise
-        </h2>
-        <p class="p-stage-desc">
-          From basic strategy hypothesis to production capital execution, our 6-phase engineering lifecycle ensures rigorous scientific validation and zero lookahead bias.
-        </p>
-
-        <!-- 6-Node Stepper Pill Bar -->
-        <div class="phase-stepper-container" role="tablist">
-          <button type="button" class="phase-node-pill is-active" data-phase-idx="0">
-            <span class="phase-node-num">01</span>
-            <span>Idea Generation</span>
-          </button>
-          <button type="button" class="phase-node-pill" data-phase-idx="1">
-            <span class="phase-node-num">02</span>
-            <span>Data Analysis</span>
-          </button>
-          <button type="button" class="phase-node-pill" data-phase-idx="2">
-            <span class="phase-node-num">03</span>
-            <span>Code Development</span>
-          </button>
-          <button type="button" class="phase-node-pill" data-phase-idx="3">
-            <span class="phase-node-num">04</span>
-            <span>Trading Logic &amp; Risk</span>
-          </button>
-          <button type="button" class="phase-node-pill" data-phase-idx="4">
-            <span class="phase-node-num">05</span>
-            <span>Paper Testing</span>
-          </button>
-          <button type="button" class="phase-node-pill" data-phase-idx="5">
-            <span class="phase-node-num">06</span>
-            <span>Live Trading</span>
-          </button>
-        </div>
-
-        <!-- Dynamic Phase Inspector Bento Display -->
-        <div class="bento-card" style="padding: 36px;">
-          <div class="phase-inspector-grid">
-            <div>
-              <span class="bento-badge" id="phase-badge">GATE // SPECIALIST RESEARCH REVIEW</span>
-              <h3 class="bento-title" id="phase-title">Phase 01: Idea Generation</h3>
-              <p class="bento-desc" id="phase-desc">
-                Start with a basic strategy idea in global futures or cash equities, collaborating directly with our specialized data research teams to formulate mathematically tractable hypotheses.
-              </p>
-              <div class="widget-telemetry-grid" style="grid-template-columns: repeat(2, 1fr);">
-                <div class="widget-card">
-                  <span class="widget-lbl">TECHNICAL STACK</span>
-                  <strong class="widget-val font-mono" id="phase-stack" style="font-size:1.15rem;">Python · Jupyter</strong>
-                </div>
-                <div class="widget-card">
-                  <span class="widget-lbl">VALIDATION GATE</span>
-                  <strong class="widget-val font-mono text-mint" id="phase-gate" style="font-size:1.15rem;">Peer Review Passed</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- Interactive Terminal Simulation Widget -->
-            <div class="code-terminal-card">
-              <div class="code-terminal-bar">
-                <span class="code-dot code-dot-red"></span>
-                <span class="code-dot code-dot-yellow"></span>
-                <span class="code-dot code-dot-green"></span>
-                <span style="margin-left:auto; font-size:0.72rem; color:var(--text-silver);" id="terminal-filename">quantbot_alpha_v2.py</span>
-              </div>
-              <pre id="phase-code-preview" style="margin:0; overflow-x:auto;"><code>import quantbot.engine as qb
-from quantbot.analytics import compute_alpha
-
-# Stage 01 // Strategy Hypothesis Ingestion
-universe = qb.Universe.global_liquid_equities()
-signals = compute_alpha(universe, lookback_ticks=25000)
-qb.verify_orthogonality(signals, threshold=0.88)
-print("[OK] Signal ready for Out-of-Sample verification")</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         STAGE 04: OUR STORY — TAKING A QUANTUM LEAP IN INVESTING
-         ======================================================================= -->
-    <section class="p-stage" id="stage-04" data-stage-num="04" data-stage-label="Our Story">
-      <div class="p-stage-watermark" aria-hidden="true">04</div>
-
-      <div class="wrapper">
-        <div class="p-eyebrow">
-          <span class="p-eyebrow-num">STAGE 04 // 05</span>
-          <span>Origins &amp; Leadership</span>
-        </div>
-        <h2 class="p-stage-title text-gradient">
-          Taking a Quantum Leap in Investing
-        </h2>
-        <p class="p-stage-desc">
-          Founded during the global financial crisis of 2008, Quantbot was created on the conviction that scientific discipline, automated risk limits, and technological superiority create persistent alpha.
-        </p>
-
-        <!-- Leadership & Heritage Bento Grid -->
-        <div class="bento-grid">
-          <!-- Institutional Quote Card -->
-          <div class="bento-card bento-col-12" style="background: linear-gradient(135deg, rgba(10, 132, 255, 0.08) 0%, rgba(48, 209, 88, 0.08) 100%);">
-            <blockquote class="story-quote-text">
-              "At Quantbot, we are driven by our passion for quantitative trading and our unwavering commitment to delivering exceptional, market-neutral investment solutions through mathematical rigor."
-            </blockquote>
-            <span class="font-mono text-silver" style="font-size:0.85rem;">— Executive Committee, Quantbot Technologies, LP</span>
-          </div>
-
-          <!-- Paul White -->
-          <div class="bento-card bento-col-4">
-            <div class="leader-avatar-row" style="margin-bottom:18px;">
-              <img src="assets/paul.png" alt="Paul White" class="leader-avatar-img">
-              <div>
-                <h4 style="font-size:1.15rem; color:#fff;">Paul White</h4>
-                <span class="font-mono text-mint" style="font-size:0.8rem;">CEO &amp; Co-Founder</span>
-              </div>
-            </div>
-            <p class="bento-desc" style="margin:0;">
-              Co-founded Quantbot in 2008 following a distinguished career leading global quantitative electronic trading groups on Wall Street.
-            </p>
-          </div>
-
-          <!-- Michael Botlo -->
-          <div class="bento-card bento-col-4">
-            <div class="leader-avatar-row" style="margin-bottom:18px;">
-              <img src="assets/botlo.png" alt="Michael Botlo" class="leader-avatar-img">
-              <div>
-                <h4 style="font-size:1.15rem; color:#fff;">Michael Botlo</h4>
-                <span class="font-mono text-mint" style="font-size:0.8rem;">Co-Founder</span>
-              </div>
-            </div>
-            <p class="bento-desc" style="margin:0;">
-              Theoretical physicist turned quantitative pioneer. Championed Quantbot's distributed computing and high-frequency alpha modeling architectures.
-            </p>
-          </div>
-
-          <!-- Ashar Mahboob -->
-          <div class="bento-card bento-col-4">
-            <div class="leader-avatar-row" style="margin-bottom:18px;">
-              <img src="assets/ashar.png" alt="Ashar Mahboob" class="leader-avatar-img">
-              <div>
-                <h4 style="font-size:1.15rem; color:#fff;">Ashar Mahboob</h4>
-                <span class="font-mono text-mint" style="font-size:0.8rem;">Chief Investment Officer</span>
-              </div>
-            </div>
-            <p class="bento-desc" style="margin:0;">
-              Oversees portfolio allocation, empirical strategy governance, and cross-asset risk management across all global trading strategies.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         STAGE 05: GLOBAL OPERATIONS & CO-LOCATION MATRIX
-         ======================================================================= -->
-    <section class="p-stage" id="stage-05" data-stage-num="05" data-stage-label="Global Matrix">
-      <div class="p-stage-watermark" aria-hidden="true">05</div>
-
-      <div class="wrapper">
-        <div class="p-eyebrow">
-          <span class="p-eyebrow-num">STAGE 05 // 05</span>
-          <span>Global Matrix &amp; Exchange Connectivity</span>
-        </div>
-        <h2 class="p-stage-title text-gradient">
-          Global Trading Operations Across Four Key Hubs
-        </h2>
-        <p class="p-stage-desc">
-          We maintain direct physical and electronic presence across the world's most liquid financial centers, synchronizing quantitative execution 24 hours a day.
-        </p>
-
-        <!-- 4-Office Bento Grid -->
-        <div class="office-bento-grid">
-          <!-- New York -->
-          <div class="office-bento-card">
-            <img src="assets/ny.png" alt="New York Office" class="office-bento-img">
-            <div class="office-bento-body">
-              <div class="office-bento-city">
-                <span>New York</span>
-                <span class="office-live-ping"><i class="fa fa-circle text-mint" style="font-size:0.55rem;"></i> NY4 0.38ms</span>
-              </div>
-              <p class="office-bento-addr">505 Fifth Avenue, 6th Floor<br>New York, NY 10017</p>
-            </div>
-          </div>
-
-          <!-- London -->
-          <div class="office-bento-card">
-            <img src="assets/london.png" alt="London Office" class="office-bento-img">
-            <div class="office-bento-body">
-              <div class="office-bento-city">
-                <span>London</span>
-                <span class="office-live-ping"><i class="fa fa-circle text-mint" style="font-size:0.55rem;"></i> LD4 0.44ms</span>
-              </div>
-              <p class="office-bento-addr">125 Old Broad Street, 26th Floor<br>London EC2N 1AR</p>
-            </div>
-          </div>
-
-          <!-- Hong Kong -->
-          <div class="office-bento-card">
-            <img src="assets/hk.png" alt="Hong Kong Office" class="office-bento-img">
-            <div class="office-bento-body">
-              <div class="office-bento-city">
-                <span>Hong Kong</span>
-                <span class="office-live-ping"><i class="fa fa-circle text-mint" style="font-size:0.55rem;"></i> HK1 0.51ms</span>
-              </div>
-              <p class="office-bento-addr">4-4A Des Voeux Road Central<br>Central, Hong Kong</p>
-            </div>
-          </div>
-
-          <!-- Miami -->
-          <div class="office-bento-card">
-            <img src="assets/miami.png" alt="Miami Office" class="office-bento-img">
-            <div class="office-bento-body">
-              <div class="office-bento-city">
-                <span>Miami</span>
-                <span class="office-live-ping"><i class="fa fa-circle text-mint" style="font-size:0.55rem;"></i> MIA 0.45ms</span>
-              </div>
-              <p class="office-bento-addr">1111 Brickell Avenue<br>Miami, FL 33131</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Global Footer -->
-  <footer class="site-footer">
-    <div class="wrapper">
-      <div class="footer-grid">
-        <div>
-          <a href="index.html" class="brand-logo" style="margin-bottom:16px;">
-            <img src="assets/logo.png" alt="Quantbot Technologies Logo">
-          </a>
-          <p class="text-silver" style="font-size:0.9rem; line-height:1.6; margin-bottom:18px;">
-            Quantbot Technologies, LP is a systematic quantitative investment management firm harnessing mathematical models, big data, and machine learning across global markets.
-          </p>
-          <div class="footer-contact-pills">
-            <a href="mailto:info@quantbot.com"><i class="fa fa-envelope"></i> info@quantbot.com</a>
-            <a href="mailto:jobs@quantbot.com"><i class="fa fa-briefcase"></i> jobs@quantbot.com</a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Platforms</h4>
-          <ul class="footer-links">
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="proof-of-concept.html">Proof of Concept (POC)</a></li>
-            <li><a href="qmm-setup.html">QMM Multi-Manager Setup</a></li>
-            <li><a href="meet-the-founders.html">Meet the Founders</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Insights &amp; Careers</h4>
-          <ul class="footer-links">
-            <li><a href="news.html">News &amp; Press</a></li>
-            <li><a href="blog.html">Blog &amp; Research</a></li>
-            <li><a href="careers.html">Open Careers</a></li>
-            <li><a href="contact-us.html">Contact Us</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Trading Hubs</h4>
-          <ul class="footer-links font-mono" style="font-size:0.82rem;">
-            <li><strong>NYC:</strong> 505 Fifth Ave, 6th Fl</li>
-            <li><strong>LDN:</strong> 125 Old Broad St, 26th Fl</li>
-            <li><strong>HKG:</strong> 4-4A Des Voeux Rd Central</li>
-            <li><strong>MIA:</strong> 1111 Brickell Avenue</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-inner">
-        <p>Copyright &copy; 2026 Quantbot Technologies, LP. All Rights Reserved.</p>
-        <ul class="footer-legal-links">
-          <li><a href="privacy-notice.html">Privacy Notice</a></li>
-          <li><a href="california-privacy-notice.html">California Privacy Notice</a></li>
-          <li><a href="disclosures-and-disclaimers.html">Disclosures &amp; Disclaimers</a></li>
-          <li><a href="gdpr-privacy-notice.html">GDPR Privacy Notice</a></li>
-          <li><a href="job-applicant-privacy-policy.html">Job Applicant Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Global Modal Container -->
-  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <button class="modal-close" aria-label="Close dialog">&times;</button>
-      <div class="modal-body"></div>
-    </div>
+  <!-- 1. VIRTUAL SCROLL TRACK (Invisible, only provides scroll height & URL anchor targets) -->
+  <div id="scroll-track" style="height: 500vh; width: 100%; position: relative; pointer-events: none;">
+    <div id="hero" style="position: absolute; top: 0vh; height: 1px;"></div>
+    <div id="stage-01" style="position: absolute; top: 135vh; height: 1px;"></div>
+    <div id="stage-02" style="position: absolute; top: 270vh; height: 1px;"></div>
+    <div id="stage-03" style="position: absolute; top: 405vh; height: 1px;"></div>
   </div>
 
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <!-- Quantbot Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/canvas-bg.js"></script>
+  <!-- 2. FIXED SPATIAL CAMERA VIEWPORT (Locked 100vw x 100vh - Nothing scrolls vertically!) -->
+  <main id="spatial-viewport" style="position: fixed; inset: 0; width: 100vw; height: 100vh; overflow: hidden; background: #030407;">
+    
+    <!-- LAYER 0: HORIZON LOCK & 3D PERSPECTIVE GRID (Deep Background Parallax) -->
+    <div id="horizon-lock-layer">
+      <div id="horizon-glow"></div>
+      <div id="horizon-line"></div>
+      <div id="perspective-grid"></div>
+    </div>
+
+    <!-- LAYER 1: GIANT REFRACTION WATERMARK (Midground Parallax behind the glass) -->
+    <div id="parallax-watermark-layer">
+      <span id="stage-watermark">QUANTBOT // OS</span>
+    </div>
+
+    <!-- LAYER 2: EXPANDING NEXT-STAGE PORTAL (Sits on the horizon and expands to 100vw/100vh) -->
+    <div id="expanding-portal-frame">
+      <div id="portal-inner-world"></div>
+    </div>
+
+    <!-- LAYER 3: ONE MASTER LIQUID GLASS VESSEL (Morphs geometry & color in place) -->
+    <section id="liquid-glass-vessel">
+      <div class="glass-specular-edge"></div>
+      <div class="stage-badge" id="ui-badge">INSTITUTIONAL QUANT ENGINE</div>
+      <h1 id="ui-headline">Pioneering Autonomous Alpha.</h1>
+      <p id="ui-subline">Precision algorithmic infrastructure built for institutional capital and zero-latency execution.</p>
+      
+      <!-- Maximum 3 Minimalist iOS Telemetry Pills -->
+      <div class="telemetry-row" id="ui-metrics">
+        <div class="ios-pill"><span class="label">ENGINE</span><span class="val" id="m1">ACTIVE</span></div>
+        <div class="ios-pill"><span class="label">EXECUTION</span><span class="val" id="m2">&lt; 1.2ms</span></div>
+        <div class="ios-pill"><span class="label">DISCIPLINE</span><span class="val" id="m3">STRICT</span></div>
+      </div>
+
+      <!-- Tactile iOS Action Buttons -->
+      <div class="ios-actions">
+        <button id="open-drawer-btn" class="ios-btn-secondary" type="button">Inspect Stage Specs +</button>
+        <a href="#stage-02" id="primary-cta-btn" class="ios-btn-primary">Enter Stage 02 →</a>
+      </div>
+    </section>
+
+    <!-- LAYER 4: iOS 18 DYNAMIC ISLAND NAV & HORIZON HUD -->
+    <header id="dynamic-island-nav">
+      <a href="index.html" class="island-brand" aria-label="Quantbot Home">
+        <img src="assets/logo.png" alt="Quantbot" style="height: 22px; width: auto; display: block;">
+      </a>
+      <span class="status-dot"></span>
+      <nav class="segmented-control">
+        <div class="nav-glider" id="nav-glider"></div>
+        <a href="#hero" data-stage="0" class="active">Overview</a>
+        <a href="#stage-01" data-stage="1">Stage 01</a>
+        <a href="#stage-02" data-stage="2">Stage 02</a>
+        <a href="#stage-03" data-stage="3">Stage 03</a>
+      </nav>
+    </header>
+
+    <footer id="horizon-hud">
+      <div class="progress-rail"><div id="progress-fill"></div></div>
+      <span id="hud-coordinates">Z-DEPTH: 0.00 // HORIZON LOCKED</span>
+    </footer>
+
+    <!-- LAYER 5: HIDDEN iOS GLASS SHEET DRAWER (Holds all deep text so main screen is clean) -->
+    <aside id="ios-spec-drawer" aria-hidden="true">
+      <div class="drawer-backdrop" id="drawer-backdrop"></div>
+      <div class="drawer-glass-card">
+        <div class="drawer-header">
+          <span class="drawer-badge" id="drawer-stage-badge">STAGE SPECIFICATIONS</span>
+          <button id="close-drawer-btn" class="drawer-close-btn" aria-label="Close Specs">✕ Close</button>
+        </div>
+        <div id="drawer-deep-content"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Core Scripts -->
   <script src="js/liquid-glass.js"></script>
   <script src="js/components.js"></script>
 </body>

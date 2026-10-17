@@ -1,661 +1,363 @@
 // ============================================================================
-// Quantbot Technologies - Apple iOS 18 & visionOS Architecture Controller
-// High-Performance Scrollytelling, Dynamic Island, Bento Tilt & Telemetry
+// QUANTBOT TECHNOLOGIES — SPATIAL DAMPED PHYSICS ENGINE
+// 100vw x 100vh Spatial Camera Viewport, Dynamic Liquid Glass Morphing,
+// Expanding Portals, Horizon Lock, and Multi-Plane Parallax
 // ============================================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-  initLenisSmoothScroll();
-  initNavigation();
-  initDynamicIslandStageTracker();
-  initVerticalProgressSpine();
-  initStageScrollytelling();
-  initPhaseInspector();
-  init3DPerspectiveTilt();
-  initWidgetCounters();
-  initModals();
-  initTabs();
-  initAccordion();
-  initContactForm();
-  initCareers();
-  initNewsFilter();
-  initBlogFilter();
-  initSmoothScroll();
-  initLiquidGlassEngine();
-});
-
-// 1. Lenis Smooth Scroll Integration
-function initLenisSmoothScroll() {
-  if (typeof window.Lenis === 'function') {
-    const lenis = new window.Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.8,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-    window.lenisInstance = lenis;
+const STAGES = [
+  {
+    id: 'hero',
+    watermark: 'QUANTBOT // OS',
+    badge: 'INSTITUTIONAL QUANT ENGINE',
+    headline: 'Pioneering Autonomous Alpha.',
+    subline: 'Precision algorithmic infrastructure built for institutional capital and zero-latency execution.',
+    metrics: [['ENGINE', 'ACTIVE'], ['EXECUTION', '< 1.2ms'], ['DISCIPLINE', 'STRICT']],
+    width: 720, height: 340, radius: 48, accent: '#0A84FF',
+    nextStageId: 'stage-01',
+    nextStageLabel: 'Enter Stage 01 →',
+    deepSpecs: `
+      <div class="spec-grid">
+        <div class="spec-box">
+          <div class="spec-box-title">System Topology</div>
+          <div class="spec-box-desc">Autonomous multi-asset electronic trading framework designed for global cash equities and liquid futures. Direct co-location at NY4, LD4, and HK1.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Institutional Governance</div>
+          <div class="spec-box-desc">Real-time risk guardrails, pre-trade compliance checks, and automated factor neutrality enforcement across all active capital portfolios.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Compute Infrastructure</div>
+          <div class="spec-box-desc">Distributed HPC cluster running Python, C++20 SIMD, and Apache Arrow tick pipelines with sub-microsecond internal message buses.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Dual Platforms</div>
+          <div class="spec-box-desc">Integrated support for Proof of Concept (POC) quantitative research tracks and Quantbot Multi-Manager (QMM) institutional capital allocations.</div>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 'stage-01',
+    watermark: 'STAGE // 01',
+    badge: 'STAGE 01 · DATA & SIGNAL INGESTION',
+    headline: 'Multi-Stream Market Telemetry.',
+    subline: 'Real-time ingestion and structural filtering of high-frequency price action across global liquidity pools.',
+    metrics: [['STREAM', 'KAFKA / RT'], ['TIMEFRAME', '1H / MULTI'], ['NOISE FILTER', '99.4%']],
+    width: 900, height: 360, radius: 32, accent: '#00C7BE',
+    nextStageId: 'stage-02',
+    nextStageLabel: 'Enter Stage 02 →',
+    deepSpecs: `
+      <div class="spec-grid">
+        <div class="spec-box">
+          <div class="spec-box-title">High-Frequency Tick Feeds</div>
+          <div class="spec-box-desc">Direct L1, L2, and full order-book depth ingestion processing over 1.2M market updates per second across CME, EUREX, HKEX, and NASDAQ.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Outlier &amp; Noise Rejection</div>
+          <div class="spec-box-desc">Statistical noise filtering algorithms isolate genuine liquidity shifts from predatory micro-flashes and exchange telemetry artifacts.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Strict IS / OOS Partitioning</div>
+          <div class="spec-box-desc">Petabyte-scale market archives partitioned into pristine in-sample training and out-of-sample forward verification to prevent lookahead bias.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Telemetry Observability</div>
+          <div class="spec-box-desc">Prometheus and Grafana metrics tracking queue depth, packet jitter, and feed latency at 10-nanosecond hardware clock resolution.</div>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 'stage-02',
+    watermark: 'STAGE // 02',
+    badge: 'STAGE 02 · PATTERN & QUANT CORE',
+    headline: 'Multimodal Pattern Intelligence.',
+    subline: 'AI-driven structural recognition paired with battle-tested Pine Script & Python quantitative validation.',
+    metrics: [['RECOGNITION', 'VISION AI'], ['BACKTEST', 'VERIFIED'], ['OVERTRADE LOCK', 'ENABLED']],
+    width: 780, height: 420, radius: 44, accent: '#30D158',
+    nextStageId: 'stage-03',
+    nextStageLabel: 'Enter Stage 03 →',
+    deepSpecs: `
+      <div class="spec-grid">
+        <div class="spec-box">
+          <div class="spec-box-title">Multimodal Chart AI</div>
+          <div class="spec-box-desc">Neural pattern extractors classify structural breakouts, liquidity sweeps, and harmonic setups before standard retail indicators trigger.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Quantitative Alpha Model</div>
+          <div class="spec-box-desc">Orthogonal statistical edges mathematically verified across multiple macroeconomic cycles, producing steady empirical Sharpe ratios above 3.2.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Overtrade &amp; Tilt Lockout</div>
+          <div class="spec-box-desc">Hard-coded algorithmic cooldown circuits automatically freeze position increases after consecutive volatility spikes or spread widening.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Factor Neutrality Matrix</div>
+          <div class="spec-box-desc">Continuous real-time hedging across momentum, value, and size factors to ensure pure alpha extraction with zero market-beta exposure.</div>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 'stage-03',
+    watermark: 'STAGE // 03',
+    badge: 'STAGE 03 · AUTONOMOUS EXECUTION',
+    headline: 'Zero-Emotion Capital Deployment.',
+    subline: 'Hard-coded drawdown circuit breakers and deterministic order routing for institutional peace of mind.',
+    metrics: [['RISK CAP', 'HARD-LOCKED'], ['SLIPPAGE', 'MINIMAL'], ['STATUS', 'PRODUCTION']],
+    width: 660, height: 380, radius: 28, accent: '#5E5CE6',
+    nextStageId: 'hero',
+    nextStageLabel: 'Return to Overview ↺',
+    deepSpecs: `
+      <div class="spec-grid">
+        <div class="spec-box">
+          <div class="spec-box-title">Deterministic Order Routing</div>
+          <div class="spec-box-desc">Direct fiber cross-connects route sub-millisecond orders through broker APIs and direct market access (DMA) gateways with adaptive TWAP/VWAP logic.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Circuit Breakers</div>
+          <div class="spec-box-desc">Automated intra-day drawdown halts trigger instantaneous portfolio flattening if pre-set institutional risk thresholds are approached.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Execution Shadow Audit</div>
+          <div class="spec-box-desc">Live fills are audited in real time against simulated paper benchmarks, tracking slippage decay down to fractions of a basis point.</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-box-title">Institutional Reporting</div>
+          <div class="spec-box-desc">Automated end-of-day NAV calculations, trade reconciliations, and compliance logs delivered directly to institutional LP portals.</div>
+        </div>
+      </div>
+    `
   }
-}
+];
 
-// 2. Navigation & Mobile Drawer
-function initNavigation() {
-  const header = document.querySelector('.site-header');
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileDrawer = document.querySelector('.mobile-drawer');
-  const mobileOverlay = document.querySelector('.mobile-overlay');
+// Linear interpolation helpers
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      header?.classList.add('scrolled');
+let targetProgress = 0; // 0.0 to 3.0
+let currentProgress = 0;
+let targetMX = 0, targetMY = 0, curMX = 0, curMY = 0;
+let currentActiveIdx = -1;
+
+window.addEventListener('scroll', () => {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  targetProgress = maxScroll > 0 ? (window.scrollY / maxScroll) * (STAGES.length - 1) : 0;
+}, { passive: true });
+
+window.addEventListener('mousemove', (e) => {
+  targetMX = (e.clientX / window.innerWidth - 0.5) * 2;
+  targetMY = (e.clientY / window.innerHeight - 0.5) * 2;
+}, { passive: true });
+
+function updateStageContent(idx) {
+  if (idx === currentActiveIdx) return;
+  currentActiveIdx = idx;
+
+  const stage = STAGES[idx];
+  if (!stage) return;
+
+  // 1. Accent color update
+  document.documentElement.style.setProperty('--stage-accent', stage.accent);
+  document.documentElement.style.setProperty('--portal-color', `${stage.accent}33`);
+
+  // 2. Texts in Liquid Glass Vessel
+  const badge = document.getElementById('ui-badge');
+  const headline = document.getElementById('ui-headline');
+  const subline = document.getElementById('ui-subline');
+  const watermark = document.getElementById('stage-watermark');
+  const ctaBtn = document.getElementById('primary-cta-btn');
+
+  if (badge) badge.textContent = stage.badge;
+  if (headline) headline.textContent = stage.headline;
+  if (subline) subline.textContent = stage.subline;
+  if (watermark) watermark.textContent = stage.watermark;
+
+  if (ctaBtn) {
+    ctaBtn.textContent = stage.nextStageLabel;
+    ctaBtn.setAttribute('href', `#${stage.nextStageId}`);
+  }
+
+  // 3. Metrics Pills
+  const metricsContainer = document.getElementById('ui-metrics');
+  if (metricsContainer) {
+    metricsContainer.innerHTML = stage.metrics
+      .map(([label, val]) => `
+        <div class="ios-pill">
+          <span class="label">${label}</span>
+          <span class="val">${val}</span>
+        </div>
+      `)
+      .join('');
+  }
+
+  // 4. Update Dynamic Island Nav Active State & Glider Position
+  const navLinks = document.querySelectorAll('.segmented-control a');
+  const glider = document.getElementById('nav-glider');
+
+  navLinks.forEach((link, lIdx) => {
+    if (lIdx === idx) {
+      link.classList.add('active');
+      if (glider && link.parentElement) {
+        const parentRect = link.parentElement.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        glider.style.left = `${linkRect.left - parentRect.left}px`;
+        glider.style.width = `${linkRect.width}px`;
+      }
     } else {
-      header?.classList.remove('scrolled');
+      link.classList.remove('active');
     }
-  }, { passive: true });
-
-  if (mobileToggle && mobileDrawer && mobileOverlay) {
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = mobileDrawer.classList.contains('active');
-      if (isOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
-
-    mobileOverlay.addEventListener('click', closeMobileMenu);
-  }
-
-  function openMobileMenu() {
-    mobileToggle?.classList.add('active');
-    mobileDrawer?.classList.add('active');
-    mobileOverlay?.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMobileMenu() {
-    mobileToggle?.classList.remove('active');
-    mobileDrawer?.classList.remove('active');
-    mobileOverlay?.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.mobile-submenu-link, .mobile-nav-link').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
   });
+
+  // 5. Drawer Content
+  const drawerBadge = document.getElementById('drawer-stage-badge');
+  const drawerContent = document.getElementById('drawer-deep-content');
+  if (drawerBadge) drawerBadge.textContent = `${stage.badge} // SPECIFICATIONS`;
+  if (drawerContent) drawerContent.innerHTML = stage.deepSpecs;
 }
 
-// 3. Dynamic Island Navigation Stage Tracker & Sliding Pill
-function initDynamicIslandStageTracker() {
-  const navLinks = document.querySelectorAll('.ios-stage-nav-link');
-  const activePill = document.getElementById('ios-nav-pill');
-  if (!navLinks.length || !activePill) return;
+function tick() {
+  // Silky iOS damping
+  currentProgress = lerp(currentProgress, targetProgress, 0.07);
+  curMX = lerp(curMX, targetMX, 0.08);
+  curMY = lerp(curMY, targetMY, 0.08);
 
-  function updatePillPosition(activeLink) {
-    if (!activeLink) return;
-    const parentRect = activeLink.parentElement.getBoundingClientRect();
-    const linkRect = activeLink.getBoundingClientRect();
-    activePill.style.left = `${linkRect.left - parentRect.left}px`;
-    activePill.style.width = `${linkRect.width}px`;
+  const baseIdx = clamp(Math.floor(currentProgress), 0, STAGES.length - 2);
+  const nextIdx = baseIdx + 1;
+  const localT = clamp(currentProgress - baseIdx, 0, 1);
+
+  // Smooth step curve for glass morphing
+  const smoothT = localT * localT * (3 - 2 * localT);
+  const sA = STAGES[baseIdx];
+  const sB = STAGES[nextIdx];
+
+  // 1. Morph Liquid Glass Vessel dimensions smoothly
+  const w = lerp(sA.width, sB.width, smoothT);
+  const h = lerp(sA.height, sB.height, smoothT);
+  const r = lerp(sA.radius, sB.radius, smoothT);
+
+  const vessel = document.getElementById('liquid-glass-vessel');
+  if (vessel) {
+    vessel.style.width = `min(90vw, ${w.toFixed(1)}px)`;
+    vessel.style.minHeight = `${h.toFixed(1)}px`;
+    vessel.style.borderRadius = `${r.toFixed(1)}px`;
+    vessel.style.transform = `translate(-50%, -50%) perspective(1200px) rotateX(${(curMY * -3.5).toFixed(2)}deg) rotateY(${(curMX * 3.5).toFixed(2)}deg)`;
   }
 
-  // Set initial pill position
-  const initialActive = document.querySelector('.ios-stage-nav-link.is-active') || navLinks[0];
-  setTimeout(() => updatePillPosition(initialActive), 100);
+  // 2. Expanding Portal math (expands between localT 0.25 and 0.85)
+  const portalT = clamp((localT - 0.25) / 0.6, 0, 1);
+  const insetV = lerp(42, 0, portalT);
+  const insetH = lerp(44, 0, portalT);
+  const portalRad = lerp(44, 0, portalT);
+  const portalFrame = document.getElementById('expanding-portal-frame');
+  const innerWorld = document.getElementById('portal-inner-world');
 
-  window.addEventListener('resize', () => {
-    const current = document.querySelector('.ios-stage-nav-link.is-active') || navLinks[0];
-    updatePillPosition(current);
-  });
+  if (portalFrame) {
+    portalFrame.style.clipPath = `inset(${insetV.toFixed(1)}% ${insetH.toFixed(1)}% ${insetV.toFixed(1)}% ${insetH.toFixed(1)}% round ${portalRad.toFixed(1)}px)`;
+    portalFrame.style.opacity = portalT > 0.01 && portalT < 0.99 ? '1' : '0';
+  }
+  if (innerWorld) {
+    innerWorld.style.transform = `scale(${lerp(1.3, 1.0, portalT).toFixed(3)})`;
+  }
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.forEach(l => l.classList.remove('is-active'));
-      link.classList.add('is-active');
-      updatePillPosition(link);
-    });
-  });
+  // 3. Multi-plane Parallax
+  const watermark = document.getElementById('parallax-watermark-layer');
+  if (watermark) {
+    watermark.style.transform = `translate3d(${(curMX * -35).toFixed(1)}px, ${(curMY * -25 + (localT - 0.5) * -60).toFixed(1)}px, 0)`;
+  }
 
-  window.syncDynamicIslandPill = function (stageId) {
-    const targetLink = document.querySelector(`.ios-stage-nav-link[data-stage-nav="${stageId}"]`);
-    if (targetLink && !targetLink.classList.contains('is-active')) {
-      navLinks.forEach(l => l.classList.remove('is-active'));
-      targetLink.classList.add('is-active');
-      updatePillPosition(targetLink);
-    }
-  };
+  const grid = document.getElementById('perspective-grid');
+  if (grid) {
+    grid.style.backgroundPositionY = `${(currentProgress * 180).toFixed(1)}px`;
+  }
+
+  // 4. Progress Rail & HUD coordinates
+  const progressFill = document.getElementById('progress-fill');
+  if (progressFill) {
+    progressFill.style.width = `${((currentProgress / (STAGES.length - 1)) * 100).toFixed(1)}%`;
+  }
+
+  const hudCoords = document.getElementById('hud-coordinates');
+  if (hudCoords) {
+    hudCoords.textContent = `Z-DEPTH: ${currentProgress.toFixed(2)} // HORIZON LOCKED`;
+  }
+
+  // 5. Swap active stage text cleanly at midpoint
+  const activeIdx = Math.round(currentProgress);
+  updateStageContent(activeIdx);
+
+  requestAnimationFrame(tick);
 }
 
-// 4. Sleek Vertical Progress Spine on Left Margin
-function initVerticalProgressSpine() {
-  const spineBeam = document.getElementById('ios-spine-beam');
-  const spineNodes = document.querySelectorAll('.ios-spine-node');
-  const stages = document.querySelectorAll('.p-stage');
-  if (!spineBeam || !stages.length) return;
-
-  function updateSpine() {
-    const firstStage = stages[0];
-    const lastStage = stages[stages.length - 1];
-    const startY = firstStage.offsetTop;
-    const endY = lastStage.offsetTop + lastStage.offsetHeight - window.innerHeight;
-    const totalDist = endY - startY;
-
-    if (totalDist > 0) {
-      const currentScroll = window.scrollY - startY;
-      const progress = Math.max(0, Math.min(1, currentScroll / totalDist));
-      spineBeam.style.height = `${(progress * 100).toFixed(1)}%`;
-    }
-  }
-
-  window.addEventListener('scroll', updateSpine, { passive: true });
-  updateSpine();
-
-  spineNodes.forEach(node => {
-    node.addEventListener('click', (e) => {
+// Interactive Smooth Navigation
+function setupNavigation() {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = node.dataset.stageTarget;
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        if (window.lenisInstance) {
-          window.lenisInstance.scrollTo(targetEl, { offset: -30 });
-        } else {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  });
+      const targetHash = link.getAttribute('href');
+      const targetId = targetHash.replace('#', '');
+      const stageIdx = STAGES.findIndex((s) => s.id === targetId);
 
-  window.syncSpineNode = function (stageId) {
-    spineNodes.forEach(node => {
-      if (node.dataset.stageTarget === stageId) {
-        node.classList.add('is-active');
-      } else {
-        node.classList.remove('is-active');
-      }
-    });
-  };
-}
-
-// 5. Scrollytelling Stage Pinning & Focus Snapping
-function initStageScrollytelling() {
-  const stages = document.querySelectorAll('.p-stage');
-  if (!stages.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        stages.forEach(s => {
-          if (s === entry.target) {
-            s.classList.add('is-active-stage');
-            s.classList.remove('is-inactive');
-            const stageId = s.id;
-            if (window.syncDynamicIslandPill) window.syncDynamicIslandPill(stageId);
-            if (window.syncSpineNode) window.syncSpineNode(stageId);
-          } else {
-            s.classList.remove('is-active-stage');
-            s.classList.add('is-inactive');
-          }
+      if (stageIdx !== -1) {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const targetScrollY = (stageIdx / (STAGES.length - 1)) * maxScroll;
+        window.scrollTo({
+          top: targetScrollY,
+          behavior: 'smooth'
         });
       }
     });
-  }, {
-    threshold: 0.35,
-    rootMargin: '-10% 0px -10% 0px'
   });
 
-  stages.forEach(stage => observer.observe(stage));
-}
-
-// 6. Stage 03 6-Phase Interactive Stepper & Code Inspector
-function initPhaseInspector() {
-  const phasePills = document.querySelectorAll('.phase-node-pill');
-  const phaseBadge = document.getElementById('phase-badge');
-  const phaseTitle = document.getElementById('phase-title');
-  const phaseDesc = document.getElementById('phase-desc');
-  const phaseStack = document.getElementById('phase-stack');
-  const phaseGate = document.getElementById('phase-gate');
-  const terminalFilename = document.getElementById('terminal-filename');
-  const codePreview = document.getElementById('phase-code-preview');
-
-  if (!phasePills.length || !phaseTitle) return;
-
-  const phasesData = [
-    {
-      badge: "GATE // SPECIALIST RESEARCH REVIEW",
-      title: "Phase 01: Idea Generation",
-      desc: "Start with a basic strategy idea in global futures or cash equities, collaborating directly with our specialized data research teams to formulate mathematically tractable hypotheses.",
-      stack: "Python · Jupyter",
-      gate: "Peer Review Passed",
-      filename: "quantbot_alpha_v2.py",
-      code: `import quantbot.engine as qb
-from quantbot.analytics import compute_alpha
-
-# Stage 01 // Strategy Hypothesis Ingestion
-universe = qb.Universe.global_liquid_equities()
-signals = compute_alpha(universe, lookback_ticks=25000)
-qb.verify_orthogonality(signals, threshold=0.88)
-print("[OK] Signal ready for Out-of-Sample verification")`
-    },
-    {
-      badge: "GATE // IS / OOS STRICT PARTITIONING",
-      title: "Phase 02: Data Analysis",
-      desc: "Gain access to petabyte-scale tick datasets, partition strictly into in-sample and out-of-sample datasets, and thoroughly inspect data hygiene, corporate actions, and market outliers.",
-      stack: "Apache Arrow · Polars · C++",
-      gate: "Data Hygiene 100%",
-      filename: "data_hygiene_partition.py",
-      code: `# Stage 02 // Strict IS / OOS Data Hygiene
-dataset = qb.load_l2_book("GLOBEX.ES", start="2020-01-01")
-train_is, test_oos = qb.partition_clean(dataset, split_ratio=0.70)
-assert qb.detect_lookahead_bias(train_is) == 0.0
-print(f"[OK] IS Partition: {len(train_is)} rows verified")`
-    },
-    {
-      badge: "GATE // COMPUTE OPTIMIZATION & UNIT TESTS",
-      title: "Phase 03: Code Development",
-      desc: "Test the hypothesis on in-sample data using our distributed compute cluster (Python, C++20, R), benchmarking empirical Sharpe ratio and signal decay curves.",
-      stack: "C++20 · Cython · SIMD",
-      gate: "Latency Bench < 25μs",
-      filename: "alpha_kernel.cpp",
-      code: `// Stage 03 // Ultra-Low Latency C++20 SIMD Alpha Kernel
-auto evaluate_orderbook(const MarketBook& book) noexcept -> Signal {
-    const auto micro_price = calculate_microprice_avellaneda(book);
-    const auto imbalance = compute_vpin_flow(book, 50);
-    return Signal{ .weight = imbalance * 0.42, .confidence = 0.96 };
-}`
-    },
-    {
-      badge: "GATE // PRE-TRADE LIMITS & FACTOR NEUTRALITY",
-      title: "Phase 04: Trading Logic & Risk",
-      desc: "Implement automated factor neutralization, position sizing limits, stop-loss governance, and portfolio margin constraints inside our proprietary risk engine.",
-      stack: "RiskOS · Real-Time VaR",
-      gate: "Factor Drift = 0.00%",
-      filename: "risk_guardrails.py",
-      code: `# Stage 04 // Dynamic Factor Neutralization
-risk_matrix = qb.RiskEngine.load_barra_model()
-portfolio = qb.Portfolio.from_signals(signals)
-portfolio.neutralize_sectors(max_exposure_usd=0.0)
-portfolio.enforce_pre_trade_limits(max_adv_pct=1.5)
-print("[OK] Risk governance passed all circuit checks")`
-    },
-    {
-      badge: "GATE // ZERO LOOKAHEAD FORWARD BENCHMARK",
-      title: "Phase 05: Paper Testing & Simulation",
-      desc: "Deploy the strategy in paper trading mode against real-time live market feeds, monitoring daily execution slippage and comparing against simulated backtests.",
-      stack: "PaperBroker · FIX 4.4",
-      gate: "Tracking Error < 0.08",
-      filename: "paper_execution_audit.py",
-      code: `# Stage 05 // Live Paper Execution Audit
-session = qb.PaperSession.connect("NY4_PROD_SHADOW")
-session.stream_fills(order_router="SOR_FAST")
-variance = session.compare_with_backtest(window_days=30)
-assert variance.sharpe_delta < 0.05
-print(f"[OK] Live shadow execution tracking error: {variance.tracking_error:.4f}")`
-    },
-    {
-      badge: "GATE // CAPITAL ALLOCATION & LIVE ORDER ROUTING",
-      title: "Phase 06: Live Trading",
-      desc: "Once all empirical thresholds, risk governance tests, and execution benchmarks are satisfied, the strategy is promoted to live production capital allocation.",
-      stack: "Direct Co-Location · FPGA",
-      gate: "Live Capital Deployed",
-      filename: "live_production_alloc.py",
-      code: `# Stage 06 // Production Capital Activation
-engine = qb.LiveTradingEngine.authorize(tier="INSTITUTIONAL")
-engine.allocate_capital(strategy_id="QB_STAT_ARB_09", max_leverage=3.0)
-engine.start_market_making(exchanges=["CME", "EUREX", "HKEX", "NASDAQ"])
-print("[LIVE] 24/5 systematic execution active across global hubs")`
+  // URL Hash on initial load
+  if (window.location.hash) {
+    const hash = window.location.hash.replace('#', '');
+    const idx = STAGES.findIndex((s) => s.id === hash);
+    if (idx !== -1) {
+      setTimeout(() => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        window.scrollTo({
+          top: (idx / (STAGES.length - 1)) * maxScroll,
+          behavior: 'smooth'
+        });
+      }, 150);
     }
-  ];
-
-  phasePills.forEach((pill, idx) => {
-    pill.addEventListener('click', () => {
-      phasePills.forEach(p => p.classList.remove('is-active'));
-      pill.classList.add('is-active');
-
-      const data = phasesData[idx];
-      if (data) {
-        if (phaseBadge) phaseBadge.textContent = data.badge;
-        if (phaseTitle) phaseTitle.textContent = data.title;
-        if (phaseDesc) phaseDesc.textContent = data.desc;
-        if (phaseStack) phaseStack.textContent = data.stack;
-        if (phaseGate) phaseGate.textContent = data.gate;
-        if (terminalFilename) terminalFilename.textContent = data.filename;
-        if (codePreview) codePreview.innerHTML = `<code>${escapeHtml(data.code)}</code>`;
-      }
-    });
-  });
-
-  function escapeHtml(text) {
-    return text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
   }
 }
 
-// 7. Cursor-Aware 3D Perspective Tilt on Glass Bento Cards
-function init3DPerspectiveTilt() {
-  const cards = document.querySelectorAll('.bento-card, .p-monolith-glass, .office-bento-card');
+// iOS Glass Spec Drawer Setup
+function setupDrawer() {
+  const drawer = document.getElementById('ios-spec-drawer');
+  const openBtn = document.getElementById('open-drawer-btn');
+  const closeBtn = document.getElementById('close-drawer-btn');
+  const backdrop = document.getElementById('drawer-backdrop');
 
-  cards.forEach(card => {
-    card.addEventListener('pointermove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
+  if (!drawer) return;
 
-      // Max tilt +-5 degrees for subtle, sophisticated feel
-      const rotX = ((y - midY) / midY) * -5;
-      const rotY = ((x - midX) / midX) * 5;
+  function openDrawer() {
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
 
-      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+  function closeDrawer() {
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
 
-      // Cursor spotlight coordinates for ::before glow
-      const pctX = ((x / rect.width) * 100).toFixed(1);
-      const pctY = ((y / rect.height) * 100).toFixed(1);
-      card.style.setProperty('--mouse-x', `${pctX}%`);
-      card.style.setProperty('--mouse-y', `${pctY}%`);
-    });
-
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-// 8. Animated Counters for Widget Metrics
-function initWidgetCounters() {
-  const counters = document.querySelectorAll('[data-counter-target]');
-  if (!counters.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.dataset.counterTarget);
-        const prefix = el.dataset.counterPrefix || '';
-        const suffix = el.dataset.counterSuffix || '';
-        const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
-        let start = 0;
-        const duration = 1600;
-        const startTime = performance.now();
-
-        function animate(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(1, elapsed / duration);
-          const easeOut = 1 - Math.pow(1 - progress, 3);
-          const currentVal = (start + (target - start) * easeOut).toFixed(decimals);
-          el.textContent = `${prefix}${currentVal}${suffix}`;
-
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          }
-        }
-
-        requestAnimationFrame(animate);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-}
-
-// 9. Smooth Scroll for Internal Anchors
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#' || targetId === '') return;
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        if (window.lenisInstance) {
-          window.lenisInstance.scrollTo(targetEl, { offset: -30 });
-        } else {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  });
-}
-
-// 10. Modals System (Team bios, Careers, etc.)
-function initModals() {
-  const modalOverlay = document.querySelector('#global-modal');
-  if (!modalOverlay) return;
-
-  const modalBody = modalOverlay.querySelector('.modal-body');
-  const closeBtn = modalOverlay.querySelector('.modal-close');
-
-  closeBtn?.addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
-  });
+  if (openBtn) openBtn.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-      closeModal();
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+      closeDrawer();
     }
   });
-
-  window.openModal = function (htmlContent) {
-    if (modalBody) modalBody.innerHTML = htmlContent;
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeModal = function () {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  };
 }
 
-// 11. Tabs Component
-function initTabs() {
-  const tabsContainer = document.querySelector('.tabs-layout');
-  if (!tabsContainer) return;
-
-  const tabBtns = tabsContainer.querySelectorAll('.tab-btn');
-  const tabPanes = tabsContainer.querySelectorAll('.tab-pane');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.dataset.tab;
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      const activePane = tabsContainer.querySelector(`#tab-${targetId}`);
-      if (activePane) activePane.classList.add('active');
-    });
-  });
-}
-
-// 12. Accordion Component
-function initAccordion() {
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question?.addEventListener('click', () => {
-      item.classList.toggle('active');
-    });
-  });
-}
-
-// 13. Contact Form
-function initContactForm() {
-  const form = document.querySelector('#contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    if (btn) {
-      btn.disabled = true;
-      btn.textContent = 'Transmitting Encrypted Request...';
-    }
-
-    setTimeout(() => {
-      if (btn) btn.textContent = 'Request Received · Confirmation Dispatched';
-      form.reset();
-      setTimeout(() => {
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = 'Submit Inquiry';
-        }
-      }, 3500);
-    }, 1200);
-  });
-}
-
-// 14. Careers Filtering
-function initCareers() {
-  const deptFilters = document.querySelectorAll('[data-dept-filter]');
-  const jobCards = document.querySelectorAll('.job-card');
-  if (!deptFilters.length) return;
-
-  deptFilters.forEach(filter => {
-    filter.addEventListener('click', () => {
-      deptFilters.forEach(f => f.classList.remove('active'));
-      filter.classList.add('active');
-      const dept = filter.dataset.deptFilter;
-
-      jobCards.forEach(card => {
-        if (dept === 'all' || card.dataset.dept === dept) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-// 15. News & Blog Filtering
-function initNewsFilter() {}
-function initBlogFilter() {}
-
-// 16. Apple iOS Liquid Glass Material System
-function initLiquidGlassEngine() {
-  if (!window.LiquidGlass) return;
-  initLiquidRipples();
-  initInteractiveLiquidLens();
-  initGlassDock();
-}
-
-function initLiquidRipples() {
-  const targets = document.querySelectorAll('.btn, .phase-node-pill, .ios-stage-nav-link');
-  targets.forEach((el) => {
-    try {
-      const ripple = window.LiquidGlass.mountSvgRipple({
-        target: el,
-        host: document.body,
-        strength: 24,
-        chroma: 0.4,
-        duration: 700,
-        blur: 0.35,
-        spec: 0.85,
-      });
-
-      el.addEventListener('pointerdown', (e) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          const nx = (e.clientX - rect.left) / rect.width;
-          const ny = (e.clientY - rect.top) / rect.height;
-          ripple.press(Math.max(0, Math.min(1, nx)), Math.max(0, Math.min(1, ny)));
-        }
-      });
-    } catch (_) {}
-  });
-}
-
-function initInteractiveLiquidLens() {
-  let lensRing = document.querySelector('.ios-liquid-lens');
-  if (!lensRing) {
-    lensRing = document.createElement('div');
-    lensRing.className = 'ios-liquid-lens';
-    document.body.appendChild(lensRing);
-  }
-
-  const lensTargets = document.querySelectorAll('.bento-card, .p-monolith-glass, .office-bento-card');
-  lensTargets.forEach((target) => {
-    try {
-      const lens = window.LiquidGlass.mountGlassLens({
-        target: target,
-        host: document.body,
-        lensW: 176,
-        lensH: 176,
-        radius: 88,
-        depth: 22,
-        dome: 16,
-        profile: 'circle',
-        strength: 26,
-        chroma: 0.4,
-        glow: 0.65,
-        edge: 0.9,
-        active: false,
-      });
-
-      let isHovered = false;
-
-      target.addEventListener('pointerenter', (e) => {
-        isHovered = true;
-        lensRing.classList.add('is-visible');
-        lens.setActive(true);
-        lens.setDisplScale(1);
-        updatePos(e);
-      });
-
-      function updatePos(e) {
-        lensRing.style.left = `${e.clientX}px`;
-        lensRing.style.top = `${e.clientY}px`;
-        const rect = target.getBoundingClientRect();
-        const lx = e.clientX - rect.left - 88;
-        const ly = e.clientY - rect.top - 88;
-        lens.setPos(lx, ly);
-      }
-
-      target.addEventListener('pointermove', (e) => {
-        if (!isHovered) return;
-        updatePos(e);
-      });
-
-      target.addEventListener('pointerleave', () => {
-        isHovered = false;
-        lensRing.classList.remove('is-visible');
-        lens.setDisplScale(0);
-        setTimeout(() => {
-          if (!isHovered) lens.setActive(false);
-        }, 180);
-      });
-    } catch (_) {}
-  });
-}
-
-function initGlassDock() {
-  if (document.querySelector('.ios-glass-dock')) return;
-
-  const dock = document.createElement('div');
-  dock.className = 'ios-glass-dock';
-  dock.setAttribute('role', 'button');
-  dock.setAttribute('tabindex', '0');
-  dock.setAttribute('title', 'Apple iOS 18 Glass Engine Active');
-  dock.innerHTML = `
-    <div class="ios-glass-dock-icon"><i class="fa fa-sparkles"></i></div>
-    <div class="ios-glass-dock-text">QuantBot Architecture</div>
-    <div class="ios-glass-dock-badge">iOS 18</div>
-  `;
-
-  document.body.appendChild(dock);
-
-  dock.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    dock.style.transform = 'translateY(-1px) scale(0.96)';
-    setTimeout(() => {
-      dock.style.transform = '';
-    }, 180);
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  setupNavigation();
+  setupDrawer();
+  updateStageContent(0);
+  requestAnimationFrame(tick);
+});

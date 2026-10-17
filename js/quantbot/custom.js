@@ -189,7 +189,10 @@
 				links[i].rel = 'noreferrer noopener';
 			  }
 		  }
-		
+
+		  if (window.location.hash === '#hero') {
+			  history.replaceState(null, '', window.location.pathname + window.location.search);
+		  }
 	});
 	
 

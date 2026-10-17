@@ -10,6 +10,7 @@
  * ============================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('liquid-glass.css');
 
 :root {
   /* Quantbot Signature Color Palette */
@@ -18,6 +19,12 @@
   --bg-card: rgba(12, 39, 71, 0.72);
   --bg-card-hover: rgba(16, 50, 92, 0.88);
   --bg-glass: rgba(3, 29, 68, 0.85);
+
+  /* Liquid Glass Signature Theme Tokens */
+  --glass-paper: #092A5B;
+  --glass-ink: #94C97E;
+  --glass-frost-bg: rgba(3, 29, 68, 0.78);
+  --glass-backdrop: linear-gradient(135deg, rgba(9, 42, 91, 0.75) 0%, rgba(3, 29, 68, 0.88) 100%);
 
   --accent-green: #60A244;
   --accent-mint: #94C97E;
@@ -176,20 +183,23 @@ h1, h2, h3, h4, h5, h6 {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(148, 201, 126, 0.14);
-  transition: var(--transition-normal);
+  background: rgba(3, 29, 68, 0.78);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(148, 201, 126, 0.22);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   height: var(--header-height);
   display: flex;
   align-items: center;
 }
 
 .site-header.scrolled {
-  background: rgba(2, 22, 53, 0.96);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  border-bottom-color: rgba(96, 162, 68, 0.25);
+  background: rgba(2, 22, 53, 0.92);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(148, 201, 126, 0.25);
+  border-bottom-color: rgba(96, 162, 68, 0.4);
 }
 
 .header-inner {
@@ -275,12 +285,12 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(7, 26, 56, 0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(96, 162, 68, 0.32);
+  background: rgba(7, 26, 56, 0.88);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgba(148, 201, 126, 0.3);
   border-radius: var(--radius-md);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   min-width: 230px;
   padding: 8px 0;
   list-style: none;
@@ -337,6 +347,9 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.25s ease;
   border: none;
   outline: none;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .btn-primary {
@@ -629,16 +642,37 @@ main {
 }
 
 .media-card {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(148, 201, 126, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  background: var(--bg-card);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+}
+
+.media-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148, 201, 126, 0.8), transparent);
+  z-index: 3;
+  pointer-events: none;
 }
 
 .media-card img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-card:hover img {
+  transform: scale(1.02);
 }
 
 /* Strategy Development Process — 6 Responsive Steps */
@@ -654,16 +688,32 @@ main {
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 30px 26px;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148, 201, 126, 0.6), transparent);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .timeline-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--accent-mint);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(96, 162, 68, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   background: var(--bg-card-hover);
 }
 

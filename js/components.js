@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBlogFilter();
   initSmoothScroll();
   initScrollReveals();
+  initLiquidGlassEngine();
 });
 
 // Navigation Handling
@@ -482,5 +483,164 @@ function initScrollReveals() {
   document.querySelectorAll('.card, .feature-item, .step-card, .location-card, .section-header').forEach(el => {
     el.classList.add('fade-in-target');
     observer.observe(el);
+  });
+}
+
+// ============================================================================
+// FORWARD-THINKING LIQUID GLASS ENGINE (powered by @liquidglassjs/core)
+// Real SVG feDisplacementMap refraction, ripples, and dynamic optical lenses
+// ============================================================================
+
+function initLiquidGlassEngine() {
+  if (typeof window.LiquidGlass === 'undefined') return;
+
+  initLiquidRipples();
+  initLiquidMediaLens();
+  initLiquidTimelineLoupe();
+  initLiquidGlassCards();
+}
+
+// 1. Fluid SVG Refraction Ripples on Interactive Controls
+function initLiquidRipples() {
+  const interactiveTargets = document.querySelectorAll(
+    '.btn, .email-pill, .tab-btn, [data-dept-filter], [data-blog-cat], .footer-contact-pills a, .team-read-more'
+  );
+
+  interactiveTargets.forEach((el) => {
+    try {
+      const ripple = window.LiquidGlass.mountSvgRipple({
+        target: el,
+        host: document.body,
+        strength: 20,
+        chroma: 0.35,
+        duration: 700,
+        blur: 0.35,
+        spec: 0.75,
+      });
+
+      el.addEventListener('pointerdown', (e) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          const nx = (e.clientX - rect.left) / rect.width;
+          const ny = (e.clientY - rect.top) / rect.height;
+          ripple.press(Math.max(0, Math.min(1, nx)), Math.max(0, Math.min(1, ny)));
+        }
+      });
+    } catch (_) {}
+  });
+}
+
+// 2. Interactive SVG Liquid Glass Lens on Platform Media Cards
+function initLiquidMediaLens() {
+  const mediaCards = document.querySelectorAll('.media-card, .text-with-media-grid img');
+  mediaCards.forEach((media) => {
+    try {
+      const lens = window.LiquidGlass.mountGlassLens({
+        target: media,
+        host: document.body,
+        lensW: 190,
+        lensH: 190,
+        radius: 95,
+        depth: 16,
+        dome: 12,
+        profile: 'circle',
+        strength: 22,
+        chroma: 0.35,
+        glow: 0.45,
+        edge: 0.85,
+        active: false,
+      });
+
+      let isHovered = false;
+
+      media.addEventListener('pointerenter', () => {
+        isHovered = true;
+        lens.setActive(true);
+        lens.setDisplScale(1);
+      });
+
+      media.addEventListener('pointermove', (e) => {
+        if (!isHovered) return;
+        const rect = media.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        lens.setPos(x, y);
+      });
+
+      media.addEventListener('pointerleave', () => {
+        isHovered = false;
+        lens.setDisplScale(0);
+        setTimeout(() => {
+          if (!isHovered) lens.setActive(false);
+        }, 220);
+      });
+    } catch (_) {}
+  });
+}
+
+// 3. Tactile Liquid Glass Meniscus across Strategy Timeline Cards
+function initLiquidTimelineLoupe() {
+  const processCards = document.querySelectorAll('.timeline-card, .tab-pane');
+  processCards.forEach((card) => {
+    try {
+      const lens = window.LiquidGlass.mountGlassLens({
+        target: card,
+        host: document.body,
+        lensW: 160,
+        lensH: 160,
+        radius: 80,
+        depth: 14,
+        dome: 10,
+        profile: 'circle',
+        strength: 16,
+        chroma: 0.28,
+        glow: 0.4,
+        edge: 0.8,
+        active: false,
+      });
+
+      let active = false;
+
+      card.addEventListener('pointerenter', () => {
+        active = true;
+        lens.setActive(true);
+        lens.setDisplScale(1);
+      });
+
+      card.addEventListener('pointermove', (e) => {
+        if (!active) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        lens.setPos(x, y);
+      });
+
+      card.addEventListener('pointerleave', () => {
+        active = false;
+        lens.setDisplScale(0);
+        setTimeout(() => {
+          if (!active) lens.setActive(false);
+        }, 200);
+      });
+    } catch (_) {}
+  });
+}
+
+// 4. Liquid Glass Surfaces on Cards and Modals
+function initLiquidGlassCards() {
+  const cards = document.querySelectorAll('.card, .location-card, .article-card');
+  cards.forEach((card) => {
+    try {
+      window.LiquidGlass.mountGlass(card, {
+        radius: 16,
+        depth: 18,
+        profile: 'circle',
+        strength: 14,
+        chroma: 0.25,
+        dome: 10,
+        tint: 10,
+        mode: 'frost',
+      });
+    } catch (_) {}
   });
 }

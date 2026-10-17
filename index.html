@@ -3,99 +3,781 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quantbot Technologies | Autonomous Quantitative Intelligence</title>
-  <meta name="description" content="Precision algorithmic infrastructure built for institutional capital and zero-latency execution.">
+  <title>QuantBot Technologies | Precision Alpha Engineered Without Emotion</title>
+  <meta name="description" content="Autonomous quantitative trading infrastructure powered by multimodal AI recognition, multi-year backtesting, and deterministic risk guardrails.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Apple Pro / iOS 18 Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body style="background: #030407; margin: 0; padding: 0; overflow-x: hidden;">
+<body class="apple-pro-dark">
 
-  <!-- 1. VIRTUAL SCROLL TRACK (Invisible, only provides scroll height & URL anchor targets) -->
-  <div id="scroll-track" style="height: 500vh; width: 100%; position: relative; pointer-events: none;">
-    <div id="hero" style="position: absolute; top: 0vh; height: 1px;"></div>
-    <div id="stage-01" style="position: absolute; top: 135vh; height: 1px;"></div>
-    <div id="stage-02" style="position: absolute; top: 270vh; height: 1px;"></div>
-    <div id="stage-03" style="position: absolute; top: 405vh; height: 1px;"></div>
+  <!-- Ambient Obsidian Mesh Canvas Backdrop -->
+  <div id="ambient-mesh-canvas" aria-hidden="true">
+    <div class="mesh-orb mesh-cobalt"></div>
+    <div class="mesh-orb mesh-emerald"></div>
+    <div class="mesh-orb mesh-indigo"></div>
   </div>
 
-  <!-- 2. FIXED SPATIAL CAMERA VIEWPORT (Locked 100vw x 100vh - Nothing scrolls vertically!) -->
-  <main id="spatial-viewport" style="position: fixed; inset: 0; width: 100vw; height: 100vh; overflow: hidden; background: #030407;">
-    
-    <!-- LAYER 0: HORIZON LOCK & 3D PERSPECTIVE GRID (Deep Background Parallax) -->
-    <div id="horizon-lock-layer">
-      <div id="horizon-glow"></div>
-      <div id="horizon-line"></div>
-      <div id="perspective-grid"></div>
-    </div>
+  <!-- =======================================================================
+       TOP FLOATING iOS DYNAMIC ISLAND NAVBAR
+       ======================================================================= -->
+  <header id="dynamic-island-nav" class="island-nav">
+    <div class="island-inner">
+      <a href="#edge" class="island-brand" aria-label="QuantBot Home">
+        <img src="assets/logo.png" alt="QuantBot Logo" class="brand-img">
+        <span class="brand-text">QuantBot</span>
+      </a>
 
-    <!-- LAYER 1: GIANT REFRACTION WATERMARK (Midground Parallax behind the glass) -->
-    <div id="parallax-watermark-layer">
-      <span id="stage-watermark">QUANTBOT // OS</span>
-    </div>
-
-    <!-- LAYER 2: EXPANDING NEXT-STAGE PORTAL (Sits on the horizon and expands to 100vw/100vh) -->
-    <div id="expanding-portal-frame">
-      <div id="portal-inner-world"></div>
-    </div>
-
-    <!-- LAYER 3: ONE MASTER LIQUID GLASS VESSEL (Morphs geometry & color in place) -->
-    <section id="liquid-glass-vessel">
-      <div class="glass-specular-edge"></div>
-      <div class="stage-badge" id="ui-badge">INSTITUTIONAL QUANT ENGINE</div>
-      <h1 id="ui-headline">Pioneering Autonomous Alpha.</h1>
-      <p id="ui-subline">Precision algorithmic infrastructure built for institutional capital and zero-latency execution.</p>
-      
-      <!-- Maximum 3 Minimalist iOS Telemetry Pills -->
-      <div class="telemetry-row" id="ui-metrics">
-        <div class="ios-pill"><span class="label">ENGINE</span><span class="val" id="m1">ACTIVE</span></div>
-        <div class="ios-pill"><span class="label">EXECUTION</span><span class="val" id="m2">&lt; 1.2ms</span></div>
-        <div class="ios-pill"><span class="label">DISCIPLINE</span><span class="val" id="m3">STRICT</span></div>
+      <!-- Live Engine Telemetry Pill -->
+      <div class="island-engine-pill">
+        <span class="engine-pulse-dot"></span>
+        <span class="engine-text">LIVE ENGINE</span>
       </div>
 
-      <!-- Tactile iOS Action Buttons -->
-      <div class="ios-actions">
-        <button id="open-drawer-btn" class="ios-btn-secondary" type="button">Inspect Stage Specs +</button>
-        <a href="#stage-02" id="primary-cta-btn" class="ios-btn-primary">Enter Stage 02 →</a>
+      <!-- Segmented Navigation Links -->
+      <nav class="island-segmented-links" aria-label="Main Navigation">
+        <div class="nav-active-pill" id="nav-active-pill"></div>
+        <a href="#edge" class="nav-segment-link is-active" data-nav="edge">The Edge</a>
+        <a href="#architecture" class="nav-segment-link" data-nav="architecture">Architecture</a>
+        <a href="#pillars" class="nav-segment-link" data-nav="pillars">Pillars</a>
+        <a href="#performance" class="nav-segment-link" data-nav="performance">Performance</a>
+        <a href="#allocate" class="nav-segment-link" data-nav="allocate">Allocate</a>
+      </nav>
+
+      <!-- CTA Action Button -->
+      <div class="island-action">
+        <a href="#allocate" class="btn-pill-cta">Investor Portal →</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =======================================================================
+         SECTION 1: THE COMMANDING HERO + PARALLAX FLOATING WIDGETS
+         ======================================================================= -->
+    <section id="edge" class="section-hero">
+      <div class="hero-container">
+        <!-- Investor Hook Header -->
+        <div class="hero-header-block">
+          <div class="hero-badge">
+            <span class="badge-icon"><i class="fa fa-microchip"></i></span>
+            <span>INSTITUTIONAL ALGORITHMIC ASSET MANAGEMENT</span>
+          </div>
+
+          <h1 class="hero-title text-metallic">
+            Precision Alpha. Engineered Without Emotion.
+          </h1>
+
+          <p class="hero-subtitle">
+            Autonomous quantitative strategies powered by multimodal AI recognition, rigorous multi-year backtesting, and deterministic risk guardrails.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#performance" class="btn-apple-primary">
+              <span>Explore Live Performance</span>
+              <i class="fa fa-arrow-down"></i>
+            </a>
+            <a href="#allocate" class="btn-apple-secondary">
+              <span>Partner With Us</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D Multi-Layer Parallax Hero Showcase -->
+        <div class="hero-showcase-stage" id="hero-parallax-stage">
+          
+          <!-- Micro-Widget 1: Top-Left (Parallax Speed 0.3x) -->
+          <div class="parallax-widget widget-top-left" id="widget-sharpe" data-speed="0.3">
+            <div class="widget-inner glass-panel">
+              <div class="widget-header">
+                <span class="widget-tag">VERIFIED METRIC</span>
+                <span class="widget-status status-verified"><i class="fa fa-circle-check"></i> AUDITED</span>
+              </div>
+              <div class="widget-headline">
+                <span class="widget-big-num font-mono">2.84</span>
+                <span class="widget-unit">Sharpe</span>
+              </div>
+              <div class="widget-sub">Calmar Ratio: 3.12 · 0% Market Beta</div>
+              <!-- Mini SVG Sparkline -->
+              <svg class="mini-sparkline-svg" viewBox="0 0 120 28">
+                <path d="M 0 24 Q 25 20 40 14 T 75 10 T 120 2" fill="none" stroke="#30D158" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Micro-Widget 2: Top-Right (Parallax Speed 0.6x) -->
+          <div class="parallax-widget widget-top-right" id="widget-latency" data-speed="0.6">
+            <div class="widget-inner glass-panel">
+              <div class="widget-header">
+                <span class="widget-tag">EXECUTION BUS</span>
+                <span class="telemetry-ring-wrap">
+                  <span class="telemetry-ring-pulse"></span>
+                  <span class="font-mono text-emerald" style="font-size:0.65rem;">NY4 · LD4</span>
+                </span>
+              </div>
+              <div class="widget-headline">
+                <span class="widget-big-num font-mono">&lt; 1.2<span style="font-size:1.1rem; color:#30D158;">ms</span></span>
+              </div>
+              <div class="widget-sub">Direct DMA Gateway · Sub-Tick Co-Location</div>
+            </div>
+          </div>
+
+          <!-- Micro-Widget 3: Bottom-Right (Parallax Speed 1.2x) -->
+          <div class="parallax-widget widget-bottom-right" id="widget-guardrail" data-speed="1.2">
+            <div class="widget-inner glass-panel">
+              <div class="widget-header">
+                <span class="widget-tag">RISK PROTOCOL</span>
+                <span class="shield-badge"><i class="fa fa-shield-halved"></i> ACTIVE</span>
+              </div>
+              <div class="widget-headline" style="font-size:1.35rem;">
+                Hard-Locked
+              </div>
+              <div class="widget-sub">Intraday Drawdown Circuit &lt; 2.5%</div>
+            </div>
+          </div>
+
+          <!-- Main 3D Tilted Glass Command Dashboard -->
+          <div class="main-command-dashboard glass-panel-specular" id="hero-command-card">
+            <div class="dashboard-topbar">
+              <div class="dashboard-controls">
+                <span class="mac-dot dot-red"></span>
+                <span class="mac-dot dot-yellow"></span>
+                <span class="mac-dot dot-green"></span>
+                <span class="dashboard-title font-mono">QUANTBOT_CORE // CUMULATIVE_ALPHA_MODEL_V4</span>
+              </div>
+              <div class="dashboard-metrics-strip font-mono">
+                <span>ALPHA: <strong class="text-emerald">+184.6%</strong></span>
+                <span class="sep">/</span>
+                <span>BENCHMARK (SPX): <strong class="text-silver">+42.1%</strong></span>
+                <span class="sep">/</span>
+                <span>VOLATILITY: <strong class="text-cobalt">8.4%</strong></span>
+              </div>
+            </div>
+
+            <!-- Dynamic SVG Cumulative Alpha Equity Curve -->
+            <div class="dashboard-chart-area">
+              <svg class="equity-curve-svg" viewBox="0 0 960 340" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="alphaFillGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#30D158" stop-opacity="0.32" />
+                    <stop offset="60%" stop-color="#30D158" stop-opacity="0.08" />
+                    <stop offset="100%" stop-color="#30D158" stop-opacity="0.00" />
+                  </linearGradient>
+                  <linearGradient id="alphaLineGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#0A84FF" />
+                    <stop offset="50%" stop-color="#30D158" />
+                    <stop offset="100%" stop-color="#5E5CE6" />
+                  </linearGradient>
+                  <filter id="alphaGlow">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Subtle Grid Coordinates -->
+                <line x1="0" y1="80" x2="960" y2="80" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4" />
+                <line x1="0" y1="160" x2="960" y2="160" stroke="rgba(255,255,255,0.06)" />
+                <line x1="0" y1="240" x2="960" y2="240" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4" />
+
+                <!-- Benchmark (SPX) Curve -->
+                <path d="M 0 300 Q 180 280 340 260 T 640 220 T 960 190" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-dasharray="6 6" />
+
+                <!-- QuantBot Alpha Area Fill -->
+                <path d="M 0 300 C 140 270 240 220 380 160 C 520 100 680 70 820 40 L 960 25 L 960 340 L 0 340 Z" fill="url(#alphaFillGrad)" />
+
+                <!-- QuantBot Alpha Bezier Line -->
+                <path d="M 0 300 C 140 270 240 220 380 160 C 520 100 680 70 820 40 L 960 25" fill="none" stroke="url(#alphaLineGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#alphaGlow)" />
+
+                <!-- Live Scrub Peak Dot -->
+                <circle cx="960" cy="25" r="6" fill="#30D158" filter="url(#alphaGlow)" />
+                <circle cx="960" cy="25" r="14" fill="none" stroke="#30D158" stroke-opacity="0.4" />
+              </svg>
+            </div>
+
+            <!-- Footer Stats Plinth -->
+            <div class="dashboard-plinth-row font-mono">
+              <div class="plinth-col">
+                <span class="plinth-lbl">EXECUTION PROTOCOL</span>
+                <strong class="plinth-val">Autonomous DMA / Kafka</strong>
+              </div>
+              <div class="plinth-col">
+                <span class="plinth-lbl">MAX INTRADAY DRAWDOWN</span>
+                <strong class="plinth-val text-emerald">-3.8% Historic Max</strong>
+              </div>
+              <div class="plinth-col">
+                <span class="plinth-lbl">FACTOR EXPOSURE</span>
+                <strong class="plinth-val">Market Neutral (Beta: 0.02)</strong>
+              </div>
+              <div class="plinth-col">
+                <span class="plinth-lbl">INFRASTRUCTURE UPTIME</span>
+                <strong class="plinth-val text-emerald">99.998% Co-Located</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <!-- LAYER 4: iOS 18 DYNAMIC ISLAND NAV & HORIZON HUD -->
-    <header id="dynamic-island-nav">
-      <a href="index.html" class="island-brand" aria-label="Quantbot Home">
-        <img src="assets/logo.png" alt="Quantbot" style="height: 22px; width: auto; display: block;">
-      </a>
-      <span class="status-dot"></span>
-      <nav class="segmented-control">
-        <div class="nav-glider" id="nav-glider"></div>
-        <a href="#hero" data-stage="0" class="active">Overview</a>
-        <a href="#stage-01" data-stage="1">Stage 01</a>
-        <a href="#stage-02" data-stage="2">Stage 02</a>
-        <a href="#stage-03" data-stage="3">Stage 03</a>
-      </nav>
-    </header>
 
-    <footer id="horizon-hud">
-      <div class="progress-rail"><div id="progress-fill"></div></div>
-      <span id="hud-coordinates">Z-DEPTH: 0.00 // HORIZON LOCKED</span>
-    </footer>
+    <!-- =======================================================================
+         SECTION 2: THE EXPANDING GLASS PORTAL ("INSIDE THE QUANT ENGINE")
+         ======================================================================= -->
+    <section id="architecture" class="section-portal-trigger">
+      <div class="portal-sticky-frame">
+        
+        <!-- The Expanding Glass Portal Squircle Frame -->
+        <div class="expanding-portal-container" id="expanding-portal-box">
+          <div class="portal-specular-rim"></div>
 
-    <!-- LAYER 5: HIDDEN iOS GLASS SHEET DRAWER (Holds all deep text so main screen is clean) -->
-    <aside id="ios-spec-drawer" aria-hidden="true">
-      <div class="drawer-backdrop" id="drawer-backdrop"></div>
-      <div class="drawer-glass-card">
-        <div class="drawer-header">
-          <span class="drawer-badge" id="drawer-stage-badge">STAGE SPECIFICATIONS</span>
-          <button id="close-drawer-btn" class="drawer-close-btn" aria-label="Close Specs">✕ Close</button>
+          <!-- Inner Autonomous Quant Core World (Counter-scaled 1.2 -> 1.0) -->
+          <div class="portal-inner-world" id="portal-inner-content">
+            
+            <div class="portal-header-info">
+              <span class="portal-badge font-mono"><i class="fa fa-cube"></i> ARCHITECTURAL CORE // PIPELINE V4</span>
+              <h2 class="portal-title text-metallic">Inside the Autonomous Quant Core</h2>
+              <p class="portal-desc">
+                High-frequency market feeds flow continuously through our three-tier processing stack, translating raw liquidity shifts into institutional execution in under 1.2 milliseconds.
+              </p>
+            </div>
+
+            <!-- Interactive 3-Tier Visual Pipeline with Glowing Data Packets -->
+            <div class="portal-pipeline-visual">
+              
+              <!-- Tier 1: Market Telemetry -->
+              <div class="pipeline-tier glass-panel">
+                <div class="tier-top">
+                  <span class="tier-step font-mono">TIER 01</span>
+                  <span class="tier-ping font-mono"><i class="fa fa-bolt text-cobalt"></i> 1.2M TICKS/SEC</span>
+                </div>
+                <h3 class="tier-name">Market Telemetry</h3>
+                <p class="tier-detail">
+                  Raw L1/L2 book feeds ingested from CME, EUREX, and NASDAQ via low-latency Kafka pipelines.
+                </p>
+                <div class="tier-tags font-mono">
+                  <span>WebSocket DMA</span>
+                  <span>Tick Normalizer</span>
+                  <span>Zero-Copy Bus</span>
+                </div>
+              </div>
+
+              <!-- Connecting Data Packet Bus 1 -> 2 -->
+              <div class="pipeline-connector">
+                <div class="data-cable"></div>
+                <div class="cable-packet packet-1"></div>
+                <div class="cable-packet packet-2"></div>
+              </div>
+
+              <!-- Tier 2: AI Pattern & Quant Intelligence -->
+              <div class="pipeline-tier glass-panel tier-highlighted">
+                <div class="tier-top">
+                  <span class="tier-step font-mono text-emerald">TIER 02 · CORE</span>
+                  <span class="tier-ping font-mono text-emerald"><i class="fa fa-brain"></i> TENSOR ML</span>
+                </div>
+                <h3 class="tier-name">AI Pattern &amp; Quant Logic</h3>
+                <p class="tier-detail">
+                  Multimodal vision models detect liquidity sweeps while quantitative factor filters ensure mathematical edge.
+                </p>
+                <div class="tier-tags font-mono">
+                  <span>Regime Classification</span>
+                  <span>Monte Carlo Validated</span>
+                  <span>Orthogonal Alpha</span>
+                </div>
+              </div>
+
+              <!-- Connecting Data Packet Bus 2 -> 3 -->
+              <div class="pipeline-connector">
+                <div class="data-cable"></div>
+                <div class="cable-packet packet-3"></div>
+                <div class="cable-packet packet-4"></div>
+              </div>
+
+              <!-- Tier 3: Deterministic Execution Bridge -->
+              <div class="pipeline-tier glass-panel">
+                <div class="tier-top">
+                  <span class="tier-step font-mono">TIER 03</span>
+                  <span class="tier-ping font-mono text-indigo"><i class="fa fa-shield-halved"></i> HARD-LOCKED</span>
+                </div>
+                <h3 class="tier-name">Deterministic Bridge</h3>
+                <p class="tier-detail">
+                  Hard-coded risk circuit breakers, dynamic sizing, and FIX 4.4 routing directly to co-located exchange nodes.
+                </p>
+                <div class="tier-tags font-mono">
+                  <span>Pre-Trade Checks</span>
+                  <span>Drawdown Interlock</span>
+                  <span>SOR Co-Location</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Live Core Health Metrics -->
+            <div class="portal-metrics-bar glass-panel font-mono">
+              <div><span class="lbl">GLOBAL LIQUIDITY HUBS:</span> <strong>NY4 · LD4 · HK1</strong></div>
+              <div><span class="lbl">PRE-TRADE DRIFT:</span> <strong class="text-emerald">0.00% LOCKED</strong></div>
+              <div><span class="lbl">SYSTEM SLIPPAGE:</span> <strong class="text-emerald">&lt; 0.04 BPS</strong></div>
+              <div><span class="lbl">ENGINE STATUS:</span> <strong class="text-emerald">AUTONOMOUS</strong></div>
+            </div>
+
+          </div>
+
         </div>
-        <div id="drawer-deep-content"></div>
+
       </div>
-    </aside>
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 3: HORIZON-LOCKED SCROLLYTELLING (THE 3 PILLARS OF ALPHA)
+         ======================================================================= -->
+    <section id="pillars" class="section-horizon-pinned">
+      <div class="horizon-lock-viewport">
+        
+        <!-- 3D Spatial Grid & Horizon Laser Background -->
+        <div class="horizon-spatial-backdrop">
+          <div class="horizon-ambient-glow" id="pillars-horizon-glow"></div>
+          <div class="horizon-laser-line" id="pillars-horizon-line"></div>
+          <div class="horizon-3d-grid" id="pillars-3d-grid"></div>
+        </div>
+
+        <div class="horizon-content-container">
+          
+          <!-- Left Column: Locked Institutional Narrative -->
+          <div class="horizon-left-narrative">
+            <div class="narrative-badge font-mono">
+              <span class="narrative-step" id="narrative-step-pill">PILLAR 01 // 03</span>
+              <span class="text-silver">MATHEMATICAL DISCIPLINE</span>
+            </div>
+
+            <h2 class="narrative-headline text-metallic" id="narrative-title">
+              Multimodal Market Intelligence.
+            </h2>
+
+            <p class="narrative-lead" id="narrative-desc">
+              AI-driven structural pattern extraction isolates genuine liquidity imbalances across global order books, filtering out over 99% of retail indicator noise.
+            </p>
+
+            <!-- Vertical Glowing Progress Rail -->
+            <div class="pillar-nav-rail">
+              <div class="rail-indicator-line">
+                <div class="rail-indicator-beam" id="pillar-progress-beam"></div>
+              </div>
+              <button type="button" class="pillar-nav-btn is-active" data-pillar="0">
+                <span class="rail-num font-mono">01</span>
+                <div>
+                  <strong>Multimodal Intelligence</strong>
+                  <span>Structural Order-Flow AI</span>
+                </div>
+              </button>
+              <button type="button" class="pillar-nav-btn" data-pillar="1">
+                <span class="rail-num font-mono">02</span>
+                <div>
+                  <strong>Quantitative Validation</strong>
+                  <span>Multi-Year In-Sample Rigor</span>
+                </div>
+              </button>
+              <button type="button" class="pillar-nav-btn" data-pillar="2">
+                <span class="rail-num font-mono">03</span>
+                <div>
+                  <strong>Capital Protection</strong>
+                  <span>Hard-Locked Drawdown Circuits</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Liquid Glass Morphing Vessel -->
+          <div class="horizon-right-vessel-stage">
+            <div class="liquid-morph-vessel glass-panel-specular" id="morph-vessel">
+              
+              <div class="vessel-header">
+                <div class="vessel-badge font-mono" id="vessel-status-tag">AI VISION // PATTERN RECOGNITION</div>
+                <div class="vessel-meta font-mono" id="vessel-code-ref">MODEL_HASH: #0A84FF_ALPHA</div>
+              </div>
+
+              <!-- State 1: Candlestick + AI Geometric Pattern Recognition -->
+              <div class="vessel-body vessel-state-active" id="vessel-state-1">
+                <div class="pattern-ai-display">
+                  <div class="pattern-ai-chart">
+                    <!-- Simulated Candlesticks with AI Box Overlay -->
+                    <svg viewBox="0 0 460 200" style="width:100%; height:100%;">
+                      <!-- Grid lines -->
+                      <line x1="0" y1="50" x2="460" y2="50" stroke="rgba(255,255,255,0.04)" />
+                      <line x1="0" y1="100" x2="460" y2="100" stroke="rgba(255,255,255,0.06)" />
+                      <line x1="0" y1="150" x2="460" y2="150" stroke="rgba(255,255,255,0.04)" />
+
+                      <!-- Candles -->
+                      <g fill="#30D158" stroke="#30D158">
+                        <line x1="40" y1="110" x2="40" y2="170" stroke-width="1.5"/>
+                        <rect x="34" y="125" width="12" height="30" rx="2"/>
+
+                        <line x1="75" y1="90" x2="75" y2="150" stroke-width="1.5"/>
+                        <rect x="69" y="105" width="12" height="35" rx="2"/>
+                      </g>
+                      <g fill="#FF453A" stroke="#FF453A">
+                        <line x1="110" y1="75" x2="110" y2="140" stroke-width="1.5"/>
+                        <rect x="104" y="90" width="12" height="40" rx="2"/>
+
+                        <line x1="145" y1="95" x2="145" y2="160" stroke-width="1.5"/>
+                        <rect x="139" y="110" width="12" height="35" rx="2"/>
+                      </g>
+                      <!-- Breakout Candles -->
+                      <g fill="#30D158" stroke="#30D158">
+                        <line x1="180" y1="60" x2="180" y2="135" stroke-width="1.5"/>
+                        <rect x="174" y="75" width="12" height="45" rx="2"/>
+
+                        <line x1="215" y1="40" x2="215" y2="110" stroke-width="1.5"/>
+                        <rect x="209" y="55" width="12" height="40" rx="2"/>
+
+                        <line x1="250" y1="20" x2="250" y2="85" stroke-width="1.5"/>
+                        <rect x="244" y="30" width="12" height="45" rx="2"/>
+                      </g>
+
+                      <!-- AI Pattern Recognition Bounding Box -->
+                      <rect x="165" y="15" width="160" height="150" rx="8" fill="rgba(10,132,255,0.08)" stroke="#0A84FF" stroke-width="1.5" stroke-dasharray="4 4" />
+                      <text x="175" y="32" fill="#0A84FF" font-family="JetBrains Mono" font-size="9" font-weight="700">LIQUIDITY SWEEP DETECTED</text>
+                      <text x="175" y="46" fill="#A1A1A6" font-family="JetBrains Mono" font-size="8">CONFIDENCE: 94.8% · R:R 1:3.4</text>
+                    </svg>
+                  </div>
+                </div>
+                <div class="vessel-metrics-grid font-mono">
+                  <div class="v-card"><span class="lbl">MODEL TYPE:</span><strong>Multimodal Vision</strong></div>
+                  <div class="v-card"><span class="lbl">DETECTION ACCURACY:</span><strong class="text-cobalt">94.8% Verified</strong></div>
+                  <div class="v-card"><span class="lbl">NOISE REJECTION:</span><strong class="text-emerald">99.4% Excluded</strong></div>
+                </div>
+              </div>
+
+              <!-- State 2: Monte Carlo Robustness Distribution -->
+              <div class="vessel-body" id="vessel-state-2">
+                <div class="monte-carlo-display">
+                  <svg viewBox="0 0 460 200" style="width:100%; height:100%;">
+                    <!-- 10,000 Sim Simulation Lines -->
+                    <path d="M 0 160 Q 150 140 250 110 T 460 60" fill="none" stroke="rgba(48,209,88,0.2)" stroke-width="1.2" />
+                    <path d="M 0 160 Q 140 150 260 90 T 460 40" fill="none" stroke="rgba(48,209,88,0.3)" stroke-width="1.5" />
+                    <path d="M 0 160 Q 160 130 240 100 T 460 25" fill="none" stroke="#30D158" stroke-width="2.5" />
+                    <path d="M 0 160 Q 170 160 270 130 T 460 85" fill="none" stroke="rgba(48,209,88,0.2)" stroke-width="1.2" />
+                    <path d="M 0 160 Q 130 170 240 145 T 460 110" fill="none" stroke="rgba(48,209,88,0.15)" stroke-width="1" />
+                    <text x="320" y="32" fill="#30D158" font-family="JetBrains Mono" font-size="9" font-weight="700">95% CONFIDENCE BAND</text>
+                  </svg>
+                </div>
+                <div class="vessel-metrics-grid font-mono">
+                  <div class="v-card"><span class="lbl">SIMULATION RUNS:</span><strong>10,000 Path Runs</strong></div>
+                  <div class="v-card"><span class="lbl">WIN PROBABILITY:</span><strong class="text-emerald">64.2% Empirical</strong></div>
+                  <div class="v-card"><span class="lbl">CURVE OVERFIT:</span><strong class="text-emerald">0.00% Zero-Leak</strong></div>
+                </div>
+              </div>
+
+              <!-- State 3: Real-Time Risk Dial & iOS 18 Toggle Switches -->
+              <div class="vessel-body" id="vessel-state-3">
+                <div class="risk-switches-display">
+                  <div class="ios-switch-row">
+                    <div>
+                      <strong class="switch-title">Over-Trading Circuit Breaker</strong>
+                      <span class="switch-desc">Halts entry execution after consecutive rapid spread jumps.</span>
+                    </div>
+                    <div class="ios-toggle active"><div class="toggle-thumb"></div></div>
+                  </div>
+                  <div class="ios-switch-row">
+                    <div>
+                      <strong class="switch-title">Automated ADV Sizing Lock</strong>
+                      <span class="switch-desc">Caps total portfolio position size strictly to &lt; 1.5% Average Daily Volume.</span>
+                    </div>
+                    <div class="ios-toggle active"><div class="toggle-thumb"></div></div>
+                  </div>
+                  <div class="ios-switch-row">
+                    <div>
+                      <strong class="switch-title">Zero Market-Beta Neutralizer</strong>
+                      <span class="switch-desc">Algorithmic dynamic dollar-neutral long/short pairing.</span>
+                    </div>
+                    <div class="ios-toggle active"><div class="toggle-thumb"></div></div>
+                  </div>
+                </div>
+                <div class="vessel-metrics-grid font-mono">
+                  <div class="v-card"><span class="lbl">RISK INTERLOCK:</span><strong class="text-indigo">ENGAGED</strong></div>
+                  <div class="v-card"><span class="lbl">MAX LOSS GUARD:</span><strong class="text-emerald">-2.5% HARD STOP</strong></div>
+                  <div class="v-card"><span class="lbl">HUMAN OVERRIDE:</span><strong>DISABLED</strong></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 4: INTERACTIVE iOS BENTO GRID & STRATEGY SHOWCASE
+         ======================================================================= -->
+    <section id="performance" class="section-bento">
+      <div class="wrapper">
+        
+        <div class="section-head-center">
+          <div class="hero-badge font-mono"><span>VERIFIED INSTITUTIONAL ALPHA</span></div>
+          <h2 class="section-display-title text-metallic">
+            Engineering Proven In Every Market Regime.
+          </h2>
+          <p class="section-subtext">
+            Our multi-strategy architecture adapts dynamically to fluctuating volatility, liquidity contractions, and macroeconomic trends.
+          </p>
+        </div>
+
+        <!-- 12-Column Asymmetric Apple Pro Bento Grid -->
+        <div class="bento-grid-12">
+          
+          <!-- Card 1 (Span 7): Interactive Strategy Performance Explorer -->
+          <div class="bento-card bento-span-7 glass-panel-specular" id="bento-strategy-card">
+            <div class="bento-card-header">
+              <div>
+                <span class="bento-tag font-mono text-emerald">STRATEGY SUITE EXPLORER</span>
+                <h3 class="bento-card-title">Cumulative Performance Visualizer</h3>
+              </div>
+              
+              <!-- iOS Segmented Control Switcher -->
+              <div class="ios-segmented-control" id="strategy-switcher">
+                <button type="button" class="segment-btn is-active" data-regime="all">All Regimes</button>
+                <button type="button" class="segment-btn" data-regime="vol">High Volatility</button>
+                <button type="button" class="segment-btn" data-regime="trend">Trend Following</button>
+              </div>
+            </div>
+
+            <!-- Dynamic Interactive SVG Chart -->
+            <div class="bento-chart-container">
+              <svg class="bento-svg-chart" viewBox="0 0 600 240" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="bentoGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#30D158" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#30D158" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <path id="bento-chart-fill" d="M 0 200 Q 150 170 300 120 T 600 30 L 600 240 L 0 240 Z" fill="url(#bentoGrad)"/>
+                <path id="bento-chart-line" d="M 0 200 Q 150 170 300 120 T 600 30" fill="none" stroke="#30D158" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Live Strategy Metrics Grid -->
+            <div class="bento-metrics-row font-mono">
+              <div class="bento-metric-cell">
+                <span class="cell-lbl">ANNUALIZED RETURN</span>
+                <strong class="cell-val text-emerald" id="stat-return">+38.4%</strong>
+              </div>
+              <div class="bento-metric-cell">
+                <span class="cell-lbl">PROFIT FACTOR</span>
+                <strong class="cell-val" id="stat-pf">2.42</strong>
+              </div>
+              <div class="bento-metric-cell">
+                <span class="cell-lbl">MAX DRAWDOWN</span>
+                <strong class="cell-val" id="stat-mdd">-4.2%</strong>
+              </div>
+              <div class="bento-metric-cell">
+                <span class="cell-lbl">WIN RATE</span>
+                <strong class="cell-val text-emerald" id="stat-win">68.5%</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 (Span 5): Live Infrastructure Telemetry -->
+          <div class="bento-card bento-span-5 glass-panel-specular">
+            <div class="bento-card-header">
+              <div>
+                <span class="bento-tag font-mono text-cobalt">SYSTEM TELEMETRY</span>
+                <h3 class="bento-card-title">Dockerized Microservices</h3>
+              </div>
+              <span class="font-mono text-emerald" style="font-size:0.75rem;"><i class="fa fa-circle-dot"></i> 100% OPERATIONAL</span>
+            </div>
+
+            <div class="telemetry-stack-list">
+              <div class="telemetry-item">
+                <div class="t-icon text-cobalt"><i class="fa fa-network-wired"></i></div>
+                <div>
+                  <strong>Kafka Event Bus</strong>
+                  <span>Zero-drop message passing with &lt; 8μs bus latency</span>
+                </div>
+              </div>
+              <div class="telemetry-item">
+                <div class="t-icon text-emerald"><i class="fa fa-server"></i></div>
+                <div>
+                  <strong>NY4 &amp; LD4 Equinix Slough Co-Location</strong>
+                  <span>Cross-connect fiber direct to liquidity engine matching</span>
+                </div>
+              </div>
+              <div class="telemetry-item">
+                <div class="t-icon text-indigo"><i class="fa fa-chart-pie"></i></div>
+                <div>
+                  <strong>Prometheus Real-Time Monitoring</strong>
+                  <span>Sub-millisecond alerting with automated failsafe failover</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-card-footer font-mono">
+              <span>UPTIME: <strong>99.998%</strong></span>
+              <span>MEDIAN SLIPPAGE: <strong class="text-emerald">0.03 BPS</strong></span>
+            </div>
+          </div>
+
+          <!-- Card 3 (Span 4): Transparent Verification -->
+          <div class="bento-card bento-span-4 glass-panel-specular">
+            <div class="bento-card-icon text-emerald"><i class="fa fa-file-shield"></i></div>
+            <h4 class="bento-subcard-title">Transparent Verification</h4>
+            <p class="bento-subcard-desc">
+              Every fill and executed ticket is cryptographically stamped and reconciled with third-party institutional auditors daily.
+            </p>
+            <div class="bento-badge-pill font-mono">AUDIT READY · ZERO BLACK BOX</div>
+          </div>
+
+          <!-- Card 4 (Span 4): Institutional Execution -->
+          <div class="bento-card bento-span-4 glass-panel-specular">
+            <div class="bento-card-icon text-cobalt"><i class="fa fa-bolt-lightning"></i></div>
+            <h4 class="bento-subcard-title">Direct DMA Execution</h4>
+            <p class="bento-subcard-desc">
+              Direct market access through FIX 4.4 routing eliminates intermediary broker latency and front-running exposure.
+            </p>
+            <div class="bento-badge-pill font-mono">FIX 4.4 · SUB-TICK ROUTING</div>
+          </div>
+
+          <!-- Card 5 (Span 4): Dedicated AI Strategy Insights -->
+          <div class="bento-card bento-span-4 glass-panel-specular">
+            <div class="bento-card-icon text-indigo"><i class="fa fa-compass-drafting"></i></div>
+            <h4 class="bento-subcard-title">Institutional LP Telemetry</h4>
+            <p class="bento-subcard-desc">
+              Capital partners receive comprehensive portfolio analytics, real-time exposure breakdowns, and regime shift telemetry.
+            </p>
+            <div class="bento-badge-pill font-mono">LP PORTAL ACCESS</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         SECTION 5: INVESTOR & CLIENT ALLOCATION PORTAL (FOOTER CTA)
+         ======================================================================= -->
+    <section id="allocate" class="section-allocate">
+      <div class="wrapper">
+        <div class="allocate-glass-card glass-panel-specular">
+          
+          <div class="allocate-header">
+            <div class="hero-badge font-mono"><span>CAPITAL ALLOCATION GATE</span></div>
+            <h2 class="allocate-title text-metallic">
+              Built for Those Who Demand Mathematical Edge.
+            </h2>
+            <p class="allocate-subtitle">
+              We partner with select institutional allocators, family offices, and quantitative talent seeking uncompromising execution excellence.
+            </p>
+          </div>
+
+          <!-- Interactive iOS Segmented Selector -->
+          <div class="allocate-segmented-selector" id="investor-type-selector">
+            <button type="button" class="alloc-tab is-active" data-type="inst">Institutional Investor</button>
+            <button type="button" class="alloc-tab" data-type="client">Private Wealth / Family Office</button>
+            <button type="button" class="alloc-tab" data-type="partner">Strategy Partnership</button>
+          </div>
+
+          <!-- Dynamic Portal Content -->
+          <div class="allocate-dynamic-content" id="allocate-content-box">
+            <div class="alloc-detail-grid">
+              <div class="alloc-info-col">
+                <span class="font-mono text-emerald" id="alloc-gate-tag" style="font-size:0.75rem; letter-spacing:0.1em;">
+                  INSTITUTIONAL TIER // DIRECT LP ALLOCATION
+                </span>
+                <h3 class="alloc-tier-name" id="alloc-tier-title">Direct SMA &amp; Fund Vehicle Access</h3>
+                <p class="alloc-tier-desc" id="alloc-tier-desc">
+                  Qualified institutional clients gain access to separately managed accounts (SMA) and institutional fund vehicles featuring daily liquidity and complete portfolio transparency.
+                </p>
+                <div class="alloc-checklist font-mono" id="alloc-checklist">
+                  <div><i class="fa fa-check text-emerald"></i> Minimum Allocation: $10M+ USD</div>
+                  <div><i class="fa fa-check text-emerald"></i> Daily Third-Party NAV Reconciliation</div>
+                  <div><i class="fa fa-check text-emerald"></i> Dedicated FIX/API Telemetry Reporting</div>
+                </div>
+              </div>
+
+              <!-- Quick Action Card -->
+              <div class="alloc-action-card glass-panel">
+                <h4 style="margin:0 0 12px 0; color:#fff;">Schedule an Institutional Briefing</h4>
+                <p style="color:rgba(255,255,255,0.7); font-size:0.88rem; line-height:1.5; margin-bottom:20px;">
+                  Connect directly with our quantitative research and portfolio management committee.
+                </p>
+                <form id="investor-contact-form" class="alloc-form">
+                  <input type="email" placeholder="institutional.email@firm.com" required class="ios-input font-mono">
+                  <button type="submit" class="btn-apple-primary" style="width:100%; justify-content:center;">
+                    <span>Request Track Record Verification</span>
+                    <i class="fa fa-shield-halved"></i>
+                  </button>
+                </form>
+                <div style="margin-top:14px; font-size:0.72rem; color:rgba(255,255,255,0.45); text-align:center;" class="font-mono">
+                  CONFIDENTIAL · REGULATED INSTITUTIONAL CORRESPONDENCE
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Core Scripts -->
-  <script src="js/liquid-glass.js"></script>
+  <!-- =======================================================================
+       INSTITUTIONAL FOOTER
+       ======================================================================= -->
+  <footer class="apple-footer">
+    <div class="wrapper">
+      <div class="footer-top-row">
+        <div class="footer-brand-wrap">
+          <a href="#edge" class="island-brand">
+            <img src="assets/logo.png" alt="QuantBot" style="height:26px; width:auto;">
+            <span class="brand-text">QuantBot Technologies</span>
+          </a>
+          <p class="footer-desc">
+            QuantBot Technologies, LP is a systematic quantitative asset management firm operating autonomous algorithmic trading models across global electronic markets.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="footer-col-title font-mono">ARCHITECTURE</span>
+          <a href="#architecture">Quant Engine Core</a>
+          <a href="#pillars">Multimodal AI Vision</a>
+          <a href="#pillars">Risk &amp; Circuit Breakers</a>
+          <a href="#performance">Verified Track Record</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="footer-col-title font-mono">LOCATIONS</span>
+          <span class="footer-hub-text"><strong>New York:</strong> 505 Fifth Ave</span>
+          <span class="footer-hub-text"><strong>London:</strong> 125 Old Broad St</span>
+          <span class="footer-hub-text"><strong>Hong Kong:</strong> 4 Des Voeux Rd</span>
+          <span class="footer-hub-text"><strong>Miami:</strong> 1111 Brickell Ave</span>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="footer-col-title font-mono">INQUIRIES</span>
+          <a href="mailto:investor.relations@quantbot.com" class="font-mono text-emerald">investor.relations@quantbot.com</a>
+          <a href="mailto:careers@quantbot.com" class="font-mono">careers@quantbot.com</a>
+          <a href="#allocate" class="btn-pill-cta" style="margin-top:8px;">Schedule Briefing</a>
+        </div>
+      </div>
+
+      <div class="footer-legal-bar font-mono">
+        <div>Copyright &copy; 2026 QuantBot Technologies, LP. All Rights Reserved.</div>
+        <div class="footer-disclaimer-notice">
+          NOT AN OFFER TO BUY OR SELL SECURITIES. QUANTITATIVE INVESTMENT INVOLVES RISK OF LOSS.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Spatial Physics & Scrollytelling Engine -->
   <script src="js/components.js"></script>
 </body>
 </html>
